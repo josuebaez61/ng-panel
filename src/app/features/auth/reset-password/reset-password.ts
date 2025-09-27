@@ -7,7 +7,6 @@ import { CommonPrimeNgModule } from '@shared/modules';
 import { CustomValidators } from '@shared/utils/custom-validators';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { AuthLayout } from '@core/services';
 import { RoutePath } from '@core/constants';
 import { FormField } from '@shared/components/form-field/form-field';
 import { Hint } from '@shared/components/hint/hint';
@@ -40,10 +39,7 @@ export class ResetPassword implements OnInit {
   private readonly messageService = inject(MessageService);
   private readonly translate = inject(TranslateService);
 
-  public readonly authLayout = inject(AuthLayout);
-
   public ngOnInit() {
-    this.authLayout.setBackRoute(RoutePath.FORGOT_PASSWORD);
     this.resetPasswordForm = this.fb.group(
       {
         code: ['', [Validators.required]],
@@ -54,10 +50,6 @@ export class ResetPassword implements OnInit {
         validators: [CustomValidators.passwordMatch('password', 'confirmPassword')],
       }
     );
-  }
-
-  public ngOnDestroy(): void {
-    this.authLayout.clearBackRoute();
   }
 
   public onSubmit() {

@@ -1,4 +1,4 @@
-<p-toolbar class="p-2">
+<p-toolbar class="p-2 shadow-lg">
   <ng-template #start>
     @if (backRoute()) {
     <p-button
@@ -9,7 +9,7 @@
       [rounded]="true"
     />
     } @if (showSidenavToggleButton()) {
-    <p-button icon="pi pi-bars" text rounded />
+    <p-button icon="pi pi-bars" text rounded (onClick)="toggleSidenav.emit()" />
     }
   </ng-template>
   <ng-template #end>

@@ -1,4 +1,3 @@
-export * from './auth-layout';
 export * from './auth-service';
 export * from './confirm';
 export * from './dialog-service';

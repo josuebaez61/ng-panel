@@ -1,6 +1,6 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { AuthLayout, AuthService } from '@core/services';
+import { AuthService } from '@core/services';
 import { LangSelector } from '@shared/components/lang-selector/lang-selector';
 import { ThemeButton } from '@shared/components/theme-button/theme-button';
 import { CommonPrimeNgModule } from '@shared/modules';
@@ -24,9 +24,9 @@ import { LangMenu } from '@shared/components/lang-menu/lang-menu';
   styleUrl: './topbar.scss',
 })
 export class Topbar {
-  private readonly authLayout = inject(AuthLayout);
   private readonly authService = inject(AuthService);
 
+  public toggleSidenav = output<void>();
   public backRoute = input<string | null>(null);
   public showSidenavToggleButton = input<boolean>(false);
 
