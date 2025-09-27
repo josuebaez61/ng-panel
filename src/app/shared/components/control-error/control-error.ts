@@ -6,13 +6,11 @@ import { FormErrorMessageDirective } from '@shared/directives';
   selector: 'app-control-error',
   imports: [FormErrorMessageDirective],
   template: `
-    @if(control()?.dirty && control()?.invalid && control()?.touched) {
     <small
       style="color: var(--p-inputtext-invalid-border-color)"
       [appFormErrorMessage]="control()?.errors"
     >
     </small>
-    }
   `,
   styles: ``,
 })

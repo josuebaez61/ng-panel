@@ -1,0 +1,32 @@
+<!-- Example usage of the improved form-field component -->
+
+<!-- Basic usage with hint -->
+<app-form-field>
+  <app-label for="email">Email</app-label>
+  <input id="email" type="email" formControlName="email" pInputText class="w-full" />
+  <app-hint>Ingresa tu correo electrónico</app-hint>
+  <app-control-error [control]="form.get('email')"></app-control-error>
+</app-form-field>
+
+<!-- Usage without hint -->
+<app-form-field>
+  <app-label for="password">Password</app-label>
+  <input id="password" type="password" formControlName="password" pInputText class="w-full" />
+  <app-control-error [control]="form.get('password')"></app-control-error>
+</app-form-field>
+
+<!-- Usage with fixed height disabled -->
+<app-form-field [fixedHeight]="false">
+  <app-label for="description">Description</app-label>
+  <textarea id="description" formControlName="description" pTextarea class="w-full"></textarea>
+  <app-hint>Describe tu experiencia</app-hint>
+  <app-control-error [control]="form.get('description')"></app-control-error>
+</app-form-field>
+
+<!-- Usage without required marker -->
+<app-form-field [hideRequiredMarker]="true">
+  <app-label for="optional">Optional Field</app-label>
+  <input id="optional" type="text" formControlName="optional" pInputText class="w-full" />
+  <app-hint>Este campo es opcional</app-hint>
+  <app-control-error [control]="form.get('optional')"></app-control-error>
+</app-form-field>

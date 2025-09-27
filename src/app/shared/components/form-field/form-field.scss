@@ -1,47 +1,104 @@
 .form-field {
-  &.fixed-height {
-    // Altura fija total del componente
-    height: 5rem;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 
-    // El input ocupa el espacio disponible
-    > input,
-    > p-inputText,
-    > p-password,
-    > p-dropdown,
-    > p-calendar,
-    > p-multiselect,
-    > p-textarea {
+  // Input container
+  .input-container {
+    position: relative;
+  }
+
+  // Message container with fixed height
+  &.fixed-height {
+    height: 5rem;
+
+    .input-container {
       flex: 1;
     }
 
-    // Contenedor para mensajes con altura fija
     .message-container {
       height: 1.5rem;
       display: flex;
       align-items: flex-start;
-      line-height: normal;
       margin-left: 0.5rem;
+      transition: all 0.2s ease-in-out;
+    }
+  }
 
-      small,
-      app-control-error {
-        display: block;
-        min-height: 1.25rem;
-        line-height: 1.25rem;
-        font-size: 0.75rem;
+  // Hint text styling
+  .hint-text {
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    color: rgb(107 114 128); // gray-500
+    transition: all 0.2s ease-in-out;
+  }
+
+  // Error text styling
+  .error-text {
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    color: rgb(239 68 68); // red-500
+    transition: all 0.2s ease-in-out;
+    animation: fadeInError 0.2s ease-in-out;
+  }
+
+  // Animation for error messages
+  @keyframes fadeInError {
+    from {
+      opacity: 0;
+      transform: translateY(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // State classes for better styling control
+  &.has-error {
+    .input-container {
+      // Add error styling to inputs if needed
+      input,
+      textarea,
+      select {
+        border-color: rgb(239 68 68); // red-500
+        box-shadow: 0 0 0 1px rgb(239 68 68 / 0.2);
       }
     }
   }
 
-  // Estilos para cuando no se usa altura fija
-  &:not(.fixed-height) {
-    small,
-    app-control-error {
-      display: block;
-      min-height: 1.25rem;
-      line-height: 1.25rem;
-      font-size: 0.75rem;
+  // Responsive adjustments
+  @media (max-width: 640px) {
+    &.fixed-height {
+      height: 4.5rem;
+
+      .message-container {
+        height: 1.25rem;
+      }
+    }
+
+    .hint-text,
+    .error-text {
+      font-size: 0.7rem;
+      line-height: 1.125rem;
+    }
+  }
+
+  // Dark mode support
+  html.color-scheme-dark & {
+    .hint-text {
+      color: rgb(156 163 175); // gray-400
+    }
+
+    &.has-error {
+      .input-container {
+        input,
+        textarea,
+        select {
+          border-color: rgb(248 113 113); // red-400
+          box-shadow: 0 0 0 1px rgb(248 113 113 / 0.2);
+        }
+      }
     }
   }
 }

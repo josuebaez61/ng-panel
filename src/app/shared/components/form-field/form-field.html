@@ -1,39 +1,55 @@
 <div
   class="form-field relative"
   [class.fixed-height]="fixedHeight"
+  [class.has-error]="hasError()"
+  [class.has-hint]="showHint()"
   [style.height]="fixedHeight ? minHeight : 'auto'"
 >
+  <!-- Label -->
   @if (label) {
-  <span class="text-sm font-medium mb-2">
+  <span class="text-sm font-medium mb-2 block">
     <ng-content select="app-label"></ng-content>
-    @if (isRequired) {
-    <span>(*)</span>
+    @if (isRequired() && !hideRequiredMarker) {
+    <span class="text-red-500 ml-1" aria-label="Required">*</span>
     }
   </span>
   }
 
-  <!-- Input -->
-  <ng-content></ng-content>
+  <!-- Input Container -->
+  <div class="input-container">
+    <ng-content></ng-content>
+  </div>
 
   <!-- Message Container with Fixed Height -->
   <div class="message-container" *ngIf="fixedHeight">
-    <!-- Helper Text -->
-    @if (showHint) {
-    <ng-content select="app-hint"></ng-content>
+    <!-- Helper Text (shows when no error and conditions are met) -->
+    @if (showHint() && !hasError()) {
+    <div class="hint-text">
+      <ng-content select="app-hint"></ng-content>
+    </div>
     }
 
-    <!-- Control Error -->
-    <ng-content select="app-control-error"></ng-content>
+    <!-- Error Message (shows when there's an error and app-control-error is present) -->
+    @if (hasError()) {
+    <div class="error-text" role="alert" [attr.aria-live]="'polite'">
+      <ng-content select="app-control-error"></ng-content>
+    </div>
+    }
   </div>
 
   <!-- Messages without Fixed Height -->
   @if (!fixedHeight) {
   <!-- Helper Text -->
-  @if (showHint) {
-  <ng-content select="app-hint"></ng-content>
+  @if (showHint() && !hasError()) {
+  <div class="hint-text mt-1">
+    <ng-content select="app-hint"></ng-content>
+  </div>
   }
 
-  <!-- Control Error -->
-  <ng-content select="app-control-error"></ng-content>
-  }
+  <!-- Error Message -->
+  @if (hasError()) {
+  <div class="error-text mt-1" role="alert" [attr.aria-live]="'polite'">
+    <ng-content select="app-control-error"></ng-content>
+  </div>
+  } }
 </div>

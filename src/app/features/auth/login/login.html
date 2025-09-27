@@ -12,6 +12,7 @@
       [placeholder]="'auth.login.email.placeholder' | translate"
       class="w-full"
       pInputText
+      autocomplete="off"
     />
     <app-control-error [control]="loginForm.get('email')"></app-control-error>
   </app-form-field>
