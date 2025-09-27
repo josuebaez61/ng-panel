@@ -7,6 +7,7 @@ import { CommonPrimeNgModule } from '@shared/modules';
 import { ToolbarModule } from 'primeng/toolbar';
 import { UserMenu } from '@shared/components/user-menu/user-menu';
 import { UserNotificationsButton } from '@shared/components/user-notifications-button/user-notifications-button';
+import { LangMenu } from '@shared/components/lang-menu/lang-menu';
 
 @Component({
   selector: 'app-topbar',
@@ -18,6 +19,7 @@ import { UserNotificationsButton } from '@shared/components/user-notifications-b
     RouterLink,
     UserMenu,
     UserNotificationsButton,
+    LangMenu,
   ],
   templateUrl: './topbar.html',
   styleUrl: './topbar.scss',
