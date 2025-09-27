@@ -64,6 +64,3 @@ export const appConfig: ApplicationConfig = {
     provideCurrentLang(),
   ],
 };
-function provideNativeDateAdapter() {
-  throw new Error('Function not implemented.');
-}
