@@ -1,12 +1,10 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject, linkedSignal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { LanguageOption } from '@core/models';
+import { Component, inject } from '@angular/core';
 import { LANGUAGE_OPTIONS_TOKEN } from '@core/providers';
 import { CURRENT_LANG_TOKEN } from '@core/providers/current_lang.provider';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';
-import { Button, ButtonDirective, ButtonIcon } from 'primeng/button';
+import { ButtonDirective, ButtonIcon } from 'primeng/button';
 import { Menu } from 'primeng/menu';
 import { map } from 'rxjs';
 
@@ -14,13 +12,14 @@ import { map } from 'rxjs';
   selector: 'app-lang-menu',
   imports: [Menu, AsyncPipe, ButtonDirective, ButtonIcon],
   template: `
+    <ng-template #trigger> </ng-template>
     <button pButton text rounded (click)="menu.toggle($event)">
       @if (selectedLang$ | async; as lang) {
       <img pButtonIcon [src]="lang.icon" style="width: 18px" />
       }
     </button>
 
-    <p-menu #menu [model]="languageOptions" [popup]="true">
+    <p-menu #menu [model]="languageOptions" [popup]="true" [appendTo]="trigger">
       <ng-template #item let-lang>
         <div (click)="onChange(lang)" class="flex items-center gap-2 cursor-pointer py-2 px-4">
           <img [src]="lang.icon" style="width: 18px" />

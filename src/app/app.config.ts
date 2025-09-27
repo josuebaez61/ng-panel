@@ -22,6 +22,7 @@ import { MessageService } from 'primeng/api';
 import { THEME_DARK_CSS_CLASS_NAME } from '@core/constants';
 import { Noir } from '@core/themes';
 import { provideCurrentLang } from '@core/providers/current_lang.provider';
+import { RippleModule } from 'primeng/ripple';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,6 +33,7 @@ export const appConfig: ApplicationConfig = {
 
     // PrimeNG
     providePrimeNG({
+      ripple: true,
       theme: {
         preset: Noir,
         options: {
@@ -67,5 +69,7 @@ export const appConfig: ApplicationConfig = {
 
     // Current lang
     provideCurrentLang(),
+
+    RippleModule,
   ],
 };

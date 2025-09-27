@@ -9,6 +9,7 @@ import { SelectModule } from 'primeng/select';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { DividerModule } from 'primeng/divider';
+import { RippleModule } from 'primeng/ripple';
 @NgModule({
   imports: [CommonModule],
   exports: [
@@ -22,6 +23,7 @@ import { DividerModule } from 'primeng/divider';
     DividerModule,
     InputGroupModule,
     InputGroupAddonModule,
+    RippleModule,
   ],
 })
 export class CommonPrimeNgModule {}
