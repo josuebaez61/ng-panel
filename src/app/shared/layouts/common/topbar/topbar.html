@@ -1,23 +1,26 @@
 <p-toolbar class="p-2">
   <ng-template #start>
-    @if (authLayout.backRoute()) {
+    @if (backRoute()) {
     <p-button
-      [routerLink]="authLayout.backRoute()"
+      [routerLink]="backRoute()"
       icon="fa-solid fa-arrow-left"
       text
       severity="secondary"
       [rounded]="true"
     />
-    }
+    } @if (showSidenavToggleButton()) {
     <p-button icon="pi pi-bars" text rounded />
+    }
   </ng-template>
   <ng-template #end>
     <div class="flex items-center gap-4">
       <app-lang-menu />
       <!-- <app-lang-selector /> -->
       <app-theme-button />
+      @if (isAuthenticated()) {
       <app-user-notifications-button />
       <app-user-menu class="h-full" />
+      }
     </div>
   </ng-template>
 </p-toolbar>

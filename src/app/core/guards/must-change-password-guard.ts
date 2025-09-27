@@ -5,8 +5,6 @@ import { RoutePath } from '../constants/routes';
 
 // Guard for must-change-password route
 export const mustChangePasswordGuard: CanActivateFn = () => {
-  console.log('mustChangePasswordGuard hardcoded to true');
-  return true;
   const authService = inject(AuthService);
   const router = inject(Router);
 

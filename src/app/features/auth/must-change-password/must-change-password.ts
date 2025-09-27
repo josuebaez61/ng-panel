@@ -6,6 +6,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonPrimeNgModule } from '@shared/modules';
 import { CustomValidators } from '@shared/utils/custom-validators';
 import { FormField } from '@shared/components/form-field/form-field';
+import { RoutePath } from '@core/constants';
+import { Auth } from '@shared/layouts/auth/auth';
 
 @Component({
   selector: 'app-must-change-password',
@@ -16,13 +18,13 @@ import { FormField } from '@shared/components/form-field/form-field';
     ReactiveFormsModule,
     CommonPrimeNgModule,
     FormField,
+    Auth,
   ],
   templateUrl: './must-change-password.html',
   styleUrl: './must-change-password.scss',
 })
 export class MustChangePassword implements OnInit {
   public loading = signal(false);
-
   public mustChangePasswordForm = new FormGroup(
     {
       password: new FormControl('', [Validators.required]),

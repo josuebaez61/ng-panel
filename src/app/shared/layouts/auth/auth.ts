@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +16,10 @@ import { Topbar } from '../common/topbar/topbar';
 export class Auth implements OnInit {
   isDarkMode = false;
   private themeService = inject(Theme);
+
+  public title = input<string | null>(null);
+  public backRoute = input<string | null>(null);
+  public showSidenavToggleButton = input<boolean>(false);
 
   ngOnInit() {}
 

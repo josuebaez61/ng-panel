@@ -18,7 +18,6 @@ export const routes: Routes = [
   // Auth routes (guest only)
   {
     path: RouteName.AUTH,
-    loadComponent: () => import('./shared/layouts/auth/auth').then((m) => m.Auth),
     loadChildren: () => import('./features/auth/auth.routes').then((m) => m.routes),
   },
   // Main application routes (protected)

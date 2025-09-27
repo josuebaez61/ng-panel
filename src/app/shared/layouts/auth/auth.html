@@ -1,13 +1,19 @@
 <div class="min-h-screen flex flex-col relative">
   <!-- Header -->
-  <app-topbar></app-topbar>
+  <app-topbar [backRoute]="backRoute()"></app-topbar>
 
   <!-- Main Content -->
   <main class="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
       <!-- Auth Content -->
       <p-card class="shadow-lg">
+        @if (title()) {
+        <h1 class="text-2xl font-bold mb-4 text-center">
+          {{ title() }}
+        </h1>
+        }
         <router-outlet></router-outlet>
+        <ng-content></ng-content>
       </p-card>
     </div>
   </main>

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { RoutePath } from '@core/constants';
 import { AuthLayout } from '@core/services';
 import { FormField } from '@shared/components/form-field/form-field';
+import { Auth } from '@shared/layouts/auth/auth';
 
 @Component({
   selector: 'app-forgot-password',
@@ -18,6 +19,7 @@ import { FormField } from '@shared/components/form-field/form-field';
     ReactiveFormsModule,
     TranslateModule,
     FormField,
+    Auth,
   ],
   templateUrl: './forgot-password.html',
   styleUrl: './forgot-password.scss',
@@ -25,6 +27,8 @@ import { FormField } from '@shared/components/form-field/form-field';
 export class ForgotPassword implements OnInit, OnDestroy {
   private readonly router = inject(Router);
   private readonly authLayout = inject(AuthLayout);
+
+  public backRoute = RoutePath.LOGIN;
 
   public forgotPasswordForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),

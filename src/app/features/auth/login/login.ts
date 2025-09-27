@@ -15,6 +15,7 @@ import { CommonPrimeNgModule } from '@shared/modules';
 import { RouterLink } from '@angular/router';
 import { RoutePath } from '@core/constants';
 import { FormField } from '@shared/components/form-field/form-field';
+import { Auth } from '@shared/layouts/auth/auth';
 @Component({
   selector: 'app-login',
   imports: [
@@ -32,6 +33,7 @@ import { FormField } from '@shared/components/form-field/form-field';
     RouterLink,
     Label,
     FormField,
+    Auth,
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss',

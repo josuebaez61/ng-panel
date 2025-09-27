@@ -11,6 +11,7 @@ import { AuthLayout } from '@core/services';
 import { RoutePath } from '@core/constants';
 import { FormField } from '@shared/components/form-field/form-field';
 import { Hint } from '@shared/components/hint/hint';
+import { Auth } from '@shared/layouts/auth/auth';
 
 @Component({
   selector: 'app-reset-password',
@@ -23,6 +24,7 @@ import { Hint } from '@shared/components/hint/hint';
     ToastModule,
     FormField,
     Hint,
+    Auth,
   ],
   templateUrl: './reset-password.html',
   styleUrl: './reset-password.scss',
@@ -31,6 +33,8 @@ import { Hint } from '@shared/components/hint/hint';
 export class ResetPassword implements OnInit {
   public resetPasswordForm!: FormGroup;
   public isLoading = false;
+
+  public readonly backRoute = RoutePath.FORGOT_PASSWORD;
 
   private readonly fb = inject(FormBuilder);
   private readonly messageService = inject(MessageService);
