@@ -35,11 +35,11 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: Noir,
         options: {
-          darkModeSelector: `.theme-dark`,
+          darkModeSelector: `.${THEME_DARK_CSS_CLASS_NAME}`,
           cssLayer: {
             name: 'primeng',
             // Ensure primeng layer is after theme and base, but before the other Tailwind layers such as utilities.
-            order: 'base, components, primeng, utilities',
+            order: 'base, theme, primeng',
           },
         },
       },
