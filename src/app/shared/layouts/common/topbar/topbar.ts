@@ -6,10 +6,19 @@ import { ThemeButton } from '@shared/components/theme-button/theme-button';
 import { CommonPrimeNgModule } from '@shared/modules';
 import { ToolbarModule } from 'primeng/toolbar';
 import { UserMenu } from '@shared/components/user-menu/user-menu';
+import { UserNotificationsButton } from '@shared/components/user-notifications-button/user-notifications-button';
 
 @Component({
   selector: 'app-topbar',
-  imports: [CommonPrimeNgModule, ToolbarModule, LangSelector, ThemeButton, RouterLink, UserMenu],
+  imports: [
+    CommonPrimeNgModule,
+    ToolbarModule,
+    LangSelector,
+    ThemeButton,
+    RouterLink,
+    UserMenu,
+    UserNotificationsButton,
+  ],
   templateUrl: './topbar.html',
   styleUrl: './topbar.scss',
 })

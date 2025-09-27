@@ -8,7 +8,7 @@ import { Button } from 'primeng/button';
   template: `
     <p-button
       (onClick)="onClick()"
-      [icon]="'fa-regular fa-lightbulb' + (themeService.isDark() ? ' text-yellow-500' : '')"
+      [icon]="themeService.isDark() ? 'fa-regular fa-moon text-yellow-200' : 'fa-regular fa-sun'"
       [rounded]="true"
       text
     />

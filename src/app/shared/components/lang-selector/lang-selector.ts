@@ -15,7 +15,20 @@ import { CommonPrimeNgModule } from '@shared/modules';
       [options]="languageOptions"
       optionLabel="label"
       optionValue="value"
-    />
+    >
+      <ng-template #selectedItem let-selectedOption>
+        <div class="flex items-center gap-2" *ngIf="selectedOption">
+          <img [src]="selectedOption.src" style="width: 18px" />
+          <div>{{ selectedOption.value }}</div>
+        </div>
+      </ng-template>
+      <ng-template let-lang #item>
+        <div class="flex items-center gap-2">
+          <img [src]="lang.src" style="width: 18px" />
+          <div>{{ lang.value }}</div>
+        </div>
+      </ng-template>
+    </p-select>
   `,
   styles: ``,
 })
