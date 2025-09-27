@@ -1,0 +1,183 @@
+{
+  "auth": {
+    "login": {
+      "title": "Iniciar Sesión",
+      "subtitle": "Ingresa tus credenciales para acceder",
+      "email": {
+        "label": "Correo Electrónico",
+        "placeholder": "tu@email.com",
+        "required": "El correo electrónico es requerido",
+        "invalid": "Ingresa un correo electrónico válido"
+      },
+      "password": {
+        "label": "Contraseña",
+        "placeholder": "Ingresa tu contraseña",
+        "required": "La contraseña es requerida",
+        "minLength": "La contraseña debe tener al menos 6 caracteres"
+      },
+      "rememberMe": "Recordarme",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "submitButton": "Iniciar Sesión",
+      "divider": "O continúa con",
+      "google": "Google",
+      "microsoft": "Microsoft",
+      "noAccount": "¿No tienes cuenta?",
+      "registerLink": "Regístrate aquí",
+      "success": "Inicio de sesión exitoso",
+      "error": "Por favor completa todos los campos requeridos correctamente"
+    },
+    "register": {
+      "title": "Crear Cuenta",
+      "subtitle": "Completa tus datos para registrarte",
+      "firstName": {
+        "label": "Nombre",
+        "placeholder": "Tu nombre",
+        "required": "El nombre es requerido"
+      },
+      "lastName": {
+        "label": "Apellido",
+        "placeholder": "Tu apellido",
+        "required": "El apellido es requerido"
+      },
+      "email": {
+        "label": "Correo Electrónico",
+        "placeholder": "tu@email.com",
+        "required": "El correo electrónico es requerido",
+        "invalid": "Ingresa un correo electrónico válido"
+      },
+      "password": {
+        "label": "Contraseña",
+        "placeholder": "Crea una contraseña",
+        "required": "La contraseña es requerida",
+        "minLength": "La contraseña debe tener al menos 6 caracteres"
+      },
+      "confirmPassword": {
+        "label": "Confirmar Contraseña",
+        "placeholder": "Confirma tu contraseña",
+        "required": "La confirmación de contraseña es requerida",
+        "mismatch": "Las contraseñas no coinciden"
+      },
+      "terms": "Acepto los términos y condiciones",
+      "submitButton": "Crear Cuenta",
+      "hasAccount": "¿Ya tienes cuenta?",
+      "loginLink": "Inicia sesión aquí"
+    },
+    "forgotPassword": {
+      "title": "Recuperar Contraseña",
+      "subtitle": "Ingresa tu correo electrónico para recibir instrucciones",
+      "email": {
+        "label": "Correo Electrónico",
+        "placeholder": "tu@email.com",
+        "required": "El correo electrónico es requerido",
+        "invalid": "Ingresa un correo electrónico válido"
+      },
+      "submitButton": "Enviar Instrucciones",
+      "backToLogin": "Volver al inicio de sesión",
+      "success": "Se han enviado las instrucciones a tu correo electrónico"
+    },
+    "resetPassword": {
+      "title": "Restablecer Contraseña",
+      "subtitle": "Ingresa tu nueva contraseña",
+      "code": {
+        "label": "Código de Verificación",
+        "placeholder": "Ingresa el código de verificación",
+        "helperText": "Revisa tu correo electrónico para obtener el código"
+      },
+      "password": {
+        "label": "Nueva Contraseña",
+        "placeholder": "Ingresa tu nueva contraseña",
+        "required": "La contraseña es requerida",
+        "minLength": "La contraseña debe tener al menos 6 caracteres"
+      },
+      "confirmPassword": {
+        "label": "Confirmar Nueva Contraseña",
+        "placeholder": "Confirma tu nueva contraseña",
+        "required": "La confirmación de contraseña es requerida",
+        "mismatch": "Las contraseñas no coinciden"
+      },
+      "submitButton": "Restablecer Contraseña",
+      "success": "Contraseña restablecida exitosamente",
+      "error": "Por favor completa todos los campos requeridos correctamente"
+    },
+    "mustChangePassword": {
+      "title": "Cambio de Contraseña Obligatorio",
+      "subtitle": "Debes cambiar tu contraseña para continuar",
+      "password": {
+        "label": "Nueva Contraseña",
+        "placeholder": "Ingresa tu nueva contraseña",
+        "required": "La contraseña es requerida",
+        "minLength": "La contraseña debe tener al menos 6 caracteres",
+        "helperText": "Por seguridad, debes cambiar tu contraseña antes de continuar"
+      },
+      "confirmPassword": {
+        "label": "Confirmar Nueva Contraseña",
+        "placeholder": "Confirma tu nueva contraseña",
+        "required": "La confirmación de contraseña es requerida",
+        "mismatch": "Las contraseñas no coinciden"
+      },
+      "submitButton": "Cambiar Contraseña",
+      "success": "Contraseña cambiada exitosamente",
+      "error": "Por favor completa todos los campos requeridos correctamente",
+      "info": "Por seguridad, debes cambiar tu contraseña antes de continuar"
+    },
+    "layout": {
+      "companyName": "Tu Empresa",
+      "themeToggle": {
+        "light": "Modo Claro",
+        "dark": "Modo Oscuro"
+      },
+      "footer": "© 2024 Tu Empresa. Todos los derechos reservados."
+    }
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "info": "Información",
+    "warning": "Advertencia"
+  },
+  "validation": {
+    "required": "Este campo es requerido",
+    "email": "Ingresa un correo electrónico válido",
+    "minlength": "Debe tener al menos {{min}} caracteres",
+    "maxlength": "No puede tener más de {{max}} caracteres",
+    "min": "El valor mínimo es {{min}}",
+    "max": "El valor máximo es {{max}}",
+    "pattern": "El formato no es válido",
+    "url": "Ingresa una URL válida",
+    "date": "Ingresa una fecha válida",
+    "number": "Debe ser un número válido",
+    "integer": "Debe ser un número entero",
+    "decimal": "Debe ser un número decimal",
+    "alphanumeric": "Solo se permiten letras y números",
+    "passwordMatch": "Las contraseñas no coinciden",
+    "passwordStrength": "La contraseña debe contener al menos una mayúscula, una minúscula, un número y un carácter especial",
+    "phone": "Ingresa un número de teléfono válido",
+    "postalCode": "Ingresa un código postal válido",
+    "creditCard": "Ingresa un número de tarjeta válido",
+    "iban": "Ingresa un IBAN válido",
+    "swift": "Ingresa un código SWIFT válido",
+    "taxId": "Ingresa un NIF/CIF válido",
+    "nif": "Ingresa un NIF válido",
+    "nie": "Ingresa un NIE válido",
+    "passport": "Ingresa un pasaporte válido",
+    "ssn": "Ingresa un DNI válido",
+    "age": "Debes ser mayor de {{min}} años",
+    "futureDate": "La fecha debe ser futura",
+    "pastDate": "La fecha debe ser pasada",
+    "fileSize": "El archivo no puede ser mayor de {{max}}MB",
+    "fileType": "Tipo de archivo no permitido",
+    "fileExtension": "Extensión de archivo no permitida",
+    "unique": "Este valor ya existe",
+    "exists": "Este valor no existe",
+    "confirmed": "La confirmación no coincide",
+    "different": "Los valores deben ser diferentes",
+    "same": "Los valores deben ser iguales",
+    "oneOf": "Debe ser uno de los valores permitidos",
+    "notOneOf": "No puede ser uno de estos valores",
+    "custom": "{{message}}"
+  },
+  "usersMenu": {
+    "logout": "Cerrar Sesión"
+  }
+}

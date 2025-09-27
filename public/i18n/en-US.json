@@ -1,0 +1,183 @@
+{
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Enter your credentials to access",
+      "email": {
+        "label": "Email Address",
+        "placeholder": "your@email.com",
+        "required": "Email address is required",
+        "invalid": "Please enter a valid email address"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your password",
+        "required": "Password is required",
+        "minLength": "Password must be at least 6 characters long"
+      },
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot your password?",
+      "submitButton": "Sign In",
+      "divider": "Or continue with",
+      "google": "Google",
+      "microsoft": "Microsoft",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Sign up here",
+      "success": "Sign in successful",
+      "error": "Please complete all required fields correctly"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Complete your information to sign up",
+      "firstName": {
+        "label": "First Name",
+        "placeholder": "Your first name",
+        "required": "First name is required"
+      },
+      "lastName": {
+        "label": "Last Name",
+        "placeholder": "Your last name",
+        "required": "Last name is required"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "your@email.com",
+        "required": "Email address is required",
+        "invalid": "Please enter a valid email address"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Create a password",
+        "required": "Password is required",
+        "minLength": "Password must be at least 6 characters long"
+      },
+      "confirmPassword": {
+        "label": "Confirm Password",
+        "placeholder": "Confirm your password",
+        "required": "Password confirmation is required",
+        "mismatch": "Passwords do not match"
+      },
+      "terms": "I accept the terms and conditions",
+      "submitButton": "Create Account",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Sign in here"
+    },
+    "forgotPassword": {
+      "title": "Reset Password",
+      "subtitle": "Enter your email address to receive instructions",
+      "email": {
+        "label": "Email Address",
+        "placeholder": "your@email.com",
+        "required": "Email address is required",
+        "invalid": "Please enter a valid email address"
+      },
+      "submitButton": "Send Instructions",
+      "backToLogin": "Back to sign in",
+      "success": "Instructions have been sent to your email address"
+    },
+    "resetPassword": {
+      "title": "Reset Password",
+      "subtitle": "Enter your new password",
+      "code": {
+        "label": "Verification Code",
+        "placeholder": "Enter verification code",
+        "helperText": "Check your email for the verification code"
+      },
+      "password": {
+        "label": "New Password",
+        "placeholder": "Enter your new password",
+        "required": "Password is required",
+        "minLength": "Password must be at least 6 characters long"
+      },
+      "confirmPassword": {
+        "label": "Confirm New Password",
+        "placeholder": "Confirm your new password",
+        "required": "Password confirmation is required",
+        "mismatch": "Passwords do not match"
+      },
+      "submitButton": "Reset Password",
+      "success": "Password reset successfully",
+      "error": "Please complete all required fields correctly"
+    },
+    "mustChangePassword": {
+      "title": "Mandatory Password Change",
+      "subtitle": "You must change your password to continue",
+      "password": {
+        "label": "New Password",
+        "placeholder": "Enter your new password",
+        "required": "Password is required",
+        "minLength": "Password must be at least 6 characters long",
+        "helperText": "For security reasons, you must change your password before continuing"
+      },
+      "confirmPassword": {
+        "label": "Confirm New Password",
+        "placeholder": "Confirm your new password",
+        "required": "Password confirmation is required",
+        "mismatch": "Passwords do not match"
+      },
+      "submitButton": "Change Password",
+      "success": "Password changed successfully",
+      "error": "Please complete all required fields correctly",
+      "info": "For security reasons, you must change your password before continuing"
+    },
+    "layout": {
+      "companyName": "Your Company",
+      "themeToggle": {
+        "light": "Light Mode",
+        "dark": "Dark Mode"
+      },
+      "footer": "© 2024 Your Company. All rights reserved."
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "info": "Information",
+    "warning": "Warning"
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Please enter a valid email address",
+    "minlength": "Must be at least {{min}} characters long",
+    "maxlength": "Cannot exceed {{max}} characters",
+    "min": "Minimum value is {{min}}",
+    "max": "Maximum value is {{max}}",
+    "pattern": "Invalid format",
+    "url": "Please enter a valid URL",
+    "date": "Please enter a valid date",
+    "number": "Must be a valid number",
+    "integer": "Must be a whole number",
+    "decimal": "Must be a decimal number",
+    "alphanumeric": "Only letters and numbers are allowed",
+    "passwordMatch": "Passwords do not match",
+    "passwordStrength": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+    "phone": "Please enter a valid phone number",
+    "postalCode": "Please enter a valid postal code",
+    "creditCard": "Please enter a valid credit card number",
+    "iban": "Please enter a valid IBAN",
+    "swift": "Please enter a valid SWIFT code",
+    "taxId": "Please enter a valid tax ID",
+    "nif": "Please enter a valid NIF",
+    "nie": "Please enter a valid NIE",
+    "passport": "Please enter a valid passport number",
+    "ssn": "Please enter a valid SSN",
+    "age": "You must be at least {{min}} years old",
+    "futureDate": "Date must be in the future",
+    "pastDate": "Date must be in the past",
+    "fileSize": "File cannot be larger than {{max}}MB",
+    "fileType": "File type not allowed",
+    "fileExtension": "File extension not allowed",
+    "unique": "This value already exists",
+    "exists": "This value does not exist",
+    "confirmed": "Confirmation does not match",
+    "different": "Values must be different",
+    "same": "Values must be the same",
+    "oneOf": "Must be one of the allowed values",
+    "notOneOf": "Cannot be one of these values",
+    "custom": "{{message}}"
+  },
+  "usersMenu": {
+    "logout": "Logout"
+  }
+}

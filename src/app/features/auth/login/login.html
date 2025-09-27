@@ -1,0 +1,112 @@
+<h1 class="text-2xl font-bold mb-4 text-center">{{ 'auth.login.title' | translate }}</h1>
+<form [formGroup]="loginForm" class="space-y-6" (ngSubmit)="onSubmit()">
+  <!-- Email Field -->
+  <app-form-field>
+    <app-label for="email">
+      {{ 'auth.login.email.label' | translate }}
+    </app-label>
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      [placeholder]="'auth.login.email.placeholder' | translate"
+      class="w-full"
+      pInputText
+    />
+    <app-control-error [control]="loginForm.get('email')"></app-control-error>
+  </app-form-field>
+
+  <!-- Password Field -->
+  <app-form-field>
+    <app-label for="password">
+      {{ 'auth.login.password.label' | translate }}
+    </app-label>
+    <p-inputgroup>
+      <input
+        id="password"
+        [type]="passwordVisible() ? 'text' : 'password'"
+        formControlName="password"
+        [placeholder]="'auth.login.password.placeholder' | translate"
+        class="w-full"
+        pInputText
+      />
+      <p-inputgroup-addon>
+        <p-button
+          [icon]="passwordVisible() ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'"
+          (onClick)="passwordVisible.set(!passwordVisible())"
+          text
+        />
+      </p-inputgroup-addon>
+    </p-inputgroup>
+    <app-control-error [control]="loginForm.get('password')"></app-control-error>
+  </app-form-field>
+
+  <!-- Remember Me & Forgot Password -->
+  <div class="flex items-center justify-end">
+    <!-- <p-checkbox formControlName="rememberMe" [binary]="true" inputId="rememberMe">
+        <label for="rememberMe" class="text-sm ml-2">
+          {{ 'auth.login.rememberMe' | translate }}
+        </label>
+      </p-checkbox> -->
+
+    <a [routerLink]="forgotPasswordRoutePath" class="text-sm transition-colors">
+      {{ 'auth.login.forgotPassword' | translate }}
+    </a>
+  </div>
+
+  <!-- Submit Button -->
+  <div>
+    <p-button
+      type="submit"
+      [label]="'auth.login.submitButton' | translate"
+      icon="fa-solid fa-right-to-bracket"
+      styleClass="w-full"
+      [loading]="isLoading()"
+      [disabled]="isLoading()"
+    >
+    </p-button>
+  </div>
+
+  <!-- Divider -->
+  <!-- <div class="relative">
+      <div class="absolute inset-0 flex items-center">
+        <div class="w-full border-t"></div>
+      </div>
+      <div class="relative flex justify-center text-sm">
+        <span class="px-2 bg-white">{{ 'auth.login.divider' | translate }}</span>
+      </div>
+    </div> -->
+
+  <!-- Social Login Buttons -->
+  <!-- <div class="grid grid-cols-2 gap-3">
+      <p-button
+        [label]="'auth.login.google' | translate"
+        icon="pi pi-google"
+        severity="secondary"
+        [outlined]="true"
+        styleClass="w-full"
+        (onClick)="loginWithGoogle()"
+      >
+      </p-button>
+
+      <p-button
+        [label]="'auth.login.microsoft' | translate"
+        icon="pi pi-microsoft"
+        severity="secondary"
+        [outlined]="true"
+        styleClass="w-full"
+        (onClick)="loginWithMicrosoft()"
+      >
+      </p-button>
+    </div> -->
+
+  <!-- Register Link -->
+  <!-- <div class="text-center">
+      <p class="text-sm">
+        {{ 'auth.login.noAccount' | translate }}
+        <a href="#" class="font-medium transition-colors">
+          {{ 'auth.login.registerLink' | translate }}
+        </a>
+      </p>
+    </div> -->
+</form>

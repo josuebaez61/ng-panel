@@ -1,0 +1,47 @@
+.form-field {
+  &.fixed-height {
+    // Altura fija total del componente
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+
+    // El input ocupa el espacio disponible
+    > input,
+    > p-inputText,
+    > p-password,
+    > p-dropdown,
+    > p-calendar,
+    > p-multiselect,
+    > p-textarea {
+      flex: 1;
+    }
+
+    // Contenedor para mensajes con altura fija
+    .message-container {
+      height: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      line-height: normal;
+      margin-left: 0.5rem;
+
+      small,
+      app-control-error {
+        display: block;
+        min-height: 1.25rem;
+        line-height: 1.25rem;
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  // Estilos para cuando no se usa altura fija
+  &:not(.fixed-height) {
+    small,
+    app-control-error {
+      display: block;
+      min-height: 1.25rem;
+      line-height: 1.25rem;
+      font-size: 0.75rem;
+    }
+  }
+}

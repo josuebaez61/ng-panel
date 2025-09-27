@@ -1,0 +1,20 @@
+<p-toolbar class="p-4">
+  <ng-template #start>
+    @if (authLayout.backRoute()) {
+    <p-button
+      [routerLink]="authLayout.backRoute()"
+      icon="fa-solid fa-arrow-left"
+      text
+      severity="secondary"
+      [rounded]="true"
+    />
+    }
+  </ng-template>
+  <ng-template #end>
+    <div class="flex items-center gap-2">
+      <app-theme-button />
+      <app-lang-selector />
+      <app-user-menu />
+    </div>
+  </ng-template>
+</p-toolbar>

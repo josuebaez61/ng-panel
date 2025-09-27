@@ -1,0 +1,24 @@
+import { Observable } from 'rxjs';
+import { Role } from './role-models';
+import { User } from '.';
+import { Signal } from '@angular/core';
+
+export interface RoleDialogData {
+  role?: Role;
+}
+
+export interface ConfirmDialogData {
+  message?: string;
+}
+
+export interface UnsavedChangesDialogData {
+  saveCallback?: () => Observable<any> | Promise<any>;
+  discardCallback?: () => Observable<any> | Promise<any>;
+}
+
+export interface UsersSelectionDialogData {
+  users?: Signal<User[]>;
+  loading?: Signal<boolean>;
+  onScrolled?: () => void;
+  onGlobalSearch?: (search: string) => void;
+}

@@ -1,0 +1,39 @@
+<div
+  class="form-field relative"
+  [class.fixed-height]="fixedHeight"
+  [style.height]="fixedHeight ? minHeight : 'auto'"
+>
+  @if (label) {
+  <span class="text-sm font-medium mb-2">
+    <ng-content select="app-label"></ng-content>
+    @if (isRequired) {
+    <span>(*)</span>
+    }
+  </span>
+  }
+
+  <!-- Input -->
+  <ng-content></ng-content>
+
+  <!-- Message Container with Fixed Height -->
+  <div class="message-container" *ngIf="fixedHeight">
+    <!-- Helper Text -->
+    @if (showHint) {
+    <ng-content select="app-hint"></ng-content>
+    }
+
+    <!-- Control Error -->
+    <ng-content select="app-control-error"></ng-content>
+  </div>
+
+  <!-- Messages without Fixed Height -->
+  @if (!fixedHeight) {
+  <!-- Helper Text -->
+  @if (showHint) {
+  <ng-content select="app-hint"></ng-content>
+  }
+
+  <!-- Control Error -->
+  <ng-content select="app-control-error"></ng-content>
+  }
+</div>

@@ -1,0 +1,25 @@
+<div class="min-h-screen flex flex-col relative">
+  <!-- Header -->
+  <app-topbar></app-topbar>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+      <!-- Auth Content -->
+      <p-card class="shadow-lg">
+        <router-outlet></router-outlet>
+      </p-card>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="flex-shrink-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="py-6">
+        <div class="text-center text-xs">
+          <p>© 2024 Tu Empresa. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
