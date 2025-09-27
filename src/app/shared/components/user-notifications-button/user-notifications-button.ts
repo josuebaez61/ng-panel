@@ -1,15 +1,10 @@
 import { Component } from '@angular/core';
+import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-user-notifications-button',
-  imports: [],
-  template: `
-    <p>
-      user-notifications-button works!
-    </p>
-  `,
-  styles: ``
+  imports: [Button],
+  template: ` <p-button icon="pi pi-bell" text rounded /> `,
+  styles: ``,
 })
-export class UserNotificationsButton {
-
-}
+export class UserNotificationsButton {}

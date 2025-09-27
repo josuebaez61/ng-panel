@@ -3,13 +3,13 @@ import { UserAvatar } from '../user-avatar/user-avatar';
 import { MenuModule } from 'primeng/menu';
 import { LocalizedMenu } from '@core/services';
 import { AsyncPipe, NgClass } from '@angular/common';
-
+import { RippleModule } from 'primeng/ripple';
 @Component({
   selector: 'app-user-menu',
-  imports: [NgClass, AsyncPipe, UserAvatar, MenuModule],
+  imports: [NgClass, AsyncPipe, UserAvatar, MenuModule, RippleModule],
   template: `
-    <div class="flex items-center" [ngClass]="class()">
-      <app-user-avatar (click)="menu.toggle($event)" [size]="2" />
+    <div (click)="menu.toggle($event)" class="flex items-center" [ngClass]="class()" pRipple>
+      <app-user-avatar [size]="3" />
     </div>
     <p-menu #menu [model]="(items$ | async) || []" [popup]="true" />
   `,
