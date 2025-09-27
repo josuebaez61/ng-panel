@@ -11,6 +11,7 @@ import { Button } from 'primeng/button';
       [icon]="'fa-regular fa-lightbulb' + (themeService.isDark() ? ' text-yellow-500' : '')"
       [rounded]="true"
       text
+      [title]="themeService.isDark() ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
     />
   `,
   styles: ``,

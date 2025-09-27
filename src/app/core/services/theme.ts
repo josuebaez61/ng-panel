@@ -53,8 +53,8 @@ export class Theme {
       htmlElement?.classList.add(THEME_DARK_CSS_CLASS_NAME);
       htmlElement?.classList.remove(THEME_LIGHT_CSS_CLASS_NAME);
     } else {
-      htmlElement?.classList.add(THEME_LIGHT_CSS_CLASS_NAME);
       htmlElement?.classList.remove(THEME_DARK_CSS_CLASS_NAME);
+      htmlElement?.classList.add(THEME_LIGHT_CSS_CLASS_NAME);
     }
 
     // Update the current theme
