@@ -52,13 +52,9 @@ export class FormField implements AfterViewInit, OnDestroy {
 
     // Show hint when:
     // 1. Field is pristine (never interacted with)
-    // 2. Field is valid and touched but not dirty (focused then blurred without changes)
-    // 3. Field is valid and touched (user made changes but they're valid)
-    return (
-      state.pristine ||
-      (state.valid && state.touched && !state.dirty) ||
-      (state.valid && state.touched && state.dirty)
-    );
+    // 2. Field is valid (regardless of interaction state)
+    // Only hide hint when there's an error
+    return state.pristine || state.valid;
   });
 
   public readonly showError = computed(() => {
