@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import { Component, input, forwardRef, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { Role } from '@core/models';
@@ -6,7 +7,7 @@ import { ListboxModule } from 'primeng/listbox';
 
 @Component({
   selector: 'app-role-selection',
-  imports: [ListboxModule, TranslateModule, FormsModule],
+  imports: [ListboxModule, TranslateModule, FormsModule, NgClass],
   templateUrl: './role-selection.html',
   providers: [
     {
@@ -20,6 +21,7 @@ export class RoleSelection implements ControlValueAccessor {
   public roles = input<Role[]>([]);
   public multiple = input<boolean>(false);
   public optionValue = input<string>();
+  public class = input<string>('');
 
   // Internal state
   private _value = signal<any>(null);

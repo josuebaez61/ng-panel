@@ -3,7 +3,7 @@
   <p-chip
     [label]="role.name"
     [removable]="enableEditRoles()"
-    (onRemove)="loading() ? null : onRoleRemove(role)"
+    (onRemove)="loading() ? null : onRoleRemove($event, role)"
   />
   } @if (enableEditRoles()) {
   <p-chip
@@ -24,6 +24,7 @@
   } @else {
   <app-role-selection
     ngModel
+    class="border-none"
     [roles]="assignableRoles()"
     (ngModelChange)="onRoleSelectionChange($event)"
   />

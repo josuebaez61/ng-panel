@@ -18,11 +18,13 @@ import {
   timezoneInterceptor,
 } from '@core/interceptors';
 import { provideLanguageOptions, provideTranslateConfig } from '@core/providers';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { THEME_DARK_CSS_CLASS_NAME } from '@core/constants';
 import { Noir } from '@core/themes';
 import { provideCurrentLang } from '@core/providers/current_lang.provider';
 import { RippleModule } from 'primeng/ripple';
+
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -71,5 +73,6 @@ export const appConfig: ApplicationConfig = {
     provideCurrentLang(),
 
     RippleModule,
+    ConfirmationService,
   ],
 };

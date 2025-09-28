@@ -4,12 +4,13 @@ import { EN_LANGUAGE, ES_LANGUAGE } from '@core/constants';
 import { LANGUAGE_OPTIONS_TOKEN } from '@core/providers';
 import { StorageService, Theme } from '@core/services';
 import { TranslateService } from '@ngx-translate/core';
-import { ThemeService } from '@primeuix/themes';
 import { ToastModule } from 'primeng/toast';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToastModule],
+  imports: [RouterOutlet, ToastModule, ConfirmPopupModule, ConfirmDialogModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

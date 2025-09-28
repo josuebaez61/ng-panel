@@ -134,7 +134,10 @@
     "error": "Error",
     "success": "Éxito",
     "info": "Información",
-    "warning": "Advertencia"
+    "warning": "Advertencia",
+    "confirmMessage": "¿Estás seguro de querer continuar?",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar"
   },
   "validation": {
     "required": "Este campo es requerido",

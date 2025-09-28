@@ -3,13 +3,22 @@ import { Role, User } from '@core/models';
 import { ChipModule } from 'primeng/chip';
 import { Popover, PopoverModule } from 'primeng/popover';
 import { RoleSelection } from '../role-selection/role-selection';
-import { RoleService, UserService } from '@core/services';
+import { Confirm, RoleService, UserService } from '@core/services';
 import { FormsModule } from '@angular/forms';
 import { SkeletonModule } from 'primeng/skeleton';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-user-roles-chips',
-  imports: [FormsModule, ChipModule, PopoverModule, RoleSelection, SkeletonModule],
+  imports: [
+    FormsModule,
+    ChipModule,
+    PopoverModule,
+    RoleSelection,
+    SkeletonModule,
+    ConfirmPopupModule,
+  ],
   templateUrl: './user-roles-chips.html',
   styles: ``,
 })
@@ -68,7 +77,7 @@ export class UserRolesChips {
     });
   }
 
-  public onRoleRemove(role: Role): void {
+  public onRoleRemove(event: Event, role: Role): void {
     const userId = this.user()?.id;
     if (!userId) return;
     this.loading.set(true);

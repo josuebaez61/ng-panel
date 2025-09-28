@@ -8,7 +8,8 @@
   (ngModelChange)="onSelectionChange($event)"
   [disabled]="disabled"
   [optionValue]="optionValue()"
-  class="w-full"
+  class="w-full md:w-56"
+  [ngClass]="class()"
   filterBy="name"
   optionLabel="name"
 />
