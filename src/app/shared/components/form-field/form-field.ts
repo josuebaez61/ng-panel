@@ -6,6 +6,7 @@ import {
   signal,
   AfterViewInit,
   OnDestroy,
+  input,
 } from '@angular/core';
 import { NgControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -32,6 +33,8 @@ export class FormField implements AfterViewInit, OnDestroy {
 
   @Input()
   public hideRequiredMarker: boolean = false;
+
+  public class = input<string>();
 
   // Signals for reactive state management
   private readonly _controlState = signal<any>(null);

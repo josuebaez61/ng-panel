@@ -8,10 +8,13 @@
 >
   <ng-template #header>
     <tr>
-      <th>{{ 'users.usersTable.userColumn' | translate }}</th>
-      <th>{{ 'users.usersTable.emailColumn' | translate }}</th>
-      <th>{{ 'users.usersTable.rolesColumn' | translate }}</th>
-      <th>{{ 'users.usersTable.createdAtColumn' | translate }}</th>
+      <th>{{ 'users.table.userColumn' | translate }}</th>
+      <th>{{ 'users.table.emailColumn' | translate }}</th>
+      <th>{{ 'users.table.rolesColumn' | translate }}</th>
+      <th>{{ 'users.table.createdAtColumn' | translate }}</th>
+      @if (actionsColumnTemplate()) {
+      <th>{{ 'common.table.actionsColumn' | translate }}</th>
+      }
     </tr>
   </ng-template>
   <ng-template #body let-user>
@@ -33,7 +36,16 @@
           [enableEditRoles]="enableEditRoles()"
         />
       </td>
-      <td></td>
+      <td>
+        {{ user.createdAt | localizedDate : 'short' }}
+      </td>
+      @if (actionsColumnTemplate()) {
+      <td>
+        <ng-container
+          *ngTemplateOutlet="actionsColumnTemplate(); context: { $implicit: user }"
+        ></ng-container>
+      </td>
+      }
     </tr>
   </ng-template>
 </p-table>

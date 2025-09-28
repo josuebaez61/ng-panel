@@ -1,5 +1,6 @@
 <div
   class="form-field relative"
+  [ngClass]="class()"
   [class.fixed-height]="fixedHeight"
   [class.has-error]="hasError()"
   [class.has-hint]="showHint()"
@@ -16,7 +17,7 @@
   }
 
   <!-- Input Container -->
-  <div class="input-container">
+  <div class="input-container w-full">
     <ng-content></ng-content>
   </div>
 

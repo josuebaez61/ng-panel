@@ -22,7 +22,7 @@ import { map } from 'rxjs';
         #menu
         [model]="languageOptions"
         [popup]="true"
-        styleClass="!left-[-200px] !top-12 fixed"
+        styleClass="!left-[-10rem] !top-12 fixed"
         [appendTo]="container"
       >
         <ng-template #item let-lang>
@@ -36,7 +36,7 @@ import { map } from 'rxjs';
   `,
   styles: `
   img {
-    width: 32px;
+    width: 1.6rem;
   }`,
 })
 export class LangMenu {

@@ -7,8 +7,7 @@ import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
-import Aura from '@primeuix/themes/aura';
-import Material from '@primeuix/themes/material';
+import { registerLocaleData } from '@angular/common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {
   apiMessageInterceptor,
@@ -24,7 +23,12 @@ import { Noir } from '@core/themes';
 import { provideCurrentLang } from '@core/providers/current_lang.provider';
 import { RippleModule } from 'primeng/ripple';
 
-import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import localeEs from '@angular/common/locales/es';
+import localeEn from '@angular/common/locales/en';
+import { DialogService } from 'primeng/dynamicdialog';
+
+registerLocaleData(localeEs);
+registerLocaleData(localeEn);
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -74,5 +78,6 @@ export const appConfig: ApplicationConfig = {
 
     RippleModule,
     ConfirmationService,
+    DialogService,
   ],
 };

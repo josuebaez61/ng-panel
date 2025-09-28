@@ -3,6 +3,10 @@ import { Role } from './role-models';
 import { User } from '.';
 import { Signal } from '@angular/core';
 
+export interface UserFormDialogData {
+  user?: User;
+}
+
 export interface RoleDialogData {
   role?: Role;
 }

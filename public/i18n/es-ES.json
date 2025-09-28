@@ -130,6 +130,7 @@
     }
   },
   "common": {
+    "save": "Guardar",
     "loading": "Cargando...",
     "error": "Error",
     "success": "Éxito",
@@ -137,7 +138,10 @@
     "warning": "Advertencia",
     "confirmMessage": "¿Estás seguro de querer continuar?",
     "cancel": "Cancelar",
-    "confirm": "Confirmar"
+    "confirm": "Confirmar",
+    "table": {
+      "actionsColumn": "Acciones"
+    }
   },
   "validation": {
     "required": "Este campo es requerido",
@@ -186,11 +190,15 @@
   "users": {
     "title": "Usuarios",
     "addButton": "Agregar Usuario",
-    "usersTable": {
+    "table": {
       "userColumn": "Usuario",
       "emailColumn": "Correo Electrónico",
       "rolesColumn": "Roles",
       "createdAtColumn": "Creado el"
+    },
+    "form": {
+      "editUser": "Editar Usuario",
+      "addUser": "Agregar Usuario"
     }
   },
   "roles": {

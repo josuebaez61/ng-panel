@@ -17,7 +17,7 @@ import { RippleModule } from 'primeng/ripple';
         [model]="(items$ | async) || []"
         [popup]="true"
         [appendTo]="container"
-        styleClass="!left-[-200px] !top-12 fixed"
+        styleClass="!left-[-10rem] !top-12 fixed"
       />
     </div>
   `,
