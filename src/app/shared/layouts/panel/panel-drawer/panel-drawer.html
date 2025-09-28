@@ -3,7 +3,8 @@
   [visible]="drawerVisible()"
   (visibleChange)="drawerVisibleChange.emit($event)"
   [modal]="modal()"
-  [styleClass]="'!w-[' + drawerWidth() + '] !shadow-xl'"
+  [styleClass]="'!shadow-xl'"
+  [style]="{ width: drawerWidth() }"
 >
   <ng-template #headless>
     <div class="flex flex-col h-full">

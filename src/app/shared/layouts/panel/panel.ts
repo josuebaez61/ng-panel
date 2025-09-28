@@ -44,6 +44,9 @@ export class Panel implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // Set initial drawer state based on screen size first
+    this.updateDrawerState();
+
     // Auto-close drawer on mobile when navigating
     this.router.events
       .pipe(
@@ -55,9 +58,6 @@ export class Panel implements OnInit, OnDestroy {
           this.drawerVisible.set(false);
         }
       });
-
-    // Set initial drawer state based on screen size
-    this.updateDrawerState();
   }
 
   ngOnDestroy() {
@@ -71,8 +71,16 @@ export class Panel implements OnInit, OnDestroy {
 
   private updateDrawerState() {
     // On mobile, start with drawer closed
-    if (this.responsiveService.isMobile()) {
+    // On desktop/tablet, start with drawer open
+    const isMobile = this.responsiveService.isMobile();
+    console.log('Initial state - isMobile:', isMobile, 'drawerVisible:', this.drawerVisible());
+
+    if (isMobile) {
       this.drawerVisible.set(false);
+    } else {
+      this.drawerVisible.set(true);
     }
+
+    console.log('After update - drawerVisible:', this.drawerVisible());
   }
 }
