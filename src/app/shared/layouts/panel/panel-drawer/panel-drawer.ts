@@ -25,6 +25,7 @@ export class PanelDrawer {
   public drawerVisible = input<boolean>(true);
   public drawerVisibleChange = output<boolean>();
   public drawerWidth = input<string>('300px');
+  public modal = input<boolean>(false);
 
   public closeCallback = (e: Event) => {
     e.preventDefault();

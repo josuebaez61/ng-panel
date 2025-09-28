@@ -64,6 +64,7 @@ export class AuthService {
         tap((response) => {
           if (response.success && response.data) {
             this.setAuthData(response.data);
+            this.router.navigate([RoutePath.HOME]);
           }
         }),
         catchError((error) => {

@@ -12,23 +12,32 @@ import { map } from 'rxjs';
   selector: 'app-lang-menu',
   imports: [Menu, AsyncPipe, ButtonDirective, ButtonIcon],
   template: `
-    <ng-template #trigger> </ng-template>
-    <button pButton text rounded (click)="menu.toggle($event)">
-      @if (selectedLang$ | async; as lang) {
-      <img pButtonIcon [src]="lang.icon" style="width: 18px" />
-      }
-    </button>
-
-    <p-menu #menu [model]="languageOptions" [popup]="true" [appendTo]="trigger">
-      <ng-template #item let-lang>
-        <div (click)="onChange(lang)" class="flex items-center gap-2 cursor-pointer py-2 px-4">
-          <img [src]="lang.icon" style="width: 18px" />
-          <div>{{ lang.label }} ({{ lang.value }})</div>
-        </div>
-      </ng-template>
-    </p-menu>
+    <div #container class="relative">
+      <button pButton text rounded (click)="menu.toggle($event)">
+        @if (selectedLang$ | async; as lang) {
+        <img pButtonIcon [src]="lang.icon" />
+        }
+      </button>
+      <p-menu
+        #menu
+        [model]="languageOptions"
+        [popup]="true"
+        styleClass="!left-[-200px] !top-12 fixed"
+        [appendTo]="container"
+      >
+        <ng-template #item let-lang>
+          <div (click)="onChange(lang)" class="flex items-center gap-2 cursor-pointer py-2 px-4">
+            <img [src]="lang.icon" />
+            <div>{{ lang.label }} ({{ lang.value }})</div>
+          </div>
+        </ng-template>
+      </p-menu>
+    </div>
   `,
-  styles: ``,
+  styles: `
+  img {
+    width: 32px;
+  }`,
 })
 export class LangMenu {
   public languageOptions = inject(LANGUAGE_OPTIONS_TOKEN).map<MenuItem>((el) => ({

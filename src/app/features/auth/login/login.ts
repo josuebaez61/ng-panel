@@ -16,6 +16,7 @@ import { RouterLink } from '@angular/router';
 import { RoutePath } from '@core/constants';
 import { FormField } from '@shared/components/form-field/form-field';
 import { Auth } from '@shared/layouts/auth/auth';
+import { AuthService } from '@core/services';
 @Component({
   selector: 'app-login',
   imports: [
@@ -42,6 +43,7 @@ import { Auth } from '@shared/layouts/auth/auth';
 export class Login implements OnInit {
   public loginForm!: FormGroup;
   public isLoading = signal(false);
+  private readonly authService = inject(AuthService);
 
   private readonly fb = inject(FormBuilder);
   private readonly messageService = inject(MessageService);
@@ -53,7 +55,7 @@ export class Login implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      emailOrUsername: ['', [Validators.required]],
       password: ['', [Validators.required]],
       rememberMe: [false],
     });
@@ -68,23 +70,13 @@ export class Login implements OnInit {
 
     this.isLoading.set(true);
     const formValue = this.loginForm.value;
-
-    // Simulate API call
-    setTimeout(() => {
-      this.isLoading.set(false);
-      this.messageService.add({
-        severity: 'success',
-        summary: this.translate.instant('auth.common.success'),
-        detail: this.translate.instant('auth.login.success'),
-      });
-      console.log('Form submitted with:', formValue);
-    }, 2000);
-  }
-
-  private markFormGroupTouched() {
-    Object.keys(this.loginForm.controls).forEach((key) => {
-      const control = this.loginForm.get(key);
-      control?.markAsTouched();
+    this.authService.login(formValue).subscribe({
+      next: () => {
+        this.isLoading.set(false);
+      },
+      error: () => {
+        this.isLoading.set(false);
+      },
     });
   }
 

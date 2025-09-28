@@ -6,4 +6,9 @@
   transition-delay: 0s;
   transition-behavior: normal;
   will-change: margin-left;
+
+  &.expanded {
+    transition: margin-left 0.2s ease;
+    transition-duration: 0.2s;
+  }
 }

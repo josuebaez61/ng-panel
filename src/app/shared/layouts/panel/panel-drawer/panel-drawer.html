@@ -2,7 +2,7 @@
   header="Drawer"
   [visible]="drawerVisible()"
   (visibleChange)="drawerVisibleChange.emit($event)"
-  [modal]="false"
+  [modal]="modal()"
   [styleClass]="'!w-[' + drawerWidth() + '] !shadow-xl'"
 >
   <ng-template #headless>

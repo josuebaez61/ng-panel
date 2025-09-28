@@ -12,7 +12,7 @@ export const routes: Routes = [
   // Redirect root to dashboard
   {
     path: '',
-    redirectTo: RoutePath.DASHBOARD,
+    redirectTo: RoutePath.HOME,
     pathMatch: 'full',
   },
   // Auth routes (guest only)
@@ -26,6 +26,12 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () => import('./shared/layouts/panel/panel').then((m) => m.Panel),
     children: [
+      {
+        path: RouteName.HOME,
+        loadComponent: () => import('./features/home/home').then((m) => m.Home),
+        title: 'Dashboard - Admin Panel',
+        children: [],
+      },
       {
         path: RouteName.DASHBOARD,
         loadComponent: () => import('./features/home/home').then((m) => m.Home),

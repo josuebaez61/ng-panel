@@ -8,10 +8,18 @@ import { RippleModule } from 'primeng/ripple';
   selector: 'app-user-menu',
   imports: [NgClass, AsyncPipe, UserAvatar, MenuModule, RippleModule],
   template: `
-    <div (click)="menu.toggle($event)" class="flex items-center" [ngClass]="class()" pRipple>
-      <app-user-avatar [size]="3" />
+    <div #container class="relative">
+      <div (click)="menu.toggle($event)" class="flex items-center" [ngClass]="class()" pRipple>
+        <app-user-avatar [size]="3" />
+      </div>
+      <p-menu
+        #menu
+        [model]="(items$ | async) || []"
+        [popup]="true"
+        [appendTo]="container"
+        styleClass="!left-[-200px] !top-12 fixed"
+      />
     </div>
-    <p-menu #menu [model]="(items$ | async) || []" [popup]="true" />
   `,
   styles: ``,
 })
