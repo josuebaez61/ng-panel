@@ -27,15 +27,15 @@ html {
     font-size: 16px; /* Standard base for tablets */
   }
 
-  /* Large desktops (1025px and up) */
-  @media (min-width: 1025px) {
-    font-size: 18px; /* Larger base for big screens */
-  }
+  // /* Large desktops (1025px and up) */
+  // @media (min-width: 1025px) {
+  //   font-size: 18px; /* Larger base for big screens */
+  // }
 
-  /* Extra large screens (1440px and up) */
-  @media (min-width: 1440px) {
-    font-size: 20px; /* Even larger for very big screens */
-  }
+  // /* Extra large screens (1440px and up) */
+  // @media (min-width: 1440px) {
+  //   font-size: 20px; /* Even larger for very big screens */
+  // }
 }
 
 html.color-scheme-dark {

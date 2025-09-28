@@ -177,7 +177,22 @@
     "notOneOf": "No puede ser uno de estos valores",
     "custom": "{{message}}"
   },
-  "usersMenu": {
+  "userMenu": {
     "logout": "Cerrar Sesión"
+  },
+  "users": {
+    "title": "Usuarios",
+    "addButton": "Agregar Usuario",
+    "usersTable": {
+      "userColumn": "Usuario",
+      "emailColumn": "Correo Electrónico",
+      "rolesColumn": "Roles",
+      "createdAtColumn": "Creado el"
+    }
+  },
+  "roles": {
+    "roleSelection": {
+      "noRolesFound": "No se encontraron roles"
+    }
   }
 }

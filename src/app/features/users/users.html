@@ -1,1 +1,14 @@
-<p>users works!</p>
+<app-panel-page-header
+  title="users.title"
+  [showAddButton]="true"
+  addButtonLabel="users.addButton"
+/>
+
+<app-users-table
+  [users]="paginatedUsers.items()"
+  [paginator]="true"
+  [totalCount]="paginatedUsers.totalCount()"
+  [lazy]="true"
+  (lazyLoad)="onLazyLoad($event)"
+  [enableEditRoles]="enableEditRoles()"
+/>

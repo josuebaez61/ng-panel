@@ -148,4 +148,10 @@ export class RoleService {
       { userId }
     );
   }
+
+  public getAssignableRoles(userId: string): Observable<ApiResponse<Role[]>> {
+    return this.http.get<ApiResponse<Role[]>>(
+      `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.ASSIGNABLE_ROLES(userId)}`
+    );
+  }
 }

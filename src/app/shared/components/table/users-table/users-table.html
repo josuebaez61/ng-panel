@@ -1,0 +1,39 @@
+<p-table
+  [value]="users()"
+  [paginator]="paginator()"
+  [rows]="10"
+  [totalRecords]="totalCount()"
+  [lazy]="lazy()"
+  (onLazyLoad)="lazyLoad.emit($event)"
+>
+  <ng-template #header>
+    <tr>
+      <th>{{ 'users.usersTable.userColumn' | translate }}</th>
+      <th>{{ 'users.usersTable.emailColumn' | translate }}</th>
+      <th>{{ 'users.usersTable.rolesColumn' | translate }}</th>
+      <th>{{ 'users.usersTable.createdAtColumn' | translate }}</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-user>
+    <tr>
+      <td>
+        <div class="flex items-center gap-2">
+          <app-user-avatar [user]="user" />
+          <div class="flex flex-col">
+            {{ user.firstName }} {{ user.lastName }}
+            <span class="text-sm text-gray-500">@{{ user.userName }}</span>
+          </div>
+        </div>
+      </td>
+      <td>{{ user.email }}</td>
+      <td>
+        <app-user-roles-chips
+          [user]="user"
+          [roles]="user.roles"
+          [enableEditRoles]="enableEditRoles()"
+        />
+      </td>
+      <td></td>
+    </tr>
+  </ng-template>
+</p-table>

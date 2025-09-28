@@ -177,7 +177,11 @@
     "notOneOf": "Cannot be one of these values",
     "custom": "{{message}}"
   },
-  "usersMenu": {
+  "userMenu": {
     "logout": "Logout"
+  },
+  "users": {
+    "title": "Users",
+    "addButton": "Add User"
   }
 }

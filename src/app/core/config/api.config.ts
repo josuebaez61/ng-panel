@@ -30,6 +30,9 @@ export const API_CONFIG = {
       UPDATE_ROLES_BY_USER_ID(id: string): string {
         return `/users/id/${id}/roles`;
       },
+      ASSIGN_ROLE_BY_USER_ID: (id: string): string => {
+        return `/users/id/${id}/roles`;
+      },
     },
     PERMISSIONS: {
       BY_RESOURCE: '/permissions/by-resource',
@@ -45,6 +48,7 @@ export const API_CONFIG = {
       DELETE: (id: string): string => `/roles/id/${id}`,
       GET_BY_ID: (id: string): string => `/roles/id/${id}`,
       USER_COUNTS: '/roles/user-counts',
+      ASSIGNABLE_ROLES: (userId: string): string => `/roles/assignable/user/${userId}`,
     },
   },
 } as const;

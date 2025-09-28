@@ -29,6 +29,12 @@ export class App {
     this.translateService.addLangs(this.languageOptions.map((option) => option.value));
     this.updateNgxTranslateFallbackLang();
 
+    const storageLang = this.storageService.getLang();
+
+    if (storageLang) {
+      this.translateService.use(storageLang);
+    }
+
     this.translateService.onLangChange.subscribe((lang) => {
       document.documentElement.lang = lang.lang;
       this.storageService.setLang(lang.lang);
@@ -43,7 +49,6 @@ export class App {
     const fallbackLang =
       navigator.language?.split('-')[0] ||
       navigator.languages?.[0]?.split('-')[0] ||
-      this.storageService.getLang() ||
       this.fallbackLang;
 
     if (this.isValidLang(fallbackLang)) {

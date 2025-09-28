@@ -1,0 +1,14 @@
+<p-listbox
+  [emptyFilterMessage]="'roles.roleSelection.noRolesFound' | translate"
+  [emptyMessage]="'roles.roleSelection.noRolesFound' | translate"
+  [filter]="true"
+  [options]="roles()"
+  [multiple]="multiple()"
+  [ngModel]="value"
+  (ngModelChange)="onSelectionChange($event)"
+  [disabled]="disabled"
+  [optionValue]="optionValue()"
+  class="w-full"
+  filterBy="name"
+  optionLabel="name"
+/>

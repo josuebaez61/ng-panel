@@ -10,11 +10,13 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { DividerModule } from 'primeng/divider';
 import { RippleModule } from 'primeng/ripple';
+import { TableModule } from 'primeng/table';
 @NgModule({
   imports: [CommonModule],
   exports: [
     CommonModule,
     ButtonModule,
+    TableModule,
     IconFieldModule,
     InputIconModule,
     SplitButtonModule,

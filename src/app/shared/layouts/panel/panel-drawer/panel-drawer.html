@@ -22,6 +22,7 @@
           </svg>
           <span class="font-semibold text-2xl text-primary">Your Logo</span>
         </span>
+        @if (modal()) {
         <span>
           <p-button
             type="button"
@@ -32,6 +33,7 @@
             styleClass="h-8 w-8"
           ></p-button>
         </span>
+        }
       </div>
       <div class="overflow-y-auto">
         <p-menu
@@ -60,11 +62,8 @@
           pRipple
           class="m-4 flex items-center cursor-pointer p-4 gap-2 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
         >
-          <p-avatar
-            image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-            shape="circle"
-          />
-          <span class="font-bold">Amy Elsner</span>
+          <app-user-avatar [size]="3" [user]="user()" />
+          <span class="font-bold">{{ userName() }}</span>
         </a>
       </div>
     </div>

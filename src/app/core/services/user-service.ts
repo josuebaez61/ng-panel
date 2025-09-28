@@ -126,8 +126,18 @@ export class UserService {
    */
   public assignRoles(userId: string, roleIds: string[]): Observable<ListUser> {
     return this.http.post<ListUser>(
-      `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE}/${userId}/roles`,
+      `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE_ROLES_BY_USER_ID(userId)}`,
       { roleIds }
+    );
+  }
+
+  /**
+   * Assign role to user
+   */
+  public assignRole(userId: string, roleId: string): Observable<ListUser> {
+    return this.http.patch<ListUser>(
+      `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.ASSIGN_ROLE_BY_USER_ID(userId)}`,
+      { roleId }
     );
   }
 
