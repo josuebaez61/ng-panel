@@ -141,7 +141,8 @@
     "cancel": "Cancelar",
     "confirm": "Confirmar",
     "table": {
-      "actionsColumn": "Acciones"
+      "actionsColumn": "Acciones",
+      "noData": "No hay datos"
     }
   },
   "validation": {
@@ -217,6 +218,11 @@
     "form": {
       "editRole": "Editar Rol",
       "addRole": "Agregar Rol"
+    },
+    "userRoles": {
+      "title": "Usuarios de Rol",
+      "addButton": "Asignar Usuario",
+      "removeUserFromRoleConfirmation": "¿Estás seguro de querer quitar a <b>{{userName}}</b> del rol?"
     }
   }
 }

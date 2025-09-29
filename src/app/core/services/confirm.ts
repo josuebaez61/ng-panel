@@ -10,8 +10,8 @@ export class Confirm {
   private readonly confirmationService = inject(ConfirmationService);
   private readonly translateService = inject(TranslateService);
   private readonly defaultOptions: Confirmation = {
-    target: undefined,
     message: this.translateService.instant('common.confirmMessage'),
+    closable: false,
     icon: 'pi pi-exclamation-triangle',
     rejectButtonProps: {
       label: this.translateService.instant('common.cancel'),
@@ -23,16 +23,18 @@ export class Confirm {
     },
   };
 
-  open(): void {
+  open(options: Confirmation = {}): void {
     this.confirmationService.confirm({
       ...this.defaultOptions,
+      ...options,
     });
   }
 
-  openPopup(event: Event) {
+  openPopup(event: Event, options: Confirmation = {}) {
     this.confirmationService.confirm({
       target: event.currentTarget as EventTarget,
       ...this.defaultOptions,
+      ...options,
     });
   }
 }
