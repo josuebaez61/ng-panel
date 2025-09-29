@@ -1,17 +1,47 @@
 <p-table
+  #table
+  dataKey="id"
+  [loading]="loading()"
+  [globalFilterFields]="['firstName', 'lastName', 'email', 'userName']"
   [value]="users()"
   [paginator]="paginator()"
   [rows]="10"
   [totalRecords]="totalCount()"
   [lazy]="lazy()"
   (onLazyLoad)="lazyLoad.emit($event)"
+  [rowsPerPageOptions]="pageSizeOptions()"
+  [rows]="pageSize()"
 >
+  <ng-template #caption>
+    <div class="flex">
+      <p-iconfield iconPosition="left" class="ml-auto">
+        <p-inputicon>
+          <i class="pi pi-search"></i>
+        </p-inputicon>
+        <input
+          pInputText
+          type="text"
+          (input)="table.filterGlobal($event.target.value, 'contains')"
+          [placeholder]="'common.search' | translate"
+        />
+      </p-iconfield>
+    </div>
+  </ng-template>
   <ng-template #header>
     <tr>
-      <th>{{ 'users.table.userColumn' | translate }}</th>
-      <th>{{ 'users.table.emailColumn' | translate }}</th>
-      <th>{{ 'users.table.rolesColumn' | translate }}</th>
-      <th>{{ 'users.table.createdAtColumn' | translate }}</th>
+      <th pSortableColumn="firstName">
+        {{ 'users.table.userColumn' | translate }}
+        <p-sortIcon field="firstName" />
+      </th>
+      <th pSortableColumn="email">
+        {{ 'users.table.emailColumn' | translate }}
+        <p-sortIcon field="email" />
+      </th>
+      <th [style.min-width]="'280px'">{{ 'users.table.rolesColumn' | translate }}</th>
+      <th pSortableColumn="createdAt">
+        {{ 'users.table.createdAtColumn' | translate }}
+        <p-sortIcon field="createdAt" />
+      </th>
       @if (actionsColumnTemplate()) {
       <th>{{ 'common.table.actionsColumn' | translate }}</th>
       }

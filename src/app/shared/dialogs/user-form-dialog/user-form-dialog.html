@@ -3,24 +3,28 @@
     <app-form-field class="w-full">
       <app-label>First Name</app-label>
       <input pInputText type="text" class="w-full" [formControl]="form.controls.firstName" />
+      <app-control-error [control]="form.controls.firstName" />
     </app-form-field>
   </div>
   <div class="col-span-6">
     <app-form-field class="w-full">
       <app-label>First Name</app-label>
       <input pInputText type="text" class="w-full" [formControl]="form.controls.lastName" />
+      <app-control-error [control]="form.controls.lastName" />
     </app-form-field>
   </div>
   <div class="col-span-8">
     <app-form-field class="w-full">
       <app-label>Email</app-label>
       <input pInputText type="text" class="w-full" [formControl]="form.controls.email" />
+      <app-control-error [control]="form.controls.email" />
     </app-form-field>
   </div>
   <div class="col-span-4">
     <app-form-field class="w-full">
       <app-label>Username</app-label>
       <input pInputText type="text" class="w-full" [formControl]="form.controls.userName" />
+      <app-control-error [control]="form.controls.userName" />
     </app-form-field>
   </div>
   <div class="col-span-12 flex justify-end gap-2">

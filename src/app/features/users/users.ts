@@ -30,8 +30,7 @@ export class Users {
 
   public onLazyLoad(event: TableLazyLoadEvent): void {
     console.log(event);
-
-    this.paginatedUsers.loadData(getPageFromLazyLoadEvent(event), event.rows!);
+    this.paginatedUsers.handleTableLazyLoadEvent(event);
   }
 
   public openUserForm(user?: User): void {

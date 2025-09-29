@@ -30,13 +30,13 @@ export class Panel implements OnInit, OnDestroy {
 
   public drawerVisible = signal<boolean>(true);
   public drawerWidth = signal<string>('300px');
-  public isModal = computed(() => this.responsiveService.isMobile());
+  public isModal = computed(() => this.responsiveService.isTablet());
 
   constructor() {
     // Listen for breakpoint changes and auto-close drawer
     effect(() => {
       if (this.responsiveService.breakpointChanged()) {
-        if (this.responsiveService.isCurrentlyMobile()) {
+        if (this.responsiveService.isTablet()) {
           this.drawerVisible.set(false);
         }
       }
@@ -72,15 +72,12 @@ export class Panel implements OnInit, OnDestroy {
   private updateDrawerState() {
     // On mobile, start with drawer closed
     // On desktop/tablet, start with drawer open
-    const isMobile = this.responsiveService.isMobile();
-    console.log('Initial state - isMobile:', isMobile, 'drawerVisible:', this.drawerVisible());
+    const isTablet = this.responsiveService.isTablet();
 
-    if (isMobile) {
+    if (isTablet) {
       this.drawerVisible.set(false);
     } else {
       this.drawerVisible.set(true);
     }
-
-    console.log('After update - drawerVisible:', this.drawerVisible());
   }
 }

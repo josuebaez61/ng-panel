@@ -1,5 +1,6 @@
 import { computed, signal } from '@angular/core';
 import { ApiPaginationResponse, PaginationRequest } from '@core/models';
+import { TableLazyLoadEvent } from 'primeng/table';
 import { BehaviorSubject, Observable, catchError, finalize, tap } from 'rxjs';
 
 export interface PaginatedResourceLoaderOptions<T> {
@@ -121,6 +122,32 @@ export class PaginatedResourceLoader<T> {
       this._currentPage.set(this.currentPage() - 1);
       this.loadData();
     }
+  }
+
+  public handleTableLazyLoadEvent(event: TableLazyLoadEvent): void {
+    if (typeof event.first === 'number' && typeof event.rows === 'number') {
+      this._currentPage.set(event.first === 0 ? 1 : event.first / event.rows + 1);
+      this._pageSize.set(event.rows);
+    }
+
+    if (typeof event.globalFilter === 'string') {
+      this._filters.set({ ...this.filters(), globalSearch: event.globalFilter });
+      this._currentPage.set(1);
+    } else {
+      this._filters.set({ ...this.filters(), globalSearch: '' });
+    }
+
+    const sortField = event.sortField;
+
+    if (typeof sortField === 'string') {
+      this._sortBy.set(sortField);
+      this._sortDirection.set(event.sortOrder === 1 ? 'asc' : 'desc');
+    } else {
+      this._sortBy.set('');
+      this._sortDirection.set('asc');
+    }
+
+    this.loadData();
   }
 
   /**

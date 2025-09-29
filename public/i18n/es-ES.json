@@ -130,6 +130,7 @@
     }
   },
   "common": {
+    "search": "Buscar",
     "save": "Guardar",
     "loading": "Cargando...",
     "error": "Error",

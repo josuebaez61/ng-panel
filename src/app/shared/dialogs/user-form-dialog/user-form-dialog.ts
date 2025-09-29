@@ -7,10 +7,18 @@ import { FormField } from '@shared/components/form-field/form-field';
 import { Label } from '@shared/components/label/label';
 import { CommonPrimeNgModule } from '@shared/modules';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ControlError } from '@shared/components/control-error/control-error';
 
 @Component({
   selector: 'app-user-form-dialog',
-  imports: [FormField, Label, CommonPrimeNgModule, TranslateModule, ReactiveFormsModule],
+  imports: [
+    FormField,
+    Label,
+    CommonPrimeNgModule,
+    TranslateModule,
+    ReactiveFormsModule,
+    ControlError,
+  ],
   templateUrl: './user-form-dialog.html',
   styles: ``,
 })
@@ -42,11 +50,14 @@ export class UserFormDialog {
   public onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.form.markAllAsDirty();
       return;
     }
     this.submitting.set(true);
-    if (this.dialogConfig.data) {
-      this.userService.updateUser(this.dialogConfig.data.user.id, this.form.value).subscribe({
+    const editingUser = this.dialogConfig.data.user;
+
+    if (editingUser) {
+      this.userService.updateUser(editingUser.id, this.form.value).subscribe({
         next: () => {
           this.dialogRef.close(true);
           this.submitting.set(false);
