@@ -17,8 +17,10 @@ export class RoleService {
   /**
    * Get all roles with pagination and filtering
    */
-  public getAllRoles(): Observable<ApiResponse<Role[]>> {
-    return this.http.get<ApiResponse<Role[]>>(`${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.ALL}`);
+  public getAllRoles(): Observable<Role[]> {
+    return this.http
+      .get<ApiResponse<Role[]>>(`${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.ALL}`)
+      .pipe(map((response) => response.data || []));
   }
 
   /**
@@ -33,10 +35,12 @@ export class RoleService {
    * }
    * ```
    */
-  public getRoleUserCounts(): Observable<ApiResponse<Record<string, number>>> {
-    return this.http.get<ApiResponse<Record<string, number>>>(
-      `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.USER_COUNTS}`
-    );
+  public getRoleUsersCounts(): Observable<Record<string, number>> {
+    return this.http
+      .get<ApiResponse<Record<string, number>>>(
+        `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.USER_COUNTS}`
+      )
+      .pipe(map((response) => response.data || {}));
   }
 
   /**

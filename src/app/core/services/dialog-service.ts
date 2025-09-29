@@ -1,6 +1,7 @@
 import { inject, Injectable, Type } from '@angular/core';
 import { RoleDialogData, Role, UsersSelectionDialogData, User } from '@core/models';
 import { TranslateService } from '@ngx-translate/core';
+import { RoleFormDialog } from '@shared/dialogs/role-form-dialog/role-form-dialog';
 import { UserFormDialog } from '@shared/dialogs/user-form-dialog/user-form-dialog';
 import {
   DynamicDialogConfig,
@@ -41,7 +42,16 @@ export class DialogService {
     });
   }
 
-  public openRoleDialog(role?: Role) {}
+  public openRoleFormDialog(role?: Role) {
+    return this.open(RoleFormDialog, {
+      header: !!role
+        ? this.translateService.instant('roles.form.editRole')
+        : this.translateService.instant('roles.form.addRole'),
+      data: {
+        role,
+      },
+    });
+  }
 
   public openUsersSelectionDialog(data: UsersSelectionDialogData): void {}
 }

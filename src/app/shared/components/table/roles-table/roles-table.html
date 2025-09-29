@@ -1,0 +1,58 @@
+<p-table
+  #table
+  dataKey="id"
+  [loading]="loading()"
+  [globalFilterFields]="['name']"
+  [value]="roles()"
+  [paginator]="paginator()"
+  [rows]="10"
+  [totalRecords]="totalCount()"
+  [lazy]="lazy()"
+  (onLazyLoad)="lazyLoad.emit($event)"
+  [rowsPerPageOptions]="pageSizeOptions()"
+  [rows]="pageSize()"
+>
+  <ng-template #caption>
+    <div class="flex">
+      <p-iconfield iconPosition="left" class="ml-auto">
+        <p-inputicon>
+          <i class="pi pi-search"></i>
+        </p-inputicon>
+        <input
+          pInputText
+          type="text"
+          (input)="table.filterGlobal($event.target.value, 'contains')"
+          [placeholder]="'common.search' | translate"
+        />
+      </p-iconfield>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th>{{ 'roles.table.nameColumn' | translate }}</th>
+      <th>{{ 'roles.table.descriptionColumn' | translate }}</th>
+      <th>{{ 'roles.table.usersCountColumn' | translate }}</th>
+      <th>{{ 'roles.table.updatedAtColumn' | translate }}</th>
+      @if (actionsColumnTemplate()) {
+      <th>{{ 'common.table.actionsColumn' | translate }}</th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-role>
+    <tr>
+      <td>{{ role.name }}</td>
+      <td>{{ role.description }}</td>
+      <td>
+        <p-chip icon="pi pi-users" [label]="role.usersCount"></p-chip>
+      </td>
+      <td>{{ role.updatedAt | localizedDate : 'short' }}</td>
+      @if (actionsColumnTemplate()) {
+      <td>
+        <ng-container
+          *ngTemplateOutlet="actionsColumnTemplate(); context: { $implicit: role }"
+        ></ng-container>
+      </td>
+      }
+    </tr>
+  </ng-template>
+</p-table>

@@ -8,6 +8,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
 import { UserAvatar } from '@shared/components/user-avatar/user-avatar';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-panel-drawer',
@@ -19,6 +20,8 @@ import { UserAvatar } from '@shared/components/user-avatar/user-avatar';
     PanelMenuModule,
     MenuModule,
     UserAvatar,
+    RouterLink,
+    RouterLinkActive,
   ],
   templateUrl: './panel-drawer.html',
   styleUrl: './panel-drawer.scss',
@@ -43,13 +46,21 @@ export class PanelDrawer {
   public menuItems$ = this.localizedMenu.getMenu([
     {
       label: 'Dashboard',
-      icon: 'pi pi-home',
-      route: RoutePath.DASHBOARD,
       items: [
         {
-          label: 'Dashboard',
+          label: 'Home',
           icon: 'pi pi-home',
-          route: RoutePath.DASHBOARD,
+          routerLink: RoutePath.HOME,
+        },
+        {
+          label: 'Users',
+          icon: 'pi pi-users',
+          routerLink: RoutePath.USERS,
+        },
+        {
+          label: 'Roles',
+          icon: 'pi pi-circle',
+          routerLink: RoutePath.ROLES,
         },
       ],
     },

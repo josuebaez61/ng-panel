@@ -1,8 +1,8 @@
 <app-panel-page-header
-  title="users.title"
+  (addButtonClick)="openUserForm()"
   [showAddButton]="true"
   addButtonLabel="users.addButton"
-  (addButtonClick)="openUserForm()"
+  title="users.title"
 />
 
 <app-users-table

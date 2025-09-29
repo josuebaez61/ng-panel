@@ -203,8 +203,20 @@
     }
   },
   "roles": {
+    "title": "Roles",
+    "addButton": "Agregar Rol",
     "roleSelection": {
       "noRolesFound": "No se encontraron roles"
+    },
+    "table": {
+      "nameColumn": "Nombre",
+      "descriptionColumn": "Descripción",
+      "usersCountColumn": "Usuarios",
+      "updatedAtColumn": "Actualizado el"
+    },
+    "form": {
+      "editRole": "Editar Rol",
+      "addRole": "Agregar Rol"
     }
   }
 }

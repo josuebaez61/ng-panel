@@ -6,6 +6,10 @@ export interface Role {
   updatedAt?: string;
 }
 
+export interface RoleWithUsersCount extends Role {
+  usersCount: number;
+}
+
 export interface CreateRoleRequest {
   name: string;
   description?: string;
