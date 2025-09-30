@@ -1,19 +1,5 @@
 import { Role } from './role-models';
 
-export interface ListUser {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  userName: string;
-  profilePicture?: string;
-  isActive: boolean;
-  emailConfirmed: boolean;
-  createdAt: string;
-  updatedAt?: string;
-  roles?: Role[];
-}
-
 export interface User {
   id: string;
   firstName: string;
@@ -26,6 +12,12 @@ export interface User {
   createdAt: string;
   updatedAt?: string;
 }
+
+export interface ListUser extends User {
+  roles?: Role[];
+}
+
+export type UserOption = Pick<User, 'id' | 'firstName' | 'lastName' | 'userName'>;
 
 export interface CreateUserRequest {
   firstName: string | null;

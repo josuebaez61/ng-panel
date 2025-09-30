@@ -49,6 +49,7 @@ export const API_CONFIG = {
       GET_BY_ID: (id: string): string => `/roles/id/${id}`,
       USER_COUNTS: '/roles/user-counts',
       ASSIGNABLE_ROLES: (userId: string): string => `/roles/assignable/user/${userId}`,
+      ASSIGNABLE_USERS: (roleId: string): string => `/roles/id/${roleId}/assignable-users`,
     },
   },
 } as const;

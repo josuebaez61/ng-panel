@@ -198,6 +198,10 @@
       "rolesColumn": "Roles",
       "createdAtColumn": "Creado el"
     },
+    "userSelection": {
+      "title": "Selección de Usuarios",
+      "noUsersFound": "No se encontraron usuarios"
+    },
     "form": {
       "editUser": "Editar Usuario",
       "addUser": "Agregar Usuario"

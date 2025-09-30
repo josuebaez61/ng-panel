@@ -1,14 +1,21 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Confirm, PaginatedResourceLoader, RoleService, UserService } from '@core/services';
+import {
+  Confirm,
+  DialogService,
+  PaginatedResourceLoader,
+  RoleService,
+  UserService,
+} from '@core/services';
 import { CommonPrimeNgModule } from '@shared/modules';
 import { FilterMatchMode } from 'primeng/api';
 import { UsersTable } from '@shared/components/table/users-table/users-table';
 import { PanelPageHeader } from '@shared/components/panel-page-header/panel-page-header';
-import { ListUser, Role } from '@core/models';
+import { ListUser, Role, UserOption } from '@core/models';
 import { RoutePath } from '@core/constants';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-role-users',
@@ -17,6 +24,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
   styleUrl: './role-users.scss',
 })
 export class RoleUsers implements OnInit {
+  private readonly dialogService = inject(DialogService);
   private readonly confirm = inject(Confirm);
   private readonly translateService = inject(TranslateService);
   private readonly userService = inject(UserService);
@@ -46,8 +54,33 @@ export class RoleUsers implements OnInit {
     });
   }
 
-  public openUsersSelectionDialog() {}
+  public openUsersSelectionDialog() {
+    this.roleService
+      .getAssignableUsers(this.route.snapshot.params['id'])
+      .pipe(
+        switchMap((users) => this.dialogService.openUsersSelectionDialog({ users }).onClose),
+        switchMap((users?: UserOption[]) =>
+          users
+            ? this.roleService.assignUsersToRole(
+                this.route.snapshot.params['id'],
+                users.map((user) => user.id)
+              )
+            : of(null)
+        )
+      )
+      .subscribe({
+        next: (result) => {
+          if (result) {
+            this.paginatedResourceLoader.refresh();
+          }
+        },
+      });
+  }
 
+  /**
+   * Remove user from role
+   * @param user
+   */
   public removeUserFromRole(user: ListUser) {
     this.confirm.open({
       message: this.translateService.instant('roles.userRoles.removeUserFromRoleConfirmation', {

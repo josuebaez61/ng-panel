@@ -1,8 +1,9 @@
 import { inject, Injectable, Type } from '@angular/core';
-import { RoleDialogData, Role, UsersSelectionDialogData, User } from '@core/models';
+import { RoleDialogData, Role, UsersSelectionDialogData, User, UserOption } from '@core/models';
 import { TranslateService } from '@ngx-translate/core';
 import { RoleFormDialog } from '@shared/dialogs/role-form-dialog/role-form-dialog';
 import { UserFormDialog } from '@shared/dialogs/user-form-dialog/user-form-dialog';
+import { UserSelectionDialog } from '@shared/dialogs/user-selection-dialog/user-selection-dialog';
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
@@ -53,5 +54,13 @@ export class DialogService {
     });
   }
 
-  public openUsersSelectionDialog(data: UsersSelectionDialogData): void {}
+  public openUsersSelectionDialog(
+    data: UsersSelectionDialogData
+  ): DynamicDialogRef<UserSelectionDialog> {
+    return this.open<UserSelectionDialog>(UserSelectionDialog, {
+      header: this.translateService.instant('users.userSelection.title'),
+      data,
+      width: '25rem',
+    });
+  }
 }

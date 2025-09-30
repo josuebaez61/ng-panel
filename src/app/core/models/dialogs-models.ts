@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Role } from './role-models';
-import { User } from '.';
+import { User, UserOption } from '.';
 import { Signal } from '@angular/core';
 
 export interface UserFormDialogData {
@@ -21,8 +21,5 @@ export interface UnsavedChangesDialogData {
 }
 
 export interface UsersSelectionDialogData {
-  users?: Signal<User[]>;
-  loading?: Signal<boolean>;
-  onScrolled?: () => void;
-  onGlobalSearch?: (search: string) => void;
+  users: UserOption[];
 }

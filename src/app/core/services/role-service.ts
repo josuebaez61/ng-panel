@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { Role, CreateRoleRequest, UpdateRoleRequest } from '../models/role-models';
 import { API_CONFIG } from '../config/api.config';
 import { ApiResponse } from '../models/api-response-models';
-import { Permission } from '@core/models';
+import { Permission, User, UserOption } from '@core/models';
 
 @Injectable({
   providedIn: 'root',
@@ -146,6 +146,12 @@ export class RoleService {
     );
   }
 
+  /**
+   * Unassign user from role
+   * @param roleId The role ID
+   * @param userId The user ID
+   * @returns Observable with the updated role
+   */
   public unassignUserFromRole(roleId: string, userId: string): Observable<Role> {
     return this.http.post<Role>(
       `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.UNASSIGN_USER(roleId)}`,
@@ -153,9 +159,27 @@ export class RoleService {
     );
   }
 
+  /**
+   * Get assignable roles for a user
+   * @param userId
+   * @returns
+   */
   public getAssignableRoles(userId: string): Observable<ApiResponse<Role[]>> {
     return this.http.get<ApiResponse<Role[]>>(
       `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.ASSIGNABLE_ROLES(userId)}`
     );
+  }
+
+  /**
+   * Get assignable users for a role
+   * @param roleId
+   * @returns
+   */
+  public getAssignableUsers(roleId: string): Observable<UserOption[]> {
+    return this.http
+      .get<ApiResponse<UserOption[]>>(
+        `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.ASSIGNABLE_USERS(roleId)}`
+      )
+      .pipe(map((response) => response.data!));
   }
 }

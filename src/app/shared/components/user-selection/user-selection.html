@@ -1,0 +1,27 @@
+<p-listbox
+  (ngModelChange)="onSelectionChange($event)"
+  (scrolled)="onScrollDown.emit()"
+  [checkbox]="multiple()"
+  [disabled]="disabled"
+  [emptyFilterMessage]="'users.userSelection.noUsersFound' | translate"
+  [emptyMessage]="'users.userSelection.noUsersFound' | translate"
+  [filter]="true"
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  [infiniteScrollUpDistance]="1.5"
+  [multiple]="multiple()"
+  [ngClass]="class()"
+  [ngModel]="value"
+  [options]="users()"
+  [optionValue]="optionValue()"
+  class="w-full"
+  filterBy="firstName"
+  infiniteScroll
+  infiniteScrollContainer=".p-listbox-list-container"
+>
+  <ng-template #item let-user>
+    <div class="flex items-center gap-2">
+      <div>{{ user.firstName }} {{ user.lastName }}</div>
+    </div>
+  </ng-template>
+</p-listbox>
