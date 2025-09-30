@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@use './scss';
 @use 'primeicons/primeicons.css';
 @use 'tailwindcss';
+@use './scss';
 @plugin "tailwindcss-primeui";
 
 @custom-variant dark (&:where(.color-scheme-dark, .color-scheme-dark *)); //dark mode configuration

@@ -74,6 +74,8 @@ export class FormField implements AfterViewInit, OnDestroy {
     const state = this._controlState();
     if (!state) return false;
 
+    console.log(state.invalid, state.touched, state.dirty);
+
     return state.invalid && (state.touched || state.dirty);
   });
 
@@ -129,10 +131,12 @@ export class FormField implements AfterViewInit, OnDestroy {
       });
     };
 
+    control.events.subscribe(updateState);
+
     // Subscribe to status changes (validation, touched, dirty, etc.)
-    this.controlStatusSubscription = control.statusChanges.subscribe(updateState);
+    // this.controlStatusSubscription = control.statusChanges.subscribe(updateState);
 
     // Subscribe to value changes (user input)
-    this.controlValueSubscription = control.valueChanges.subscribe(updateState);
+    // this.controlValueSubscription = control.valueChanges.subscribe(updateState);
   }
 }

@@ -1,1 +1,27 @@
-<p>role-form-dialog works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid-cols-2 gap-4">
+  <div class="col-span-2">
+    <app-form-field>
+      <app-label for="name">Name</app-label>
+      <input class="w-full" pInputText type="text" id="name" pInputText formControlName="name" />
+      <app-control-error [control]="form.controls.name" />
+    </app-form-field>
+  </div>
+  <div class="col-span-2">
+    <app-form-field>
+      <app-label for="description">Description</app-label>
+      <input
+        class="w-full"
+        pInputText
+        type="text"
+        id="description"
+        pInputText
+        formControlName="description"
+      />
+      <app-control-error [control]="form.controls.description" />
+    </app-form-field>
+  </div>
+  <div class="col-span-2 app-dialog-actions">
+    <p-button (onClick)="dialogRef.close()" severity="secondary" type="button" label="Cancel" />
+    <p-button icon="pi pi-save" type="submit" label="Save" />
+  </div>
+</form>

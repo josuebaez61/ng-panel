@@ -5,7 +5,7 @@ import { FormErrorMessageDirective } from '@shared/directives';
 @Component({
   selector: 'app-control-error',
   imports: [FormErrorMessageDirective],
-  template: ` <small class="error-text" [appFormErrorMessage]="control()?.errors"> </small> `,
+  template: ` <small class="error-text" [appFormErrorMessage]="control()?.errors"></small> `,
   styles: [
     `
       .error-text {
