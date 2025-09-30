@@ -1,8 +1,8 @@
-import { Component, computed, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { DrawerModule } from 'primeng/drawer';
 import { AvatarModule } from 'primeng/avatar';
 import { CommonPrimeNgModule } from '@shared/modules';
-import { AuthService, LocalizedMenu } from '@core/services';
+import { AuthService, LocalizedMenu, Theme } from '@core/services';
 import { RoutePath } from '@core/constants';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { MenuModule } from 'primeng/menu';
@@ -25,9 +25,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   ],
   templateUrl: './panel-drawer.html',
   styleUrl: './panel-drawer.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PanelDrawer {
+  private readonly theme = inject(Theme);
   private readonly authService = inject(AuthService);
+
+  public isDark = computed(() => this.theme.isDark());
+
   public user = computed(() => this.authService.currentUser());
   public userName = computed(() => this.user()?.firstName + ' ' + this.user()?.lastName);
   public drawerVisible = input<boolean>(true);

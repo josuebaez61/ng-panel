@@ -1,0 +1,11 @@
+.active-link {
+  background-color: var(--p-primary-color);
+  color: white;
+}
+
+::ng-deep .color-scheme-dark {
+  .active-link {
+    background-color: var(--p-primary-color);
+    color: black !important;
+  }
+}
