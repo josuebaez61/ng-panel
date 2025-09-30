@@ -74,8 +74,6 @@ export class FormField implements AfterViewInit, OnDestroy {
     const state = this._controlState();
     if (!state) return false;
 
-    console.log(state.invalid, state.touched, state.dirty);
-
     return state.invalid && (state.touched || state.dirty);
   });
 

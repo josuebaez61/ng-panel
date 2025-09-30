@@ -22,10 +22,6 @@ export class UserSelectionDialog {
 
   public users = computed(() => this.dialogConfig.data.users);
 
-  public onFilter(event: ListboxFilterEvent) {
-    console.log(event);
-  }
-
   public onLazyLoad() {
     this.dialogConfig.data.onScrolled();
   }

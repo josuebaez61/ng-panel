@@ -24,14 +24,14 @@
   <!-- Message Container with Fixed Height -->
   <div class="message-container" *ngIf="fixedHeight">
     <!-- Helper Text (shows when no error and conditions are met) -->
-    @if (showHint() && !hasError()) {
+    @if (showHint() && !showError()) {
     <div class="hint-text">
       <ng-content select="app-hint"></ng-content>
     </div>
     }
 
     <!-- Error Message (shows when there's an error and app-control-error is present) -->
-    @if (hasError()) {
+    @if (showError()) {
     <div class="error-text" role="alert" [attr.aria-live]="'polite'">
       <ng-content select="app-control-error"></ng-content>
     </div>
@@ -41,14 +41,14 @@
   <!-- Messages without Fixed Height -->
   @if (!fixedHeight) {
   <!-- Helper Text -->
-  @if (showHint() && !hasError()) {
+  @if (showHint() && !showError()) {
   <div class="hint-text mt-1">
     <ng-content select="app-hint"></ng-content>
   </div>
   }
 
   <!-- Error Message -->
-  @if (hasError()) {
+  @if (showError()) {
   <div class="error-text mt-1" role="alert" [attr.aria-live]="'polite'">
     <ng-content select="app-control-error"></ng-content>
   </div>
