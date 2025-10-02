@@ -33,7 +33,7 @@ export class UnsavedChangesService {
     this._unsavedChanges.set(true);
     if (!this.visible()) {
       this.messageService.add({
-        contentStyleClass: 'unsaved-changes-message',
+        styleClass: 'unsaved-changes-message',
         closable: false,
         key: UnsavedChangesMessage.KEY,
         sticky: true,
@@ -52,6 +52,9 @@ export class UnsavedChangesService {
     this.visible.set(false);
   }
 
+  /**
+   * Shakes the unsaved changes dialog
+   */
   public shakeDialog() {
     const toast = this.document.querySelector(
       `p-toast[key="${UnsavedChangesMessage.KEY}"]>p-toastitem>div`

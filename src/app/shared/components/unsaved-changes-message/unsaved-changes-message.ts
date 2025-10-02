@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { UnsavedChangesService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
+import { Breakpoints } from '@shared/utils';
 import { MessageService, ToastMessageOptions } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
@@ -16,6 +17,7 @@ import { Observable, first } from 'rxjs';
       key="unsaved-changes"
       (onClose)="onDiscard()"
       [baseZIndex]="5000"
+      [breakpoints]="breakpoints"
     >
       <ng-template let-message #message>
         <div class="flex flex-col items-start flex-auto">
@@ -50,6 +52,11 @@ export class UnsavedChangesMessage {
 
   private readonly unsavedChangesService = inject(UnsavedChangesService);
   private readonly messageService = inject(MessageService);
+  private readonly breakpoint = Breakpoints.Small;
+
+  public get breakpoints() {
+    return { [`${this.breakpoint}px`]: { width: '90%' } };
+  }
 
   public discardCallback = (): Observable<unknown> | Promise<unknown> => Promise.resolve();
   public saveCallback = (): Observable<unknown> | Promise<unknown> => Promise.resolve();
