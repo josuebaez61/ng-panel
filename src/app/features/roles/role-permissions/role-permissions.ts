@@ -9,11 +9,10 @@ import { forkJoin, tap } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
 import { PanelPageHeader } from '@shared/components/panel-page-header/panel-page-header';
 import { RoutePath } from '@core/constants';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-role-permissions',
-  imports: [CheckboxModule, TranslateModule, FormsModule, ButtonModule, PanelPageHeader, JsonPipe],
+  imports: [CheckboxModule, TranslateModule, FormsModule, ButtonModule, PanelPageHeader],
   templateUrl: './role-permissions.html',
   styleUrl: './role-permissions.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

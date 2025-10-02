@@ -22,11 +22,11 @@
           "
           [ngModelOptions]="{ standalone: true }"
           (onChange)="toggleResourcePermissions(resource, $event.checked)"
-          [binary]="false"
+          [binary]="true"
           class="text-sm text-gray-600"
         >
         </p-checkbox>
-        <label class="ml-2">Seleccionar todos</label>
+        <label class="ml-2">{{ 'common.selectAll' | translate }}</label>
       </div>
     </div>
 
