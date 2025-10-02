@@ -1,17 +1,20 @@
-import { Injectable, inject, signal } from '@angular/core';
-import { UnsavedChangesDialogData } from '@core/models';
-// import { UnsavedChangesDialog } from '@shared/dialogs/unsaved-changes-dialog/unsaved-changes-dialog';
-import { Observable } from 'rxjs';
+import { DOCUMENT, Injectable, inject, signal } from '@angular/core';
+import { UnsavedChangesMessageData } from '@core/models';
+import { UnsavedChangesMessage } from '@shared/components/unsaved-changes-message/unsaved-changes-message';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UnsavedChangesService {
+  private readonly messageService = inject(MessageService);
+
   private readonly _unsavedChanges = signal<boolean>(false);
-  // private readonly matDialog = inject(MatDialog);
   public readonly unsavedChanges = this._unsavedChanges.asReadonly();
 
-  private dialogRef: any = null;
+  private readonly document = inject(DOCUMENT);
+
+  private visible = signal<boolean>(false);
 
   /**
    * Marks that there are unsaved changes
@@ -25,41 +28,38 @@ export class UnsavedChangesService {
    * @param saveCallback
    * @param discardCallback
    */
-  public showUnsavedChangesDialog(
-    saveCallback: () => Observable<any> | Promise<any>,
-    discardCallback: () => Observable<any> | Promise<any>
-  ) {
+  public showUnsavedChangesMessage(opts: UnsavedChangesMessageData) {
+    const { saveCallback, discardCallback } = opts;
     this._unsavedChanges.set(true);
-    if (!this.dialogRef) {
-      // this.dialogRef = this.matDialog.open<UnsavedChangesDialog, UnsavedChangesDialogData>(
-      //   UnsavedChangesDialog,
-      //   {
-      //     disableClose: true,
-      //     width: '400px',
-      //     hasBackdrop: false,
-      //     position: { bottom: 'calc(var(--spacing) * 4)' },
-      //     panelClass: 'unsaved-changes-dialog',
-      //     id: 'unsaved-changes-dialog',
-      //     data: {
-      //       saveCallback,
-      //       discardCallback,
-      //     },
-      //   }
-      // );
-
-      this.dialogRef.afterClosed().subscribe({
-        next: () => {
-          this.dialogRef = null;
+    if (!this.visible()) {
+      this.messageService.add({
+        contentStyleClass: 'unsaved-changes-message',
+        closable: false,
+        key: UnsavedChangesMessage.KEY,
+        sticky: true,
+        severity: 'secondary',
+        data: {
+          saveCallback,
+          discardCallback,
         },
       });
+      this.visible.set(true);
     }
   }
 
+  public hideUnsavedChangesMessage() {
+    this.messageService.clear(UnsavedChangesMessage.KEY);
+    this.visible.set(false);
+  }
+
   public shakeDialog() {
-    if (this.dialogRef) {
-      this.dialogRef.addPanelClass(['animate__animated', 'animate__shakeX']);
+    const toast = this.document.querySelector(
+      `p-toast[key="${UnsavedChangesMessage.KEY}"]>p-toastitem>div`
+    );
+    if (toast) {
+      toast.classList.add('animate__animated', 'animate__shakeX');
       setTimeout(() => {
-        this.dialogRef?.removePanelClass(['animate__animated', 'animate__shakeX']);
+        toast.classList.remove('animate__animated', 'animate__shakeX');
       }, 1000);
     }
   }

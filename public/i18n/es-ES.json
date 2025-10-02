@@ -227,6 +227,28 @@
       "title": "Usuarios de Rol",
       "addButton": "Asignar Usuario",
       "removeUserFromRoleConfirmation": "¿Estás seguro de querer quitar a <b>{{userName}}</b> del rol?"
+    },
+    "permissions": {
+      "title": "Permisos",
+      "description": "Gestiona los permisos del rol",
+      "resources": {
+        "users": "Usuarios",
+        "roles": "Roles",
+        "system": "Sistema"
+      },
+      "names": {
+        "manage.roles": "Gestionar Roles",
+        "manage.users": "Gestionar Usuarios",
+        "manage.userRoles": "Gestionar Roles de Usuarios",
+        "admin": "Administrador",
+        "superAdmin": "Super Administrador"
+      }
     }
+  },
+  "unsavedChanges": {
+    "title": "¡Cuidado!",
+    "description": "Tienes cambios sin guardar.",
+    "save": "Guardar",
+    "discard": "Descartar"
   }
 }

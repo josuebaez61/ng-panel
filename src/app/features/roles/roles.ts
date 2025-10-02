@@ -20,6 +20,7 @@ export class Roles implements OnInit {
   public roles = signal<RoleWithUsersCount[]>([]);
   public loading = signal<boolean>(false);
   public roleUsersPath = RoutePath.ROLES_USERS;
+  public rolePermissionsPath = RoutePath.ROLES_PERMISSIONS;
 
   public ngOnInit(): void {
     this.loadData();
@@ -43,6 +44,10 @@ export class Roles implements OnInit {
   }
 
   public openRoleForm(role?: RoleWithUsersCount) {
-    this.dialogService.openRoleFormDialog(role);
+    this.dialogService.openRoleFormDialog(role).onClose.subscribe((res) => {
+      if (res) {
+        this.loadData();
+      }
+    });
   }
 }

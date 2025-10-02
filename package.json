@@ -34,6 +34,7 @@
     "@primeuix/themes": "^1.2.3",
     "@tailwindcss/postcss": "^4.1.13",
     "@tailwindcss/typography": "^0.5.19",
+    "animate.css": "^4.1.1",
     "eslint": "^9.36.0",
     "ngx-infinite-scroll": "^20.0.0",
     "postcss": "^8.5.6",

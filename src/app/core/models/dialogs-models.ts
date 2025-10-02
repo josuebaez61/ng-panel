@@ -7,7 +7,7 @@ export interface UserFormDialogData {
   user?: User;
 }
 
-export interface RoleDialogData {
+export interface RoleFormDialogData {
   role?: Role;
 }
 
@@ -15,7 +15,7 @@ export interface ConfirmDialogData {
   message?: string;
 }
 
-export interface UnsavedChangesDialogData {
+export interface UnsavedChangesMessageData {
   saveCallback?: () => Observable<any> | Promise<any>;
   discardCallback?: () => Observable<any> | Promise<any>;
 }

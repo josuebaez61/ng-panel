@@ -43,7 +43,7 @@
       <td>{{ role.name }}</td>
       <td>{{ role.description }}</td>
       <td>
-        <p-chip icon="pi pi-users" [label]="role.usersCount"></p-chip>
+        <p-chip icon="pi pi-users" [label]="role.usersCount.toString()"></p-chip>
       </td>
       <td>{{ role.updatedAt | localizedDate : 'short' }}</td>
       @if (actionsColumnTemplate()) {

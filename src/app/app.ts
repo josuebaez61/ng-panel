@@ -8,10 +8,18 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { GlobalLoading } from '@shared/components/global-loading/global-loading';
+import { UnsavedChangesMessage } from '@shared/components/unsaved-changes-message/unsaved-changes-message';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToastModule, ConfirmPopupModule, ConfirmDialogModule, GlobalLoading],
+  imports: [
+    RouterOutlet,
+    ToastModule,
+    ConfirmPopupModule,
+    ConfirmDialogModule,
+    GlobalLoading,
+    UnsavedChangesMessage,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
