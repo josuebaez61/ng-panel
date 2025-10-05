@@ -15,7 +15,7 @@ export const hasAnyPermissionGuard: (permissions: PermissionName[]) => CanActiva
     }
 
     if (!user.hasAnyPermission(permissions)) {
-      return router.createUrlTree([RoutePath.DASHBOARD]);
+      return router.createUrlTree([RoutePath.HOME]);
     }
 
     return true;

@@ -54,7 +54,7 @@ export class MustChangePassword implements OnInit {
       .subscribe({
         next: () => {
           this.loading.set(false);
-          this.router.navigate([RoutePath.DASHBOARD]);
+          this.router.navigate([RoutePath.HOME]);
         },
         error: () => {
           this.loading.set(false);

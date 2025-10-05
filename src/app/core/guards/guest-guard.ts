@@ -28,6 +28,6 @@ export const guestGuard: CanActivateFn = () => {
   }
 
   // If user is authenticated and doesn't need to change password, redirect to dashboard
-  router.navigate([RoutePath.DASHBOARD]);
+  router.navigate([RoutePath.HOME]);
   return false;
 };

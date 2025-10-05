@@ -1,8 +1,7 @@
 export enum PermissionName {
   ManageRoles = 'manage.roles',
   ManageUsers = 'manage.users',
-  ManageUserRoles = 'manage.user.roles',
-  ManageRolePermissions = 'manage.role.permissions',
+  ManageUserRoles = 'manage.userRoles',
   Admin = 'admin',
   SuperAdmin = 'superAdmin',
 }

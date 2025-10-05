@@ -33,12 +33,6 @@ export const routes: Routes = [
         children: [],
       },
       {
-        path: RouteName.DASHBOARD,
-        loadComponent: () => import('./features/home/home').then((m) => m.Home),
-        title: 'Dashboard - Admin Panel',
-        children: [],
-      },
-      {
         path: RouteName.USERS,
         canActivate: [hasAnyPermissionGuard([PermissionName.ManageUsers])],
         loadChildren: () => import('./features/users/users.routes').then((m) => m.routes),

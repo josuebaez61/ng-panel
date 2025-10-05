@@ -25,7 +25,7 @@ export const mustChangePasswordGuard: CanActivateFn = () => {
   // Check if user must change password
   if (!currentUser!.mustChangePassword) {
     // If user doesn't need to change password, redirect to dashboard
-    router.navigate([RoutePath.DASHBOARD]);
+    router.navigate([RoutePath.HOME]);
     return false;
   }
 

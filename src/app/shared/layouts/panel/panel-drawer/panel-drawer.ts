@@ -9,6 +9,7 @@ import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
 import { UserAvatar } from '@shared/components/user-avatar/user-avatar';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { PermissionName } from '@core/models';
 
 @Component({
   selector: 'app-panel-drawer',
@@ -60,11 +61,15 @@ export class PanelDrawer {
         {
           label: 'Users',
           icon: 'pi pi-users',
+          visible: this.authService.currentUser()?.hasPermission(PermissionName.ManageUsers),
           routerLink: RoutePath.USERS,
         },
         {
           label: 'Roles',
           icon: 'pi pi-circle',
+          visible: this.authService
+            .currentUser()
+            ?.hasAnyPermission([PermissionName.ManageRoles, PermissionName.ManageUserRoles]),
           routerLink: RoutePath.ROLES,
         },
       ],

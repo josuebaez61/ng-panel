@@ -3,17 +3,17 @@
     "login": {
       "title": "Sign In",
       "subtitle": "Enter your credentials to access",
+      "emailOrUsername": {
+        "label": "Email / Username",
+        "placeholder": "your@email.com"
+      },
       "email": {
         "label": "Email Address",
-        "placeholder": "your@email.com",
-        "required": "Email address is required",
-        "invalid": "Please enter a valid email address"
+        "placeholder": "your@email.com"
       },
       "password": {
         "label": "Password",
-        "placeholder": "Enter your password",
-        "required": "Password is required",
-        "minLength": "Password must be at least 6 characters long"
+        "placeholder": "Enter your password"
       },
       "rememberMe": "Remember me",
       "forgotPassword": "Forgot your password?",
@@ -85,15 +85,11 @@
       },
       "password": {
         "label": "New Password",
-        "placeholder": "Enter your new password",
-        "required": "Password is required",
-        "minLength": "Password must be at least 6 characters long"
+        "placeholder": "Enter your new password"
       },
       "confirmPassword": {
         "label": "Confirm New Password",
-        "placeholder": "Confirm your new password",
-        "required": "Password confirmation is required",
-        "mismatch": "Passwords do not match"
+        "placeholder": "Confirm your new password"
       },
       "submitButton": "Reset Password",
       "success": "Password reset successfully",
@@ -130,17 +126,27 @@
     }
   },
   "common": {
+    "search": "Search",
+    "save": "Save",
     "loading": "Loading...",
     "error": "Error",
     "success": "Success",
     "info": "Information",
-    "warning": "Warning"
+    "warning": "Warning",
+    "confirmMessage": "Are you sure you want to continue?",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "table": {
+      "actionsColumn": "Actions",
+      "noData": "No data"
+    },
+    "selectAll": "Select All"
   },
   "validation": {
     "required": "This field is required",
     "email": "Please enter a valid email address",
-    "minlength": "Must be at least {{min}} characters long",
-    "maxlength": "Cannot exceed {{max}} characters",
+    "minlength": "Must be at least {{requiredLength}} characters long",
+    "maxlength": "Cannot exceed {{requiredLength}} characters",
     "min": "Minimum value is {{min}}",
     "max": "Maximum value is {{max}}",
     "pattern": "Invalid format",
@@ -175,6 +181,10 @@
     "same": "Values must be the same",
     "oneOf": "Must be one of the allowed values",
     "notOneOf": "Cannot be one of these values",
+    "requiredUppercaseChar": "Must contain at least one uppercase letter",
+    "requiredLowercaseChar": "Must contain at least one lowercase letter",
+    "requiredNumberChar": "Must contain at least one number",
+    "requiredSpecialChar": "Must contain at least one special character",
     "custom": "{{message}}"
   },
   "userMenu": {
@@ -182,6 +192,64 @@
   },
   "users": {
     "title": "Users",
-    "addButton": "Add User"
+    "addButton": "Add User",
+    "table": {
+      "userColumn": "User",
+      "emailColumn": "Email Address",
+      "rolesColumn": "Roles",
+      "createdAtColumn": "Created At"
+    },
+    "userSelection": {
+      "title": "User Selection",
+      "noUsersFound": "No users found"
+    },
+    "form": {
+      "editUser": "Edit User",
+      "addUser": "Add User"
+    }
+  },
+  "roles": {
+    "title": "Roles",
+    "addButton": "Add Role",
+    "roleSelection": {
+      "noRolesFound": "No roles found"
+    },
+    "table": {
+      "nameColumn": "Name",
+      "descriptionColumn": "Description",
+      "usersCountColumn": "Users",
+      "updatedAtColumn": "Updated At"
+    },
+    "form": {
+      "editRole": "Edit Role",
+      "addRole": "Add Role"
+    },
+    "userRoles": {
+      "title": "Role Users",
+      "addButton": "Assign User",
+      "removeUserFromRoleConfirmation": "Are you sure you want to remove <b>{{userName}}</b> from the role?"
+    },
+    "permissions": {
+      "title": "Permissions",
+      "description": "Manage role permissions",
+      "resources": {
+        "users": "Users",
+        "roles": "Roles",
+        "system": "System"
+      },
+      "names": {
+        "manage.roles": "Manage Roles",
+        "manage.users": "Manage Users",
+        "manage.userRoles": "Manage User Roles",
+        "admin": "Administrator",
+        "superAdmin": "Super Administrator"
+      }
+    }
+  },
+  "unsavedChanges": {
+    "title": "Warning!",
+    "description": "You have unsaved changes.",
+    "save": "Save",
+    "discard": "Discard"
   }
 }

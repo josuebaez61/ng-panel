@@ -15,7 +15,6 @@ export const RouteName = {
 
   // Main panel routes
   PANEL: 'panel',
-  DASHBOARD: 'dashboard',
   HOME: 'home',
   USERS: 'users',
   USERS_CREATE: 'create',
@@ -47,7 +46,6 @@ export const RoutePath = {
 
   // Main panel routes
   PANEL: `/${RouteName.PANEL}`,
-  DASHBOARD: `/${RouteName.PANEL}/${RouteName.DASHBOARD}`,
   HOME: `/${RouteName.PANEL}/${RouteName.HOME}`,
   USERS: `/${RouteName.PANEL}/${RouteName.USERS}`,
   USERS_CREATE: `/${RouteName.PANEL}/${RouteName.USERS}/${RouteName.USERS_CREATE}`,
