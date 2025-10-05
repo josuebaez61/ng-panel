@@ -86,6 +86,10 @@ export class FormErrorMessageDirective implements OnInit, OnDestroy, OnChanges {
       max: 'validation.max',
       pattern: 'validation.pattern',
       passwordMatch: 'validation.passwordMatch',
+      requiredUppercaseChar: 'validation.requiredUppercaseChar',
+      requiredLowercaseChar: 'validation.requiredLowercaseChar',
+      requiredNumberChar: 'validation.requiredNumberChar',
+      requiredSpecialChar: 'validation.requiredSpecialChar',
       custom: 'validation.custom',
     };
 

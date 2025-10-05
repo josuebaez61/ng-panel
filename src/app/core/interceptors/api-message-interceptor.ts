@@ -113,8 +113,8 @@ function handleErrorResponse(error: HttpErrorResponse, url: string, toast: Toast
   }
 
   // Handle validation errors specifically
-  if (error.status === 422 && errorDetails) {
-    handleValidationErrors(errorDetails, toast);
+  if (errorDetails && error.error?.errorCode === 'VALIDATION_ERROR') {
+    handleValidationErrors(error.error, errorDetails, toast);
   } else {
     toast.error(errorMessage, {
       summary: 'Error',
@@ -134,7 +134,7 @@ function handleErrorResponse(error: HttpErrorResponse, url: string, toast: Toast
 /**
  * Handle validation errors from API
  */
-function handleValidationErrors(errors: any, toast: Toast): void {
+function handleValidationErrors(error: ApiResponse<any>, errors: any, toast: Toast): void {
   const errorMessages: string[] = [];
 
   if (Array.isArray(errors)) {
@@ -144,29 +144,32 @@ function handleValidationErrors(errors: any, toast: Toast): void {
       const fieldErrors = errors[field];
       if (Array.isArray(fieldErrors)) {
         fieldErrors.forEach((error) => {
-          errorMessages.push(`${field}: ${error}`);
+          errorMessages.push(`${error}`);
         });
       } else if (typeof fieldErrors === 'string') {
-        errorMessages.push(`${field}: ${fieldErrors}`);
+        errorMessages.push(`${fieldErrors}`);
       }
     });
   }
 
   if (errorMessages.length > 0) {
     // Show first few errors, truncate if too many
-    const displayErrors = errorMessages.slice(0, 3);
+    const displayLimit = 1;
+    const displayErrors = errorMessages.slice(0, displayLimit);
     const message = displayErrors.join('; ');
 
     toast.error(message, {
-      summary: 'Validation Error',
+      summary: error.message,
       life: 8000,
     });
 
     // If there are more errors, show a summary
-    if (errorMessages.length > 3) {
+    if (errorMessages.length > displayLimit) {
       setTimeout(() => {
         toast.info(
-          `And ${errorMessages.length - 3} more validation errors. Please check all fields.`,
+          `And ${
+            errorMessages.length - displayLimit
+          } more validation errors. Please check all fields.`,
           { life: 6000 }
         );
       }, 1000);

@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 /**
  * Custom validators for Angular Reactive Forms
@@ -53,7 +53,7 @@ export class CustomValidators {
       if (!control) {
         return null;
       }
-
+      const errorKey = 'passwordMatch';
       const password = control.get(passwordControlName);
       const confirmPassword = control.get(confirmPasswordControlName);
 
@@ -62,11 +62,16 @@ export class CustomValidators {
       }
 
       if (password && confirmPassword && password.value !== confirmPassword.value) {
-        confirmPassword.setErrors({ passwordMatch: true });
+        confirmPassword.setErrors({ ...(confirmPassword.errors || {}), [errorKey]: true });
         return {
-          passwordMatch: true,
+          [errorKey]: true,
         };
       }
+
+      const currentConfirmPasswordErrors = confirmPassword.errors;
+      delete currentConfirmPasswordErrors?.[errorKey];
+      const errorsCount = Object.keys(currentConfirmPasswordErrors || {}).length;
+      confirmPassword.setErrors(errorsCount > 0 ? { ...currentConfirmPasswordErrors } : null);
 
       return null;
     };
@@ -237,4 +242,77 @@ export class CustomValidators {
       return null;
     };
   }
+
+  public static requiredUppercaseChar(control: AbstractControl): ValidationErrors | null {
+    if (!control.value) {
+      return null;
+    }
+
+    const regex = /^(?=.*[A-Z])/;
+
+    if (!regex.test(control.value)) {
+      return {
+        requiredUppercaseChar: true,
+      };
+    }
+
+    return null;
+  }
+
+  public static requiredLowercaseChar(control: AbstractControl): ValidationErrors | null {
+    if (!control.value) {
+      return null;
+    }
+
+    const regex = /^(?=.*[a-z])/;
+
+    if (!regex.test(control.value)) {
+      return {
+        requiredLowercaseChar: true,
+      };
+    }
+
+    return null;
+  }
+
+  public static requiredNumberChar(control: AbstractControl): ValidationErrors | null {
+    if (!control.value) {
+      return null;
+    }
+
+    const regex = /^(?=.*\d)/;
+
+    if (!regex.test(control.value)) {
+      return {
+        requiredNumberChar: true,
+      };
+    }
+
+    return null;
+  }
+
+  public static requiredSpecialChar(control: AbstractControl): ValidationErrors | null {
+    if (!control.value) {
+      return null;
+    }
+
+    const regex = /^(?=.*[@$!%*?&])/;
+
+    if (!regex.test(control.value)) {
+      return {
+        requiredSpecialChar: true,
+      };
+    }
+
+    return null;
+  }
+
+  public static password = Validators.compose([
+    Validators.minLength(8),
+    Validators.maxLength(20),
+    CustomValidators.requiredUppercaseChar,
+    CustomValidators.requiredLowercaseChar,
+    CustomValidators.requiredNumberChar,
+    CustomValidators.requiredSpecialChar,
+  ])!;
 }

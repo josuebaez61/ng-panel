@@ -32,7 +32,7 @@ export class MustChangePassword implements OnInit {
   public loading = signal(false);
   public mustChangePasswordForm = new FormGroup(
     {
-      newPassword: new FormControl('', [Validators.required]),
+      newPassword: new FormControl('', [Validators.required, CustomValidators.password]),
       confirmPassword: new FormControl('', [Validators.required]),
     },
     {
