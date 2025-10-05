@@ -9,7 +9,7 @@
 <app-users-table
   (lazyLoad)="paginatedResourceLoader.handleTableLazyLoadEvent($event)"
   [lazy]="true"
-  [loading]="true"
+  [loading]="paginatedResourceLoader.loading()"
   [paginator]="true"
   [totalCount]="paginatedResourceLoader.totalCount()"
   [users]="paginatedResourceLoader.items()"

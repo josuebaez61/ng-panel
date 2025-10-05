@@ -10,7 +10,7 @@ export const mustChangePasswordGuard: CanActivateFn = () => {
 
   // Check if user is authenticated
   if (!authService.isAuthenticated()) {
-    router.navigate(['/auth/login']);
+    router.navigate([RoutePath.LOGIN]);
     return false;
   }
 

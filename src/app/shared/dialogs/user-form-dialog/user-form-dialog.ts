@@ -50,7 +50,6 @@ export class UserFormDialog {
   public onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      this.form.markAllAsDirty();
       return;
     }
     this.submitting.set(true);

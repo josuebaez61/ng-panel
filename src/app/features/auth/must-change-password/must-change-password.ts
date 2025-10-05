@@ -8,6 +8,9 @@ import { CustomValidators } from '@shared/utils/custom-validators';
 import { FormField } from '@shared/components/form-field/form-field';
 import { RoutePath } from '@core/constants';
 import { Auth } from '@shared/layouts/auth/auth';
+import { AuthService } from '@core/services';
+import { ChangeFirstTimePasswordRequest } from '@core/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-must-change-password',
@@ -24,20 +27,38 @@ import { Auth } from '@shared/layouts/auth/auth';
   styleUrl: './must-change-password.scss',
 })
 export class MustChangePassword implements OnInit {
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
   public loading = signal(false);
   public mustChangePasswordForm = new FormGroup(
     {
-      password: new FormControl('', [Validators.required]),
+      newPassword: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', [Validators.required]),
     },
     {
-      validators: [CustomValidators.passwordMatch('password', 'confirmPassword')],
+      validators: [CustomValidators.passwordMatch('newPassword', 'confirmPassword')],
     }
   );
 
   public ngOnInit(): void {}
 
   public onSubmit() {
-    console.log('onSubmit');
+    if (this.mustChangePasswordForm.invalid) {
+      this.mustChangePasswordForm.markAllAsTouched();
+      return;
+    }
+
+    this.loading.set(true);
+    this.authService
+      .changeFirstTimePassword(this.mustChangePasswordForm.value as ChangeFirstTimePasswordRequest)
+      .subscribe({
+        next: () => {
+          this.loading.set(false);
+          this.router.navigate([RoutePath.DASHBOARD]);
+        },
+        error: () => {
+          this.loading.set(false);
+        },
+      });
   }
 }

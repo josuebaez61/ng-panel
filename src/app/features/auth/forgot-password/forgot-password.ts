@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { RoutePath } from '@core/constants';
 import { FormField } from '@shared/components/form-field/form-field';
 import { Auth } from '@shared/layouts/auth/auth';
+import { AuthService } from '@core/services';
+import { PasswordResetRequest } from '@core/models';
 
 @Component({
   selector: 'app-forgot-password',
@@ -25,6 +27,7 @@ import { Auth } from '@shared/layouts/auth/auth';
 })
 export class ForgotPassword {
   private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
 
   public backRoute = RoutePath.LOGIN;
 
@@ -35,6 +38,17 @@ export class ForgotPassword {
   public isLoading = false;
 
   public onSubmit() {
-    this.router.navigate([RoutePath.RESET_PASSWORD]);
+    if (this.forgotPasswordForm.invalid) {
+      this.forgotPasswordForm.markAllAsTouched();
+      return;
+    }
+
+    this.authService
+      .requestPasswordReset(this.forgotPasswordForm.value as PasswordResetRequest)
+      .subscribe({
+        next: () => {
+          this.router.navigate([RoutePath.RESET_PASSWORD]);
+        },
+      });
   }
 }

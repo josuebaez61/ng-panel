@@ -44,6 +44,9 @@ export interface ChangePasswordRequest {
   newPassword: string;
 }
 
+export interface ChangeFirstTimePasswordRequest {
+  newPassword: string;
+}
 export interface RefreshTokenRequest {
   refreshToken: string;
 }

@@ -2,19 +2,20 @@
   <form [formGroup]="loginForm" class="space-y-6" (ngSubmit)="onSubmit()">
     <!-- Email Field -->
     <app-form-field>
-      <app-label for="email">
-        {{ 'auth.login.email.label' | translate }}
+      <app-label for="emailOrUsername">
+        {{ 'auth.login.emailOrUsername.label' | translate }}
       </app-label>
       <input
-        id="email"
-        type="email"
+        id="emailOrUsername"
+        type="text"
         formControlName="emailOrUsername"
-        [placeholder]="'auth.login.email.placeholder' | translate"
+        [placeholder]="'auth.login.emailOrUsername.placeholder' | translate"
         class="w-full"
         pInputText
         autocomplete="off"
+        s
       />
-      <app-control-error [control]="loginForm.get('email')"></app-control-error>
+      <app-control-error [control]="loginForm.get('emailOrUsername')"></app-control-error>
     </app-form-field>
 
     <!-- Password Field -->
@@ -44,12 +45,6 @@
 
     <!-- Remember Me & Forgot Password -->
     <div class="flex items-center justify-end">
-      <!-- <p-checkbox formControlName="rememberMe" [binary]="true" inputId="rememberMe">
-        <label for="rememberMe" class="text-sm ml-2">
-          {{ 'auth.login.rememberMe' | translate }}
-        </label>
-      </p-checkbox> -->
-
       <a [routerLink]="forgotPasswordRoutePath" class="text-sm transition-colors">
         {{ 'auth.login.forgotPassword' | translate }}
       </a>

@@ -13,6 +13,7 @@ import {
   CurrentUserResponse,
   // AuthUserDto,
   AuthUser,
+  ChangeFirstTimePasswordRequest,
 } from '../models/auth-models';
 import { API_CONFIG } from '../config/api.config';
 import { Router } from '@angular/router';
@@ -146,7 +147,7 @@ export class AuthService {
   /**
    * Change first time password (for users who must change password)
    */
-  public changeFirstTimePassword(request: { newPassword: string }): Observable<any> {
+  public changeFirstTimePassword(request: ChangeFirstTimePasswordRequest): Observable<any> {
     return this.http.post(
       `${this.baseUrl}${API_CONFIG.ENDPOINTS.AUTH.CHANGE_FIRST_TIME_PASSWORD}`,
       request

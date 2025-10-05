@@ -34,7 +34,6 @@ export class RoleFormDialog {
   public onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      this.form.markAllAsDirty();
       return;
     }
     const role = this.dialogConfig.data?.role;

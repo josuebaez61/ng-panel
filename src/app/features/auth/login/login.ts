@@ -64,7 +64,6 @@ export class Login implements OnInit {
   onSubmit() {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
-      this.loginForm.markAllAsDirty();
       return;
     }
 

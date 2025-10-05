@@ -35,6 +35,7 @@ export class UserMenu {
     {
       label: 'userMenu.logout',
       icon: 'fa-solid fa-right-from-bracket',
+      command: () => this.authService.logout(),
     },
   ]);
 }

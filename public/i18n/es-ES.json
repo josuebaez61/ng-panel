@@ -3,17 +3,17 @@
     "login": {
       "title": "Iniciar Sesión",
       "subtitle": "Ingresa tus credenciales para acceder",
+      "emailOrUsername": {
+        "label": "E-mail / Usuario",
+        "placeholder": "tu@email.com"
+      },
       "email": {
         "label": "Correo Electrónico",
-        "placeholder": "tu@email.com",
-        "required": "El correo electrónico es requerido",
-        "invalid": "Ingresa un correo electrónico válido"
+        "placeholder": "tu@email.com"
       },
       "password": {
         "label": "Contraseña",
-        "placeholder": "Ingresa tu contraseña",
-        "required": "La contraseña es requerida",
-        "minLength": "La contraseña debe tener al menos 6 caracteres"
+        "placeholder": "Ingresa tu contraseña"
       },
       "rememberMe": "Recordarme",
       "forgotPassword": "¿Olvidaste tu contraseña?",
