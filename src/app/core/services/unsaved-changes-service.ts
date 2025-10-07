@@ -1,20 +1,22 @@
 import { DOCUMENT, Injectable, inject, signal } from '@angular/core';
-import { UnsavedChangesMessageData } from '@core/models';
-import { UnsavedChangesMessage } from '@shared/components/unsaved-changes-message/unsaved-changes-message';
-import { MessageService } from 'primeng/api';
+import { UnsavedChangesDialogData, UnsavedChangesOptions } from '@core/models';
+import { TranslateService } from '@ngx-translate/core';
+import { UnsavedChangesDialog } from '@shared/dialogs/unsaved-changes-dialog/unsaved-changes-dialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UnsavedChangesService {
-  private readonly messageService = inject(MessageService);
+  private readonly translateService = inject(TranslateService);
+  private readonly dialogService = inject(DialogService);
 
   private readonly _unsavedChanges = signal<boolean>(false);
   public readonly unsavedChanges = this._unsavedChanges.asReadonly();
 
   private readonly document = inject(DOCUMENT);
 
-  private visible = signal<boolean>(false);
+  private dialogRef: DynamicDialogRef<UnsavedChangesDialog> | null = null;
 
   /**
    * Marks that there are unsaved changes
@@ -28,37 +30,46 @@ export class UnsavedChangesService {
    * @param saveCallback
    * @param discardCallback
    */
-  public showUnsavedChangesMessage(opts: UnsavedChangesMessageData) {
-    const { saveCallback, discardCallback } = opts;
+  public showUnsavedChangesMessage(opts: UnsavedChangesOptions = {}) {
+    const { saveCallback, discardCallback, saveButtonText, title, message, discardButtonText } =
+      opts;
     this._unsavedChanges.set(true);
-    if (!this.visible()) {
-      this.messageService.add({
-        styleClass: 'unsaved-changes-message',
-        closable: false,
-        key: UnsavedChangesMessage.KEY,
-        sticky: true,
-        severity: 'secondary',
-        data: {
-          saveCallback,
-          discardCallback,
+    if (!this.dialogRef) {
+      this.dialogRef = this.dialogService.open<UnsavedChangesDialog, UnsavedChangesDialogData>(
+        UnsavedChangesDialog,
+        {
+          styleClass: 'unsaved-changes-dialog',
+          position: 'bottom',
+          closable: false,
+          header: this.translateService.instant(title || 'unsavedChanges.title'),
+          width: '400px',
+          data: {
+            saveButtonText,
+            discardButtonText,
+            message,
+            title,
+          },
+        }
+      );
+      this.dialogRef?.onClose.subscribe({
+        next: (result) => {
+          if (result['shouldSaveChanges']) {
+            saveCallback?.();
+          } else {
+            discardCallback?.();
+            this.resetUnsavedChanges();
+          }
+          this.dialogRef = null;
         },
       });
-      this.visible.set(true);
     }
-  }
-
-  public hideUnsavedChangesMessage() {
-    this.messageService.clear(UnsavedChangesMessage.KEY);
-    this.visible.set(false);
   }
 
   /**
    * Shakes the unsaved changes dialog
    */
   public shakeDialog() {
-    const toast = this.document.querySelector(
-      `p-toast[key="${UnsavedChangesMessage.KEY}"]>p-toastitem>div`
-    );
+    const toast = this.document.querySelector('.unsaved-changes-dialog');
     if (toast) {
       toast.classList.add('animate__animated', 'animate__shakeX');
       setTimeout(() => {

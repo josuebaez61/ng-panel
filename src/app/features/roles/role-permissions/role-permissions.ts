@@ -74,25 +74,18 @@ export class RolePermissions implements OnInit {
     const currentSelection = [...this.selectedPermissions()];
 
     if (checked) {
-      // Add if not already selected
       if (!currentSelection.includes(permissionId)) {
         currentSelection.push(permissionId);
       }
     } else {
-      // Remove if selected
       const index = currentSelection.indexOf(permissionId);
       if (index > -1) {
         currentSelection.splice(index, 1);
       }
     }
 
-    // Update signal with new selection
     this.selectedPermissions.set(currentSelection);
-
-    // Update unsaved changes state
     this.updateUnsavedChangesState();
-
-    console.log('Selected permissions:', currentSelection);
   }
 
   /**
@@ -112,19 +105,18 @@ export class RolePermissions implements OnInit {
   /**
    * Selects or deselects all permissions of a specific resource
    */
-  public toggleResourcePermissions(resourcePermissions: ResourcePermissions, selectAll: boolean) {
+  public toggleResourcePermissions(resourcePermissions: ResourcePermissions, selectAll: any) {
+    console.log(selectAll);
     const currentSelection = [...this.selectedPermissions()];
     const resourcePermissionIds = resourcePermissions.permissions.map((p) => p.id);
 
     if (selectAll) {
-      // Add all resource permissions that are not already selected
       resourcePermissionIds.forEach((id) => {
         if (!currentSelection.includes(id)) {
           currentSelection.push(id);
         }
       });
     } else {
-      // Remove all resource permissions
       resourcePermissionIds.forEach((id) => {
         const index = currentSelection.indexOf(id);
         if (index > -1) {
@@ -134,8 +126,6 @@ export class RolePermissions implements OnInit {
     }
 
     this.selectedPermissions.set(currentSelection);
-
-    // Update unsaved changes state
     this.updateUnsavedChangesState();
   }
 
@@ -157,14 +147,17 @@ export class RolePermissions implements OnInit {
    * Saves the selected permissions
    */
   public savePermissions() {
-    const selectedIds = this.getSelectedPermissionIds();
-    return this.roleService.updateRolePermissions(this.roleId, selectedIds).pipe(
-      tap(() => {
-        this.savedPermissions = [...selectedIds];
-        // Reset unsaved changes state after successful save
-        this.unsavedChangesService.resetUnsavedChanges();
-      })
-    );
+    const selectedIds = [...this.selectedPermissions()];
+    console.log('Saving permissions:', selectedIds);
+    this.roleService
+      .updateRolePermissions(this.roleId, selectedIds)
+      .pipe(
+        tap(() => {
+          this.savedPermissions = [...selectedIds];
+          this.unsavedChangesService.resetUnsavedChanges();
+        })
+      )
+      .subscribe();
   }
 
   /**
@@ -200,13 +193,14 @@ export class RolePermissions implements OnInit {
     const hasChanges = this.hasUnsavedChanges();
 
     if (hasChanges) {
-      // Show the unsaved changes dialog immediately
       this.unsavedChangesService.showUnsavedChangesMessage({
-        saveCallback: () => this.savePermissions(), // Save callback
-        discardCallback: () => this.resetPermissions(), // Discard callback
+        saveCallback: () => {
+          console.log('callback');
+          this.savePermissions();
+        },
+        discardCallback: () => this.resetPermissions(),
       });
     } else {
-      // Reset unsaved changes if no changes detected
       this.unsavedChangesService.resetUnsavedChanges();
     }
   }

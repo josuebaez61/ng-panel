@@ -15,9 +15,16 @@ export interface ConfirmDialogData {
   message?: string;
 }
 
-export interface UnsavedChangesMessageData {
-  saveCallback?: () => Observable<any> | Promise<any>;
-  discardCallback?: () => Observable<any> | Promise<any>;
+export interface UnsavedChangesDialogData {
+  message?: string;
+  title?: string;
+  saveButtonText?: string;
+  discardButtonText?: string;
+}
+
+export interface UnsavedChangesOptions extends UnsavedChangesDialogData {
+  saveCallback?: () => void;
+  discardCallback?: () => void;
 }
 
 export interface UsersSelectionDialogData {
