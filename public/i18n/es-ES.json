@@ -1,5 +1,16 @@
 {
   "auth": {
+    "changePassword": {
+      "title": "Cambiar Contraseña",
+      "subtitle": "Ingresa tu contraseña actual y tu nueva contraseña",
+      "currentPassword": "Contraseña Actual",
+      "newPassword": "Nueva Contraseña",
+      "confirmPassword": "Confirmar Nueva Contraseña",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "success": "Contraseña cambiada exitosamente",
+      "error": "Por favor completa todos los campos requeridos correctamente"
+    },
     "login": {
       "title": "Iniciar Sesión",
       "subtitle": "Ingresa tus credenciales para acceder",
@@ -188,6 +199,7 @@
     "custom": "{{message}}"
   },
   "userMenu": {
+    "account": "Cuenta",
     "logout": "Cerrar Sesión"
   },
   "users": {
@@ -251,5 +263,19 @@
     "description": "Tienes cambios sin guardar.",
     "save": "Guardar",
     "discard": "Descartar"
+  },
+  "account": {
+    "firstNameLabel": "Nombre",
+    "lastNameLabel": "Apellido",
+    "email": "Email",
+    "userName": "Nombre de Usuario",
+    "password": "Contraseña"
+  },
+  "password": {
+    "atLeastOneLowercase": "Al menos una letra minúscula",
+    "atLeastOneUppercase": "Al menos una letra mayúscula",
+    "atLeastOneNumeric": "Al menos un número",
+    "atLeastOneSpecialChar": "Al menos un carácter especial",
+    "minimum8Characters": "Mínimo 8 caracteres"
   }
 }

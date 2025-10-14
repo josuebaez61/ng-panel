@@ -26,6 +26,7 @@ export const RouteName = {
   ROLES_USERS: (id: string) => `users/${id}`,
   // Error routes
   NOT_FOUND: 'not-found',
+  ACCOUNT: 'account',
 };
 
 /**
@@ -61,4 +62,5 @@ export const RoutePath = {
 
   // Error routes
   NOT_FOUND: `/${RouteName.NOT_FOUND}`,
+  ACCOUNT: `/${RouteName.PANEL}/${RouteName.ACCOUNT}`,
 };

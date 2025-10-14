@@ -1,5 +1,16 @@
 {
   "auth": {
+    "changePassword": {
+      "title": "Change Password",
+      "subtitle": "Enter your current password and your new password",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "save": "Save",
+      "cancel": "Cancel",
+      "success": "Password changed successfully",
+      "error": "Please complete all required fields correctly"
+    },
     "login": {
       "title": "Sign In",
       "subtitle": "Enter your credentials to access",
@@ -188,6 +199,7 @@
     "custom": "{{message}}"
   },
   "userMenu": {
+    "account": "Account",
     "logout": "Logout"
   },
   "users": {
@@ -251,5 +263,19 @@
     "description": "You have unsaved changes.",
     "save": "Save",
     "discard": "Discard"
+  },
+  "account": {
+    "firstNameLabel": "First Name",
+    "lastNameLabel": "Last Name",
+    "email": "Email",
+    "userName": "Username",
+    "password": "Password"
+  },
+  "password": {
+    "atLeastOneLowercase": "At least one lowercase",
+    "atLeastOneUppercase": "At least one uppercase",
+    "atLeastOneNumeric": "At least one numeric",
+    "atLeastOneSpecialChar": "At least one special character",
+    "minimum8Characters": "Minimum 8 characters"
   }
 }

@@ -45,6 +45,12 @@ export const routes: Routes = [
         loadChildren: () => import('./features/roles/roles.routes').then((m) => m.routes),
         title: 'Roles - Admin Panel',
       },
+      {
+        path: RouteName.ACCOUNT,
+        canActivate: [],
+        loadComponent: () => import('./features/account/account').then((m) => m.Account),
+        title: 'Account - Admin Panel',
+      },
     ],
   },
 

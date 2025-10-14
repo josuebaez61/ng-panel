@@ -4,6 +4,7 @@ import { MenuModule } from 'primeng/menu';
 import { AuthService, LocalizedMenu } from '@core/services';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
+import { RoutePath } from '@core/constants';
 @Component({
   selector: 'app-user-menu',
   imports: [NgClass, AsyncPipe, UserAvatar, MenuModule, RippleModule],
@@ -31,7 +32,11 @@ export class UserMenu {
 
   public class = input<string>();
   public items$ = this.localizedMenu.getMenu([
-    {},
+    {
+      label: 'userMenu.account',
+      icon: 'pi pi-user',
+      routerLink: RoutePath.ACCOUNT,
+    },
     {
       label: 'userMenu.logout',
       icon: 'fa-solid fa-right-from-bracket',

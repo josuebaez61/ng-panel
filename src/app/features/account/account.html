@@ -1,0 +1,55 @@
+<div class="max-w-lg mx-auto">
+  <p-card>
+    <div class="flex justify-center mb-6">
+      <app-user-avatar [user]="user()" [size]="10" />
+    </div>
+    <form class="grid grid-cols-12 gap-4">
+      <div class="col-span-6">
+        <app-form-field class="w-full">
+          <app-label>{{ 'account.firstNameLabel' | translate }}</app-label>
+          <input readonly pInputText class="w-full" [value]="user()?.firstName" />
+        </app-form-field>
+      </div>
+      <div class="col-span-6">
+        <app-form-field class="w-full">
+          <app-label>{{ 'account.lastNameLabel' | translate }}</app-label>
+          <input readonly pInputText class="w-full" [value]="user()?.lastName" />
+        </app-form-field>
+      </div>
+      <div class="col-span-12">
+        <app-form-field class="w-full">
+          <app-label>{{ 'account.email' | translate }}</app-label>
+          <p-input-group>
+            <input readonly pInputText class="w-full" [value]="user()?.email" />
+            <p-inputgroup-addon>
+              <p-button icon="pi pi-pencil" />
+            </p-inputgroup-addon>
+          </p-input-group>
+        </app-form-field>
+      </div>
+      <div class="col-span-12">
+        <app-form-field class="w-full">
+          <app-label>{{ 'account.userName' | translate }}</app-label>
+          <input readonly pInputText class="w-full" [value]="user()?.userName" />
+        </app-form-field>
+      </div>
+      <div class="col-span-12">
+        <app-form-field class="w-full">
+          <app-label>{{ 'account.password' | translate }}</app-label>
+          <p-input-group>
+            <input
+              readonly
+              pInputText
+              type="password"
+              value="********************"
+              class="w-full"
+            />
+            <p-inputgroup-addon>
+              <p-button (onClick)="openChangePasswordDialog()" icon="pi pi-pencil" />
+            </p-inputgroup-addon>
+          </p-input-group>
+        </app-form-field>
+      </div>
+    </form>
+  </p-card>
+</div>

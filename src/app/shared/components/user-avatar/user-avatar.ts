@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { User } from '@core/models';
 import { AvatarModule } from 'primeng/avatar';
 
@@ -12,6 +12,7 @@ import { AvatarModule } from 'primeng/avatar';
       [shape]="'circle'"
       [image]="user()?.profilePicture"
       [label]="user()?.profilePicture ? '' : getInitials()"
+      [class]="textSizeStyleClass()"
     />
   `,
   styles: ``,
@@ -19,6 +20,7 @@ import { AvatarModule } from 'primeng/avatar';
 export class UserAvatar {
   public size = input<number>(3);
   public user = input<User | null>(null);
+  public textSizeStyleClass = computed(() => `text-[${this.size() * 5}px]`);
 
   public getInitials(): string {
     const user = this.user();
