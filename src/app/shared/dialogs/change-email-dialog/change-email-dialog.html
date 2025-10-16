@@ -1,0 +1,57 @@
+<div>
+  @if (step() === 'request') {
+  <div class="mb-4">
+    <p-message [severity]="'info'" [text]="'auth.changeEmail.requestHelperText' | translate" />
+  </div>
+  <form [formGroup]="requestForm">
+    <app-form-field class="w-full">
+      <app-label>{{ 'auth.changeEmail.newEmail' | translate }}</app-label>
+      <input class="w-full" pInputText formControlName="newEmail" />
+      <app-control-error [control]="requestForm.controls.newEmail" />
+    </app-form-field>
+  </form>
+  } @else {
+  <div class="mb-4">
+    <p-message [severity]="'info'" [text]="'auth.changeEmail.verifyHelperText' | translate" />
+  </div>
+  <form [formGroup]="verifyForm">
+    <app-form-field class="w-full">
+      <app-label>{{ 'auth.changeEmail.code' | translate }}</app-label>
+      <p-inputmask
+        mask="9999-9999"
+        [fluid]="true"
+        formControlName="verificationCode"
+        placeholder="1234-5678"
+      />
+      <app-control-error [control]="verifyForm.controls.verificationCode" />
+    </app-form-field>
+  </form>
+  }
+  <div class="flex gap-2 justify-end">
+    @if (step() === 'verify') {
+    <button
+      pButton
+      type="button"
+      [label]="'auth.changeEmail.resendCodeButton' | translate"
+      (click)="onRequest()"
+      icon="pi pi-refresh"
+      [text]="true"
+      severity="info"
+    ></button>
+    }
+    <button
+      pButton
+      type="button"
+      severity="secondary"
+      [label]="'common.cancel' | translate"
+      (click)="onCancel()"
+    ></button>
+    <button
+      pButton
+      [loading]="isLoading()"
+      type="button"
+      [label]="'common.submit' | translate"
+      (click)="onSubmit()"
+    ></button>
+  </div>
+</div>

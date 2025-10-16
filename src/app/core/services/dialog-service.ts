@@ -1,6 +1,7 @@
 import { inject, Injectable, Type } from '@angular/core';
 import { RoleFormDialogData, Role, UsersSelectionDialogData, User, UserOption } from '@core/models';
 import { TranslateService } from '@ngx-translate/core';
+import { ChangeEmailDialog } from '@shared/dialogs/change-email-dialog/change-email-dialog';
 import { ChangePasswordDialog } from '@shared/dialogs/change-password-dialog/change-password-dialog';
 import { RoleFormDialog } from '@shared/dialogs/role-form-dialog/role-form-dialog';
 import { UserFormDialog } from '@shared/dialogs/user-form-dialog/user-form-dialog';
@@ -68,6 +69,12 @@ export class DialogService {
   public openChangePasswordDialog(): DynamicDialogRef<ChangePasswordDialog> {
     return this.open(ChangePasswordDialog, {
       header: this.translateService.instant('auth.changePassword.title'),
+    });
+  }
+
+  public openChangeEmailDialog(): DynamicDialogRef<ChangeEmailDialog> {
+    return this.open(ChangeEmailDialog, {
+      header: this.translateService.instant('auth.changeEmail.title'),
     });
   }
 }

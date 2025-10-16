@@ -22,7 +22,7 @@
           <p-input-group>
             <input readonly pInputText class="w-full" [value]="user()?.email" />
             <p-inputgroup-addon>
-              <p-button icon="pi pi-pencil" />
+              <p-button (onClick)="openChangeEmailDialog()" icon="pi pi-pencil" />
             </p-inputgroup-addon>
           </p-input-group>
         </app-form-field>

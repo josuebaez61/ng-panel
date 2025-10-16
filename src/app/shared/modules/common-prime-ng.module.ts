@@ -11,6 +11,8 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { DividerModule } from 'primeng/divider';
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
+import { InputMaskModule } from 'primeng/inputmask';
+import { MessageModule } from 'primeng/message';
 @NgModule({
   imports: [CommonModule],
   exports: [
@@ -26,6 +28,8 @@ import { TableModule } from 'primeng/table';
     InputGroupModule,
     InputGroupAddonModule,
     RippleModule,
+    InputMaskModule,
+    MessageModule,
   ],
 })
 export class CommonPrimeNgModule {}

@@ -1,5 +1,16 @@
 {
   "auth": {
+    "changeEmail": {
+      "title": "Change Email",
+      "subtitle": "Enter your new email",
+      "newEmail": "New Email",
+      "save": "Save",
+      "cancel": "Cancel",
+      "code": "Verification Code",
+      "verifyHelperText": "Check your email for the verification code",
+      "requestHelperText": "Enter your new email address to request a verification code",
+      "resendCodeButton": "Resend code"
+    },
     "changePassword": {
       "title": "Change Password",
       "subtitle": "Enter your current password and your new password",
@@ -137,6 +148,7 @@
     }
   },
   "common": {
+    "submit": "Submit",
     "search": "Search",
     "save": "Save",
     "loading": "Loading...",

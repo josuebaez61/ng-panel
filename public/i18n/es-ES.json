@@ -1,5 +1,16 @@
 {
   "auth": {
+    "changeEmail": {
+      "title": "Cambiar Correo Electrónico",
+      "subtitle": "Ingresa tu nuevo correo electrónico",
+      "newEmail": "Nuevo Correo Electrónico",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "code": "Código de Verificación",
+      "verifyHelperText": "Revisa tu correo electrónico para obtener el código de verificación",
+      "requestHelperText": "Ingresa tu nuevo correo electrónico para solicitar un código de verificación",
+      "resendCodeButton": "Reenviar código"
+    },
     "changePassword": {
       "title": "Cambiar Contraseña",
       "subtitle": "Ingresa tu contraseña actual y tu nueva contraseña",
@@ -137,6 +148,7 @@
     }
   },
   "common": {
+    "submit": "Enviar",
     "search": "Buscar",
     "save": "Guardar",
     "loading": "Cargando...",

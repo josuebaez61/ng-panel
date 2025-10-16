@@ -23,4 +23,10 @@ export class Account {
       console.log(result);
     });
   }
+
+  public openChangeEmailDialog() {
+    this.dialogService.openChangeEmailDialog().onClose.subscribe((result) => {
+      console.log(result);
+    });
+  }
 }
