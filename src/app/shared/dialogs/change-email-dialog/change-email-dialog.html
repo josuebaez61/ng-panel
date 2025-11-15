@@ -1,19 +1,18 @@
 <div>
   @if (step() === 'request') {
-  <div class="mb-4">
-    <p-message [severity]="'info'" [text]="'auth.changeEmail.requestHelperText' | translate" />
-  </div>
+
   <form [formGroup]="requestForm">
     <app-form-field class="w-full">
       <app-label>{{ 'auth.changeEmail.newEmail' | translate }}</app-label>
       <input class="w-full" pInputText formControlName="newEmail" />
+      <app-hint>
+        {{ 'auth.changeEmail.requestHelperText' | translate }}
+      </app-hint>
       <app-control-error [control]="requestForm.controls.newEmail" />
     </app-form-field>
   </form>
   } @else {
-  <div class="mb-4">
-    <p-message [severity]="'info'" [text]="'auth.changeEmail.verifyHelperText' | translate" />
-  </div>
+
   <form [formGroup]="verifyForm">
     <app-form-field class="w-full">
       <app-label>{{ 'auth.changeEmail.code' | translate }}</app-label>
@@ -23,6 +22,9 @@
         formControlName="verificationCode"
         placeholder="1234-5678"
       />
+      <app-hint>
+        {{ 'auth.changeEmail.verifyHelperText' | translate }}
+      </app-hint>
       <app-control-error [control]="verifyForm.controls.verificationCode" />
     </app-form-field>
   </form>
@@ -50,7 +52,7 @@
       pButton
       [loading]="isLoading()"
       type="button"
-      [label]="'common.submit' | translate"
+      [label]="'common.confirm' | translate"
       (click)="onSubmit()"
     ></button>
   </div>

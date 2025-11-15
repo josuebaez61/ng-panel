@@ -1,4 +1,7 @@
 {
+  "home": {
+    "title": "Welcome to your control panel"
+  },
   "auth": {
     "changeEmail": {
       "title": "Change Email",
@@ -139,12 +142,11 @@
       "info": "For security reasons, you must change your password before continuing"
     },
     "layout": {
-      "companyName": "Your Company",
       "themeToggle": {
         "light": "Light Mode",
         "dark": "Dark Mode"
       },
-      "footer": "© 2024 Your Company. All rights reserved."
+      "footer": "© 2024 {{companyName}}. All rights reserved."
     }
   },
   "common": {

@@ -41,6 +41,8 @@ export class PanelDrawer {
   public drawerWidth = input<string>('300px');
   public modal = input<boolean>(false);
 
+  public accountRoute = RoutePath.ACCOUNT;
+
   public closeCallback = (e: Event) => {
     e.preventDefault();
     e.stopPropagation();

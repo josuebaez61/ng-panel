@@ -6,10 +6,12 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { Theme } from '@core/services';
 import { Card } from 'primeng/card';
 import { Topbar } from '../common/topbar/topbar';
+import { TranslateModule } from '@ngx-translate/core';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-auth',
-  imports: [RouterOutlet, CommonModule, FormsModule, CheckboxModule, Card, Topbar],
+  imports: [RouterOutlet, CommonModule, FormsModule, CheckboxModule, Card, Topbar, TranslateModule],
   templateUrl: './auth.html',
   styleUrl: './auth.scss',
 })
@@ -17,6 +19,7 @@ export class Auth implements OnInit {
   isDarkMode = false;
   private themeService = inject(Theme);
 
+  public companyName = environment.companyName;
   public title = input<string | null>(null);
   public backRoute = input<string | null>(null);
   public showSidenavToggleButton = input<boolean>(false);

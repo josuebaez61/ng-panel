@@ -65,11 +65,17 @@
       </td>
       <td>{{ user.email }}</td>
       <td>
+        @if (!canManageUserRoles() && user.roles.length > 0) {
+        <div class="flex items-center gap-2">
+          <p>{{ 'roles.userRoles.noRolesAssigned' | translate }}</p>
+        </div>
+        } @else {
         <app-user-roles-chips
           [user]="user"
           [roles]="user.roles"
           [enableEditRoles]="enableEditRoles()"
         />
+        }
       </td>
       <td>
         {{ user.createdAt | localizedDate : 'short' }}

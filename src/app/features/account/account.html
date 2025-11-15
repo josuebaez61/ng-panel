@@ -10,10 +10,17 @@
           <input readonly pInputText class="w-full" [value]="user()?.firstName" />
         </app-form-field>
       </div>
+
       <div class="col-span-6">
         <app-form-field class="w-full">
           <app-label>{{ 'account.lastNameLabel' | translate }}</app-label>
           <input readonly pInputText class="w-full" [value]="user()?.lastName" />
+        </app-form-field>
+      </div>
+      <div class="col-span-12">
+        <app-form-field class="w-full">
+          <app-label>{{ 'account.userName' | translate }}</app-label>
+          <input readonly pInputText class="w-full" [value]="user()?.userName" />
         </app-form-field>
       </div>
       <div class="col-span-12">
@@ -27,12 +34,7 @@
           </p-input-group>
         </app-form-field>
       </div>
-      <div class="col-span-12">
-        <app-form-field class="w-full">
-          <app-label>{{ 'account.userName' | translate }}</app-label>
-          <input readonly pInputText class="w-full" [value]="user()?.userName" />
-        </app-form-field>
-      </div>
+
       <div class="col-span-12">
         <app-form-field class="w-full">
           <app-label>{{ 'account.password' | translate }}</app-label>

@@ -1,5 +1,5 @@
-import { Component, TemplateRef, input, output, signal } from '@angular/core';
-import { ListUser } from '@core/models';
+import { Component, TemplateRef, computed, inject, input, output, signal } from '@angular/core';
+import { ListUser, PermissionName } from '@core/models';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonPrimeNgModule } from '@shared/modules';
 import { TableLazyLoadEvent } from 'primeng/table';
@@ -7,6 +7,7 @@ import { UserAvatar } from '@shared/components/user-avatar/user-avatar';
 import { UserRolesChips } from '@shared/components/user-roles-chips/user-roles-chips';
 import { LocalizedDatePipe } from '@shared/pipes';
 import { DEFAULT_TABLE_PAGE_SIZE, DEFAULT_TABLE_PAGE_SIZE_OPTIONS } from '@core/constants';
+import { AuthService } from '@core/services';
 
 @Component({
   selector: 'app-users-table',
@@ -25,4 +26,10 @@ export class UsersTable {
   public actionsColumnTemplate = input<TemplateRef<any>>();
   public pageSize = input<number>(DEFAULT_TABLE_PAGE_SIZE);
   public pageSizeOptions = input<number[]>(DEFAULT_TABLE_PAGE_SIZE_OPTIONS);
+
+  private readonly authService = inject(AuthService);
+  public currentUser = computed(() => this.authService.currentUser());
+  public canManageUserRoles = computed(() =>
+    this.currentUser()?.hasPermission(PermissionName.ManageUserRoles)
+  );
 }

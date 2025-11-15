@@ -1,4 +1,7 @@
 {
+  "home": {
+    "title": "Bienvenido a tu panel de control"
+  },
   "auth": {
     "changeEmail": {
       "title": "Cambiar Correo Electrónico",
@@ -139,12 +142,11 @@
       "info": "Por seguridad, debes cambiar tu contraseña antes de continuar"
     },
     "layout": {
-      "companyName": "Tu Empresa",
       "themeToggle": {
         "light": "Modo Claro",
         "dark": "Modo Oscuro"
       },
-      "footer": "© 2024 Tu Empresa. Todos los derechos reservados."
+      "footer": "© 2024 {{companyName}}. Todos los derechos reservados."
     }
   },
   "common": {
@@ -251,6 +253,7 @@
     "userRoles": {
       "title": "Usuarios de Rol",
       "addButton": "Asignar Usuario",
+      "noRolesAssigned": "No hay roles asignados",
       "removeUserFromRoleConfirmation": "¿Estás seguro de querer quitar a <b>{{userName}}</b> del rol?"
     },
     "permissions": {

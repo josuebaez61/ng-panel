@@ -9,6 +9,7 @@ import { CommonPrimeNgModule } from '@shared/modules';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ControlError } from '@shared/components/control-error/control-error';
 import { mergeMap } from 'rxjs';
+import { Hint } from '@shared/components/hint/hint';
 
 @Component({
   selector: 'app-change-email-dialog',
@@ -19,6 +20,7 @@ import { mergeMap } from 'rxjs';
     TranslateModule,
     CommonPrimeNgModule,
     ControlError,
+    Hint,
   ],
   templateUrl: './change-email-dialog.html',
   styles: ``,
@@ -99,9 +101,8 @@ export class ChangeEmailDialog {
   }
 
   public onResend(): void {
-    // if (this.form.invalid) {
-    //   this.form.markAllAsTouched();
-    //   return;
-    // }
+    this.step.set('request');
+    this.requestForm.reset();
+    this.verifyForm.reset();
   }
 }

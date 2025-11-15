@@ -16,6 +16,9 @@
 
 <!-- Role Selection Popover -->
 <p-popover #op>
+  <div class="flex justify-end">
+    <p-button size="small" icon="pi pi-times" text rounded (onClick)="op.hide()" />
+  </div>
   @if (loading()) {
   <div class="flex flex-col gap-2">
     <p-skeleton height="50px" width="200px" />

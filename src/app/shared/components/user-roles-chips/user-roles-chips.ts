@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-user-roles-chips',
@@ -17,6 +18,7 @@ import { ConfirmationService } from 'primeng/api';
     PopoverModule,
     RoleSelection,
     SkeletonModule,
+    ButtonModule,
     ConfirmPopupModule,
   ],
   templateUrl: './user-roles-chips.html',
