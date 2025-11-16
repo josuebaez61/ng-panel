@@ -3,24 +3,25 @@
     <div class="flex justify-center mb-6">
       <app-user-avatar [user]="user()" [size]="10" />
     </div>
-    <form class="grid grid-cols-12 gap-4">
+    <form [formGroup]="form" class="grid grid-cols-12 gap-4">
       <div class="col-span-6">
         <app-form-field class="w-full">
           <app-label>{{ 'account.firstNameLabel' | translate }}</app-label>
-          <input readonly pInputText class="w-full" [value]="user()?.firstName" />
+          <input pInputText class="w-full" formControlName="firstName" />
+          <app-control-error [control]="form.get('firstName')" />
         </app-form-field>
       </div>
 
       <div class="col-span-6">
         <app-form-field class="w-full">
           <app-label>{{ 'account.lastNameLabel' | translate }}</app-label>
-          <input readonly pInputText class="w-full" [value]="user()?.lastName" />
+          <input pInputText class="w-full" formControlName="lastName" />
         </app-form-field>
       </div>
       <div class="col-span-12">
         <app-form-field class="w-full">
           <app-label>{{ 'account.userName' | translate }}</app-label>
-          <input readonly pInputText class="w-full" [value]="user()?.userName" />
+          <input pInputText class="w-full" formControlName="userName" />
         </app-form-field>
       </div>
       <div class="col-span-12">

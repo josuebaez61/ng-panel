@@ -5,6 +5,7 @@ import {
   guestGuard,
   hasAnyPermissionGuard,
   mustChangePasswordGuard,
+  unsavedChangesGuard,
 } from '@core/guards';
 import { PermissionName } from '@core/models';
 
@@ -47,7 +48,7 @@ export const routes: Routes = [
       },
       {
         path: RouteName.ACCOUNT,
-        canActivate: [],
+        canDeactivate: [unsavedChangesGuard],
         loadComponent: () => import('./features/account/account').then((m) => m.Account),
         title: 'Account - Admin Panel',
       },

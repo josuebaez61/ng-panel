@@ -285,7 +285,11 @@ export class AuthService {
   /**
    * Update current user data (for use in guards)
    */
-  public updateCurrentUser(user: AuthUser): void {
-    this._currentUser.set(user);
+  public updateCurrentUserData(user: AuthUser): Observable<any> {
+    return this.http.patch(`${this.baseUrl}${API_CONFIG.ENDPOINTS.AUTH.ME}`, user).pipe(
+      tap(() => {
+        this._currentUser.set(user);
+      })
+    );
   }
 }

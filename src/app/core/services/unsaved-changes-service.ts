@@ -40,7 +40,10 @@ export class UnsavedChangesService {
         {
           styleClass: 'unsaved-changes-dialog',
           position: 'bottom',
+          modal: false,
           closable: false,
+          closeOnEscape: false,
+          focusOnShow: false,
           header: this.translateService.instant(title || 'unsavedChanges.title'),
           width: '400px',
           data: {
