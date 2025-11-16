@@ -1,53 +1,67 @@
-import { Component, computed, inject } from '@angular/core';
-import { UnsavedChangesDialogData } from '@core/models';
+import { Component, computed, inject, input, output } from '@angular/core';
+import { UnsavedChangesService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonPrimeNgModule } from '@shared/modules';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-unsaved-changes-dialog',
   imports: [TranslateModule, CommonPrimeNgModule],
   template: `
-    <div class="flex flex-col flex-auto">
-      <div class="font-medium text-md mb-4">
-        {{ message() | translate }}
+    <p-dialog
+      header="{{ title() | translate }}"
+      [modal]="false"
+      [style]="{ width: '25rem' }"
+      [visible]="unsavedChanges()"
+      [closeOnEscape]="false"
+      [focusOnShow]="false"
+      position="bottom"
+      (visibleChange)="!$event && onDiscard()"
+      styleClass="unsaved-changes-dialog"
+      [draggable]="false"
+    >
+      <div class="flex flex-col flex-auto">
+        <div class="font-medium text-md mb-4">
+          {{ message() | translate }}
+        </div>
+        <div class="flex items-center justify-end gap-2">
+          <p-button
+            severity="contrast"
+            size="small"
+            [disabled]="discardButtonDisabled()"
+            [label]="discardButtonText() | translate"
+            (click)="onDiscard()"
+          />
+          <p-button
+            severity="contrast"
+            size="small"
+            [disabled]="saveButtonDisabled()"
+            [label]="saveButtonText() | translate"
+            (click)="onSave()"
+          />
+        </div>
       </div>
-      <div class="flex items-center justify-end gap-2">
-        <p-button
-          severity="contrast"
-          size="small"
-          [label]="discardButtonText() | translate"
-          (click)="onDiscard()"
-        />
-        <p-button
-          severity="contrast"
-          size="small"
-          [label]="saveButtonText() | translate"
-          (click)="onSave()"
-        />
-      </div>
-    </div>
+    </p-dialog>
   `,
   styles: ``,
 })
 export class UnsavedChangesDialog {
-  private readonly dialogRef = inject(DynamicDialogRef<UnsavedChangesDialog>);
-  private readonly dialogConfig = inject(DynamicDialogConfig<UnsavedChangesDialogData>);
+  public unsavedChangesService = inject(UnsavedChangesService);
+  public unsavedChanges = computed(() => this.unsavedChangesService.unsavedChanges());
+  public message = input<string>('unsavedChanges.description');
+  public title = input<string>('unsavedChanges.title');
+  public saveButtonText = input<string>('unsavedChanges.save');
+  public discardButtonText = input<string>('unsavedChanges.discard');
+  public saveButtonDisabled = input<boolean>(false);
+  public discardButtonDisabled = input<boolean>(false);
 
-  public message = computed(() => this.dialogConfig.data?.message || 'unsavedChanges.description');
-  public title = computed(() => this.dialogConfig.data?.title || 'unsavedChanges.title');
-  public saveButtonText = computed(
-    () => this.dialogConfig.data?.saveButtonText || 'unsavedChanges.save'
-  );
-  public discardButtonText = computed(
-    () => this.dialogConfig.data?.discardButtonText || 'unsavedChanges.discard'
-  );
+  public save = output<void>();
+  public discard = output<void>();
 
   public onSave(): void {
-    this.dialogRef.close({ shouldSaveChanges: true });
+    this.save.emit();
   }
 
   public onDiscard(): void {
-    this.dialogRef.close({ shouldSaveChanges: false });
+    this.discard.emit();
   }
 }

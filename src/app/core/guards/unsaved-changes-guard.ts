@@ -4,10 +4,8 @@ import { UnsavedChangesService } from '@core/services/unsaved-changes-service';
 
 export const unsavedChangesGuard: CanDeactivateFn<unknown> = () => {
   const unsavedChangesService = inject(UnsavedChangesService);
-
-  if (unsavedChangesService.getUnsavedChanges()) {
+  if (unsavedChangesService.unsavedChanges()) {
     unsavedChangesService.shakeDialog();
   }
-
-  return !unsavedChangesService.getUnsavedChanges();
+  return !unsavedChangesService.unsavedChanges();
 };

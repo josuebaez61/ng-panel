@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Card } from 'primeng/card';
 import { UserAvatar } from '@shared/components/user-avatar/user-avatar';
 import { FormField } from '@shared/components/form-field/form-field';
@@ -9,6 +9,7 @@ import { AuthService, DialogService, UnsavedChangesService } from '@core/service
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthUser } from '@core/models';
 import { ControlError } from '@shared/components/control-error/control-error';
+import { UnsavedChangesDialog } from '@shared/dialogs/unsaved-changes-dialog/unsaved-changes-dialog';
 
 @Component({
   selector: 'app-account',
@@ -21,6 +22,7 @@ import { ControlError } from '@shared/components/control-error/control-error';
     TranslateModule,
     ReactiveFormsModule,
     ControlError,
+    UnsavedChangesDialog,
   ],
   templateUrl: './account.html',
   styleUrl: './account.scss',
@@ -37,8 +39,8 @@ export class Account {
   });
 
   constructor() {
-    this.patchFormWithUserData();
-    this.subscribeToFormChange();
+    this.patchForm();
+    this.handleFormValueChanges();
   }
 
   public openChangePasswordDialog() {
@@ -53,34 +55,39 @@ export class Account {
     });
   }
 
-  public patchFormWithUserData(): void {
+  public patchForm = (): void => {
     this.form.patchValue({
       firstName: this.user()?.firstName,
       lastName: this.user()?.lastName,
       userName: this.user()?.userName,
     });
-  }
+  };
 
-  public subscribeToFormChange(): void {
+  public handleFormValueChanges(): void {
     this.form.valueChanges.subscribe({
       next: () => {
-        this.unsavedChangesService.showUnsavedChangesMessage({
-          discardCallback: () => {
-            this.patchFormWithUserData();
-          },
-          saveCallback: () => {
-            this.onSubmit();
-          },
-        });
+        this.unsavedChangesService.markAsUnsaved();
       },
     });
   }
 
-  public onSubmit(): void {
+  public save = () => {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
     } else {
-      this.authService.updateCurrentUserData(this.form.getRawValue() as AuthUser).subscribe();
+      this.authService.updateCurrentUserData(this.form.getRawValue() as AuthUser).subscribe({
+        next: () => {
+          this.unsavedChangesService.resetUnsavedChanges();
+        },
+        error: () => {
+          this.unsavedChangesService.markAsUnsaved();
+        },
+      });
     }
-  }
+  };
+
+  public discard = () => {
+    this.patchForm();
+    this.unsavedChangesService.resetUnsavedChanges();
+  };
 }

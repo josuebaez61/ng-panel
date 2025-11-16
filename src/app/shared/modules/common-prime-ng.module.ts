@@ -13,6 +13,7 @@ import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
 import { InputMaskModule } from 'primeng/inputmask';
 import { MessageModule } from 'primeng/message';
+import { DialogModule } from 'primeng/dialog';
 @NgModule({
   imports: [CommonModule],
   exports: [
@@ -21,6 +22,7 @@ import { MessageModule } from 'primeng/message';
     TableModule,
     IconFieldModule,
     InputIconModule,
+    DialogModule,
     SplitButtonModule,
     InputTextModule,
     SelectModule,

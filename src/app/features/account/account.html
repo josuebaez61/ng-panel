@@ -56,3 +56,9 @@
     </form>
   </p-card>
 </div>
+
+<app-unsaved-changes-dialog
+  [saveButtonDisabled]="form.invalid"
+  (save)="save()"
+  (discard)="discard()"
+/>
