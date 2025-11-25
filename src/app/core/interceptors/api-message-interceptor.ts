@@ -48,6 +48,11 @@ function handleSuccessResponse(response: any, url: string, toast: Toast): void {
  * Handle error responses
  */
 function handleErrorResponse(error: HttpErrorResponse, url: string, toast: Toast): void {
+  // Don't show toast for 401 errors (handled by auth interceptor)
+  if (error.status === 401) {
+    return;
+  }
+
   let errorMessage = 'An error occurred';
   let errorDetails: any = null;
 
@@ -62,10 +67,6 @@ function handleErrorResponse(error: HttpErrorResponse, url: string, toast: Toast
       if (!errorMessage.includes('Bad Request')) {
         errorMessage = `Bad Request: ${errorMessage}`;
       }
-      break;
-    case 401:
-      errorMessage = 'Unauthorized access. Please login again.';
-      // Optionally redirect to login
       break;
     case 403:
       errorMessage = "Access denied. You don't have permission to perform this action.";
@@ -121,14 +122,6 @@ function handleErrorResponse(error: HttpErrorResponse, url: string, toast: Toast
       life: error.status >= 500 ? 8000 : 6000, // Longer duration for server errors
     });
   }
-
-  // Log error for debugging
-  console.error('HTTP Error:', {
-    url,
-    status: error.status,
-    message: errorMessage,
-    details: errorDetails || error.error,
-  });
 }
 
 /**
