@@ -1,7 +1,5 @@
 import { DOCUMENT, Injectable, inject, signal } from '@angular/core';
-import { UnsavedChangesDialogData, UnsavedChangesOptions } from '@core/models';
 import { TranslateService } from '@ngx-translate/core';
-import { UnsavedChangesDialog } from '@shared/dialogs/unsaved-changes-dialog/unsaved-changes-dialog';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Injectable({
@@ -11,8 +9,8 @@ export class UnsavedChangesService {
   private readonly translateService = inject(TranslateService);
   private readonly dialogService = inject(DialogService);
 
-  private readonly _unsavedChanges = signal<boolean>(false);
-  public readonly unsavedChanges = this._unsavedChanges.asReadonly();
+  private readonly _existsUnsavedChanges = signal<boolean>(false);
+  public readonly existsUnsavedChanges = this._existsUnsavedChanges.asReadonly();
 
   private readonly document = inject(DOCUMENT);
 
@@ -22,7 +20,7 @@ export class UnsavedChangesService {
    * Marks that there are unsaved changes
    */
   public markAsUnsaved() {
-    this._unsavedChanges.set(true);
+    this._existsUnsavedChanges.set(true);
   }
 
   /**
@@ -42,6 +40,6 @@ export class UnsavedChangesService {
    * Resets the unsaved changes
    */
   public resetUnsavedChanges() {
-    this._unsavedChanges.set(false);
+    this._existsUnsavedChanges.set(false);
   }
 }

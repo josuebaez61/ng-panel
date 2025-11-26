@@ -16,12 +16,14 @@
         <app-form-field class="w-full">
           <app-label>{{ 'account.lastNameLabel' | translate }}</app-label>
           <input pInputText class="w-full" formControlName="lastName" />
+          <app-control-error [control]="form.get('lastName')" />
         </app-form-field>
       </div>
       <div class="col-span-12">
         <app-form-field class="w-full">
           <app-label>{{ 'account.userName' | translate }}</app-label>
           <input pInputText class="w-full" formControlName="userName" />
+          <app-control-error [control]="form.get('lastName')" />
         </app-form-field>
       </div>
       <div class="col-span-12">
@@ -57,8 +59,4 @@
   </p-card>
 </div>
 
-<app-unsaved-changes-dialog
-  [saveButtonDisabled]="form.invalid"
-  (save)="save()"
-  (discard)="discard()"
-/>
+<app-unsaved-changes-dialog (save)="save()" (discard)="discard()" />

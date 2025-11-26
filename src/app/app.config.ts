@@ -56,11 +56,11 @@ export const appConfig: ApplicationConfig = {
     // HTTP Client
     provideHttpClient(
       withInterceptors([
-        globalLoadingInterceptor,
         authInterceptor,
         languageInterceptor,
         timezoneInterceptor,
         apiMessageInterceptor,
+        globalLoadingInterceptor,
       ])
     ),
 

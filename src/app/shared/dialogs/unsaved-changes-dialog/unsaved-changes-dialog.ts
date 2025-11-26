@@ -46,7 +46,7 @@ import { CommonPrimeNgModule } from '@shared/modules';
 })
 export class UnsavedChangesDialog {
   public unsavedChangesService = inject(UnsavedChangesService);
-  public unsavedChanges = computed(() => this.unsavedChangesService.unsavedChanges());
+  public unsavedChanges = computed(() => this.unsavedChangesService.existsUnsavedChanges());
   public message = input<string>('unsavedChanges.description');
   public title = input<string>('unsavedChanges.title');
   public saveButtonText = input<string>('unsavedChanges.save');

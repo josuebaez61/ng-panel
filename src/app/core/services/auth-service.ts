@@ -21,6 +21,7 @@ import { Router } from '@angular/router';
 import { RoutePath } from '../constants/routes';
 import { StorageService } from './storage-service';
 import { ApiResponse } from '../models/api-response-models';
+import { Toast } from './toast';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +31,7 @@ export class AuthService {
 
   private router = inject(Router);
   private storageService = inject(StorageService);
+  private toast = inject(Toast);
 
   // Signals for reactive state management
   private _currentUser = signal<AuthUser | null>(null);
@@ -112,6 +114,9 @@ export class AuthService {
         }),
         catchError((error) => {
           console.error('Token refresh error:', error);
+          if (error.error && error.error.message) {
+            this.toast.error(error.error.message);
+          }
           this.logout();
           throw error;
         })
