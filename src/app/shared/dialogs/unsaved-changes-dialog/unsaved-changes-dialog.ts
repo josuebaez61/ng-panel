@@ -1,11 +1,11 @@
 import { Component, computed, inject, input, output } from '@angular/core';
 import { UnsavedChangesService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 
 @Component({
   selector: 'app-unsaved-changes-dialog',
-  imports: [TranslateModule, CommonPrimeNgModule],
+  imports: [TranslateModule, SharedModule],
   template: `
     <p-dialog
       header="{{ title() | translate }}"

@@ -5,7 +5,7 @@ import { TableLazyLoadEvent, TableModule } from 'primeng/table';
 import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { TranslateModule } from '@ngx-translate/core';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 import { BadgeModule } from 'primeng/badge';
 import { Chip } from 'primeng/chip';
 import { LocalizedDatePipe } from '../../../pipes/localized-date-pipe';
@@ -13,7 +13,7 @@ import { LocalizedDatePipe } from '../../../pipes/localized-date-pipe';
 @Component({
   selector: 'app-roles-table',
   imports: [
-    CommonPrimeNgModule,
+    SharedModule,
     TableModule,
     IconField,
     InputIcon,

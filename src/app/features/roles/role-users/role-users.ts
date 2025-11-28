@@ -7,7 +7,7 @@ import {
   RoleService,
   UserService,
 } from '@core/services';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 import { FilterMatchMode } from 'primeng/api';
 import { UsersTable } from '@shared/components/table/users-table/users-table';
 import { PanelPageHeader } from '@shared/components/panel-page-header/panel-page-header';
@@ -19,7 +19,7 @@ import { of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-role-users',
-  imports: [CommonPrimeNgModule, UsersTable, PanelPageHeader, ConfirmDialogModule],
+  imports: [SharedModule, UsersTable, PanelPageHeader, ConfirmDialogModule],
   templateUrl: './role-users.html',
   styleUrl: './role-users.scss',
 })

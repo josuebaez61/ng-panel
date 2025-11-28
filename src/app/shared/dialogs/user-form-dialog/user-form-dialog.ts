@@ -5,20 +5,13 @@ import { UserService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormField } from '@shared/components/form-field/form-field';
 import { Label } from '@shared/components/label/label';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ControlError } from '@shared/components/control-error/control-error';
 
 @Component({
   selector: 'app-user-form-dialog',
-  imports: [
-    FormField,
-    Label,
-    CommonPrimeNgModule,
-    TranslateModule,
-    ReactiveFormsModule,
-    ControlError,
-  ],
+  imports: [FormField, Label, SharedModule, TranslateModule, ReactiveFormsModule, ControlError],
   templateUrl: './user-form-dialog.html',
   styles: ``,
 })

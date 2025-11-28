@@ -3,7 +3,7 @@ import { Label } from '@shared/components/label/label';
 import { ControlError } from '@shared/components/control-error/control-error';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 import { CustomValidators } from '@shared/utils/custom-validators';
 import { FormField } from '@shared/components/form-field/form-field';
 import { RoutePath } from '@core/constants';
@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
     ControlError,
     TranslateModule,
     ReactiveFormsModule,
-    CommonPrimeNgModule,
+    SharedModule,
     FormField,
     Auth,
   ],

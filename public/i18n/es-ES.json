@@ -281,6 +281,17 @@
       }
     }
   },
+  "people": {
+    "form": {
+      "editPerson": "Editar Persona",
+      "addPerson": "Agregar Persona",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "identificationNumber": "Número de Identificación",
+      "identificationType": "Tipo de Identificación",
+      "phone": "Teléfono"
+    }
+  },
   "unsavedChanges": {
     "title": "¡Cuidado!",
     "description": "Tienes cambios sin guardar.",

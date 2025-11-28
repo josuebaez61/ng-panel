@@ -14,8 +14,15 @@ import { TableModule } from 'primeng/table';
 import { InputMaskModule } from 'primeng/inputmask';
 import { MessageModule } from 'primeng/message';
 import { DialogModule } from 'primeng/dialog';
+import { TooltipModule } from 'primeng/tooltip';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { Label } from '@shared/components/label/label';
+import { ControlError } from '@shared/components/control-error/control-error';
+import { FormField } from '@shared/components/form-field/form-field';
+
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, Label, ControlError, FormField],
   exports: [
     CommonModule,
     ButtonModule,
@@ -32,6 +39,12 @@ import { DialogModule } from 'primeng/dialog';
     RippleModule,
     InputMaskModule,
     MessageModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    Label,
+    ControlError,
+    FormField,
+    TooltipModule,
   ],
 })
-export class CommonPrimeNgModule {}
+export class SharedModule {}

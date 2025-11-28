@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Card } from 'primeng/card';
 import { UserAvatar } from '@shared/components/user-avatar/user-avatar';
 import { FormField } from '@shared/components/form-field/form-field';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 import { Label } from '@shared/components/label/label';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthService, DialogService, UnsavedChangesService } from '@core/services';
@@ -17,7 +17,7 @@ import { UnsavedChangesDialog } from '@shared/dialogs/unsaved-changes-dialog/uns
     Card,
     UserAvatar,
     FormField,
-    CommonPrimeNgModule,
+    SharedModule,
     Label,
     TranslateModule,
     ReactiveFormsModule,

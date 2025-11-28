@@ -1,6 +1,7 @@
 export * from './api-response-models';
 export * from './auth-models';
 export * from './dialogs-models';
+export * from './geography-models';
 export * from './language-models';
 export * from './pagination-models';
 export * from './permission-models';

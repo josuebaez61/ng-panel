@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { DrawerModule } from 'primeng/drawer';
 import { AvatarModule } from 'primeng/avatar';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 import { AuthService, LocalizedMenu, Theme } from '@core/services';
 import { RoutePath } from '@core/constants';
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -17,7 +17,7 @@ import { PermissionName } from '@core/models';
     DrawerModule,
     AvatarModule,
     BadgeModule,
-    CommonPrimeNgModule,
+    SharedModule,
     PanelMenuModule,
     MenuModule,
     UserAvatar,

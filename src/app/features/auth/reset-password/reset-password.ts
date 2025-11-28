@@ -3,7 +3,7 @@ import { Label } from '@shared/components/label/label';
 import { ControlError } from '@shared/components/control-error/control-error';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 import { CustomValidators } from '@shared/utils/custom-validators';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-reset-password',
   imports: [
-    CommonPrimeNgModule,
+    SharedModule,
     Label,
     ControlError,
     TranslateModule,

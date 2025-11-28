@@ -5,7 +5,7 @@ import { AuthService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormField } from '@shared/components/form-field/form-field';
 import { Label } from '@shared/components/label/label';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ControlError } from '@shared/components/control-error/control-error';
 import { mergeMap } from 'rxjs';
@@ -18,7 +18,7 @@ import { Hint } from '@shared/components/hint/hint';
     Label,
     ReactiveFormsModule,
     TranslateModule,
-    CommonPrimeNgModule,
+    SharedModule,
     ControlError,
     Hint,
   ],

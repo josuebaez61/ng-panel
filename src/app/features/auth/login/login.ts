@@ -11,7 +11,7 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ControlError } from '@shared/components/control-error/control-error';
 import { Label } from '@shared/components/label/label';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 import { RouterLink } from '@angular/router';
 import { RoutePath } from '@core/constants';
 import { FormField } from '@shared/components/form-field/form-field';
@@ -21,7 +21,7 @@ import { AuthService } from '@core/services';
   selector: 'app-login',
   imports: [
     CommonModule,
-    CommonPrimeNgModule,
+    SharedModule,
     ReactiveFormsModule,
     TranslateModule,
     CardModule,

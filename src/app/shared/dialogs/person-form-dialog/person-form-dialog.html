@@ -1,0 +1,62 @@
+<form [formGroup]="form" class="grid grid-cols-12 gap-4" (ngSubmit)="onSubmit()">
+  <div class="col-span-6">
+    <app-form-field class="w-full">
+      <app-label>{{ 'people.form.firstName' | translate }}</app-label>
+      <input pInputText type="text" class="w-full" [formControl]="form.controls.firstName" />
+      <app-control-error [control]="form.controls.firstName" />
+    </app-form-field>
+  </div>
+  <div class="col-span-6">
+    <app-form-field class="w-full">
+      <app-label>{{ 'people.form.lastName' | translate }}</app-label>
+      <input pInputText type="text" class="w-full" [formControl]="form.controls.lastName" />
+      <app-control-error [control]="form.controls.lastName" />
+    </app-form-field>
+  </div>
+  <div class="col-span-6">
+    <app-form-field class="w-full">
+      <app-label>{{ 'people.form.identificationNumber' | translate }}</app-label>
+      <input
+        pInputText
+        type="text"
+        class="w-full"
+        [formControl]="form.controls.identificationNumber"
+      />
+      <app-control-error [control]="form.controls.identificationNumber" />
+    </app-form-field>
+  </div>
+  <div class="col-span-6">
+    <app-form-field class="w-full">
+      <app-label>{{ 'people.form.identificationType' | translate }}</app-label>
+      <input
+        pInputText
+        type="text"
+        class="w-full"
+        [formControl]="form.controls.identificationType"
+      />
+      <app-control-error [control]="form.controls.identificationType" />
+    </app-form-field>
+  </div>
+  <div class="col-span-6">
+    <app-form-field class="w-full">
+      <app-label>{{ 'people.form.phone' | translate }}</app-label>
+      <input pInputText type="text" class="w-full" [formControl]="form.controls.phone" />
+      <app-control-error [control]="form.controls.phone" />
+    </app-form-field>
+  </div>
+  <div class="col-span-12 app-dialog-actions">
+    <p-button
+      (onClick)="closeDialog()"
+      [disabled]="submitting()"
+      type="button"
+      severity="secondary"
+      [label]="'common.cancel' | translate"
+    />
+    <p-button
+      [loading]="submitting()"
+      type="submit"
+      [label]="'common.save' | translate"
+      icon="pi pi-save"
+    />
+  </div>
+</form>

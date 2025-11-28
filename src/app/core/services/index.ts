@@ -1,6 +1,7 @@
 export * from './auth-service';
 export * from './confirm';
 export * from './dialog-service';
+export * from './geography-service';
 export * from './global-loading-service';
 export * from './localized-menu';
 export * from './paginated-resource-loader';

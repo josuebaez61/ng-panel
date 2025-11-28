@@ -1,1 +1,1 @@
-export * from './common-prime-ng.module';
+export * from './shared.module';

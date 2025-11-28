@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Label } from '@shared/components/label/label';
 import { ControlError } from '@shared/components/control-error/control-error';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
@@ -16,7 +16,7 @@ import { PasswordResetRequest } from '@core/models';
   imports: [
     Label,
     ControlError,
-    CommonPrimeNgModule,
+    SharedModule,
     ReactiveFormsModule,
     TranslateModule,
     FormField,

@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormField } from '@shared/components/form-field/form-field';
 import { Label } from '@shared/components/label/label';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 import { Password } from 'primeng/password';
 import { NewPasswordRequirements } from '@shared/components/new-password-requirements/new-password-requirements';
 import {
@@ -24,7 +24,7 @@ import { ChangePasswordRequest } from '@core/models';
     FormField,
     Label,
     TranslateModule,
-    CommonPrimeNgModule,
+    SharedModule,
     Password,
     NewPasswordRequirements,
     ControlError,

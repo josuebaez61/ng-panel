@@ -1,5 +1,5 @@
 <form [formGroup]="form" class="grid grid-cols-12 gap-4" (ngSubmit)="onSubmit()">
-  <div class="col-span-6">
+  <!-- <div class="col-span-6">
     <app-form-field class="w-full">
       <app-label>First Name</app-label>
       <input pInputText type="text" class="w-full" [formControl]="form.controls.firstName" />
@@ -12,7 +12,7 @@
       <input pInputText type="text" class="w-full" [formControl]="form.controls.lastName" />
       <app-control-error [control]="form.controls.lastName" />
     </app-form-field>
-  </div>
+  </div> -->
   <div class="col-span-8">
     <app-form-field class="w-full">
       <app-label>Email</app-label>

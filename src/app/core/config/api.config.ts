@@ -51,5 +51,8 @@ export const API_CONFIG = {
       ASSIGNABLE_ROLES: (userId: string): string => `/roles/assignable/user/${userId}`,
       UNASSIGNED_USERS: (roleId: string): string => `/roles/${roleId}/users/unassigned`,
     },
+    GEOGRAPHY: {
+      PHONE_CODES: '/geography/phone-codes',
+    },
   },
 } as const;

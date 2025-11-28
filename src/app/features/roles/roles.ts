@@ -4,13 +4,13 @@ import { AuthService, DialogService, PaginatedResourceLoader, RoleService } from
 import { PanelPageHeader } from '@shared/components/panel-page-header/panel-page-header';
 import { RolesTable } from '@shared/components/table/roles-table/roles-table';
 import { forkJoin } from 'rxjs';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 import { RoutePath } from '@core/constants';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-roles',
-  imports: [PanelPageHeader, RolesTable, CommonPrimeNgModule, RouterLink],
+  imports: [PanelPageHeader, RolesTable, SharedModule, RouterLink],
   templateUrl: './roles.html',
   styleUrl: './roles.scss',
 })

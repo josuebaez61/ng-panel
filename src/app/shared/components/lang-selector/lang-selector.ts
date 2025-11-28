@@ -3,11 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { LANGUAGE_OPTIONS_TOKEN } from '@core/providers';
 import { CURRENT_LANG_TOKEN } from '@core/providers/current_lang.provider';
 import { TranslateService } from '@ngx-translate/core';
-import { CommonPrimeNgModule } from '@shared/modules';
+import { SharedModule } from '@shared/modules';
 
 @Component({
   selector: 'app-lang-selector',
-  imports: [CommonPrimeNgModule, FormsModule],
+  imports: [SharedModule, FormsModule],
   template: `
     <p-select
       (onChange)="onChange($event)"

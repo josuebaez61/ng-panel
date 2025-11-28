@@ -280,6 +280,17 @@
       }
     }
   },
+  "people": {
+    "form": {
+      "editPerson": "Edit Person",
+      "addPerson": "Add Person",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "identificationNumber": "Identification Number",
+      "identificationType": "Identification Type",
+      "phone": "Phone"
+    }
+  },
   "unsavedChanges": {
     "title": "Warning!",
     "description": "You have unsaved changes.",

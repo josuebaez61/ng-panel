@@ -17,6 +17,19 @@
 
 <ng-template #actionsColumnTemplate let-user>
   <div class="flex items-center gap-2">
-    <p-button (onClick)="openUserForm(user)" icon="pi pi-pencil" text rounded />
+    <p-button
+      (onClick)="openUserForm(user)"
+      icon="pi pi-pencil"
+      text
+      rounded
+      [pTooltip]="'users.form.editUser' | translate"
+    />
+    <p-button
+      (onClick)="openPersonForm(user?.person)"
+      icon="pi pi-user-edit"
+      text
+      rounded
+      [pTooltip]="'people.form.editPerson' | translate"
+    />
   </div>
 </ng-template>

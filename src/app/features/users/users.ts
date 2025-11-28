@@ -1,15 +1,16 @@
 import { Component, computed, inject } from '@angular/core';
-import { ListUser, PermissionName, User } from '@core/models';
+import { ListUser, PermissionName, Person, User } from '@core/models';
 import { AuthService, DialogService, PaginatedResourceLoader, UserService } from '@core/services';
 import { PanelPageHeader } from '@shared/components/panel-page-header/panel-page-header';
 import { UsersTable } from '@shared/components/table/users-table/users-table';
 import { getPageFromLazyLoadEvent } from '@shared/utils/table';
 import { TableLazyLoadEvent } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { SharedModule } from '@shared/modules';
 
 @Component({
   selector: 'app-users',
-  imports: [PanelPageHeader, UsersTable, ButtonModule],
+  imports: [PanelPageHeader, UsersTable, ButtonModule, SharedModule],
   templateUrl: './users.html',
   styleUrl: './users.scss',
 })
@@ -35,6 +36,16 @@ export class Users {
 
   public openUserForm(user?: User): void {
     this.dialogService.openUserFormDialog(user).onClose.subscribe({
+      next: (result) => {
+        if (result) {
+          this.paginatedUsers.refresh();
+        }
+      },
+    });
+  }
+
+  public openPersonForm(person?: Person): void {
+    this.dialogService.openPersonFormDialog(person).onClose.subscribe({
       next: (result) => {
         if (result) {
           this.paginatedUsers.refresh();
