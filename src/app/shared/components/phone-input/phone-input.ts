@@ -9,6 +9,7 @@ import {
   ChangeDetectorRef,
   ViewChild,
   ElementRef,
+  input,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -60,6 +61,7 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
   private readonly cdr = inject(ChangeDetectorRef);
 
   @ViewChild('phoneInput', { static: false }) phoneInputRef?: ElementRef<HTMLInputElement>;
+  @ViewChild('container', { static: false }) containerRef?: ElementRef<HTMLElement>;
 
   // Internal state
   private _value = signal<string>('');
@@ -70,6 +72,10 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
   // Phone codes data
   public phoneCodes = signal<PhoneCodeOption[]>([]);
   public filteredPhoneCodes = signal<PhoneCodeOption[]>([]);
+  public appendTo = input<string | HTMLElement | undefined>(undefined);
+
+  // Signal for appendTo value - initialized in ngAfterViewInit
+  public appendToValue = signal<string | HTMLElement>('body');
 
   // ControlValueAccessor implementation
   private onChange = (value: string) => {};
@@ -294,11 +300,52 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    // Set appendTo value after view is initialized
+    // Default to 'body' to avoid overflow issues in dialogs
+    // User can override by passing appendTo explicitly
+    const provided = this.appendTo();
+    if (provided) {
+      this.appendToValue.set(provided);
+    } else {
+      // Check if we're inside a dialog by traversing up the DOM
+      const isInsideDialog = this.isInsideDialog();
+      if (isInsideDialog) {
+        // Use body when inside dialog to avoid overflow issues
+        this.appendToValue.set('body');
+      } else if (this.containerRef?.nativeElement) {
+        // Use container when not in dialog
+        this.appendToValue.set(this.containerRef.nativeElement);
+      } else {
+        this.appendToValue.set('body');
+      }
+    }
+
     // Ensure initial value is set if component is initialized with a value
     const currentValue = this._value();
     if (currentValue) {
       this.parsePhoneValue(currentValue);
     }
+  }
+
+  // Check if component is inside a PrimeNG dialog
+  private isInsideDialog(): boolean {
+    if (!this.containerRef?.nativeElement) {
+      return false;
+    }
+
+    let element: HTMLElement | null = this.containerRef.nativeElement.parentElement;
+    while (element) {
+      // PrimeNG DynamicDialog uses class 'p-dialog' or 'p-dynamic-dialog'
+      if (
+        element.classList.contains('p-dialog') ||
+        element.classList.contains('p-dynamic-dialog') ||
+        element.classList.contains('p-component-overlay')
+      ) {
+        return true;
+      }
+      element = element.parentElement;
+    }
+    return false;
   }
 
   public onPhoneNumberKeyPress(event: KeyboardEvent): boolean {

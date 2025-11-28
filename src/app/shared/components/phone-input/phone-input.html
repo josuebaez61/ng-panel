@@ -13,7 +13,8 @@
     [placeholder]="'phoneInput.selectCountry' | translate"
     [emptyMessage]="'phoneInput.noCountriesFound' | translate"
     class="phone-code-selector"
-    [appendTo]="container"
+    [appendTo]="appendToValue()"
+    panelStyleClass="phone-code-autocomplete-panel"
   >
     <ng-template #selectedItem let-option>
       <div class="flex items-center gap-1" *ngIf="option">
@@ -22,8 +23,8 @@
       </div>
     </ng-template>
     <ng-template let-option #item>
-      <div class="flex items-center gap-2">
-        <img [src]="option.flagUrl" [alt]="option.iso2" class="flag-icon" />
+      <div class="flex items-center gap-1.5">
+        <img [src]="option.flagUrl" [alt]="option.iso2" class="flag-icon-dropdown" />
         <span>{{ option.phoneCode }}</span>
       </div>
     </ng-template>

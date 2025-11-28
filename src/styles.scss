@@ -56,3 +56,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+// Fix for phone-input autocomplete panel width when appendTo="body"
+.phone-code-autocomplete-panel {
+  width: fit-content !important;
+  min-width: 140px !important;
+  max-width: 300px !important;
+}

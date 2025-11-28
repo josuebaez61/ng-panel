@@ -94,6 +94,7 @@ export class DialogService {
       data: {
         person,
       },
+      styleClass: 'person-form-dialog',
     });
   }
 }

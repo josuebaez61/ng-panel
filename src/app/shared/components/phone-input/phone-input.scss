@@ -1,4 +1,7 @@
 .phone-input-container {
+  position: relative;
+  z-index: 1;
+
   .phone-code-selector {
     flex-shrink: 0;
   }
@@ -15,3 +18,11 @@
   }
 }
 
+// Smaller flag icons for dropdown items
+.flag-icon-dropdown {
+  width: 16px;
+  height: 12px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
