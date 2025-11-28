@@ -1,8 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Person, PhoneCodeDto } from '@core/models';
 import { GeographyService } from '@core/services';
 import { SharedModule } from '@shared/modules';
+import { PhoneInput } from '@shared/components/phone-input/phone-input';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 export interface PersonFormDialogData {
@@ -11,7 +12,7 @@ export interface PersonFormDialogData {
 
 @Component({
   selector: 'app-person-form-dialog',
-  imports: [SharedModule],
+  imports: [SharedModule, PhoneInput, ReactiveFormsModule],
   templateUrl: './person-form-dialog.html',
   styleUrl: './person-form-dialog.scss',
 })

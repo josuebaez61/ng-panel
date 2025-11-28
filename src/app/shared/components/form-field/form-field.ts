@@ -91,29 +91,21 @@ export class FormField implements AfterViewInit, OnDestroy {
   }
 
   private updateControlState(): void {
+    // Use optional chaining and check if control exists and has the control property
     const control = this.control?.control;
     if (!control) {
       this._controlState.set(null);
       return;
     }
 
-    // Initial state
-    this._controlState.set({
-      value: control.value,
-      dirty: control.dirty,
-      touched: control.touched,
-      invalid: control.invalid,
-      valid: control.valid,
-      pending: control.pending,
-      pristine: control.pristine,
-      disabled: control.disabled,
-      enabled: control.enabled,
-      errors: control.errors,
-      hasValidator: control.hasValidator(Validators.required),
-    });
+    // Check if control has required methods before accessing them
+    if (typeof control.hasValidator !== 'function') {
+      this._controlState.set(null);
+      return;
+    }
 
-    // Helper method to update state
-    const updateState = () => {
+    try {
+      // Initial state
       this._controlState.set({
         value: control.value,
         dirty: control.dirty,
@@ -127,14 +119,46 @@ export class FormField implements AfterViewInit, OnDestroy {
         errors: control.errors,
         hasValidator: control.hasValidator(Validators.required),
       });
-    };
 
-    control.events.subscribe(updateState);
+      // Helper method to update state
+      const updateState = () => {
+        if (!control || typeof control.hasValidator !== 'function') {
+          return;
+        }
+        try {
+          this._controlState.set({
+            value: control.value,
+            dirty: control.dirty,
+            touched: control.touched,
+            invalid: control.invalid,
+            valid: control.valid,
+            pending: control.pending,
+            pristine: control.pristine,
+            disabled: control.disabled,
+            enabled: control.enabled,
+            errors: control.errors,
+            hasValidator: control.hasValidator(Validators.required),
+          });
+        } catch (error) {
+          // Silently handle errors during state updates
+          console.warn('Error updating control state:', error);
+        }
+      };
 
-    // Subscribe to status changes (validation, touched, dirty, etc.)
-    // this.controlStatusSubscription = control.statusChanges.subscribe(updateState);
+      // Only subscribe if events is available
+      if (control.events && typeof control.events.subscribe === 'function') {
+        control.events.subscribe(updateState);
+      }
 
-    // Subscribe to value changes (user input)
-    // this.controlValueSubscription = control.valueChanges.subscribe(updateState);
+      // Subscribe to status changes (validation, touched, dirty, etc.)
+      // this.controlStatusSubscription = control.statusChanges.subscribe(updateState);
+
+      // Subscribe to value changes (user input)
+      // this.controlValueSubscription = control.valueChanges.subscribe(updateState);
+    } catch (error) {
+      // If there's an error accessing control properties, set state to null
+      console.warn('Error initializing control state:', error);
+      this._controlState.set(null);
+    }
   }
 }

@@ -1,0 +1,39 @@
+<div class="phone-input-container flex gap-2 w-full">
+  <p-select
+    [options]="phoneCodes()"
+    [ngModel]="selectedCountryCode"
+    (ngModelChange)="onCountryCodeChange($event)"
+    [disabled]="disabled || loading()"
+    optionLabel="label"
+    [style]="{ width: '140px' }"
+    [showClear]="false"
+    [filter]="true"
+    filterBy="label,phoneCode"
+    filterPlaceholder="Search country..."
+    emptyFilterMessage="No countries found"
+    class="phone-code-selector"
+  >
+    <ng-template #selectedItem let-option>
+      <div class="flex items-center gap-1" *ngIf="option">
+        <span>{{ option.emoji }}</span>
+        <span>{{ option.phoneCode }}</span>
+      </div>
+    </ng-template>
+    <ng-template let-option #item>
+      <div class="flex items-center gap-2">
+        <span>{{ option.emoji }}</span>
+        <span>{{ option.phoneCode }}</span>
+      </div>
+    </ng-template>
+  </p-select>
+  <input
+    pInputText
+    type="text"
+    [value]="phoneNumber"
+    (input)="onPhoneNumberInput($event)"
+    (keypress)="onPhoneNumberKeyPress($event)"
+    [disabled]="disabled"
+    class="flex-1 phone-number-input"
+    placeholder="11 5467 5590"
+  />
+</div>

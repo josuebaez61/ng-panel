@@ -37,10 +37,11 @@
       <app-control-error [control]="form.controls.identificationType" />
     </app-form-field>
   </div>
-  <div class="col-span-6">
+  1
+  <div class="col-span-12">
     <app-form-field class="w-full">
       <app-label>{{ 'people.form.phone' | translate }}</app-label>
-      <input pInputText type="text" class="w-full" [formControl]="form.controls.phone" />
+      <app-phone-input [formControl]="form.controls.phone" />
       <app-control-error [control]="form.controls.phone" />
     </app-form-field>
   </div>
