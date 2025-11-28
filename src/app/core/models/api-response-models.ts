@@ -1,9 +1,13 @@
 export interface ApiResponse<T = null> {
   success: boolean;
-  message: string;
   data?: T;
-  errors?: unknown;
-  errorCode?: string;
+  error?: ApiError;
   timestamp: string;
-  requestId?: string;
+  path: string;
+}
+
+export interface ApiError {
+  message: string;
+  timestamp: string;
+  path: string;
 }

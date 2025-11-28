@@ -38,7 +38,7 @@ export class RoleUsers implements OnInit {
     fetchData: (request) => this.userService.paginatedUsers(request),
     defaultFilters: {
       roleId: this.route.snapshot.params['id'],
-      roleIdFilterMatchMode: FilterMatchMode.CONTAINS,
+      roleIdMatchMode: FilterMatchMode.CONTAINS,
     },
   });
 
@@ -56,7 +56,7 @@ export class RoleUsers implements OnInit {
 
   public openUsersSelectionDialog() {
     this.roleService
-      .getAssignableUsers(this.route.snapshot.params['id'])
+      .getUnassignedUsers(this.route.snapshot.params['id'])
       .pipe(
         switchMap((users) => this.dialogService.openUsersSelectionDialog({ users }).onClose),
         switchMap((users?: UserOption[]) =>
@@ -84,7 +84,7 @@ export class RoleUsers implements OnInit {
   public removeUserFromRole(user: ListUser) {
     this.confirm.open({
       message: this.translateService.instant('roles.userRoles.removeUserFromRoleConfirmation', {
-        userName: `${user.firstName} ${user.lastName}`,
+        userName: user.username,
       }),
       accept: () => {
         this.roleService.unassignUserFromRole(this.route.snapshot.params['id'], user.id).subscribe({

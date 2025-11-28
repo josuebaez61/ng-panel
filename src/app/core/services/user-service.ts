@@ -33,7 +33,7 @@ export class UserService {
   public paginatedUsers(request: PaginationRequest): Observable<ApiPaginationResponse<ListUser>> {
     const params: any = {
       page: request.page.toString(),
-      limit: request.limit.toString(),
+      pageSize: request.pageSize.toString(),
     };
 
     if (request.globalSearch) {

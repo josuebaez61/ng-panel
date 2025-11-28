@@ -24,11 +24,11 @@ export class Roles implements OnInit {
   public rolePermissionsPath = RoutePath.ROLES_PERMISSIONS;
 
   public hasManageRolePermission = computed(
-    () => !!this.authService.currentUser()?.hasPermission(PermissionName.ManageRoles)
+    () => !!this.authService.currentUser()?.hasPermission(PermissionName.ReadRole)
   );
 
   public hasManageUserRolesPermission = computed(
-    () => !!this.authService.currentUser()?.hasPermission(PermissionName.ManageUserRoles)
+    () => !!this.authService.currentUser()?.hasPermission(PermissionName.AssignRole)
   );
 
   public ngOnInit(): void {
@@ -37,7 +37,7 @@ export class Roles implements OnInit {
 
   public loadData() {
     this.loading.set(true);
-    forkJoin([this.roleService.getAllRoles(), this.roleService.getRoleUsersCounts()]).subscribe({
+    forkJoin([this.roleService.getAllRoles(), this.roleService.getRoleUserCount()]).subscribe({
       next: ([roles, roleUsersCounts]) => {
         this.roles.set(
           roles.map((role) => ({ ...role, usersCount: roleUsersCounts[role.id] || 0 }))

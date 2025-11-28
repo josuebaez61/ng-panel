@@ -35,7 +35,7 @@ export class PanelDrawer {
   public isDark = computed(() => this.theme.isDark());
 
   public user = computed(() => this.authService.currentUser());
-  public userName = computed(() => this.user()?.firstName + ' ' + this.user()?.lastName);
+  public userName = computed(() => this.user()?.username);
   public drawerVisible = input<boolean>(true);
   public drawerVisibleChange = output<boolean>();
   public drawerWidth = input<string>('300px');
@@ -63,7 +63,7 @@ export class PanelDrawer {
         {
           label: 'Users',
           icon: 'pi pi-users',
-          visible: this.authService.currentUser()?.hasPermission(PermissionName.ManageUsers),
+          visible: this.authService.currentUser()?.hasPermission(PermissionName.ReadUser),
           routerLink: RoutePath.USERS,
         },
         {
@@ -71,7 +71,7 @@ export class PanelDrawer {
           icon: 'pi pi-circle',
           visible: this.authService
             .currentUser()
-            ?.hasAnyPermission([PermissionName.ManageRoles, PermissionName.ManageUserRoles]),
+            ?.hasAnyPermission([PermissionName.ReadRole, PermissionName.AssignRole]),
           routerLink: RoutePath.ROLES,
         },
       ],

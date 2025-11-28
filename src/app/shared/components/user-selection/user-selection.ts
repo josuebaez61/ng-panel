@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, input, forwardRef, signal, output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
-import { User } from '@core/models';
+import { User, UserOption } from '@core/models';
 import { TranslateModule } from '@ngx-translate/core';
 import { ListboxFilterEvent, ListboxModule } from 'primeng/listbox';
 import { ScrollerLazyLoadEvent } from 'primeng/scroller';
@@ -20,7 +20,7 @@ import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
   ],
 })
 export class UserSelection implements ControlValueAccessor {
-  public users = input<User[]>([]);
+  public users = input<UserOption[]>([]);
   public multiple = input<boolean>(false);
   public optionValue = input<string>();
   public class = input<string>('');

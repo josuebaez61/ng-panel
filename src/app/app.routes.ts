@@ -35,13 +35,13 @@ export const routes: Routes = [
       },
       {
         path: RouteName.USERS,
-        canActivate: [hasAnyPermissionGuard([PermissionName.ManageUsers])],
+        canActivate: [hasAnyPermissionGuard([PermissionName.ReadUser])],
         loadChildren: () => import('./features/users/users.routes').then((m) => m.routes),
       },
       {
         path: RouteName.ROLES,
         canActivate: [
-          hasAnyPermissionGuard([PermissionName.ManageRoles, PermissionName.ManageUserRoles]),
+          hasAnyPermissionGuard([PermissionName.ReadRole, PermissionName.AssignRole]),
         ],
         loadChildren: () => import('./features/roles/roles.routes').then((m) => m.routes),
         title: 'Roles - Admin Panel',

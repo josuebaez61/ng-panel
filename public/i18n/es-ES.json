@@ -28,7 +28,7 @@
     "login": {
       "title": "Iniciar Sesión",
       "subtitle": "Ingresa tus credenciales para acceder",
-      "emailOrUsername": {
+      "usernameOrEmail": {
         "label": "E-mail / Usuario",
         "placeholder": "tu@email.com"
       },
@@ -265,9 +265,17 @@
         "system": "Sistema"
       },
       "names": {
-        "manage.roles": "Gestionar Roles",
-        "manage.users": "Gestionar Usuarios",
-        "manage.userRoles": "Gestionar Roles de Usuarios",
+        "create_role": "Crear Rol",
+        "read_role": "Leer Rol",
+        "update_role": "Actualizar Rol",
+        "delete_role": "Eliminar Rol",
+        "assign_role": "Asignar Rol",
+        "assign_permission": "Asignar Permiso",
+        "read_permission": "Leer Permiso",
+        "create_user": "Crear Usuario",
+        "read_user": "Leer Usuario",
+        "update_user": "Actualizar Usuario",
+        "delete_user": "Eliminar Usuario",
         "admin": "Administrador",
         "superAdmin": "Super Administrador"
       }

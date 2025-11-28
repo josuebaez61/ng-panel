@@ -55,7 +55,7 @@ export class Login implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      emailOrUsername: ['', [Validators.required]],
+      usernameOrEmail: ['', [Validators.required]],
       password: ['', [Validators.required]],
       rememberMe: [false],
     });
@@ -68,8 +68,8 @@ export class Login implements OnInit {
     }
 
     this.isLoading.set(true);
-    const formValue = this.loginForm.value;
-    this.authService.login(formValue).subscribe({
+    const { password, usernameOrEmail } = this.loginForm.value;
+    this.authService.login({ password, usernameOrEmail }).subscribe({
       next: () => {
         this.isLoading.set(false);
       },

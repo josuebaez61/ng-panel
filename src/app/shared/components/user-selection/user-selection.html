@@ -15,13 +15,13 @@
   [options]="users()"
   [optionValue]="optionValue()"
   class="w-full"
-  filterBy="firstName"
+  filterBy="username"
   infiniteScroll
   infiniteScrollContainer=".p-listbox-list-container"
 >
   <ng-template #item let-user>
     <div class="flex items-center gap-2">
-      <div>{{ user.firstName }} {{ user.lastName }}</div>
+      <div>{{ user.username }}</div>
     </div>
   </ng-template>
 </p-listbox>

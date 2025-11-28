@@ -2,20 +2,20 @@
   <form [formGroup]="loginForm" class="space-y-6" (ngSubmit)="onSubmit()">
     <!-- Email Field -->
     <app-form-field>
-      <app-label for="emailOrUsername">
-        {{ 'auth.login.emailOrUsername.label' | translate }}
+      <app-label for="usernameOrEmail">
+        {{ 'auth.login.usernameOrEmail.label' | translate }}
       </app-label>
       <input
-        id="emailOrUsername"
+        id="usernameOrEmail"
         type="text"
-        formControlName="emailOrUsername"
-        [placeholder]="'auth.login.emailOrUsername.placeholder' | translate"
+        formControlName="usernameOrEmail"
+        [placeholder]="'auth.login.usernameOrEmail.placeholder' | translate"
         class="w-full"
         pInputText
         autocomplete="off"
         s
       />
-      <app-control-error [control]="loginForm.get('emailOrUsername')"></app-control-error>
+      <app-control-error [control]="loginForm.get('usernameOrEmail')"></app-control-error>
     </app-form-field>
 
     <!-- Password Field -->

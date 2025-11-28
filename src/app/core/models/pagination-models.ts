@@ -22,7 +22,7 @@ export interface PaginationResponse<T> {
 
 export interface PaginationRequest {
   page: number;
-  limit: number;
+  pageSize: number;
   globalSearch?: string;
   sortBy?: string;
   sortDirection?: 'asc' | 'desc';

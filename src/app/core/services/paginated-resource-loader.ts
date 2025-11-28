@@ -91,7 +91,7 @@ export class PaginatedResourceLoader<T> {
   private buildRequest(): PaginationRequest {
     return {
       page: this.currentPage(),
-      limit: this.pageSize(),
+      pageSize: this.pageSize(),
       globalSearch: this.globalSearch() || undefined,
       sortBy: this.sortBy() || undefined,
       sortDirection: this.sortDirection(),
@@ -188,7 +188,7 @@ export class PaginatedResourceLoader<T> {
 
       this._error.set(null);
     } else {
-      this.handleError(new Error(response.message || 'Unknown error'));
+      this.handleError(new Error(response.error?.message || 'Unknown error'));
     }
   }
 

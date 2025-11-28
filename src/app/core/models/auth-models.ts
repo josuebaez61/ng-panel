@@ -1,31 +1,27 @@
 import { PermissionName } from './permission-models';
+import { Person } from './user-models';
 
 export interface AuthUserDto {
   id: string;
-  firstName: string;
-  lastName: string;
+  username: string;
   email: string;
-  userName: string;
-  dateOfBirth: string;
-  profilePicture?: string;
+  person: Person;
   createdAt: string;
   updatedAt?: string;
   isActive: boolean;
-  emailConfirmed: boolean;
   mustChangePassword: boolean;
   permissions: string[];
   roles: string[];
 }
 
 export interface AuthResponse {
-  token: string;
+  accessToken: string;
   refreshToken: string;
-  expiresAt: string;
   user: AuthUserDto;
 }
 
 export interface LoginRequest {
-  emailOrUsername: string;
+  usernameOrEmail: string;
   password: string;
 }
 
@@ -77,32 +73,24 @@ export interface CurrentUserResponse {
 
 export class AuthUser {
   public id: string;
-  public firstName: string;
-  public lastName: string;
   public email: string;
-  public userName: string;
-  public dateOfBirth: string;
-  public profilePicture?: string;
+  public username: string;
+  public person: Person;
   public createdAt: string;
   public updatedAt?: string;
   public isActive: boolean;
-  public emailConfirmed: boolean;
   public mustChangePassword: boolean;
   private permissions: Set<string>;
   public roles: Set<string>;
 
   constructor(data: AuthUserDto) {
     this.id = data.id;
-    this.firstName = data.firstName;
-    this.lastName = data.lastName;
     this.email = data.email;
-    this.userName = data.userName;
-    this.dateOfBirth = data.dateOfBirth;
-    this.profilePicture = data.profilePicture;
+    this.username = data.username;
+    this.person = data.person;
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
     this.isActive = data.isActive;
-    this.emailConfirmed = data.emailConfirmed;
     this.mustChangePassword = data.mustChangePassword;
     this.permissions = new Set(data.permissions);
     this.roles = new Set(data.roles);

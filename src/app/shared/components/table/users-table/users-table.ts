@@ -30,6 +30,6 @@ export class UsersTable {
   private readonly authService = inject(AuthService);
   public currentUser = computed(() => this.authService.currentUser());
   public canManageUserRoles = computed(() =>
-    this.currentUser()?.hasPermission(PermissionName.ManageUserRoles)
+    this.currentUser()?.hasPermission(PermissionName.AssignRole)
   );
 }

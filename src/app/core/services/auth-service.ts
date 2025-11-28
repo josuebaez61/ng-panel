@@ -105,7 +105,9 @@ export class AuthService {
    */
   public refreshAuthToken(): Observable<ApiResponse<AuthData>> {
     return this.http
-      .post<ApiResponse<AuthData>>(`${this.baseUrl}${API_CONFIG.ENDPOINTS.AUTH.REFRESH_TOKEN}`, {})
+      .post<ApiResponse<AuthData>>(`${this.baseUrl}${API_CONFIG.ENDPOINTS.AUTH.REFRESH_TOKEN}`, {
+        refreshToken: this.storageService.getRefreshToken() || '',
+      })
       .pipe(
         tap((response) => {
           if (response.success && response.data) {
@@ -244,12 +246,12 @@ export class AuthService {
     // Set user data from login response
     this._currentUser.set(new AuthUser(data.user));
     this._isAuthenticated.set(true);
-    this._token.set(data.token);
+    this._token.set(data.accessToken);
     this._refreshToken.set(data.refreshToken);
     this.authState$.next(true);
 
     // Store only tokens in storage
-    this.storageService.setAuthToken(data.token);
+    this.storageService.setAuthToken(data.accessToken);
     this.storageService.setRefreshToken(data.refreshToken);
   }
 

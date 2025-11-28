@@ -38,7 +38,7 @@ function handleSuccessResponse(response: any, url: string, toast: Toast): void {
     const apiResponse = response as ApiResponse<any>;
 
     // Only show toast if there's a message and it's not empty
-    if (apiResponse.message && apiResponse.message.trim().length > 0) {
+    if (apiResponse.error?.message && apiResponse.error?.message.trim().length > 0) {
       toast.showFromApiResponse(apiResponse);
     }
   }
@@ -104,8 +104,8 @@ function handleErrorResponse(error: HttpErrorResponse, url: string, toast: Toast
     // Check if it's our API error format
     if (isApiResponse(error.error)) {
       const apiError = error.error as ApiResponse<any>;
-      errorMessage = apiError.message || errorMessage;
-      errorDetails = apiError.errors;
+      errorMessage = apiError.error?.message || errorMessage;
+      // errorDetails = apiError.error?.error;
     } else if (typeof error.error === 'string') {
       errorMessage = error.error;
     } else if (error.error.message) {
@@ -152,7 +152,7 @@ function handleValidationErrors(error: ApiResponse<any>, errors: any, toast: Toa
     const message = displayErrors.join('; ');
 
     toast.error(message, {
-      summary: error.message,
+      summary: error.error?.message || 'An error occurred',
       life: 8000,
     });
 

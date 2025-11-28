@@ -57,9 +57,9 @@ export class Account {
 
   public patchForm = (): void => {
     this.form.patchValue({
-      firstName: this.user()?.firstName,
-      lastName: this.user()?.lastName,
-      userName: this.user()?.userName,
+      firstName: this.user()?.person?.firstName,
+      lastName: this.user()?.person?.lastName,
+      userName: this.user()?.username,
     });
   };
 
@@ -75,14 +75,16 @@ export class Account {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
     } else {
-      this.authService.updateCurrentUserData(this.form.getRawValue() as AuthUser).subscribe({
-        next: () => {
-          this.unsavedChangesService.resetUnsavedChanges();
-        },
-        error: () => {
-          this.unsavedChangesService.markAsUnsaved();
-        },
-      });
+      this.authService
+        .updateCurrentUserData(this.form.getRawValue() as unknown as AuthUser)
+        .subscribe({
+          next: () => {
+            this.unsavedChangesService.resetUnsavedChanges();
+          },
+          error: () => {
+            this.unsavedChangesService.markAsUnsaved();
+          },
+        });
     }
   };
 

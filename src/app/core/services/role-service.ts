@@ -35,10 +35,10 @@ export class RoleService {
    * }
    * ```
    */
-  public getRoleUsersCounts(): Observable<Record<string, number>> {
+  public getRoleUserCount(): Observable<Record<string, number>> {
     return this.http
       .get<ApiResponse<Record<string, number>>>(
-        `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.USER_COUNTS}`
+        `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.USER_COUNT}`
       )
       .pipe(map((response) => response.data || {}));
   }
@@ -153,9 +153,9 @@ export class RoleService {
    * @returns Observable with the updated role
    */
   public unassignUserFromRole(roleId: string, userId: string): Observable<Role> {
-    return this.http.post<Role>(
+    return this.http.delete<Role>(
       `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.UNASSIGN_USER(roleId)}`,
-      { userId }
+      { body: { userId } }
     );
   }
 
@@ -175,10 +175,10 @@ export class RoleService {
    * @param roleId
    * @returns
    */
-  public getAssignableUsers(roleId: string): Observable<UserOption[]> {
+  public getUnassignedUsers(roleId: string): Observable<UserOption[]> {
     return this.http
       .get<ApiResponse<UserOption[]>>(
-        `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.ASSIGNABLE_USERS(roleId)}`
+        `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.UNASSIGNED_USERS(roleId)}`
       )
       .pipe(map((response) => response.data!));
   }

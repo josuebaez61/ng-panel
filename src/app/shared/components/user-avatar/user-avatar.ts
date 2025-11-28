@@ -10,8 +10,8 @@ import { AvatarModule } from 'primeng/avatar';
       [style.height]="size() + 'rem'"
       [style.width]="size() + 'rem'"
       [shape]="'circle'"
-      [image]="user()?.profilePicture"
-      [label]="user()?.profilePicture ? '' : getInitials()"
+      [image]="user()?.person?.picture || undefined"
+      [label]="user()?.person?.picture ? '' : getInitials()"
       [style.font-size]="textSizeStyleClass()"
     />
   `,
@@ -27,6 +27,6 @@ export class UserAvatar {
     if (!user) {
       return '';
     }
-    return (user.firstName.charAt(0) + user.lastName.charAt(0)).toUpperCase();
+    return user.username.charAt(0);
   }
 }
