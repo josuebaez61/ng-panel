@@ -311,5 +311,9 @@
     "atLeastOneNumeric": "Al menos un número",
     "atLeastOneSpecialChar": "Al menos un carácter especial",
     "minimum8Characters": "Mínimo 8 caracteres"
+  },
+  "phoneInput": {
+    "selectCountry": "Seleccionar país",
+    "noCountriesFound": "No se encontraron países"
   }
 }

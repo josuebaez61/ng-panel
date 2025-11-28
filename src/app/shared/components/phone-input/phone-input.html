@@ -1,32 +1,35 @@
-<div class="phone-input-container flex gap-2 w-full">
-  <p-select
-    [options]="phoneCodes()"
+<div #container class="phone-input-container flex gap-2 w-full relative">
+  <p-autocomplete
+    [dropdown]="true"
+    [dropdownMode]="'blank'"
+    [suggestions]="filteredPhoneCodes()"
+    (completeMethod)="filterPhoneCodes($event)"
     [ngModel]="selectedCountryCode"
     (ngModelChange)="onCountryCodeChange($event)"
-    [disabled]="disabled || loading()"
+    [disabled]="disabled"
     optionLabel="label"
     [style]="{ width: '140px' }"
     [showClear]="false"
-    [filter]="true"
-    filterBy="label,phoneCode"
-    filterPlaceholder="Search country..."
-    emptyFilterMessage="No countries found"
+    [placeholder]="'phoneInput.selectCountry' | translate"
+    [emptyMessage]="'phoneInput.noCountriesFound' | translate"
     class="phone-code-selector"
+    [appendTo]="container"
   >
     <ng-template #selectedItem let-option>
       <div class="flex items-center gap-1" *ngIf="option">
-        <span>{{ option.emoji }}</span>
+        <img [src]="option.flagUrl" [alt]="option.iso2" class="flag-icon" />
         <span>{{ option.phoneCode }}</span>
       </div>
     </ng-template>
     <ng-template let-option #item>
       <div class="flex items-center gap-2">
-        <span>{{ option.emoji }}</span>
+        <img [src]="option.flagUrl" [alt]="option.iso2" class="flag-icon" />
         <span>{{ option.phoneCode }}</span>
       </div>
     </ng-template>
-  </p-select>
+  </p-autocomplete>
   <input
+    #phoneInput
     pInputText
     type="text"
     [value]="phoneNumber"
@@ -34,6 +37,6 @@
     (keypress)="onPhoneNumberKeyPress($event)"
     [disabled]="disabled"
     class="flex-1 phone-number-input"
-    placeholder="11 5467 5590"
+    [placeholder]="phonePlaceholder()"
   />
 </div>

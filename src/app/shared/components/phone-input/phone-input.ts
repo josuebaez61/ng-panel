@@ -1,4 +1,15 @@
-import { Component, forwardRef, inject, OnInit, signal, computed } from '@angular/core';
+import {
+  Component,
+  forwardRef,
+  inject,
+  OnInit,
+  AfterViewInit,
+  signal,
+  computed,
+  ChangeDetectorRef,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -6,17 +17,21 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { SelectModule } from 'primeng/select';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
-import { GeographyService } from '@core/services';
-import { PhoneCodeDto } from '@core/models';
+import { TranslateModule } from '@ngx-translate/core';
+import { PHONE_CODES } from '@core/constants';
 
 interface PhoneCodeOption {
   label: string;
   value: string;
   phoneCode: string;
   emoji: string;
+  iso2: string;
+  flagUrl: string;
+  name: string;
+  example: string;
 }
 
 @Component({
@@ -25,9 +40,10 @@ interface PhoneCodeOption {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SelectModule,
+    AutoCompleteModule,
     InputTextModule,
     RippleModule,
+    TranslateModule,
   ],
   templateUrl: './phone-input.html',
   styleUrl: './phone-input.scss',
@@ -40,8 +56,10 @@ interface PhoneCodeOption {
   ],
   standalone: true,
 })
-export class PhoneInput implements ControlValueAccessor, OnInit {
-  private readonly geographyService = inject(GeographyService);
+export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
+  private readonly cdr = inject(ChangeDetectorRef);
+
+  @ViewChild('phoneInput', { static: false }) phoneInputRef?: ElementRef<HTMLInputElement>;
 
   // Internal state
   private _value = signal<string>('');
@@ -51,7 +69,7 @@ export class PhoneInput implements ControlValueAccessor, OnInit {
 
   // Phone codes data
   public phoneCodes = signal<PhoneCodeOption[]>([]);
-  public loading = signal<boolean>(false);
+  public filteredPhoneCodes = signal<PhoneCodeOption[]>([]);
 
   // ControlValueAccessor implementation
   private onChange = (value: string) => {};
@@ -74,37 +92,94 @@ export class PhoneInput implements ControlValueAccessor, OnInit {
     return this._phoneNumber();
   }
 
+  // Computed placeholder based on selected country example
+  public phonePlaceholder = computed(() => {
+    const selectedCode = this._selectedCountryCode();
+    if (!selectedCode || !selectedCode.example) {
+      return '';
+    }
+    // Extract the number part from example (remove country code and formatting)
+    // Example: "+54 11 1234 5678" -> "1112345678" (only digits)
+    const example = selectedCode.example;
+    const phoneCode = selectedCode.phoneCode;
+    const numberPart = example.replace(phoneCode, '').trim();
+    // Return only digits for placeholder
+    return numberPart.replace(/\D/g, '');
+  });
+
   ngOnInit(): void {
     this.loadPhoneCodes();
   }
 
   private loadPhoneCodes(): void {
-    54;
-    this.loading.set(true);
-    this.geographyService.getPhoneCodes().subscribe({
-      next: (codes) => {
-        const options: PhoneCodeOption[] = codes.map((code) => ({
-          label: `${code.emoji} ${code.phoneCode}`,
-          value: code.phoneCode,
-          phoneCode: code.phoneCode,
-          emoji: code.emoji,
-        }));
-        this.phoneCodes.set(options);
+    // Use constants instead of API call - instant load
+    const options: PhoneCodeOption[] = PHONE_CODES.map((code) => ({
+      label: `${code.phoneCode}`,
+      value: code.phoneCode,
+      phoneCode: code.phoneCode,
+      emoji: code.emoji,
+      iso2: code.iso2,
+      flagUrl: `https://flagcdn.com/${code.iso2.toLowerCase()}.svg`,
+      name: code.name,
+      example: code.example,
+    }));
 
-        // If we have a value set before codes loaded, parse it now
-        const currentValue = this._value();
-        if (currentValue) {
-          this.parsePhoneValue(currentValue);
-        } else if (options.length > 0) {
-          // Set default to first option if no value is set
-          this._selectedCountryCode.set(options[0]);
-        }
-        this.loading.set(false);
-      },
-      error: () => {
-        this.loading.set(false);
-      },
-    });
+    this.phoneCodes.set([...options]);
+    this.filteredPhoneCodes.set([...options]);
+
+    // If we have a value set before codes loaded, parse it now
+    const currentValue = this._value();
+    if (currentValue) {
+      this.parsePhoneValue(currentValue);
+    } else if (options.length > 0) {
+      // Set default to first option if no value is set
+      this._selectedCountryCode.set(options[0]);
+    }
+  }
+
+  // Filter phone codes for autocomplete
+  public filterPhoneCodes(event: { query: string }): void {
+    const query = event.query?.trim() || '';
+    const allCodes = this.phoneCodes();
+
+    let filtered: PhoneCodeOption[];
+
+    // If query is empty (dropdown button clicked or empty search), show all codes
+    if (!query || query === '') {
+      filtered = [...allCodes];
+    } else {
+      // Normalize query: remove + if present and convert to lowercase for comparison
+      const normalizedQuery = query.replace(/^\+/, '').toLowerCase();
+      const queryWithPlus = query.toLowerCase();
+
+      // Filter codes based on query
+      // Search in: phoneCode (with or without +), country name, and iso2
+      filtered = allCodes.filter((code) => {
+        // Search in phone code (with +, without +, or just numbers)
+        const phoneCodeLower = code.phoneCode.toLowerCase();
+        const phoneCodeWithoutPlus = code.phoneCode.replace(/^\+/, '').toLowerCase();
+
+        // Search in label (phoneCode)
+        const labelLower = code.label.toLowerCase();
+
+        // Search in country name
+        const nameLower = code.name.toLowerCase();
+
+        // Search in iso2 code
+        const iso2Lower = code.iso2.toLowerCase();
+
+        return (
+          phoneCodeLower.includes(queryWithPlus) ||
+          phoneCodeWithoutPlus.includes(normalizedQuery) ||
+          labelLower.includes(queryWithPlus) ||
+          nameLower.includes(queryWithPlus) ||
+          iso2Lower.includes(queryWithPlus)
+        );
+      });
+    }
+
+    this.filteredPhoneCodes.set(filtered);
+    this.cdr.detectChanges();
   }
 
   // ControlValueAccessor methods
@@ -169,36 +244,15 @@ export class PhoneInput implements ControlValueAccessor, OnInit {
 
     if (foundCode) {
       this._selectedCountryCode.set(foundCode);
-      this._phoneNumber.set(this.formatPhoneNumber(remainingNumber));
+      // Store only digits, no formatting
+      this._phoneNumber.set(remainingNumber.replace(/\D/g, ''));
     } else {
       // If no code found, use default or first available
       if (codes.length > 0) {
         this._selectedCountryCode.set(codes[0]);
-        this._phoneNumber.set(this.formatPhoneNumber(cleanValue));
+        // Store only digits, no formatting
+        this._phoneNumber.set(cleanValue.replace(/\D/g, ''));
       }
-    }
-  }
-
-  // Format phone number with spaces
-  private formatPhoneNumber(number: string): string {
-    // Remove all non-digit characters
-    const digits = number.replace(/\D/g, '');
-
-    if (digits.length === 0) return '';
-
-    // Format based on length (example: +54 11 5467 5590)
-    // This is a general formatter, you might want to customize per country
-    if (digits.length <= 2) {
-      return digits;
-    } else if (digits.length <= 4) {
-      return `${digits.substring(0, 2)} ${digits.substring(2)}`;
-    } else if (digits.length <= 8) {
-      return `${digits.substring(0, 2)} ${digits.substring(2, 4)} ${digits.substring(4)}`;
-    } else {
-      return `${digits.substring(0, 2)} ${digits.substring(2, 4)} ${digits.substring(
-        4,
-        8
-      )} ${digits.substring(8, 12)}`;
     }
   }
 
@@ -207,24 +261,44 @@ export class PhoneInput implements ControlValueAccessor, OnInit {
     this._selectedCountryCode.set(code);
     this.updateValue();
     this.onTouched();
+    this.cdr.detectChanges();
   }
 
   public onPhoneNumberInput(event: Event): void {
     const input = event.target as HTMLInputElement;
-    let value = input.value;
+    const value = input.value;
 
-    // Remove all non-digit characters
+    // Remove all non-digit characters (only allow numbers)
     const digits = value.replace(/\D/g, '');
 
-    // Format the number
-    const formatted = this.formatPhoneNumber(digits);
+    // Update the phone number signal with digits only (no formatting)
+    this._phoneNumber.set(digits);
 
-    // Update the input value
-    input.value = formatted;
-    this._phoneNumber.set(formatted);
+    // Update the input value if different (to remove any non-digit characters)
+    if (digits !== value) {
+      const cursorPosition = input.selectionStart || 0;
+      const digitsBeforeCursor = value.substring(0, cursorPosition).replace(/\D/g, '').length;
+
+      input.value = digits;
+
+      // Restore cursor position
+      Promise.resolve().then(() => {
+        const newPosition = Math.min(digitsBeforeCursor, digits.length);
+        input.setSelectionRange(newPosition, newPosition);
+      });
+    }
 
     this.updateValue();
     this.onTouched();
+    this.cdr.detectChanges();
+  }
+
+  ngAfterViewInit(): void {
+    // Ensure initial value is set if component is initialized with a value
+    const currentValue = this._value();
+    if (currentValue) {
+      this.parsePhoneValue(currentValue);
+    }
   }
 
   public onPhoneNumberKeyPress(event: KeyboardEvent): boolean {
