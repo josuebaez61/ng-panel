@@ -25,7 +25,7 @@
       [pTooltip]="'users.form.editUser' | translate"
     />
     <p-button
-      (onClick)="openPersonForm(user?.person)"
+      (onClick)="openPersonForm(user, user.person)"
       icon="pi pi-user-edit"
       text
       rounded

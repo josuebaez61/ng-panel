@@ -314,5 +314,12 @@
   "phoneInput": {
     "selectCountry": "Select country",
     "noCountriesFound": "No countries found"
+  },
+  "identificationTypes": {
+    "passport": "Passport",
+    "national_id": "National ID",
+    "driver_license": "Driver License",
+    "voter_id": "Voter ID",
+    "other": "Other"
   }
 }

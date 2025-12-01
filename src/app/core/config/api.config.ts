@@ -16,6 +16,8 @@ export const API_CONFIG = {
       RESET_PASSWORD: '/auth/reset-password',
     },
     USERS: {
+      UPDATE_USER_PERSON: (id: string): string => `/users/${id}/person`,
+      FIND_ALL_IDENTIFICATION_TYPES: '/users/identification-types',
       LIST: '/users',
       PAGINATED: '/users/paginated',
       CREATE: '/users',

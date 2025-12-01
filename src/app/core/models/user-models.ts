@@ -26,6 +26,14 @@ export interface ListUser extends User {
   roles?: Role[];
 }
 
+export enum IdentificationType {
+  PASSPORT = 'passport',
+  NATIONAL_ID = 'national_id',
+  DRIVER_LICENSE = 'driver_license',
+  VOTER_ID = 'voter_id',
+  OTHER = 'other',
+}
+
 export type UserOption = {
   id: string;
   username: string;

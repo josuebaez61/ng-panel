@@ -1,7 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { ListUser, CreateUserRequest, UpdateUserRequest, User } from '../models/user-models';
+import {
+  ListUser,
+  CreateUserRequest,
+  UpdateUserRequest,
+  User,
+  Person,
+} from '../models/user-models';
 import { API_CONFIG } from '../config/api.config';
 import { ApiResponse } from '../models/api-response-models';
 import { Role } from '../models/role-models';
@@ -169,5 +175,26 @@ export class UserService {
       `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.DEACTIVATE(id)}`,
       {}
     );
+  }
+
+  /**
+   * Find all identification types
+   */
+  public findAllIdentificationTypes(): Observable<ApiResponse<string[]>> {
+    return this.http.get<ApiResponse<string[]>>(
+      `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.FIND_ALL_IDENTIFICATION_TYPES}`
+    );
+  }
+
+  /**
+   * Update person
+   */
+  public updatePersonByUserId(userId: string, personData: Person): Observable<Person> {
+    return this.http
+      .patch<ApiResponse<Person>>(
+        `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE_USER_PERSON(userId)}`,
+        personData
+      )
+      .pipe(map((response) => response.data!));
   }
 }

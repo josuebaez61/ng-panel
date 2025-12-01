@@ -315,5 +315,12 @@
   "phoneInput": {
     "selectCountry": "Seleccionar país",
     "noCountriesFound": "No se encontraron países"
+  },
+  "identificationTypes": {
+    "passport": "Pasaporte",
+    "national_id": "Cédula de Identidad",
+    "driver_license": "Licencia de Conducir",
+    "voter_id": "Cédula de Votante",
+    "other": "Otro"
   }
 }

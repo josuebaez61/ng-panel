@@ -86,13 +86,14 @@ export class DialogService {
     });
   }
 
-  public openPersonFormDialog(person?: Person): DynamicDialogRef<PersonFormDialog> {
+  public openPersonFormDialog(user: User, person?: Person): DynamicDialogRef<PersonFormDialog> {
     return this.open(PersonFormDialog, {
       header: !!person
         ? this.translateService.instant('people.form.editPerson')
         : this.translateService.instant('people.form.addPerson'),
       data: {
         person,
+        user,
       },
       styleClass: 'person-form-dialog',
     });

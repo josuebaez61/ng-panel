@@ -13,6 +13,7 @@
       <app-control-error [control]="form.controls.lastName" />
     </app-form-field>
   </div>
+
   <div class="col-span-6">
     <app-form-field class="w-full">
       <app-label>{{ 'people.form.identificationNumber' | translate }}</app-label>
@@ -28,12 +29,18 @@
   <div class="col-span-6">
     <app-form-field class="w-full">
       <app-label>{{ 'people.form.identificationType' | translate }}</app-label>
-      <input
-        pInputText
-        type="text"
+      <p-select
         class="w-full"
+        [options]="identificationTypes()"
         [formControl]="form.controls.identificationType"
-      />
+      >
+        <ng-template #selectedItem let-option>
+          <div>{{ 'identificationTypes.' + option | translate }}</div>
+        </ng-template>
+        <ng-template #item let-option>
+          <div>{{ 'identificationTypes.' + option | translate }}</div>
+        </ng-template>
+      </p-select>
       <app-control-error [control]="form.controls.identificationType" />
     </app-form-field>
   </div>

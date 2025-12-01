@@ -44,8 +44,8 @@ export class Users {
     });
   }
 
-  public openPersonForm(person?: Person): void {
-    this.dialogService.openPersonFormDialog(person).onClose.subscribe({
+  public openPersonForm(user: User, person?: Person): void {
+    this.dialogService.openPersonFormDialog(user, person).onClose.subscribe({
       next: (result) => {
         if (result) {
           this.paginatedUsers.refresh();
