@@ -16,12 +16,6 @@
     [appendTo]="appendToValue()"
     panelStyleClass="phone-code-autocomplete-panel"
   >
-    <ng-template #selectedItem let-option>
-      <div class="flex items-center gap-1" *ngIf="option">
-        <img [src]="option.flagUrl" [alt]="option.iso2" class="flag-icon" />
-        <span>{{ option.phoneCode }}</span>
-      </div>
-    </ng-template>
     <ng-template let-option #item>
       <div class="flex items-center gap-1.5">
         <img [src]="option.flagUrl" [alt]="option.iso2" class="flag-icon-dropdown" />

@@ -9,7 +9,7 @@ import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
 import { UserAvatar } from '@shared/components/user-avatar/user-avatar';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { PermissionName } from '@core/models';
+import { PermissionName, ResourceName } from '@core/models';
 
 @Component({
   selector: 'app-panel-drawer',
@@ -63,7 +63,7 @@ export class PanelDrawer {
         {
           label: 'Users',
           icon: 'pi pi-users',
-          visible: this.authService.currentUser()?.hasPermission(PermissionName.ReadUser),
+          visible: this.authService.currentUser()?.hasResource(ResourceName.USER),
           routerLink: RoutePath.USERS,
         },
         {
@@ -71,7 +71,7 @@ export class PanelDrawer {
           icon: 'pi pi-circle',
           visible: this.authService
             .currentUser()
-            ?.hasAnyPermission([PermissionName.ReadRole, PermissionName.AssignRole]),
+            ?.hasAnyResource([ResourceName.ROLE, ResourceName.PERMISSION, ResourceName.USER]),
           routerLink: RoutePath.ROLES,
         },
       ],

@@ -15,16 +15,16 @@
   </div> -->
   <div class="col-span-8">
     <app-form-field class="w-full">
-      <app-label>Email</app-label>
+      <app-label>{{ 'users.form.email' | translate }}</app-label>
       <input pInputText type="text" class="w-full" [formControl]="form.controls.email" />
       <app-control-error [control]="form.controls.email" />
     </app-form-field>
   </div>
   <div class="col-span-4">
     <app-form-field class="w-full">
-      <app-label>Username</app-label>
-      <input pInputText type="text" class="w-full" [formControl]="form.controls.userName" />
-      <app-control-error [control]="form.controls.userName" />
+      <app-label>{{ 'users.form.username' | translate }}</app-label>
+      <input pInputText type="text" class="w-full" [formControl]="form.controls.username" />
+      <app-control-error [control]="form.controls.username" />
     </app-form-field>
   </div>
   <div class="col-span-12 app-dialog-actions">

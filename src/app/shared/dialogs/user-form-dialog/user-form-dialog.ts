@@ -24,10 +24,8 @@ export class UserFormDialog {
   private readonly dialogConfig = inject(DynamicDialogConfig<UserFormDialogData>);
 
   public form = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    userName: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required]),
   });
 
   constructor() {

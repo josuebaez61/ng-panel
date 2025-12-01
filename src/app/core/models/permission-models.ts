@@ -1,20 +1,19 @@
 export enum PermissionName {
-  // Role permissions
-  CreateRole = 'create_role',
-  ReadRole = 'read_role',
-  UpdateRole = 'update_role',
-  DeleteRole = 'delete_role',
-  AssignRole = 'assign_role',
-  AssignPermission = 'assign_permission',
+  CREATE_ROLE = 'create_role',
+  READ_ROLE = 'read_role',
+  UPDATE_ROLE = 'update_role',
+  DELETE_ROLE = 'delete_role',
+  ASSIGN_ROLE = 'assign_role',
+  ASSIGN_PERMISSION = 'assign_permission',
 
   // Permission permissions
-  ReadPermission = 'read_permission',
+  READ_PERMISSION = 'read_permission',
 
   // User permissions
-  CreateUser = 'create_user',
-  ReadUser = 'read_user',
-  UpdateUser = 'update_user',
-  DeleteUser = 'delete_user',
+  CREATE_USER = 'create_user',
+  READ_USER = 'read_user',
+  UPDATE_USER = 'update_user',
+  DELETE_USER = 'delete_user',
 
   // Special permissions
   Admin = 'admin',
@@ -33,4 +32,10 @@ export interface ResourcePermissions {
   resource: string;
   order: number;
   permissions: Permission[];
+}
+
+export enum ResourceName {
+  ROLE = 'role',
+  PERMISSION = 'permission',
+  USER = 'user',
 }

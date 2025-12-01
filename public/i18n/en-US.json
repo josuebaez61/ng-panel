@@ -231,7 +231,9 @@
     },
     "form": {
       "editUser": "Edit User",
-      "addUser": "Add User"
+      "addUser": "Add User",
+      "email": "Email Address",
+      "username": "Username"
     }
   },
   "roles": {
@@ -259,8 +261,9 @@
       "title": "Permissions",
       "description": "Manage role permissions",
       "resources": {
-        "users": "Users",
-        "roles": "Roles",
+        "user": "Users",
+        "role": "Roles",
+        "permission": "Permissions",
         "system": "System"
       },
       "names": {

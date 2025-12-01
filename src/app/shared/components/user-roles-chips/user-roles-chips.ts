@@ -66,7 +66,7 @@ export class UserRolesChips {
     const userId = this.user()?.id;
     if (!role.id || !userId) return;
     this.loading.set(true);
-    this.userService.assignRole(userId, role.id).subscribe({
+    this.roleService.assignUserToRole(role.id, userId).subscribe({
       next: () => {
         this._roles.update((roles) => [...roles, role]);
       },

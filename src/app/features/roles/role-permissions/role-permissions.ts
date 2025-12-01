@@ -59,7 +59,9 @@ export class RolePermissions implements OnInit {
       next: ([role, permissions, resources]) => {
         this.role.set(role);
         const permissionIds = permissions.map((p) => p.id);
-        this.resources.set(resources.filter((r) => r.permissions.length > 0));
+        this.resources.set(
+          resources.filter((r) => r.permissions.length > 0).sort((a, b) => a.order - b.order)
+        );
         this.selectedPermissions.set([...permissionIds]);
 
         // Save initial state as "saved" state

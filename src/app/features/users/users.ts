@@ -22,7 +22,7 @@ export class Users {
   public currentUser = this.authService.currentUser;
 
   public enableEditRoles = computed(
-    () => !!this.currentUser()?.hasPermission(PermissionName.AssignRole)
+    () => !!this.currentUser()?.hasPermission(PermissionName.ASSIGN_ROLE)
   );
 
   public paginatedUsers = new PaginatedResourceLoader<ListUser>({

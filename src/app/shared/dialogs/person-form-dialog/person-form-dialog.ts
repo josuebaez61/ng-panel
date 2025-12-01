@@ -23,9 +23,9 @@ export class PersonFormDialog {
   public form = new FormGroup({
     firstName: new FormControl('', [Validators.required, Validators.maxLength(255)]),
     lastName: new FormControl('', [Validators.required, Validators.maxLength(255)]),
-    identificationNumber: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-    identificationType: new FormControl('', [Validators.required]),
-    phone: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+    identificationNumber: new FormControl('', [Validators.maxLength(50)]),
+    identificationType: new FormControl('', []),
+    phone: new FormControl('', [Validators.maxLength(20)]),
   });
   private readonly userService = inject(UserService);
   public phoneCodes = signal<PhoneCodeDto[]>([]);

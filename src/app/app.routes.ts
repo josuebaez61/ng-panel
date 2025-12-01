@@ -1,12 +1,6 @@
 import { Routes } from '@angular/router';
 import { RouteName, RoutePath } from '@core/constants';
-import {
-  authGuard,
-  guestGuard,
-  hasAnyPermissionGuard,
-  mustChangePasswordGuard,
-  unsavedChangesGuard,
-} from '@core/guards';
+import { authGuard, hasAnyPermissionGuard, unsavedChangesGuard } from '@core/guards';
 import { PermissionName } from '@core/models';
 
 export const routes: Routes = [
@@ -35,13 +29,13 @@ export const routes: Routes = [
       },
       {
         path: RouteName.USERS,
-        canActivate: [hasAnyPermissionGuard([PermissionName.ReadUser])],
+        canActivate: [hasAnyPermissionGuard([PermissionName.READ_USER])],
         loadChildren: () => import('./features/users/users.routes').then((m) => m.routes),
       },
       {
         path: RouteName.ROLES,
         canActivate: [
-          hasAnyPermissionGuard([PermissionName.ReadRole, PermissionName.AssignRole]),
+          hasAnyPermissionGuard([PermissionName.READ_ROLE, PermissionName.ASSIGN_ROLE]),
         ],
         loadChildren: () => import('./features/roles/roles.routes').then((m) => m.routes),
         title: 'Roles - Admin Panel',

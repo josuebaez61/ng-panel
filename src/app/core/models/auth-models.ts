@@ -12,6 +12,7 @@ export interface AuthUserDto {
   mustChangePassword: boolean;
   permissions: string[];
   roles: string[];
+  resources: string[];
 }
 
 export interface AuthResponse {
@@ -82,6 +83,7 @@ export class AuthUser {
   public mustChangePassword: boolean;
   private permissions: Set<string>;
   public roles: Set<string>;
+  public resources: Set<string>;
 
   constructor(data: AuthUserDto) {
     this.id = data.id;
@@ -94,6 +96,7 @@ export class AuthUser {
     this.mustChangePassword = data.mustChangePassword;
     this.permissions = new Set(data.permissions);
     this.roles = new Set(data.roles);
+    this.resources = new Set(data.resources);
   }
 
   public hasPermission(permission: string): boolean {
@@ -114,5 +117,13 @@ export class AuthUser {
 
   public hasRole(role: string): boolean {
     return this.roles.has(role);
+  }
+
+  public hasResource(resource: string): boolean {
+    return this.resources.has(resource);
+  }
+
+  public hasAnyResource(resources: string[]): boolean {
+    return resources.some((resource) => this.hasResource(resource));
   }
 }

@@ -24,11 +24,11 @@ export class Roles implements OnInit {
   public rolePermissionsPath = RoutePath.ROLES_PERMISSIONS;
 
   public hasManageRolePermission = computed(
-    () => !!this.authService.currentUser()?.hasPermission(PermissionName.ReadRole)
+    () => !!this.authService.currentUser()?.hasPermission(PermissionName.READ_ROLE)
   );
 
   public hasManageUserRolesPermission = computed(
-    () => !!this.authService.currentUser()?.hasPermission(PermissionName.AssignRole)
+    () => !!this.authService.currentUser()?.hasPermission(PermissionName.ASSIGN_ROLE)
   );
 
   public ngOnInit(): void {

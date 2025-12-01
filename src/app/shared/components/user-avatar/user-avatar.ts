@@ -1,17 +1,18 @@
+import { UpperCasePipe } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { User } from '@core/models';
 import { AvatarModule } from 'primeng/avatar';
 
 @Component({
   selector: 'app-user-avatar',
-  imports: [AvatarModule],
+  imports: [AvatarModule, UpperCasePipe],
   template: `
     <p-avatar
       [style.height]="size() + 'rem'"
       [style.width]="size() + 'rem'"
       [shape]="'circle'"
       [image]="user()?.person?.picture || undefined"
-      [label]="user()?.person?.picture ? '' : getInitials()"
+      [label]="(user()?.person?.picture ? '' : getInitials()) | uppercase"
       [style.font-size]="textSizeStyleClass()"
     />
   `,

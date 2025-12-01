@@ -231,7 +231,9 @@
     },
     "form": {
       "editUser": "Editar Usuario",
-      "addUser": "Agregar Usuario"
+      "addUser": "Agregar Usuario",
+      "email": "Correo Electrónico",
+      "username": "Nombre de Usuario"
     }
   },
   "roles": {
@@ -260,8 +262,9 @@
       "title": "Permisos",
       "description": "Gestiona los permisos del rol",
       "resources": {
-        "users": "Usuarios",
-        "roles": "Roles",
+        "user": "Usuarios",
+        "role": "Roles",
+        "permission": "Permisos",
         "system": "Sistema"
       },
       "names": {

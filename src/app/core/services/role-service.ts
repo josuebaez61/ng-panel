@@ -147,6 +147,19 @@ export class RoleService {
   }
 
   /**
+   * Assign user to role
+   * @param roleId The role ID
+   * @param userId The user ID
+   * @returns Observable with the updated role
+   */
+  public assignUserToRole(roleId: string, userId: string): Observable<Role> {
+    return this.http.post<Role>(
+      `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.ASSIGN_USER(roleId)}`,
+      { userId, roleId }
+    );
+  }
+
+  /**
    * Unassign user from role
    * @param roleId The role ID
    * @param userId The user ID
@@ -166,7 +179,7 @@ export class RoleService {
    */
   public getAssignableRoles(userId: string): Observable<ApiResponse<Role[]>> {
     return this.http.get<ApiResponse<Role[]>>(
-      `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.ASSIGNABLE_ROLES(userId)}`
+      `${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.UNASSIGNED_ROLES_BY_USER_ID(userId)}`
     );
   }
 

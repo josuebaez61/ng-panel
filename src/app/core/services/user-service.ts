@@ -104,8 +104,8 @@ export class UserService {
    * Update user
    */
   public updateUser(id: string, userData: UpdateUserRequest): Observable<ListUser> {
-    return this.http.put<ListUser>(
-      `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE}/${id}`,
+    return this.http.patch<ListUser>(
+      `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE(id)}`,
       userData
     );
   }
@@ -122,7 +122,7 @@ export class UserService {
    */
   public toggleUserStatus(id: string, isActive: boolean): Observable<ListUser> {
     return this.http.patch<ListUser>(
-      `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE}/${id}/status`,
+      `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE(id)}/status`,
       { isActive }
     );
   }
@@ -134,16 +134,6 @@ export class UserService {
     return this.http.post<ListUser>(
       `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE_ROLES_BY_USER_ID(userId)}`,
       { roleIds }
-    );
-  }
-
-  /**
-   * Assign role to user
-   */
-  public assignRole(userId: string, roleId: string): Observable<ListUser> {
-    return this.http.patch<ListUser>(
-      `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.ASSIGN_ROLE_BY_USER_ID(userId)}`,
-      { roleId }
     );
   }
 

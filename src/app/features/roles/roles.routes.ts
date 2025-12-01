@@ -17,7 +17,7 @@ export const routes = [
   },
   {
     path: RouteName.ROLES_USERS(':id'),
-    canDeactivate: [unsavedChangesGuard, hasAllPermissionsGuard([PermissionName.AssignRole])],
+    canDeactivate: [unsavedChangesGuard, hasAllPermissionsGuard([PermissionName.ASSIGN_ROLE])],
     loadComponent: () => import('./role-users/role-users').then((m) => m.RoleUsers),
   },
 ];

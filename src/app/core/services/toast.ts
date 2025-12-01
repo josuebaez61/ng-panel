@@ -39,7 +39,10 @@ export class Toast {
     this.show({
       severity: response.success ? 'success' : 'error',
       summary: response.success ? 'Success' : 'Error',
-      detail: response.error?.message || 'An error occurred',
+      detail:
+        (response.success && response.message) ||
+        (!response.success && response.error?.message) ||
+        'An error occurred',
       life: response.success ? 3000 : 8000,
       ...options,
     });

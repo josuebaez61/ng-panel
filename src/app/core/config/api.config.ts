@@ -21,7 +21,7 @@ export const API_CONFIG = {
       LIST: '/users',
       PAGINATED: '/users/paginated',
       CREATE: '/users',
-      UPDATE: '/users/id',
+      UPDATE: (id: string): string => `/users/${id}`,
       DELETE: '/users',
       GET_BY_ID: '/users/id',
       ACTIVATE: (id: string): string => `/users/id/${id}/activate`,
@@ -30,7 +30,7 @@ export const API_CONFIG = {
         return `/users/id/${id}/roles`;
       },
       UPDATE_ROLES_BY_USER_ID(id: string): string {
-        return `/users/id/${id}/roles`;
+        return `/users/${id}/roles`;
       },
       ASSIGN_ROLE_BY_USER_ID: (id: string): string => {
         return `/users/id/${id}/roles`;
@@ -46,11 +46,12 @@ export const API_CONFIG = {
       UPDATE: (id: string): string => `/roles/${id}`,
       ROLE_PERMISSION: (id: string): string => `/roles/${id}/permissions`,
       ASSIGN_USERS: (id: string): string => `/roles/${id}/users/assign-multiple`,
+      ASSIGN_USER: (id: string): string => `/roles/${id}/users`,
       UNASSIGN_USER: (id: string): string => `/roles/${id}/users`,
       DELETE: (id: string): string => `/roles/id/${id}`,
       GET_BY_ID: (id: string): string => `/roles/${id}`,
       USER_COUNT: '/roles/stats/user-count',
-      ASSIGNABLE_ROLES: (userId: string): string => `/roles/assignable/user/${userId}`,
+      UNASSIGNED_ROLES_BY_USER_ID: (userId: string): string => `/roles/users/${userId}/unassigned`,
       UNASSIGNED_USERS: (roleId: string): string => `/roles/${roleId}/users/unassigned`,
     },
     GEOGRAPHY: {

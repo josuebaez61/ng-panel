@@ -38,7 +38,7 @@ function handleSuccessResponse(response: any, url: string, toast: Toast): void {
     const apiResponse = response as ApiResponse<any>;
 
     // Only show toast if there's a message and it's not empty
-    if (apiResponse.error?.message && apiResponse.error?.message.trim().length > 0) {
+    if (apiResponse?.message && apiResponse?.message.trim().length > 0) {
       toast.showFromApiResponse(apiResponse);
     }
   }
