@@ -24,8 +24,8 @@ export const API_CONFIG = {
       UPDATE: (id: string): string => `/users/${id}`,
       DELETE: '/users',
       GET_BY_ID: '/users/id',
-      ACTIVATE: (id: string): string => `/users/id/${id}/activate`,
-      DEACTIVATE: (id: string): string => `/users/id/${id}/deactivate`,
+      ACTIVATE: (id: string): string => `/users/${id}/activate`,
+      DEACTIVATE: (id: string): string => `/users/${id}/deactivate`,
       GET_ROLES_BY_USER_ID(id: string): string {
         return `/users/id/${id}/roles`;
       },

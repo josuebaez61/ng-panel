@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { ConfirmDialogData } from '@core/models';
 import { TranslateService } from '@ngx-translate/core';
-import { Confirmation, ConfirmationService, MessageService } from 'primeng/api';
+import { Confirmation, ConfirmationService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',

@@ -31,5 +31,24 @@
       rounded
       [pTooltip]="'people.form.editPerson' | translate"
     />
+    @if (user.isActive) {
+    <p-button
+      (onClick)="deactivateUser(user)"
+      icon="pi pi-ban"
+      text
+      rounded
+      [pTooltip]="'users.form.deactivateUser' | translate"
+    />
+    } @else {
+    <p-button
+      (onClick)="activateUser(user)"
+      icon="pi pi-check"
+      text
+      rounded
+      [pTooltip]="'users.form.activateUser' | translate"
+    />
+    }
   </div>
 </ng-template>
+
+<p-confirmDialog />

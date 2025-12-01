@@ -20,6 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Label } from '@shared/components/label/label';
 import { ControlError } from '@shared/components/control-error/control-error';
 import { FormField } from '@shared/components/form-field/form-field';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   imports: [CommonModule, Label, ControlError, FormField],
@@ -45,6 +46,7 @@ import { FormField } from '@shared/components/form-field/form-field';
     ControlError,
     FormField,
     TooltipModule,
+    ConfirmDialogModule,
   ],
 })
 export class SharedModule {}

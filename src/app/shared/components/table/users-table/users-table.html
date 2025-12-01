@@ -43,6 +43,7 @@
         <p-sortIcon field="email" />
       </th>
       <th [style.min-width]="'280px'">{{ 'users.table.rolesColumn' | translate }}</th>
+      <th>{{ 'users.table.statusColumn' | translate }}</th>
       <th pSortableColumn="createdAt">
         {{ 'users.table.createdAtColumn' | translate }}
         <p-sortIcon field="createdAt" />
@@ -77,6 +78,13 @@
           [roles]="user.roles"
           [enableEditRoles]="enableEditRoles()"
         />
+        }
+      </td>
+      <td>
+        @if (user.isActive) {
+        <p-chip icon="pi pi-check" [label]="'users.table.active' | translate" />
+        } @else {
+        <p-chip icon="pi pi-ban" [label]="'users.table.inactive' | translate" />
         }
       </td>
       <td>

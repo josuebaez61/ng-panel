@@ -223,7 +223,10 @@
       "userColumn": "Usuario",
       "emailColumn": "Correo Electrónico",
       "rolesColumn": "Roles",
-      "createdAtColumn": "Creado el"
+      "statusColumn": "Estado",
+      "createdAtColumn": "Creado el",
+      "active": "Activo",
+      "inactive": "Inactivo"
     },
     "userSelection": {
       "title": "Selección de Usuarios",
@@ -233,7 +236,11 @@
       "editUser": "Editar Usuario",
       "addUser": "Agregar Usuario",
       "email": "Correo Electrónico",
-      "username": "Nombre de Usuario"
+      "activateUser": "Activar Usuario",
+      "deactivateUser": "Desactivar Usuario",
+      "username": "Nombre de Usuario",
+      "deactivateUserConfirmation": "¿Estás seguro de querer desactivar a <b>{{userName}}</b>?",
+      "activateUserConfirmation": "¿Estás seguro de querer activar a <b>{{userName}}</b>?"
     }
   },
   "roles": {

@@ -8,10 +8,18 @@ import { UserRolesChips } from '@shared/components/user-roles-chips/user-roles-c
 import { LocalizedDatePipe } from '@shared/pipes';
 import { DEFAULT_TABLE_PAGE_SIZE, DEFAULT_TABLE_PAGE_SIZE_OPTIONS } from '@core/constants';
 import { AuthService } from '@core/services';
+import { ChipModule } from 'primeng/chip';
 
 @Component({
   selector: 'app-users-table',
-  imports: [SharedModule, TranslateModule, UserAvatar, UserRolesChips, LocalizedDatePipe],
+  imports: [
+    SharedModule,
+    TranslateModule,
+    UserAvatar,
+    UserRolesChips,
+    LocalizedDatePipe,
+    ChipModule,
+  ],
   templateUrl: './users-table.html',
   styles: ``,
 })
