@@ -100,10 +100,11 @@ function handleErrorResponse(error: HttpErrorResponse, url: string, toast: Toast
       }
   }
 
+  console.log('error.error', error.error);
   if (error.error) {
     // Check if it's our API error format
-    if (isApiResponse(error.error)) {
-      const apiError = error.error as ApiResponse<any>;
+    if (isApiError(error.error)) {
+      const apiError = error.error;
       errorMessage = apiError.error?.message || errorMessage;
       // errorDetails = apiError.error?.error;
     } else if (typeof error.error === 'string') {
@@ -179,6 +180,17 @@ function isApiResponse(response: any): boolean {
     typeof response === 'object' &&
     typeof response.success === 'boolean' &&
     typeof response.message === 'string'
+  );
+}
+
+function isApiError(error: any): boolean {
+  return (
+    error &&
+    typeof error === 'object' &&
+    typeof error.success === 'boolean' &&
+    'error' in error &&
+    typeof error.error === 'object' &&
+    typeof error.error.message === 'string'
   );
 }
 
