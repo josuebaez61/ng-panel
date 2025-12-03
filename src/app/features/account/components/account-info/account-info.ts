@@ -52,11 +52,6 @@ export class AccountInfo implements OnInit {
     });
   }
 
-  public onCancelUsernameChanges(): void {
-    this.patchForm();
-    this.form.markAsPristine();
-  }
-
   public onSaveUsername(): void {
     this.userService
       .updateCurrentUserData(this.form.getRawValue() as unknown as AuthUser)

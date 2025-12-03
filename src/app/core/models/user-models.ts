@@ -12,12 +12,12 @@ export interface User {
 
 export interface Person {
   id: string;
-  firstName: string;
-  lastName: string;
-  phone: string | null;
-  identificationNumber: string;
-  identificationType: string;
-  picture: string | null;
+  firstName?: string;
+  lastName?: string;
+  phone?: string | null;
+  identificationNumber?: string;
+  identificationType?: string;
+  picture?: string | null;
   createdAt: string;
   updatedAt?: string;
 }
@@ -60,3 +60,5 @@ export interface CreateUserRequest {
 }
 
 export type UpdateUserRequest = Partial<CreateUserRequest>;
+
+export type UpdatePersonRequest = Omit<Partial<Person>, 'id' | 'createdAt' | 'updatedAt'>;

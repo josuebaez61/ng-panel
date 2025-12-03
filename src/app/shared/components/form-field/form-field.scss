@@ -77,3 +77,10 @@
     }
   }
 }
+
+::ng-deep .inline-editable {
+  .phone-number-input {
+    border-end-end-radius: 0;
+    border-start-end-radius: 0;
+  }
+}

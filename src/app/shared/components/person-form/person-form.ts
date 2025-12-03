@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, inject, input, OnInit, output, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Person } from '@core/models';
 import { UserService } from '@core/services';
@@ -32,6 +32,8 @@ export class PersonForm implements OnInit {
   // Input signal to initialize the form with person data
   public person = input<Person | null>(null);
 
+  public inlineEditable = input<boolean>(false);
+
   // Optional UserService input - passed from parent to avoid injection issues in DynamicDialog
   // public userService = input<UserService | undefined>(undefined);
 
@@ -39,14 +41,20 @@ export class PersonForm implements OnInit {
 
   // Public form group that parent components can access
   public form = new FormGroup({
-    firstName: new FormControl('', [Validators.required, Validators.maxLength(255)]),
-    lastName: new FormControl('', [Validators.required, Validators.maxLength(255)]),
+    firstName: new FormControl('', [Validators.maxLength(255)]),
+    lastName: new FormControl('', [Validators.maxLength(255)]),
     identificationNumber: new FormControl<string | null>(null, [Validators.maxLength(50)]),
     identificationType: new FormControl<string | null>(null, []),
     phone: new FormControl('', [Validators.maxLength(20)]),
   });
 
   public identificationTypes = signal<string[]>([]);
+
+  public save = output<{ key: string; value: unknown }>();
+
+  public onSave(key: string, event: unknown): void {
+    this.save.emit({ key, value: event });
+  }
 
   ngOnInit(): void {
     // Load identification types only if service is provided

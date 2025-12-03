@@ -16,8 +16,6 @@ import { FormGroup } from '@angular/forms';
   styleUrl: './account-personal-info.scss',
 })
 export class AccountPersonalInfo implements OnInit {
-  private readonly authService = inject(AuthService);
-
   // Input signal for the current user
   public user = input.required<AuthUser | null>();
 
@@ -42,7 +40,7 @@ export class AccountPersonalInfo implements OnInit {
     // Component initialization if needed
   }
 
-  public onSave(): void {
+  public onSave(event: { key: string; value: unknown }): void {
     if (!this.personForm || this.personForm.invalid) {
       this.personForm?.markAllAsTouched();
       return;
@@ -54,7 +52,7 @@ export class AccountPersonalInfo implements OnInit {
     }
 
     this.saving.set(true);
-    this.userService.updatePersonByUserId(currentUser.id, this.personForm.value as any).subscribe({
+    this.userService.updateCurrentUserPerson({ [event.key]: event.value }).subscribe({
       next: () => {
         this.saving.set(false);
         this.personForm?.markAsPristine();

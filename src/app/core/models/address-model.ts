@@ -17,3 +17,6 @@ export interface Address {
   createdAt: string;
   updatedAt: string;
 }
+
+export type UpdateAddressRequest = Omit<Partial<Address>, 'id' | 'createdAt' | 'updatedAt'>;
+export type CreateAddressRequest = Omit<Partial<Address>, 'id' | 'createdAt' | 'updatedAt'>;

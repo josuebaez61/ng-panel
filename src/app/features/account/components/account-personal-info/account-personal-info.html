@@ -3,19 +3,9 @@
     <app-user-avatar [user]="user()" [size]="10" />
   </div>
 
-  <app-person-form [person]="user()?.person || null" />
-  <div class="app-dialog-actions mt-4">
-    <p-button
-      [label]="'common.reset' | translate"
-      severity="secondary"
-      [disabled]="buttonDisabled"
-      (click)="onReset()"
-    />
-    <p-button
-      [label]="'common.save' | translate"
-      [loading]="saving()"
-      [disabled]="buttonDisabled"
-      (click)="onSave()"
-    />
-  </div>
+  <app-person-form
+    [person]="user()?.person || null"
+    [inlineEditable]="true"
+    (save)="onSave($event)"
+  />
 </p-card>

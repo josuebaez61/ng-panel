@@ -22,6 +22,7 @@ export const API_CONFIG = {
       UPDATE_CURRENT_USER_ADDRESS: (id: string): string => `/users/addresses/${id}`,
       LIST_ADDRESSES_BY_USER_ID: (userId: string): string => `/users/addresses/${userId}`,
       UPDATE_USER_PERSON: (id: string): string => `/users/${id}/person`,
+      UPDATE_CURRENT_USER_PERSON: '/users/me/person',
       FIND_ALL_IDENTIFICATION_TYPES: '/users/identification-types',
       LIST: '/users',
       PAGINATED: '/users/paginated',

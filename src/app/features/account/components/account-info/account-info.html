@@ -1,17 +1,9 @@
 <p-card [header]="'account.accountInformation' | translate">
   <form [formGroup]="form" class="grid grid-cols-12 gap-4">
     <div class="col-span-12">
-      <app-form-field class="w-full">
+      <app-form-field class="w-full" [inlineEditable]="true" (onSave)="onSaveUsername()">
         <app-label>{{ 'account.username' | translate }}</app-label>
-        <p-input-group>
-          <input pInputText class="w-full" formControlName="username" />
-          @if (form.get('username')?.dirty) {
-          <p-inputgroup-addon>
-            <p-button text (click)="onCancelUsernameChanges()" icon="pi pi-times" />
-            <p-button text (click)="onSaveUsername()" icon="pi pi-save" />
-          </p-inputgroup-addon>
-          }
-        </p-input-group>
+        <input pInputText class="w-full" formControlName="username" />
         <app-control-error [control]="form.get('username')" />
       </app-form-field>
     </div>

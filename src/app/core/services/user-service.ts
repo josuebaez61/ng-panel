@@ -7,12 +7,14 @@ import {
   UpdateUserRequest,
   User,
   Person,
+  UpdatePersonRequest,
 } from '../models/user-models';
 import { API_CONFIG } from '../config/api.config';
 import { ApiResponse } from '../models/api-response-models';
 import { Role } from '../models/role-models';
 import {
   UserAddress,
+  UpdateAddressRequest,
   ApiPaginationResponse,
   PaginationRequest,
   AuthUser,
@@ -187,10 +189,22 @@ export class UserService {
   /**
    * Update person
    */
-  public updatePersonByUserId(userId: string, personData: Person): Observable<Person> {
+  public updatePersonByUserId(userId: string, personData: UpdatePersonRequest): Observable<Person> {
     return this.http
       .patch<ApiResponse<Person>>(
         `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE_USER_PERSON(userId)}`,
+        personData
+      )
+      .pipe(map((response) => response.data!));
+  }
+
+  /**
+   * Update current user person
+   */
+  public updateCurrentUserPerson(personData: UpdatePersonRequest): Observable<Person> {
+    return this.http
+      .patch<ApiResponse<Person>>(
+        `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE_CURRENT_USER_PERSON}`,
         personData
       )
       .pipe(map((response) => response.data!));
@@ -222,9 +236,12 @@ export class UserService {
   /**
    * Update current user address
    */
-  public updateCurrentUserAddress(id: string, address: UserAddress): Observable<UserAddress> {
+  public updateCurrentUserAddress(
+    id: string,
+    address: UpdateAddressRequest
+  ): Observable<UserAddress> {
     return this.http
-      .put<ApiResponse<UserAddress>>(
+      .patch<ApiResponse<UserAddress>>(
         `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE_CURRENT_USER_ADDRESS(id)}`,
         address
       )
