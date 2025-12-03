@@ -18,7 +18,37 @@
 
   <!-- Input Container -->
   <div class="input-container w-full">
-    <ng-content></ng-content>
+    <p-input-group>
+      <ng-content></ng-content>
+      @if (inlineEditable) { @if (!isEditing()) {
+      <p-inputgroup-addon>
+        <p-button
+          text
+          icon="pi pi-pencil"
+          [pTooltip]="'common.edit' | translate"
+          (click)="onEditClick()"
+        />
+      </p-inputgroup-addon>
+      } @else {
+      <p-inputgroup-addon>
+        <p-button
+          text
+          icon="pi pi-times"
+          severity="secondary"
+          [pTooltip]="'common.cancel' | translate"
+          (click)="onCancelClick()"
+        />
+      </p-inputgroup-addon>
+      <p-inputgroup-addon>
+        <p-button
+          text
+          icon="pi pi-save"
+          [pTooltip]="'common.save' | translate"
+          (click)="onSaveClick()"
+        />
+      </p-inputgroup-addon>
+      } }
+    </p-input-group>
   </div>
 
   <!-- Message Container with Fixed Height -->

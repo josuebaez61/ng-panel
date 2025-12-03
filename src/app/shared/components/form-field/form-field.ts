@@ -2,6 +2,8 @@ import {
   Component,
   ContentChild,
   Input,
+  Output,
+  EventEmitter,
   computed,
   signal,
   AfterViewInit,
@@ -11,10 +13,24 @@ import {
 import { NgControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Label } from '../label/label';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { TranslateModule } from '@ngx-translate/core';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-form-field',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    ButtonModule,
+    InputTextModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    TranslateModule,
+    TooltipModule,
+  ],
   templateUrl: './form-field.html',
   styleUrl: './form-field.scss',
 })
@@ -34,12 +50,32 @@ export class FormField implements AfterViewInit, OnDestroy {
   @Input()
   public hideRequiredMarker: boolean = false;
 
+  @Input()
+  public inlineEditable: boolean = false;
+
+  @Output()
+  public onSave = new EventEmitter<any>();
+
+  @Output()
+  public onCancel = new EventEmitter<void>();
+
   public class = input<string>();
 
   // Signals for reactive state management
   private readonly _controlState = signal<any>(null);
   private controlStatusSubscription?: any;
   private controlValueSubscription?: any;
+
+  // Signals for inline editing
+  private readonly _isEditing = signal<boolean>(false);
+  private readonly _originalValue = signal<any>(null);
+  public readonly isEditing = computed(() => this._isEditing());
+  public readonly hasChanges = computed(() => {
+    if (!this.inlineEditable || !this.isEditing()) return false;
+    const state = this._controlState();
+    if (!state) return false;
+    return state.dirty && state.value !== this._originalValue();
+  });
 
   // Computed signals that depend on our reactive signal
   public readonly controlState = computed(() => this._controlState());
@@ -79,6 +115,83 @@ export class FormField implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.updateControlState();
+    if (this.inlineEditable) {
+      this.initializeInlineEditing();
+    }
+  }
+
+  private initializeInlineEditing(): void {
+    const control = this.control?.control;
+    if (!control) return;
+
+    // Set initial readonly state
+    this.setReadonlyState(true);
+    // Store original value
+    this._originalValue.set(control.value);
+  }
+
+  private setReadonlyState(readonly: boolean): void {
+    const control = this.control?.control;
+    if (!control) return;
+
+    // Disable/enable the control to prevent editing
+    // Note: The input should also have [readonly]="!isEditing()" for better UX
+    if (readonly) {
+      control.disable({ emitEvent: false, onlySelf: true });
+    } else {
+      control.enable({ emitEvent: false, onlySelf: true });
+    }
+  }
+
+  public onEditClick(): void {
+    if (!this.inlineEditable) return;
+    const control = this.control?.control;
+    if (!control) return;
+
+    this._originalValue.set(control.value);
+    this._isEditing.set(true);
+    this.setReadonlyState(false);
+    // Mark as untouched to avoid showing errors immediately
+    control.markAsUntouched();
+  }
+
+  public onSaveClick(): void {
+    if (!this.inlineEditable || !this.hasChanges()) return;
+    const control = this.control?.control;
+    if (!control) return;
+
+    if (control.invalid) {
+      control.markAllAsTouched();
+      return;
+    }
+
+    // Emit the save event with the current value
+    this.onSave.emit(control.value);
+    this.finishEditing();
+  }
+
+  public onCancelClick(): void {
+    if (!this.inlineEditable) return;
+    const control = this.control?.control;
+    if (!control) return;
+
+    // Revert to original value
+    control.setValue(this._originalValue(), { emitEvent: false });
+    control.markAsPristine();
+    control.markAsUntouched();
+
+    // Emit cancel event
+    this.onCancel.emit();
+    this.finishEditing();
+  }
+
+  private finishEditing(): void {
+    this._isEditing.set(false);
+    this.setReadonlyState(true);
+    const control = this.control?.control;
+    if (control) {
+      control.markAsPristine();
+    }
   }
 
   ngOnDestroy(): void {
