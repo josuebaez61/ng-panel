@@ -32,7 +32,11 @@ export class ChangeEmailDialog {
   public isLoading = signal(false);
 
   public requestForm = new FormGroup({
-    newEmail: new FormControl('', [Validators.required, Validators.email]),
+    newEmail: new FormControl('', [
+      Validators.required,
+      Validators.email,
+      Validators.maxLength(200),
+    ]),
   });
 
   public verifyForm = new FormGroup({

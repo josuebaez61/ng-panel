@@ -16,6 +16,7 @@ export const API_CONFIG = {
       RESET_PASSWORD: '/auth/reset-password',
     },
     USERS: {
+      UPDATE_CURRENT_USER_DATA: '/users/me',
       GET_CURRENT_USER_ADDRESSES: '/users/addresses',
       CREATE_CURRENT_USER_ADDRESS: '/users/addresses',
       DELETE_CURRENT_USER_ADDRESS: (id: string): string => `/users/addresses/${id}`,

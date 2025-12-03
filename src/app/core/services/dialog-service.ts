@@ -37,14 +37,14 @@ export class DialogService {
   };
   private readonly _dialog = inject(PrimeDialogService);
 
-  private open<T>(component: Type<T>, config: DynamicDialogConfig): DynamicDialogRef<T> {
+  private open<T>(component: Type<T>, config: DynamicDialogConfig): DynamicDialogRef<T> | null {
     return this._dialog.open(component, {
       ...this.defaultConfig,
       ...config,
     });
   }
 
-  public openUserFormDialog(user?: User): DynamicDialogRef<UserFormDialog> {
+  public openUserFormDialog(user?: User): DynamicDialogRef<UserFormDialog> | null {
     return this.open(UserFormDialog, {
       header: !!user
         ? this.translateService.instant('users.form.editUser')
@@ -55,7 +55,7 @@ export class DialogService {
     });
   }
 
-  public openRoleFormDialog(role?: Role) {
+  public openRoleFormDialog(role?: Role): DynamicDialogRef<RoleFormDialog> | null {
     return this.open(RoleFormDialog, {
       header: !!role
         ? this.translateService.instant('roles.form.editRole')
@@ -68,7 +68,7 @@ export class DialogService {
 
   public openUsersSelectionDialog(
     data: UsersSelectionDialogData
-  ): DynamicDialogRef<UserSelectionDialog> {
+  ): DynamicDialogRef<UserSelectionDialog> | null {
     return this.open<UserSelectionDialog>(UserSelectionDialog, {
       header: this.translateService.instant('users.userSelection.title'),
       data,
@@ -76,19 +76,22 @@ export class DialogService {
     });
   }
 
-  public openChangePasswordDialog(): DynamicDialogRef<ChangePasswordDialog> {
+  public openChangePasswordDialog(): DynamicDialogRef<ChangePasswordDialog> | null {
     return this.open(ChangePasswordDialog, {
       header: this.translateService.instant('auth.changePassword.title'),
     });
   }
 
-  public openChangeEmailDialog(): DynamicDialogRef<ChangeEmailDialog> {
+  public openChangeEmailDialog(): DynamicDialogRef<ChangeEmailDialog> | null {
     return this.open(ChangeEmailDialog, {
       header: this.translateService.instant('auth.changeEmail.title'),
     });
   }
 
-  public openPersonFormDialog(user: User, person?: Person): DynamicDialogRef<PersonFormDialog> {
+  public openPersonFormDialog(
+    user: User,
+    person?: Person
+  ): DynamicDialogRef<PersonFormDialog> | null {
     return this.open(PersonFormDialog, {
       header: !!person
         ? this.translateService.instant('people.form.editPerson')
@@ -101,7 +104,7 @@ export class DialogService {
     });
   }
 
-  public openAddressFormDialog(address?: Address): DynamicDialogRef<AddressFormDialog> {
+  public openAddressFormDialog(address?: Address): DynamicDialogRef<AddressFormDialog> | null {
     return this.open(AddressFormDialog, {
       header: !!address
         ? this.translateService.instant('addresses.form.editAddress')

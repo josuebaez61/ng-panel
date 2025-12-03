@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, pipe } from 'rxjs';
+import { map, Observable, pipe, tap } from 'rxjs';
 import {
   ListUser,
   CreateUserRequest,
@@ -11,7 +11,14 @@ import {
 import { API_CONFIG } from '../config/api.config';
 import { ApiResponse } from '../models/api-response-models';
 import { Role } from '../models/role-models';
-import { UserAddress, ApiPaginationResponse, PaginationRequest } from '@core/models';
+import {
+  UserAddress,
+  ApiPaginationResponse,
+  PaginationRequest,
+  AuthUser,
+  AuthUserDto,
+} from '@core/models';
+import { AuthService } from './auth-service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +26,7 @@ import { UserAddress, ApiPaginationResponse, PaginationRequest } from '@core/mod
 export class UserService {
   private readonly baseUrl = API_CONFIG.BASE_URL;
   private readonly http = inject(HttpClient);
+  private readonly authService = inject(AuthService);
 
   /**
    * Get all users with pagination and filtering
@@ -232,5 +240,23 @@ export class UserService {
         `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.DELETE_CURRENT_USER_ADDRESS(id)}`
       )
       .pipe(map((response) => response.data!));
+  }
+
+  /**
+   * Update current user data (for use in guards)
+   */
+  public updateCurrentUserData(user: AuthUser): Observable<any> {
+    return this.http
+      .patch<ApiResponse<AuthUserDto>>(
+        `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE_CURRENT_USER_DATA}`,
+        user
+      )
+      .pipe(
+        tap((response) => {
+          if (response.success && response.data) {
+            this.authService.hydrateUserData();
+          }
+        })
+      );
   }
 }

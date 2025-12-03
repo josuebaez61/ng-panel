@@ -1,10 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Person, PhoneCodeDto, User } from '@core/models';
-import { GeographyService, UserService } from '@core/services';
-import { SharedModule } from '@shared/modules';
-import { PhoneInput } from '@shared/components/phone-input/phone-input';
+import { Component, computed, inject, signal, ViewChild } from '@angular/core';
+import { Person, User } from '@core/models';
+import { UserService } from '@core/services';
+import { PersonForm } from '@shared/components/person-form/person-form';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TranslateModule } from '@ngx-translate/core';
+import { ButtonModule } from 'primeng/button';
 
 export interface PersonFormDialogData {
   user?: User;
@@ -13,51 +13,45 @@ export interface PersonFormDialogData {
 
 @Component({
   selector: 'app-person-form-dialog',
-  imports: [SharedModule, PhoneInput, ReactiveFormsModule],
+  imports: [PersonForm, TranslateModule, ButtonModule],
   templateUrl: './person-form-dialog.html',
   styleUrl: './person-form-dialog.scss',
 })
 export class PersonFormDialog {
   private readonly dialogRef = inject(DynamicDialogRef<PersonFormDialog>);
   private readonly dialogConfig = inject(DynamicDialogConfig<PersonFormDialogData>);
-  public form = new FormGroup({
-    firstName: new FormControl('', [Validators.required, Validators.maxLength(255)]),
-    lastName: new FormControl('', [Validators.required, Validators.maxLength(255)]),
-    identificationNumber: new FormControl('', [Validators.maxLength(50)]),
-    identificationType: new FormControl('', []),
-    phone: new FormControl('', [Validators.maxLength(20)]),
-  });
-  private readonly userService = inject(UserService);
-  public phoneCodes = signal<PhoneCodeDto[]>([]);
-  public submitting = signal(false);
-  public identificationTypes = signal<string[]>([]);
-  constructor() {
-    this.userService.findAllIdentificationTypes().subscribe({
-      next: (response) => {
-        this.identificationTypes.set(response.data ?? []);
-        this.patchForm();
-      },
-    });
-  }
+  public readonly userService = inject(UserService);
 
-  public patchForm(): void {
-    if (this.dialogConfig.data?.person) {
-      this.form.patchValue(this.dialogConfig.data.person);
-    }
+  @ViewChild(PersonForm, { static: false })
+  public personFormComponent!: PersonForm;
+
+  public submitting = signal(false);
+
+  public person = computed(() => this.dialogConfig.data?.person || null);
+
+  constructor() {
+    console.log(this.person());
   }
 
   public closeDialog(): void {
+    console.log('closeDialog');
     this.dialogRef.close(false);
   }
 
   public onSubmit(): void {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
+    const form = this.personFormComponent.form;
+    console.log(form.value);
+    if (form.invalid) {
+      form.markAllAsTouched();
       return;
     }
     this.submitting.set(true);
-    const editingUser = this.dialogConfig.data.user;
-    this.userService.updatePersonByUserId(editingUser.id, this.form.value as Person).subscribe({
+    const editingUser = this.dialogConfig.data?.user;
+    if (!editingUser) {
+      this.submitting.set(false);
+      return;
+    }
+    this.userService.updatePersonByUserId(editingUser.id, form.value as Person).subscribe({
       next: () => {
         this.dialogRef.close(true);
         this.submitting.set(false);

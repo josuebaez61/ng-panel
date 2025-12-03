@@ -115,7 +115,7 @@ export class AddressFormDialog implements OnDestroy {
     this.loadStates(event.value as string);
   }
 
-  public onStateSelect(event: AutoCompleteSelectEvent): void {
+  public onStateSelect(event: SelectChangeEvent): void {
     this.loadLocalities(event.value as string);
   }
 

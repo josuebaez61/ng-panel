@@ -44,7 +44,7 @@ export class Users {
   }
 
   public openUserForm(user?: User): void {
-    this.dialogService.openUserFormDialog(user).onClose.subscribe({
+    this.dialogService.openUserFormDialog(user)?.onClose.subscribe({
       next: (result) => {
         if (result) {
           this.paginatedUsers.refresh();
@@ -54,7 +54,7 @@ export class Users {
   }
 
   public openPersonForm(user: User, person?: Person): void {
-    this.dialogService.openPersonFormDialog(user, person).onClose.subscribe({
+    this.dialogService.openPersonFormDialog(user, person)?.onClose.subscribe({
       next: (result) => {
         if (result) {
           this.paginatedUsers.refresh();

@@ -1,27 +1,27 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ControlError } from '@shared/components/control-error/control-error';
+import { DialogModule } from 'primeng/dialog';
+import { DividerModule } from 'primeng/divider';
+import { FormField } from '@shared/components/form-field/form-field';
 import { IconFieldModule } from 'primeng/iconfield';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputIconModule } from 'primeng/inputicon';
+import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
+import { Label } from '@shared/components/label/label';
+import { MessageModule } from 'primeng/message';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RippleModule } from 'primeng/ripple';
 import { SelectModule } from 'primeng/select';
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
-import { DividerModule } from 'primeng/divider';
-import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
-import { InputMaskModule } from 'primeng/inputmask';
-import { MessageModule } from 'primeng/message';
-import { DialogModule } from 'primeng/dialog';
-import { TooltipModule } from 'primeng/tooltip';
-import { ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
-import { Label } from '@shared/components/label/label';
-import { ControlError } from '@shared/components/control-error/control-error';
-import { FormField } from '@shared/components/form-field/form-field';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TextareaModule } from 'primeng/textarea';
+import { TooltipModule } from 'primeng/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   imports: [CommonModule, Label, ControlError, FormField],
   exports: [

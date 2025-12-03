@@ -53,7 +53,7 @@ export class Roles implements OnInit {
   }
 
   public openRoleForm(role?: RoleWithUsersCount) {
-    this.dialogService.openRoleFormDialog(role).onClose.subscribe((res) => {
+    this.dialogService.openRoleFormDialog(role)?.onClose.subscribe((res) => {
       if (res) {
         this.loadData();
       }

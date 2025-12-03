@@ -58,7 +58,9 @@ export class RoleUsers implements OnInit {
     this.roleService
       .getUnassignedUsers(this.route.snapshot.params['id'])
       .pipe(
-        switchMap((users) => this.dialogService.openUsersSelectionDialog({ users }).onClose),
+        switchMap(
+          (users) => this.dialogService.openUsersSelectionDialog({ users })?.onClose ?? of(null)
+        ),
         switchMap((users?: UserOption[]) =>
           users
             ? this.roleService.assignUsersToRole(
