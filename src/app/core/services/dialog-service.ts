@@ -7,7 +7,9 @@ import {
   UserOption,
   Person,
 } from '@core/models';
+import { Address, UserAddress } from '@core/models/address-model';
 import { TranslateService } from '@ngx-translate/core';
+import { AddressFormDialog } from '@shared/dialogs/address-form-dialog/address-form-dialog';
 import { ChangeEmailDialog } from '@shared/dialogs/change-email-dialog/change-email-dialog';
 import { ChangePasswordDialog } from '@shared/dialogs/change-password-dialog/change-password-dialog';
 import { PersonFormDialog } from '@shared/dialogs/person-form-dialog/person-form-dialog';
@@ -96,6 +98,17 @@ export class DialogService {
         user,
       },
       styleClass: 'person-form-dialog',
+    });
+  }
+
+  public openAddressFormDialog(address?: Address): DynamicDialogRef<AddressFormDialog> {
+    return this.open(AddressFormDialog, {
+      header: !!address
+        ? this.translateService.instant('addresses.form.editAddress')
+        : this.translateService.instant('addresses.form.addAddress'),
+      data: {
+        address,
+      },
     });
   }
 }

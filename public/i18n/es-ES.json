@@ -150,6 +150,7 @@
     }
   },
   "common": {
+    "noData": "No hay datos",
     "submit": "Enviar",
     "search": "Buscar",
     "save": "Guardar",
@@ -313,7 +314,10 @@
     "lastNameLabel": "Apellido",
     "email": "Email",
     "userName": "Nombre de Usuario",
-    "password": "Contraseña"
+    "password": "Contraseña",
+    "personalInformation": "Información Personal",
+    "accountInformation": "Información de la Cuenta",
+    "addresses": "Direcciones"
   },
   "password": {
     "atLeastOneLowercase": "Al menos una letra minúscula",
@@ -325,6 +329,23 @@
   "phoneInput": {
     "selectCountry": "Seleccionar país",
     "noCountriesFound": "No se encontraron países"
+  },
+  "addresses": {
+    "addAddress": "Agregar Dirección",
+    "editAddress": "Editar Dirección",
+    "deleteAddress": "Eliminar Dirección",
+    "deleteAddressMessage": "¿Estás seguro de querer eliminar esta dirección?",
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Ejemplo: Casa, Trabajo, etc.",
+      "country": "País",
+      "state": "Estado",
+      "locality": "Localidad",
+      "address": "Dirección",
+      "zip": "Código Postal",
+      "directions": "Indicaciones",
+      "directionsPlaceholder": "Ingresa indicaciones adicionales o puntos de referencia"
+    }
   },
   "identificationTypes": {
     "passport": "Pasaporte",

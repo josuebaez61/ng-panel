@@ -21,7 +21,7 @@ import { Label } from '@shared/components/label/label';
 import { ControlError } from '@shared/components/control-error/control-error';
 import { FormField } from '@shared/components/form-field/form-field';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-
+import { TextareaModule } from 'primeng/textarea';
 @NgModule({
   imports: [CommonModule, Label, ControlError, FormField],
   exports: [
@@ -47,6 +47,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     FormField,
     TooltipModule,
     ConfirmDialogModule,
+    TextareaModule,
   ],
 })
 export class SharedModule {}

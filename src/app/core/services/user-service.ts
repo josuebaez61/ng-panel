@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map, Observable, pipe } from 'rxjs';
 import {
   ListUser,
   CreateUserRequest,
@@ -11,7 +11,7 @@ import {
 import { API_CONFIG } from '../config/api.config';
 import { ApiResponse } from '../models/api-response-models';
 import { Role } from '../models/role-models';
-import { ApiPaginationResponse, PaginationRequest } from '@core/models';
+import { UserAddress, ApiPaginationResponse, PaginationRequest } from '@core/models';
 
 @Injectable({
   providedIn: 'root',
@@ -184,6 +184,52 @@ export class UserService {
       .patch<ApiResponse<Person>>(
         `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE_USER_PERSON(userId)}`,
         personData
+      )
+      .pipe(map((response) => response.data!));
+  }
+
+  /**
+   * Get current user addresses
+   */
+  public getCurrentUserAddresses(): Observable<UserAddress[]> {
+    return this.http
+      .get<ApiResponse<UserAddress[]>>(
+        `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.GET_CURRENT_USER_ADDRESSES}`
+      )
+      .pipe(map((response) => response.data || []));
+  }
+
+  /**
+   * Create current user address
+   */
+  public createCurrentUserAddress(address: UserAddress): Observable<UserAddress> {
+    return this.http
+      .post<ApiResponse<UserAddress>>(
+        `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.CREATE_CURRENT_USER_ADDRESS}`,
+        address
+      )
+      .pipe(map((response) => response.data!));
+  }
+
+  /**
+   * Update current user address
+   */
+  public updateCurrentUserAddress(id: string, address: UserAddress): Observable<UserAddress> {
+    return this.http
+      .put<ApiResponse<UserAddress>>(
+        `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE_CURRENT_USER_ADDRESS(id)}`,
+        address
+      )
+      .pipe(map((response) => response.data!));
+  }
+
+  /**
+   * Delete current user address
+   */
+  public deleteCurrentUserAddress(id: string): Observable<void> {
+    return this.http
+      .delete<ApiResponse<void>>(
+        `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.DELETE_CURRENT_USER_ADDRESS(id)}`
       )
       .pipe(map((response) => response.data!));
   }

@@ -16,6 +16,11 @@ export const API_CONFIG = {
       RESET_PASSWORD: '/auth/reset-password',
     },
     USERS: {
+      GET_CURRENT_USER_ADDRESSES: '/users/addresses',
+      CREATE_CURRENT_USER_ADDRESS: '/users/addresses',
+      DELETE_CURRENT_USER_ADDRESS: (id: string): string => `/users/addresses/${id}`,
+      UPDATE_CURRENT_USER_ADDRESS: (id: string): string => `/users/addresses/${id}`,
+      LIST_ADDRESSES_BY_USER_ID: (userId: string): string => `/users/addresses/${userId}`,
       UPDATE_USER_PERSON: (id: string): string => `/users/${id}/person`,
       FIND_ALL_IDENTIFICATION_TYPES: '/users/identification-types',
       LIST: '/users',
@@ -56,6 +61,11 @@ export const API_CONFIG = {
     },
     GEOGRAPHY: {
       PHONE_CODES: '/geography/phone-codes',
+      COUNTRIES: '/geography/countries',
+      LOCALITIES_BY_STATE_ID: (stateId: string): string =>
+        `/geography/states/${stateId}/localities`,
+      STATES: (countryId: string): string => `/geography/countries/${countryId}/states`,
+      COUNTIES: (stateId: string): string => `/geography/states/${stateId}/counties`,
     },
   },
 } as const;

@@ -1,62 +1,113 @@
-<div class="max-w-lg mx-auto">
-  <p-card>
-    <div class="flex justify-center mb-6">
-      <app-user-avatar [user]="user()" [size]="10" />
+<div>
+  <!-- <div class="max-w-lg mx-auto"> -->
+  <div class="grid grid-cols-12 gap-4">
+    <div class="col-span-5">
+      <p-card [header]="'account.personalInformation' | translate">
+        <div class="flex justify-center mb-6">
+          <app-user-avatar [user]="user()" [size]="10" />
+        </div>
+
+        <form [formGroup]="personForm" class="grid grid-cols-12 gap-4">
+          <div class="col-span-6">
+            <app-form-field class="w-full">
+              <app-label>{{ 'account.firstNameLabel' | translate }}</app-label>
+              <input pInputText class="w-full" formControlName="firstName" />
+              <app-control-error [control]="personForm.get('firstName')" />
+            </app-form-field>
+          </div>
+
+          <div class="col-span-6">
+            <app-form-field class="w-full">
+              <app-label>{{ 'account.lastNameLabel' | translate }}</app-label>
+              <input pInputText class="w-full" formControlName="lastName" />
+              <app-control-error [control]="personForm.get('lastName')" />
+            </app-form-field>
+          </div>
+        </form>
+      </p-card>
     </div>
-    <form [formGroup]="form" class="grid grid-cols-12 gap-4">
-      <div class="col-span-6">
-        <app-form-field class="w-full">
-          <app-label>{{ 'account.firstNameLabel' | translate }}</app-label>
-          <input pInputText class="w-full" formControlName="firstName" />
-          <app-control-error [control]="form.get('firstName')" />
-        </app-form-field>
-      </div>
+    <div class="col-span-7 flex flex-col gap-4">
+      <p-card [header]="'account.accountInformation' | translate">
+        <form [formGroup]="form" class="grid grid-cols-12 gap-4">
+          <div class="col-span-12">
+            <app-form-field class="w-full">
+              <app-label>{{ 'account.username' | translate }}</app-label>
+              <input pInputText class="w-full" formControlName="username" />
+              <app-control-error [control]="form.get('username')" />
+            </app-form-field>
+          </div>
+          <div class="col-span-12">
+            <app-form-field class="w-full">
+              <app-label>{{ 'account.email' | translate }}</app-label>
+              <p-input-group>
+                <input readonly pInputText class="w-full" [value]="user()?.email" />
+                <p-inputgroup-addon>
+                  <p-button (onClick)="openChangeEmailDialog()" icon="pi pi-pencil" />
+                </p-inputgroup-addon>
+              </p-input-group>
+            </app-form-field>
+          </div>
 
-      <div class="col-span-6">
-        <app-form-field class="w-full">
-          <app-label>{{ 'account.lastNameLabel' | translate }}</app-label>
-          <input pInputText class="w-full" formControlName="lastName" />
-          <app-control-error [control]="form.get('lastName')" />
-        </app-form-field>
-      </div>
-      <div class="col-span-12">
-        <app-form-field class="w-full">
-          <app-label>{{ 'account.userName' | translate }}</app-label>
-          <input pInputText class="w-full" formControlName="userName" />
-          <app-control-error [control]="form.get('lastName')" />
-        </app-form-field>
-      </div>
-      <div class="col-span-12">
-        <app-form-field class="w-full">
-          <app-label>{{ 'account.email' | translate }}</app-label>
-          <p-input-group>
-            <input readonly pInputText class="w-full" [value]="user()?.email" />
-            <p-inputgroup-addon>
-              <p-button (onClick)="openChangeEmailDialog()" icon="pi pi-pencil" />
-            </p-inputgroup-addon>
-          </p-input-group>
-        </app-form-field>
-      </div>
-
-      <div class="col-span-12">
-        <app-form-field class="w-full">
-          <app-label>{{ 'account.password' | translate }}</app-label>
-          <p-input-group>
-            <input
-              readonly
-              pInputText
-              type="password"
-              value="********************"
-              class="w-full"
+          <div class="col-span-12">
+            <app-form-field class="w-full">
+              <app-label>{{ 'account.password' | translate }}</app-label>
+              <p-input-group>
+                <input
+                  readonly
+                  pInputText
+                  type="password"
+                  value="********************"
+                  class="w-full"
+                />
+                <p-inputgroup-addon>
+                  <p-button (onClick)="openChangePasswordDialog()" icon="pi pi-pencil" />
+                </p-inputgroup-addon>
+              </p-input-group>
+            </app-form-field>
+          </div>
+        </form>
+      </p-card>
+      <p-card>
+        <ng-template #title>
+          <div class="flex justify-between items-center">
+            <h3 class="text-lg font-medium">{{ 'account.addresses' | translate }}</h3>
+            <p-button
+              (onClick)="openAddressFormDialog()"
+              icon="pi pi-plus"
+              text
+              rounded
+              [label]="'addresses.addAddress' | translate"
             />
-            <p-inputgroup-addon>
-              <p-button (onClick)="openChangePasswordDialog()" icon="pi pi-pencil" />
-            </p-inputgroup-addon>
-          </p-input-group>
-        </app-form-field>
-      </div>
-    </form>
-  </p-card>
+          </div>
+        </ng-template>
+        <app-addresses-list
+          [addresses]="addresses()"
+          [loading]="loadingAddresses()"
+          [actionsTemplate]="actionsTemplate"
+        >
+        </app-addresses-list>
+        <ng-template #actionsTemplate let-userAddress>
+          <div class="flex gap-2">
+            <p-button
+              (onClick)="openAddressFormDialog(userAddress)"
+              icon="pi pi-pencil"
+              text
+              rounded
+              [pTooltip]="'addresses.editAddress' | translate"
+            />
+            <p-button
+              (onClick)="deleteAddress(userAddress)"
+              icon="pi pi-trash"
+              text
+              rounded
+              [pTooltip]="'addresses.deleteAddress' | translate"
+            />
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
 </div>
 
 <app-unsaved-changes-dialog (save)="save()" (discard)="discard()" />
+<p-confirmDialog />

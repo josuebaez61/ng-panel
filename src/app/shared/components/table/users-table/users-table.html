@@ -43,7 +43,10 @@
         <p-sortIcon field="email" />
       </th>
       <th [style.min-width]="'280px'">{{ 'users.table.rolesColumn' | translate }}</th>
-      <th>{{ 'users.table.statusColumn' | translate }}</th>
+      <th pSortableColumn="isActive">
+        {{ 'users.table.statusColumn' | translate }}
+        <p-sortIcon field="isActive" />
+      </th>
       <th pSortableColumn="createdAt">
         {{ 'users.table.createdAtColumn' | translate }}
         <p-sortIcon field="createdAt" />
