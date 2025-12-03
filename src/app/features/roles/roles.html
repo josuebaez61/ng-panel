@@ -1,6 +1,6 @@
 <app-panel-page-header
   (addButtonClick)="openRoleForm()"
-  [showAddButton]="hasManageRolePermission()"
+  [showAddButton]="canCreateRoles()"
   addButtonLabel="roles.addButton"
   title="roles.title"
 />
@@ -15,21 +15,21 @@
 <ng-template #actionsColumnTemplate let-role>
   <div class="flex gap-2">
     <p-button
-      [disabled]="!hasManageRolePermission()"
+      [disabled]="!canUpdateRoles()"
       icon="pi pi-pencil"
       rounded
       text
       (onClick)="openRoleForm(role)"
     />
     <p-button
-      [disabled]="!hasManageRolePermission()"
+      [disabled]="!canAssignPermissions()"
       [routerLink]="rolePermissionsPath(role.id)"
       icon="pi pi-check-square"
       rounded
       text
     />
     <p-button
-      [disabled]="!hasManageUserRolesPermission()"
+      [disabled]="!canAssignRoles()"
       [routerLink]="roleUsersPath(role.id)"
       icon="pi pi-users"
       rounded

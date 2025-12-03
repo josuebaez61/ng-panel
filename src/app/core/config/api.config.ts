@@ -8,7 +8,6 @@ export const API_CONFIG = {
       REGISTER: '/auth/register',
       REFRESH_TOKEN: '/auth/refresh-token',
       CHANGE_PASSWORD: '/auth/change-password',
-      CHANGE_FIRST_TIME_PASSWORD: '/auth/change-first-time-password',
       ME: '/auth/me',
       REQUEST_EMAIL_CHANGE: '/auth/request-email-change',
       VERIFY_EMAIL_CHANGE: '/auth/verify-email-change',

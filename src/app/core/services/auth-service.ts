@@ -13,8 +13,6 @@ import {
   CurrentUserResponse,
   // AuthUserDto,
   AuthUser,
-  ChangeFirstTimePasswordRequest,
-  AuthUserDto,
 } from '../models/auth-models';
 import { API_CONFIG } from '../config/api.config';
 import { Router } from '@angular/router';
@@ -70,10 +68,6 @@ export class AuthService {
             this.setAuthData(response.data);
             this.router.navigate([RoutePath.HOME]);
           }
-        }),
-        catchError((error) => {
-          console.error('Login error:', error);
-          throw error;
         }),
         finalize(() => {
           this._loggingIn.set(false);
@@ -150,16 +144,6 @@ export class AuthService {
    */
   public changePassword(request: ChangePasswordRequest): Observable<any> {
     return this.http.post(`${this.baseUrl}${API_CONFIG.ENDPOINTS.AUTH.CHANGE_PASSWORD}`, request);
-  }
-
-  /**
-   * Change first time password (for users who must change password)
-   */
-  public changeFirstTimePassword(request: ChangeFirstTimePasswordRequest): Observable<any> {
-    return this.http.post(
-      `${this.baseUrl}${API_CONFIG.ENDPOINTS.AUTH.CHANGE_FIRST_TIME_PASSWORD}`,
-      request
-    );
   }
 
   /**

@@ -1,7 +1,6 @@
 import { Component, computed, inject, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '@core/services';
-import { LangSelector } from '@shared/components/lang-selector/lang-selector';
 import { ThemeButton } from '@shared/components/theme-button/theme-button';
 import { SharedModule } from '@shared/modules';
 import { ToolbarModule } from 'primeng/toolbar';

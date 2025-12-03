@@ -11,13 +11,16 @@ export const routes = [
   },
   {
     path: RouteName.ROLES_PERMISSIONS(':id'),
-    canDeactivate: [unsavedChangesGuard],
+    canDeactivate: [
+      unsavedChangesGuard,
+      hasAllPermissionsGuard([PermissionName.ASSIGN_PERMISSION]),
+    ],
     loadComponent: () =>
       import('./role-permissions/role-permissions').then((m) => m.RolePermissions),
   },
   {
     path: RouteName.ROLES_USERS(':id'),
-    canDeactivate: [unsavedChangesGuard, hasAllPermissionsGuard([PermissionName.ASSIGN_ROLE])],
+    canDeactivate: [hasAllPermissionsGuard([PermissionName.ASSIGN_ROLE])],
     loadComponent: () => import('./role-users/role-users').then((m) => m.RoleUsers),
   },
 ];

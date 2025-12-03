@@ -28,7 +28,7 @@ import { map } from 'rxjs';
         <ng-template #item let-lang>
           <div (click)="onChange(lang)" class="flex items-center gap-2 cursor-pointer py-2 px-4">
             <img [src]="lang.icon" />
-            <div>{{ lang.label }} ({{ lang.value }})</div>
+            <div>{{ lang.label }}</div>
           </div>
         </ng-template>
       </p-menu>

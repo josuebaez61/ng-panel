@@ -33,14 +33,14 @@ export class App {
 
     const storageLang = this.storageService.getLang();
 
-    if (storageLang) {
-      this.translateService.use(storageLang);
-    }
-
     this.translateService.onLangChange.subscribe((lang) => {
       document.documentElement.lang = lang.lang;
       this.storageService.setLang(lang.lang);
     });
+
+    this.translateService.reloadLang(
+      storageLang || this.translateService.getFallbackLang() || this.fallbackLang
+    );
   }
 
   private isValidLang(lang: string): boolean {
@@ -48,10 +48,7 @@ export class App {
   }
 
   private updateNgxTranslateFallbackLang(): void {
-    const fallbackLang =
-      navigator.language?.split('-')[0] ||
-      navigator.languages?.[0]?.split('-')[0] ||
-      this.fallbackLang;
+    const fallbackLang = navigator.language || navigator.languages[0] || this.fallbackLang;
 
     if (this.isValidLang(fallbackLang)) {
       this.translateService.setFallbackLang(fallbackLang);

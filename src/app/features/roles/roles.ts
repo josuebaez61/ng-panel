@@ -23,11 +23,19 @@ export class Roles implements OnInit {
   public roleUsersPath = RoutePath.ROLES_USERS;
   public rolePermissionsPath = RoutePath.ROLES_PERMISSIONS;
 
-  public hasManageRolePermission = computed(
-    () => !!this.authService.currentUser()?.hasPermission(PermissionName.READ_ROLE)
+  public canCreateRoles = computed(
+    () => !!this.authService.currentUser()?.hasPermission(PermissionName.CREATE_ROLE)
   );
 
-  public hasManageUserRolesPermission = computed(
+  public canUpdateRoles = computed(
+    () => !!this.authService.currentUser()?.hasPermission(PermissionName.UPDATE_ROLE)
+  );
+
+  public canAssignPermissions = computed(
+    () => !!this.authService.currentUser()?.hasPermission(PermissionName.ASSIGN_PERMISSION)
+  );
+
+  public canAssignRoles = computed(
     () => !!this.authService.currentUser()?.hasPermission(PermissionName.ASSIGN_ROLE)
   );
 

@@ -2,10 +2,10 @@
   @for (role of _roles(); track role.id) {
   <p-chip
     [label]="role.name"
-    [removable]="enableEditRoles()"
+    [removable]="canAssignRoles()"
     (onRemove)="loading() ? null : onRoleRemove($event, role)"
   />
-  } @if (enableEditRoles()) {
+  } @if (canAssignRoles()) {
   <p-chip
     icon="pi pi-plus"
     [removable]="false"

@@ -9,8 +9,9 @@ import { FormField } from '@shared/components/form-field/form-field';
 import { RoutePath } from '@core/constants';
 import { Auth } from '@shared/layouts/auth/auth';
 import { AuthService } from '@core/services';
-import { ChangeFirstTimePasswordRequest } from '@core/models';
+import { ChangePasswordRequest } from '@core/models';
 import { Router } from '@angular/router';
+import { Hint } from '@shared/components/hint/hint';
 
 @Component({
   selector: 'app-must-change-password',
@@ -22,6 +23,7 @@ import { Router } from '@angular/router';
     SharedModule,
     FormField,
     Auth,
+    Hint,
   ],
   templateUrl: './must-change-password.html',
   styleUrl: './must-change-password.scss',
@@ -32,7 +34,8 @@ export class MustChangePassword implements OnInit {
   public loading = signal(false);
   public mustChangePasswordForm = new FormGroup(
     {
-      newPassword: new FormControl('', [Validators.required, CustomValidators.password]),
+      currentPassword: new FormControl('', [Validators.required]),
+      newPassword: new FormControl('', [CustomValidators.password]),
       confirmPassword: new FormControl('', [Validators.required]),
     },
     {
@@ -50,7 +53,7 @@ export class MustChangePassword implements OnInit {
 
     this.loading.set(true);
     this.authService
-      .changeFirstTimePassword(this.mustChangePasswordForm.value as ChangeFirstTimePasswordRequest)
+      .changePassword(this.mustChangePasswordForm.value as ChangePasswordRequest)
       .subscribe({
         next: () => {
           this.loading.set(false);

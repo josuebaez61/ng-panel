@@ -308,6 +308,7 @@ export class CustomValidators {
   }
 
   public static password = Validators.compose([
+    Validators.required,
     Validators.minLength(8),
     Validators.maxLength(20),
     CustomValidators.requiredUppercaseChar,

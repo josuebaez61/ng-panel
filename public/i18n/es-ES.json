@@ -123,18 +123,19 @@
     "mustChangePassword": {
       "title": "Cambio de Contraseña Obligatorio",
       "subtitle": "Debes cambiar tu contraseña para continuar",
+      "currentPassword": {
+        "label": "Contraseña Actual",
+        "placeholder": "Ingresa tu contraseña actual",
+        "helperText": "Ingresa la contraseña que recibiste en tu correo electrónico"
+      },
       "password": {
         "label": "Nueva Contraseña",
         "placeholder": "Ingresa tu nueva contraseña",
-        "required": "La contraseña es requerida",
-        "minLength": "La contraseña debe tener al menos 6 caracteres",
         "helperText": "Por seguridad, debes cambiar tu contraseña antes de continuar"
       },
       "confirmPassword": {
         "label": "Confirmar Nueva Contraseña",
-        "placeholder": "Confirma tu nueva contraseña",
-        "required": "La confirmación de contraseña es requerida",
-        "mismatch": "Las contraseñas no coinciden"
+        "placeholder": "Confirma tu nueva contraseña"
       },
       "submitButton": "Cambiar Contraseña",
       "success": "Contraseña cambiada exitosamente",

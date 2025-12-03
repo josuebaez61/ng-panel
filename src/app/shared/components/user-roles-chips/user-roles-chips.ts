@@ -33,7 +33,7 @@ export class UserRolesChips {
   public _roles = linkedSignal(() => this.roles());
 
   public assignableRoles = signal<Role[]>([]);
-  public enableEditRoles = input<boolean>(false);
+  public canAssignRoles = input<boolean>(false);
   public loading = signal<boolean>(false);
 
   @ViewChild(Popover)

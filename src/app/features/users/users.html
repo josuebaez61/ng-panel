@@ -1,6 +1,6 @@
 <app-panel-page-header
   (addButtonClick)="openUserForm()"
-  [showAddButton]="true"
+  [showAddButton]="canCreateUsers()"
   addButtonLabel="users.addButton"
   title="users.title"
 />
@@ -11,7 +11,7 @@
   [totalCount]="paginatedUsers.totalCount()"
   [lazy]="true"
   (lazyLoad)="onLazyLoad($event)"
-  [enableEditRoles]="enableEditRoles()"
+  [canAssignRoles]="canAssignRoles()"
   [actionsColumnTemplate]="actionsColumnTemplate"
 />
 
@@ -23,6 +23,7 @@
       text
       rounded
       [pTooltip]="'users.form.editUser' | translate"
+      [disabled]="!canUpdateUsers()"
     />
     <p-button
       (onClick)="openPersonForm(user, user.person)"
@@ -30,6 +31,7 @@
       text
       rounded
       [pTooltip]="'people.form.editPerson' | translate"
+      [disabled]="!canUpdateUsers()"
     />
     @if (user.isActive) {
     <p-button
@@ -37,6 +39,7 @@
       icon="pi pi-ban"
       text
       rounded
+      [disabled]="!canUpdateUsers()"
       severity="danger"
       [pTooltip]="'users.form.deactivateUser' | translate"
     />
@@ -46,6 +49,7 @@
       icon="pi pi-check"
       text
       rounded
+      [disabled]="!canUpdateUsers()"
       [pTooltip]="'users.form.activateUser' | translate"
     />
     }

@@ -1,5 +1,5 @@
 <app-auth [title]="'auth.login.title' | translate">
-  <form [formGroup]="loginForm" class="space-y-6" (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm" class="flex flex-col gap-4" (ngSubmit)="onSubmit()">
     <!-- Email Field -->
     <app-form-field>
       <app-label for="usernameOrEmail">

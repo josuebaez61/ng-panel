@@ -64,8 +64,11 @@ export class ResetPassword implements OnInit {
 
     this.isLoading.set(true);
     const formValue = this.resetPasswordForm.value;
-
-    this.authService.resetPassword(formValue as ResetPasswordRequest).subscribe({
+    const payload = {
+      code: formValue.code,
+      newPassword: formValue.newPassword,
+    };
+    this.authService.resetPassword(payload).subscribe({
       next: () => {
         this.isLoading.set(false);
         this.router.navigate([RoutePath.LOGIN]);

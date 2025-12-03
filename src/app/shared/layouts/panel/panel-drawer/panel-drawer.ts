@@ -63,15 +63,17 @@ export class PanelDrawer {
         {
           label: 'Users',
           icon: 'pi pi-users',
-          visible: this.authService.currentUser()?.hasResource(ResourceName.USER),
+          visible:
+            this.authService.currentUser()?.hasResource(ResourceName.USER) &&
+            this.authService.currentUser()?.hasPermission(PermissionName.READ_USER),
           routerLink: RoutePath.USERS,
         },
         {
           label: 'Roles',
           icon: 'pi pi-circle',
-          visible: this.authService
-            .currentUser()
-            ?.hasAnyResource([ResourceName.ROLE, ResourceName.PERMISSION, ResourceName.USER]),
+          visible:
+            this.authService.currentUser()?.hasResource(ResourceName.ROLE) &&
+            this.authService.currentUser()?.hasPermission(PermissionName.READ_ROLE),
           routerLink: RoutePath.ROLES,
         },
       ],

@@ -123,6 +123,11 @@
     "mustChangePassword": {
       "title": "Mandatory Password Change",
       "subtitle": "You must change your password to continue",
+      "currentPassword": {
+        "label": "Current Password",
+        "placeholder": "Enter your current password",
+        "helperText": "Enter the password you received in your email"
+      },
       "password": {
         "label": "New Password",
         "placeholder": "Enter your new password",
@@ -264,6 +269,7 @@
     "userRoles": {
       "title": "Role Users",
       "addButton": "Assign User",
+      "noRolesAssigned": "No roles assigned",
       "removeUserFromRoleConfirmation": "Are you sure you want to remove <b>{{userName}}</b> from the role?"
     },
     "permissions": {
