@@ -33,7 +33,9 @@ export class PersonForm implements OnInit {
   public person = input<Person | null>(null);
 
   // Optional UserService input - passed from parent to avoid injection issues in DynamicDialog
-  public userService = input<UserService | undefined>(undefined);
+  // public userService = input<UserService | undefined>(undefined);
+
+  public userService = inject(UserService);
 
   // Public form group that parent components can access
   public form = new FormGroup({
@@ -48,7 +50,7 @@ export class PersonForm implements OnInit {
 
   ngOnInit(): void {
     // Load identification types only if service is provided
-    const service = this.userService();
+    const service = this.userService;
     if (service) {
       service.findAllIdentificationTypes().subscribe({
         next: (response) => {

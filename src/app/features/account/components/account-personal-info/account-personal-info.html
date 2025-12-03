@@ -3,7 +3,7 @@
     <app-user-avatar [user]="user()" [size]="10" />
   </div>
 
-  <app-person-form [person]="user()?.person || null" [userService]="userService" />
+  <app-person-form [person]="user()?.person || null" />
   <div class="app-dialog-actions mt-4">
     <p-button
       [label]="'common.reset' | translate"
