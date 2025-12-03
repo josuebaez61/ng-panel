@@ -1,0 +1,21 @@
+<p-card [header]="'account.personalInformation' | translate">
+  <div class="flex justify-center mb-6">
+    <app-user-avatar [user]="user()" [size]="10" />
+  </div>
+
+  <app-person-form [person]="user()?.person || null" [userService]="userService" />
+  <div class="app-dialog-actions mt-4">
+    <p-button
+      [label]="'common.reset' | translate"
+      severity="secondary"
+      [disabled]="buttonDisabled"
+      (click)="onReset()"
+    />
+    <p-button
+      [label]="'common.save' | translate"
+      [loading]="saving()"
+      [disabled]="buttonDisabled"
+      (click)="onSave()"
+    />
+  </div>
+</p-card>

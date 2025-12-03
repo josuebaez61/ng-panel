@@ -1,0 +1,81 @@
+import { Component, computed, inject, input, OnInit, signal, ViewChild } from '@angular/core';
+import { AuthUser } from '@core/models';
+import { AuthService, UserService } from '@core/services';
+import { TranslateModule } from '@ngx-translate/core';
+import { PersonForm } from '@shared/components/person-form/person-form';
+import { UserAvatar } from '@shared/components/user-avatar/user-avatar';
+import { Card } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
+import { FormGroup } from '@angular/forms';
+
+@Component({
+  selector: 'app-account-personal-info',
+  standalone: true,
+  imports: [Card, UserAvatar, PersonForm, TranslateModule, ButtonModule],
+  templateUrl: './account-personal-info.html',
+  styleUrl: './account-personal-info.scss',
+})
+export class AccountPersonalInfo implements OnInit {
+  private readonly authService = inject(AuthService);
+
+  // Input signal for the current user
+  public user = input.required<AuthUser | null>();
+
+  // Public userService for PersonForm
+  public readonly userService = inject(UserService);
+
+  // Saving state
+  public saving = signal(false);
+
+  @ViewChild(PersonForm)
+  public personFormComponent!: PersonForm;
+
+  public get personForm(): FormGroup | undefined {
+    return this.personFormComponent?.form;
+  }
+
+  public get buttonDisabled(): boolean {
+    return this.saving() || !!this.personForm?.pristine;
+  }
+
+  ngOnInit(): void {
+    // Component initialization if needed
+  }
+
+  public onSave(): void {
+    if (!this.personForm || this.personForm.invalid) {
+      this.personForm?.markAllAsTouched();
+      return;
+    }
+
+    const currentUser = this.user();
+    if (!currentUser?.id) {
+      return;
+    }
+
+    this.saving.set(true);
+    this.userService.updatePersonByUserId(currentUser.id, this.personForm.value as any).subscribe({
+      next: () => {
+        this.saving.set(false);
+        this.personForm?.markAsPristine();
+      },
+      error: () => {
+        this.saving.set(false);
+      },
+    });
+  }
+
+  public onReset(): void {
+    const personData = this.user()?.person;
+    if (personData) {
+      this.personForm?.patchValue({
+        firstName: personData.firstName || '',
+        lastName: personData.lastName || '',
+        identificationNumber: personData.identificationNumber || '',
+        identificationType: personData.identificationType || '',
+        phone: personData.phone || '',
+      });
+      this.personForm?.markAsPristine();
+    }
+  }
+}

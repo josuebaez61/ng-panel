@@ -1,0 +1,42 @@
+<p-card [header]="'account.accountInformation' | translate">
+  <form [formGroup]="form" class="grid grid-cols-12 gap-4">
+    <div class="col-span-12">
+      <app-form-field class="w-full">
+        <app-label>{{ 'account.username' | translate }}</app-label>
+        <p-input-group>
+          <input pInputText class="w-full" formControlName="username" />
+          @if (form.get('username')?.dirty) {
+          <p-inputgroup-addon>
+            <p-button text (click)="onCancelUsernameChanges()" icon="pi pi-times" />
+            <p-button text (click)="onSaveUsername()" icon="pi pi-save" />
+          </p-inputgroup-addon>
+          }
+        </p-input-group>
+        <app-control-error [control]="form.get('username')" />
+      </app-form-field>
+    </div>
+    <div class="col-span-12">
+      <app-form-field class="w-full">
+        <app-label>{{ 'account.email' | translate }}</app-label>
+        <p-input-group>
+          <input readonly pInputText class="w-full" [value]="user()?.email" />
+          <p-inputgroup-addon>
+            <p-button text (click)="openChangeEmailDialog()" icon="pi pi-pencil" />
+          </p-inputgroup-addon>
+        </p-input-group>
+      </app-form-field>
+    </div>
+
+    <div class="col-span-12">
+      <app-form-field class="w-full">
+        <app-label>{{ 'account.password' | translate }}</app-label>
+        <p-input-group>
+          <input readonly pInputText type="password" value="********************" class="w-full" />
+          <p-inputgroup-addon>
+            <p-button text (click)="openChangePasswordDialog()" icon="pi pi-pencil" />
+          </p-inputgroup-addon>
+        </p-input-group>
+      </app-form-field>
+    </div>
+  </form>
+</p-card>
