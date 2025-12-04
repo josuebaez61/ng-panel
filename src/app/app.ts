@@ -41,6 +41,9 @@ export class App {
     this.translateService.reloadLang(
       storageLang || this.translateService.getFallbackLang() || this.fallbackLang
     );
+    this.translateService.use(
+      storageLang || this.translateService.getFallbackLang() || this.fallbackLang
+    );
   }
 
   private isValidLang(lang: string): boolean {

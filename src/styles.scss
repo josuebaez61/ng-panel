@@ -63,3 +63,23 @@ body {
   min-width: 140px !important;
   max-width: 300px !important;
 }
+
+// Styles for p-password component input
+// Using @layer primeng to override PrimeNG styles with same layer priority
+@layer reset {
+  .p-component.ng-invalid.ng-touched {
+    border-color: var(--p-inputtext-invalid-border-color);
+    color: var(--p-inputtext-invalid-border-color);
+    --p-inputtext-border-color: var(--p-inputtext-invalid-border-color) !important;
+    .p-password-input {
+      border-color: var(--p-inputtext-invalid-border-color) !important;
+      color: var(--p-inputtext-invalid-border-color) !important;
+    }
+    .p-password-input::placeholder {
+      color: var(--p-inputtext-invalid-border-color) !important;
+    }
+  }
+  .p-component.ng-invalid.ng-touched::placeholder {
+    color: var(--p-inputtext-invalid-border-color);
+  }
+}

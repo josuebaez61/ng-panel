@@ -18,7 +18,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AutoCompleteModule } from 'primeng/autocomplete';
+import { SelectModule } from 'primeng/select';
 import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { TranslateModule } from '@ngx-translate/core';
@@ -41,7 +41,7 @@ interface PhoneCodeOption {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AutoCompleteModule,
+    SelectModule,
     InputTextModule,
     RippleModule,
     TranslateModule,
@@ -71,11 +71,7 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
 
   // Phone codes data
   public phoneCodes = signal<PhoneCodeOption[]>([]);
-  public filteredPhoneCodes = signal<PhoneCodeOption[]>([]);
   public appendTo = input<string | HTMLElement | undefined>(undefined);
-
-  // Signal for appendTo value - initialized in ngAfterViewInit
-  public appendToValue = signal<string | HTMLElement>('body');
 
   // ControlValueAccessor implementation
   private onChange = (value: string) => {};
@@ -93,6 +89,12 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
   public get selectedCountryCode(): PhoneCodeOption | null {
     return this._selectedCountryCode();
   }
+
+  // Computed value for p-select (needs the phoneCode string value)
+  public selectedCountryCodeValue = computed(() => {
+    const code = this._selectedCountryCode();
+    return code ? code.phoneCode : null;
+  });
 
   public get phoneNumber(): string {
     return this._phoneNumber();
@@ -131,7 +133,6 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
     }));
 
     this.phoneCodes.set([...options]);
-    this.filteredPhoneCodes.set([...options]);
 
     // If we have a value set before codes loaded, parse it now
     const currentValue = this._value();
@@ -143,48 +144,14 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
     }
   }
 
-  // Filter phone codes for autocomplete
-  public filterPhoneCodes(event: { query: string }): void {
-    const query = event.query?.trim() || '';
-    const allCodes = this.phoneCodes();
-
-    let filtered: PhoneCodeOption[];
-
-    // If query is empty (dropdown button clicked or empty search), show all codes
-    if (!query || query === '') {
-      filtered = [...allCodes];
-    } else {
-      // Normalize query: remove + if present and convert to lowercase for comparison
-      const normalizedQuery = query.replace(/^\+/, '').toLowerCase();
-      const queryWithPlus = query.toLowerCase();
-
-      // Filter codes based on query
-      // Search in: phoneCode (with or without +), country name, and iso2
-      filtered = allCodes.filter((code) => {
-        // Search in phone code (with +, without +, or just numbers)
-        const phoneCodeLower = code.phoneCode.toLowerCase();
-        const phoneCodeWithoutPlus = code.phoneCode.replace(/^\+/, '').toLowerCase();
-
-        // Search in label (phoneCode)
-        const labelLower = code.label.toLowerCase();
-
-        // Search in country name
-        const nameLower = code.name.toLowerCase();
-
-        // Search in iso2 code
-        const iso2Lower = code.iso2.toLowerCase();
-
-        return (
-          phoneCodeLower.includes(queryWithPlus) ||
-          phoneCodeWithoutPlus.includes(normalizedQuery) ||
-          labelLower.includes(queryWithPlus) ||
-          nameLower.includes(queryWithPlus) ||
-          iso2Lower.includes(queryWithPlus)
-        );
-      });
-    }
-
-    this.filteredPhoneCodes.set(filtered);
+  // Handle country code change from p-select
+  public onCountryCodeSelect(event: { value: string }): void {
+    const phoneCodeValue = event.value;
+    // Find the full PhoneCodeOption object by phoneCode value
+    const code = this.phoneCodes().find((c) => c.phoneCode === phoneCodeValue) || null;
+    this._selectedCountryCode.set(code);
+    this.updateValue();
+    this.onTouched();
     this.cdr.detectChanges();
   }
 
@@ -262,14 +229,6 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
     }
   }
 
-  // Event handlers
-  public onCountryCodeChange(code: PhoneCodeOption | null): void {
-    this._selectedCountryCode.set(code);
-    this.updateValue();
-    this.onTouched();
-    this.cdr.detectChanges();
-  }
-
   public onPhoneNumberInput(event: Event): void {
     const input = event.target as HTMLInputElement;
     const value = input.value;
@@ -300,26 +259,6 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Set appendTo value after view is initialized
-    // Default to 'body' to avoid overflow issues in dialogs
-    // User can override by passing appendTo explicitly
-    const provided = this.appendTo();
-    if (provided) {
-      this.appendToValue.set(provided);
-    } else {
-      // Check if we're inside a dialog by traversing up the DOM
-      const isInsideDialog = this.isInsideDialog();
-      if (isInsideDialog) {
-        // Use body when inside dialog to avoid overflow issues
-        this.appendToValue.set('body');
-      } else if (this.containerRef?.nativeElement) {
-        // Use container when not in dialog
-        this.appendToValue.set(this.containerRef.nativeElement);
-      } else {
-        this.appendToValue.set('body');
-      }
-    }
-
     // Ensure initial value is set if component is initialized with a value
     const currentValue = this._value();
     if (currentValue) {

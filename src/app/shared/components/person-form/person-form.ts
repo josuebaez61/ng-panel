@@ -59,6 +59,7 @@ export class PersonForm implements OnInit {
   ngOnInit(): void {
     // Load identification types only if service is provided
     const service = this.userService;
+    console.log(service);
     if (service) {
       service.findAllIdentificationTypes().subscribe({
         next: (response) => {

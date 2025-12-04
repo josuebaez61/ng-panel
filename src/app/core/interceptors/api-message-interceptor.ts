@@ -106,7 +106,6 @@ function handleErrorResponse(error: HttpErrorResponse, url: string, toast: Toast
     if (isApiError(error.error)) {
       const apiError = error.error;
       errorMessage = apiError.error?.message || errorMessage;
-      // errorDetails = apiError.error?.error;
     } else if (typeof error.error === 'string') {
       errorMessage = error.error;
     } else if (error.error.message) {

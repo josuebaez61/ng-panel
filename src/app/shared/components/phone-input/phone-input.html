@@ -1,28 +1,33 @@
 <div #container class="phone-input-container flex gap-2 w-full relative">
-  <p-autocomplete
-    [dropdown]="true"
-    [dropdownMode]="'blank'"
-    [suggestions]="filteredPhoneCodes()"
-    (completeMethod)="filterPhoneCodes($event)"
-    [ngModel]="selectedCountryCode"
-    (ngModelChange)="onCountryCodeChange($event)"
+  <p-select
+    [options]="phoneCodes()"
+    [ngModel]="selectedCountryCodeValue()"
+    (onChange)="onCountryCodeSelect($event)"
     [disabled]="disabled"
     optionLabel="label"
+    optionValue="phoneCode"
     [style]="{ width: '140px' }"
     [showClear]="false"
     [placeholder]="'phoneInput.selectCountry' | translate"
     [emptyMessage]="'phoneInput.noCountriesFound' | translate"
     class="phone-code-selector"
-    [appendTo]="appendToValue()"
-    panelStyleClass="phone-code-autocomplete-panel"
+    [appendTo]="'body'"
+    [filter]="true"
+    filterBy="phoneCode,name,iso2"
   >
+    <ng-template let-option #selectedItem>
+      <div class="flex items-center gap-1.5">
+        <img [src]="option.flagUrl" [alt]="option.iso2" class="flag-icon-dropdown" />
+        <span>{{ option.phoneCode }}</span>
+      </div>
+    </ng-template>
     <ng-template let-option #item>
       <div class="flex items-center gap-1.5">
         <img [src]="option.flagUrl" [alt]="option.iso2" class="flag-icon-dropdown" />
         <span>{{ option.phoneCode }}</span>
       </div>
     </ng-template>
-  </p-autocomplete>
+  </p-select>
   <input
     #phoneInput
     pInputText
