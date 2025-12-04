@@ -241,7 +241,7 @@ export class UserService {
     address: UpdateAddressRequest
   ): Observable<UserAddress> {
     return this.http
-      .patch<ApiResponse<UserAddress>>(
+      .put<ApiResponse<UserAddress>>(
         `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE_CURRENT_USER_ADDRESS(id)}`,
         address
       )
@@ -275,5 +275,12 @@ export class UserService {
           }
         })
       );
+  }
+
+  public regenerateTemporaryPassword(userId: string): Observable<ApiResponse<string>> {
+    return this.http.patch<ApiResponse<string>>(
+      `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.REGENERATE_TEMPORARY_PASSWORD(userId)}`,
+      {}
+    );
   }
 }

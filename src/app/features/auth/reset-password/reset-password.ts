@@ -26,7 +26,7 @@ import { Hint } from '@shared/components/hint/hint';
 import { Auth } from '@shared/layouts/auth/auth';
 import { AuthService } from '@core/services';
 import { Router } from '@angular/router';
-import { NewPasswordForm } from '@shared/forms/new-password-form/new-password-form';
+import { NewPasswordForm } from '@shared/components/templates/new-password-form/new-password-form';
 
 @Component({
   selector: 'app-reset-password',

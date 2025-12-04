@@ -10,7 +10,9 @@ export interface Address {
   name: string;
   address: string;
   country: string;
+  countryId: string;
   state: string;
+  stateId: string;
   locality: string;
   postalCode: string;
   directions: string | null;

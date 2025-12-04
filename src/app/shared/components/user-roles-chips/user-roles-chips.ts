@@ -1,9 +1,9 @@
-import { Component, ViewChild, inject, input, linkedSignal, signal } from '@angular/core';
+import { Component, ViewChild, computed, inject, input, linkedSignal, signal } from '@angular/core';
 import { Role, User } from '@core/models';
 import { ChipModule } from 'primeng/chip';
 import { Popover, PopoverModule } from 'primeng/popover';
 import { RoleSelection } from '../role-selection/role-selection';
-import { Confirm, RoleService, UserService } from '@core/services';
+import { AuthService, Confirm, RoleService, UserService } from '@core/services';
 import { FormsModule } from '@angular/forms';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
@@ -25,8 +25,9 @@ import { ButtonModule } from 'primeng/button';
   styles: ``,
 })
 export class UserRolesChips {
+  private readonly authService = inject(AuthService);
   private readonly roleService = inject(RoleService);
-  private readonly userService = inject(UserService);
+  public currentUser = computed(() => this.authService.currentUser());
   public user = input<User | null>(null);
   public roles = input<Role[]>([]);
 
@@ -68,7 +69,11 @@ export class UserRolesChips {
     this.loading.set(true);
     this.roleService.assignUserToRole(role.id, userId).subscribe({
       next: () => {
+        const currentUser = this.user();
         this._roles.update((roles) => [...roles, role]);
+        if (currentUser && this.isCurrentUser(currentUser)) {
+          window.location.reload();
+        }
       },
       complete: () => {
         this.loading.set(false);
@@ -79,13 +84,17 @@ export class UserRolesChips {
     });
   }
 
-  public onRoleRemove(event: Event, role: Role): void {
+  public onRoleRemove(_: Event, role: Role): void {
     const userId = this.user()?.id;
     if (!userId) return;
     this.loading.set(true);
     this.roleService.unassignUserFromRole(role.id, userId).subscribe({
       next: () => {
+        const currentUser = this.user();
         this._roles.update((roles) => roles.filter((r) => r.id !== role.id));
+        if (currentUser && this.isCurrentUser(currentUser)) {
+          window.location.reload();
+        }
       },
       complete: () => {
         this.loading.set(false);
@@ -94,5 +103,9 @@ export class UserRolesChips {
         this.loading.set(false);
       },
     });
+  }
+
+  public isCurrentUser(user: User): boolean {
+    return this.currentUser()?.id === user.id;
   }
 }

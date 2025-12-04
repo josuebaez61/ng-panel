@@ -268,7 +268,6 @@ export class AuthService {
       },
       error: (error) => {
         console.error('Failed to hydrate user data:', error);
-        // If we can't get user data, logout
         this.logout();
       },
     });

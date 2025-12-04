@@ -14,6 +14,7 @@ import { TableLazyLoadEvent } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { SharedModule } from '@shared/modules';
 import { TranslateService } from '@ngx-translate/core';
+import { pipe, tap } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -52,23 +53,41 @@ export class Users {
   }
 
   public openUserForm(user?: User): void {
-    this.dialogService.openUserFormDialog(user)?.onClose.subscribe({
-      next: (result) => {
-        if (result) {
-          this.paginatedUsers.refresh();
-        }
-      },
-    });
+    this.dialogService
+      .openUserFormDialog(user)
+      ?.onClose.pipe(
+        tap(() => {
+          if (user && this.isCurrentUser(user)) {
+            this.authService.hydrateUserData();
+          }
+        })
+      )
+      .subscribe({
+        next: (result) => {
+          if (result) {
+            this.paginatedUsers.refresh();
+          }
+        },
+      });
   }
 
   public openPersonForm(user: User, person?: Person): void {
-    this.dialogService.openPersonFormDialog(user, person)?.onClose.subscribe({
-      next: (result) => {
-        if (result) {
-          this.paginatedUsers.refresh();
-        }
-      },
-    });
+    this.dialogService
+      .openPersonFormDialog(user, person)
+      ?.onClose.pipe(
+        tap(() => {
+          if (this.isCurrentUser(user)) {
+            this.authService.hydrateUserData();
+          }
+        })
+      )
+      .subscribe({
+        next: (result) => {
+          if (result) {
+            this.paginatedUsers.refresh();
+          }
+        },
+      });
   }
 
   public deactivateUser(user: User): void {
@@ -87,7 +106,6 @@ export class Users {
   }
 
   public activateUser(user: User): void {
-    console.log(user);
     this.confirm.open({
       message: this.translateService.instant('users.form.activateUserConfirmation', {
         userName: user.username,
@@ -98,6 +116,21 @@ export class Users {
             this.paginatedUsers.refresh();
           },
         });
+      },
+    });
+  }
+
+  public isCurrentUser(user: User): boolean {
+    return this.currentUser()?.id === user.id;
+  }
+
+  public regenerateTemporaryPassword(user: User): void {
+    this.confirm.open({
+      message: this.translateService.instant('users.form.regenerateTemporaryPasswordConfirmation', {
+        userName: user.username,
+      }),
+      accept: () => {
+        this.userService.regenerateTemporaryPassword(user.id).subscribe();
       },
     });
   }

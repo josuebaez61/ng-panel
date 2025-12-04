@@ -243,7 +243,9 @@
       "deactivateUser": "Desactivar Usuario",
       "username": "Nombre de Usuario",
       "deactivateUserConfirmation": "¿Estás seguro de querer desactivar a <b>{{userName}}</b>?",
-      "activateUserConfirmation": "¿Estás seguro de querer activar a <b>{{userName}}</b>?"
+      "activateUserConfirmation": "¿Estás seguro de querer activar a <b>{{userName}}</b>?",
+      "regenerateTemporaryPassword": "Regenerar Contraseña Temporal",
+      "regenerateTemporaryPasswordConfirmation": "¿Estás seguro de querer regenerar la contraseña temporal de <b>{{userName}}</b>?"
     }
   },
   "roles": {
@@ -315,7 +317,7 @@
     "firstNameLabel": "Nombre",
     "lastNameLabel": "Apellido",
     "email": "Email",
-    "userName": "Nombre de Usuario",
+    "username": "Nombre de Usuario",
     "password": "Contraseña",
     "personalInformation": "Información Personal",
     "accountInformation": "Información de la Cuenta",

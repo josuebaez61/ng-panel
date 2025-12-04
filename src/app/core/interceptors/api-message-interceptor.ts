@@ -49,7 +49,7 @@ function handleSuccessResponse(response: any, url: string, toast: Toast): void {
  */
 function handleErrorResponse(error: HttpErrorResponse, url: string, toast: Toast): void {
   // Don't show toast for 401 errors (handled by auth interceptor)
-  if (error.status === 401) {
+  if (shouldSkipToast(url)) {
     return;
   }
 

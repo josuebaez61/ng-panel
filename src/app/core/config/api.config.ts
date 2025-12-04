@@ -16,6 +16,8 @@ export const API_CONFIG = {
     },
     USERS: {
       UPDATE_CURRENT_USER_DATA: '/users/me',
+      REGENERATE_TEMPORARY_PASSWORD: (userId: string): string =>
+        `/users/${userId}/regenerate-temporary-password`,
       GET_CURRENT_USER_ADDRESSES: '/users/addresses',
       CREATE_CURRENT_USER_ADDRESS: '/users/addresses',
       DELETE_CURRENT_USER_ADDRESS: (id: string): string => `/users/addresses/${id}`,

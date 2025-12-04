@@ -33,13 +33,21 @@
       [pTooltip]="'people.form.editPerson' | translate"
       [disabled]="!canUpdateUsers()"
     />
+    <p-button
+      (onClick)="regenerateTemporaryPassword(user)"
+      icon="pi pi-key"
+      text
+      rounded
+      [pTooltip]="'users.form.regenerateTemporaryPassword' | translate"
+      [disabled]="!canUpdateUsers()"
+    />
     @if (user.isActive) {
     <p-button
       (onClick)="deactivateUser(user)"
       icon="pi pi-ban"
       text
       rounded
-      [disabled]="!canUpdateUsers()"
+      [disabled]="!canUpdateUsers() || isCurrentUser(user)"
       severity="danger"
       [pTooltip]="'users.form.deactivateUser' | translate"
     />

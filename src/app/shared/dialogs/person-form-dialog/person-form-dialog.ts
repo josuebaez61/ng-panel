@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal, ViewChild } from '@angular/core';
 import { Person, User } from '@core/models';
 import { UserService } from '@core/services';
-import { PersonForm } from '@shared/components/person-form/person-form';
+import { PersonForm } from '@shared/components/templates/person-form/person-form';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';

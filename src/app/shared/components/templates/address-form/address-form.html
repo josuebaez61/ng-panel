@@ -1,0 +1,128 @@
+<div class="grid grid-cols-12 gap-4">
+  <div class="col-span-12">
+    <app-form-field class="w-full">
+      <app-label>{{ 'addresses.form.name' | translate }}</app-label>
+      <input
+        pInputText
+        type="text"
+        class="w-full"
+        [formControl]="nameControl"
+        [placeholder]="'addresses.form.namePlaceholder' | translate"
+      />
+      <app-control-error [control]="nameControl" />
+    </app-form-field>
+  </div>
+  <div class="col-span-4">
+    <app-form-field class="w-full">
+      <app-label>{{ 'addresses.form.country' | translate }}</app-label>
+      <p-select
+        class="w-full"
+        appendTo="body"
+        [options]="countries()"
+        [formControl]="countryIdControl"
+        optionLabel="name"
+        optionValue="id"
+        [filter]="true"
+        filterBy="name"
+        (onChange)="onCountrySelect($event)"
+      >
+        <ng-template let-option #selectedItem>
+          <div class="flex items-center gap-1.5">
+            <img
+              src="https://flagcdn.com/w80/{{ option.iso2.toLowerCase() }}.png"
+              style="width: 18px"
+            />
+            <span>{{ option.name }}</span>
+          </div>
+        </ng-template>
+        <ng-template let-option #item>
+          <div class="flex items-center gap-1.5">
+            <img
+              src="https://flagcdn.com/w80/{{ option.iso2.toLowerCase() }}.png"
+              style="width: 18px"
+            />
+            <span>{{ option.name }}</span>
+          </div>
+        </ng-template>
+      </p-select>
+      <app-control-error [control]="countryIdControl" />
+    </app-form-field>
+  </div>
+  <div class="col-span-4">
+    <app-form-field class="w-full">
+      <app-label>{{ 'addresses.form.state' | translate }}</app-label>
+      <p-select
+        class="w-full"
+        [disabled]="!countryIdControl.value"
+        appendTo="body"
+        [options]="states()"
+        [formControl]="stateIdControl"
+        optionValue="id"
+        optionLabel="name"
+        [filter]="true"
+        filterBy="name"
+        (onChange)="onStateSelect($event)"
+      >
+        <ng-template let-option #item>
+          <div class="flex items-center gap-1.5">
+            <span>{{ option.name }}</span>
+          </div>
+        </ng-template>
+      </p-select>
+      <app-control-error [control]="stateIdControl" />
+    </app-form-field>
+  </div>
+
+  <div class="col-span-4">
+    <app-form-field class="w-full">
+      <app-label>{{ 'addresses.form.locality' | translate }}</app-label>
+      <p-autocomplete
+        class="w-full"
+        appendTo="body"
+        [disabled]="!stateIdControl.value"
+        [dropdown]="true"
+        [dropdownMode]="'blank'"
+        [suggestions]="filteredLocalities()"
+        (completeMethod)="filterLocalities($event)"
+        [formControl]="localityControl"
+        (onSelect)="onLocalitySelect($event)"
+        [optionLabel]="'name'"
+        [optionValue]="'name'"
+      >
+        <ng-template let-option #item>
+          <div class="flex items-center gap-1.5">
+            <span>{{ option.name }}</span>
+          </div>
+        </ng-template>
+      </p-autocomplete>
+      <app-control-error [control]="localityControl" />
+    </app-form-field>
+  </div>
+  <div class="col-span-12 md:col-span-8">
+    <app-form-field class="w-full">
+      <app-label>{{ 'addresses.form.address' | translate }}</app-label>
+      <input pInputText type="text" class="w-full" [formControl]="addressControl" />
+      <app-control-error [control]="addressControl" />
+    </app-form-field>
+  </div>
+  <div class="col-span-12 md:col-span-4">
+    <app-form-field class="w-full">
+      <app-label>{{ 'addresses.form.zip' | translate }}</app-label>
+      <input pInputText type="text" class="w-full" [formControl]="postalCodeControl" />
+      <app-control-error [control]="postalCodeControl" />
+    </app-form-field>
+  </div>
+  <div class="col-span-12">
+    <app-form-field class="w-full">
+      <app-label>{{ 'addresses.form.directions' | translate }}</app-label>
+      <textarea
+        pTextarea
+        type="text"
+        class="w-full"
+        [formControl]="directionsControl"
+        [placeholder]="'addresses.form.directionsPlaceholder' | translate"
+      ></textarea>
+      <app-control-error [control]="directionsControl" />
+    </app-form-field>
+  </div>
+</div>
