@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { Label } from '@shared/components/label/label';
-import { ControlError } from '@shared/components/control-error/control-error';
+import { Label } from '@shared/components/ui/label/label';
+import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { SharedModule } from '@shared/modules';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { RoutePath } from '@core/constants';
-import { FormField } from '@shared/components/form-field/form-field';
+import { FormField } from '@shared/components/ui/form-field/form-field';
 import { Auth } from '@shared/layouts/auth/auth';
 import { AuthService } from '@core/services';
 import { PasswordResetRequest } from '@core/models';

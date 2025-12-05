@@ -9,8 +9,8 @@ import {
 } from '@core/services';
 import { SharedModule } from '@shared/modules';
 import { FilterMatchMode } from 'primeng/api';
-import { UsersTable } from '@shared/components/table/users-table/users-table';
-import { PanelPageHeader } from '@shared/components/panel-page-header/panel-page-header';
+import { UsersTable } from '@shared/components/lists/table/users-table/users-table';
+import { PanelPageHeader } from '@shared/components/layout/panel-page-header/panel-page-header';
 import { ListUser, Role, UserOption } from '@core/models';
 import { RoutePath } from '@core/constants';
 import { TranslateService } from '@ngx-translate/core';

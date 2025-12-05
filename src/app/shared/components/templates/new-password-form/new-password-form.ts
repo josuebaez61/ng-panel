@@ -1,10 +1,10 @@
 import { Component, effect, input } from '@angular/core';
-import { FormField } from '@shared/components/form-field/form-field';
-import { Label } from '@shared/components/label/label';
+import { FormField } from '@shared/components/ui/form-field/form-field';
+import { Label } from '@shared/components/ui/label/label';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared/modules';
 import { Password } from 'primeng/password';
-import { ControlError } from '@shared/components/control-error/control-error';
+import { ControlError } from '@shared/components/ui/control-error/control-error';
 import {
   FormControl,
   FormGroup,
@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { NewPasswordRequirements } from '@shared/components/new-password-requirements/new-password-requirements';
+import { NewPasswordRequirements } from '@shared/components/password/new-password-requirements/new-password-requirements';
 import { CustomValidators } from '@shared/utils/custom-validators';
 
 @Component({

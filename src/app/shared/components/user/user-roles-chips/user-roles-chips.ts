@@ -2,7 +2,7 @@ import { Component, ViewChild, computed, inject, input, linkedSignal, signal } f
 import { Role, User } from '@core/models';
 import { ChipModule } from 'primeng/chip';
 import { Popover, PopoverModule } from 'primeng/popover';
-import { RoleSelection } from '../role-selection/role-selection';
+import { RoleSelection } from '../../inputs/role-selection/role-selection';
 import { AuthService, Confirm, RoleService, UserService } from '@core/services';
 import { FormsModule } from '@angular/forms';
 import { SkeletonModule } from 'primeng/skeleton';

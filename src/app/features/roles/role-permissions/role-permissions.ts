@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, tap } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
-import { PanelPageHeader } from '@shared/components/panel-page-header/panel-page-header';
+import { PanelPageHeader } from '@shared/components/layout/panel-page-header/panel-page-header';
 import { RoutePath } from '@core/constants';
 import { UnsavedChangesDialog } from '@shared/dialogs/unsaved-changes-dialog/unsaved-changes-dialog';
 

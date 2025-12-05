@@ -1,10 +1,10 @@
 import { Component, inject, signal, ViewChild } from '@angular/core';
 import { Card } from 'primeng/card';
-import { UserAvatar } from '@shared/components/user-avatar/user-avatar';
+import { UserAvatar } from '@shared/components/user/user-avatar/user-avatar';
 import { SharedModule } from '@shared/modules';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService, Confirm, DialogService, UserService } from '@core/services';
-import { AddressesList } from '@shared/components/addresses-list/addresses-list';
+import { AddressesList } from '@shared/components/lists/addresses-list/addresses-list';
 import { UserAddress } from '@core/models/address-model';
 import { mergeMap, of, tap } from 'rxjs';
 import { AccountInfo } from './components/account-info/account-info';

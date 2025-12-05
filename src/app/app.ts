@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { GlobalLoading } from '@shared/components/global-loading/global-loading';
+import { GlobalLoading } from '@shared/components/utilities/global-loading/global-loading';
 
 @Component({
   selector: 'app-root',

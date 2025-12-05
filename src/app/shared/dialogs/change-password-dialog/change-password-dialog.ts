@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormField } from '@shared/components/form-field/form-field';
-import { Label } from '@shared/components/label/label';
+import { FormField } from '@shared/components/ui/form-field/form-field';
+import { Label } from '@shared/components/ui/label/label';
 import { SharedModule } from '@shared/modules';
 import { Password } from 'primeng/password';
-import { NewPasswordRequirements } from '@shared/components/new-password-requirements/new-password-requirements';
+import { NewPasswordRequirements } from '@shared/components/password/new-password-requirements/new-password-requirements';
 import {
   FormControl,
   FormGroup,
@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CustomValidators } from '@shared/utils';
-import { ControlError } from '@shared/components/control-error/control-error';
+import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AuthService } from '@core/services';
 import { ChangePasswordRequest } from '@core/models';

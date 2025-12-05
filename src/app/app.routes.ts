@@ -52,7 +52,7 @@ export const routes: Routes = [
   // 404 - Page not found
   {
     path: '**',
-    loadComponent: () => import('./shared/components/not-found/not-found').then((m) => m.NotFound),
+    loadComponent: () => import('./shared/components/utilities/not-found/not-found').then((m) => m.NotFound),
     title: 'Page Not Found - Admin Panel',
   },
 ];

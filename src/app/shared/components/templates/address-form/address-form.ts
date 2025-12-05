@@ -8,9 +8,9 @@ import {
   AutoCompleteSelectEvent,
 } from 'primeng/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormField } from '@shared/components/form-field/form-field';
-import { Label } from '@shared/components/label/label';
-import { ControlError } from '@shared/components/control-error/control-error';
+import { FormField } from '@shared/components/ui/form-field/form-field';
+import { Label } from '@shared/components/ui/label/label';
+import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
 import { ButtonModule } from 'primeng/button';

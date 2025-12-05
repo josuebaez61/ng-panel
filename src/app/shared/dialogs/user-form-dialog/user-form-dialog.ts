@@ -3,11 +3,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CreateUserRequest, UserFormDialogData } from '@core/models';
 import { UserService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormField } from '@shared/components/form-field/form-field';
-import { Label } from '@shared/components/label/label';
+import { FormField } from '@shared/components/ui/form-field/form-field';
+import { Label } from '@shared/components/ui/label/label';
 import { SharedModule } from '@shared/modules';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ControlError } from '@shared/components/control-error/control-error';
+import { ControlError } from '@shared/components/ui/control-error/control-error';
 
 @Component({
   selector: 'app-user-form-dialog',

@@ -3,7 +3,7 @@ import { AuthUser } from '@core/models';
 import { AuthService, UserService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
 import { PersonForm } from '@shared/components/templates/person-form/person-form';
-import { UserAvatar } from '@shared/components/user-avatar/user-avatar';
+import { UserAvatar } from '@shared/components/user/user-avatar/user-avatar';
 import { Card } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { FormGroup } from '@angular/forms';

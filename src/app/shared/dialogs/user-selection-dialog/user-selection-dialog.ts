@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { UserOption, UsersSelectionDialogData } from '@core/models';
-import { UserSelection } from '@shared/components/user-selection/user-selection';
+import { UserSelection } from '@shared/components/inputs/user-selection/user-selection';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ListboxFilterEvent } from 'primeng/listbox';
 import { ButtonModule } from 'primeng/button';

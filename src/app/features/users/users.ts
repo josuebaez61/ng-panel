@@ -7,8 +7,8 @@ import {
   PaginatedResourceLoader,
   UserService,
 } from '@core/services';
-import { PanelPageHeader } from '@shared/components/panel-page-header/panel-page-header';
-import { UsersTable } from '@shared/components/table/users-table/users-table';
+import { PanelPageHeader } from '@shared/components/layout/panel-page-header/panel-page-header';
+import { UsersTable } from '@shared/components/lists/table/users-table/users-table';
 import { getPageFromLazyLoadEvent } from '@shared/utils/table';
 import { TableLazyLoadEvent } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';

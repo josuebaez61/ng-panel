@@ -3,13 +3,13 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { EmailChangeRequest, EmailVerificationRequest } from '@core/models';
 import { AuthService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormField } from '@shared/components/form-field/form-field';
-import { Label } from '@shared/components/label/label';
+import { FormField } from '@shared/components/ui/form-field/form-field';
+import { Label } from '@shared/components/ui/label/label';
 import { SharedModule } from '@shared/modules';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ControlError } from '@shared/components/control-error/control-error';
+import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { mergeMap } from 'rxjs';
-import { Hint } from '@shared/components/hint/hint';
+import { Hint } from '@shared/components/ui/hint/hint';
 
 @Component({
   selector: 'app-change-email-dialog',

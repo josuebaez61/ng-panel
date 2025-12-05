@@ -1,8 +1,8 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { PermissionName, Role, RoleWithUsersCount } from '@core/models';
 import { AuthService, DialogService, PaginatedResourceLoader, RoleService } from '@core/services';
-import { PanelPageHeader } from '@shared/components/panel-page-header/panel-page-header';
-import { RolesTable } from '@shared/components/table/roles-table/roles-table';
+import { PanelPageHeader } from '@shared/components/layout/panel-page-header/panel-page-header';
+import { RolesTable } from '@shared/components/lists/table/roles-table/roles-table';
 import { forkJoin } from 'rxjs';
 import { SharedModule } from '@shared/modules';
 import { RoutePath } from '@core/constants';

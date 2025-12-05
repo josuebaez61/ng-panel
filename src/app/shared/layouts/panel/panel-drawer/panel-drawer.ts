@@ -7,7 +7,7 @@ import { RoutePath } from '@core/constants';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
-import { UserAvatar } from '@shared/components/user-avatar/user-avatar';
+import { UserAvatar } from '@shared/components/user/user-avatar/user-avatar';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { PermissionName, ResourceName } from '@core/models';
 

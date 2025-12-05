@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormField } from '@shared/components/form-field/form-field';
-import { Label } from '@shared/components/label/label';
+import { FormField } from '@shared/components/ui/form-field/form-field';
+import { Label } from '@shared/components/ui/label/label';
 import { SharedModule } from '@shared/modules';
-import { ControlError } from '@shared/components/control-error/control-error';
+import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RoleService } from '@core/services';
 import { CreateRoleRequest, RoleFormDialogData, UpdateRoleRequest } from '@core/models';

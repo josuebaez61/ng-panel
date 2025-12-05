@@ -6,8 +6,8 @@ import {
   signal,
   ViewChild,
 } from '@angular/core';
-import { Label } from '@shared/components/label/label';
-import { ControlError } from '@shared/components/control-error/control-error';
+import { Label } from '@shared/components/ui/label/label';
+import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {
   FormBuilder,
@@ -21,8 +21,8 @@ import { CustomValidators } from '@shared/utils/custom-validators';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { RoutePath } from '@core/constants';
-import { FormField } from '@shared/components/form-field/form-field';
-import { Hint } from '@shared/components/hint/hint';
+import { FormField } from '@shared/components/ui/form-field/form-field';
+import { Hint } from '@shared/components/ui/hint/hint';
 import { Auth } from '@shared/layouts/auth/auth';
 import { AuthService } from '@core/services';
 import { Router } from '@angular/router';
