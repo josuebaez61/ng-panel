@@ -19,9 +19,10 @@
 
   <!-- Input Container -->
   <div class="input-container w-full">
+    @if (inlineEditable) {
     <p-input-group>
-      <ng-content></ng-content>
-      @if (inlineEditable) { @if (!isEditing()) {
+      <ng-container *ngTemplateOutlet="formFieldControl"></ng-container>
+      @if (!isEditing()) {
       <p-inputgroup-addon>
         <p-button
           text
@@ -30,7 +31,7 @@
           (click)="onEditClick()"
         />
       </p-inputgroup-addon>
-      } @else {
+      } @if (isEditing()) {
       <p-inputgroup-addon>
         <p-button
           text
@@ -48,8 +49,11 @@
           (click)="onSaveClick()"
         />
       </p-inputgroup-addon>
-      } }
+      }
     </p-input-group>
+    } @else {
+    <ng-container *ngTemplateOutlet="formFieldControl"></ng-container>
+    }
   </div>
 
   <!-- Message Container with Fixed Height -->
@@ -85,3 +89,32 @@
   </div>
   } }
 </div>
+
+<ng-template #formFieldControl>
+  <!-- Custom Inputs -->
+  <ng-content select="app-phone-input"></ng-content>
+
+  <!-- PrimeNG Inputs -->
+  <ng-content select="[pTextarea]"></ng-content>
+  <ng-content select="[pInputText]"></ng-content>
+  <ng-content select="p-autocomplete"></ng-content>
+  <ng-content select="p-calendar"></ng-content>
+  <ng-content select="p-checkbox"></ng-content>
+  <ng-content select="p-colorPicker"></ng-content>
+  <ng-content select="p-dropdown"></ng-content>
+  <ng-content select="p-inputNumber"></ng-content>
+  <ng-content select="p-password"></ng-content>
+  <ng-content select="p-radioButton"></ng-content>
+  <ng-content select="p-rating"></ng-content>
+  <ng-content select="p-slider"></ng-content>
+  <ng-content select="p-spinner"></ng-content>
+  <ng-content select="p-toggleButton"></ng-content>
+  <ng-content select="p-treeSelect"></ng-content>
+  <ng-content select="p-tree"></ng-content>
+  <ng-content select="p-treeTable"></ng-content>
+  <ng-content select="p-treeTable"></ng-content>
+  <ng-content select="p-select"></ng-content>
+  <ng-content select="p-input-group"></ng-content>
+  <ng-content select="p-inputGroup"></ng-content>
+  <ng-content select="p-inputgroup"></ng-content>
+</ng-template>

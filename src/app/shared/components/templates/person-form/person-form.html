@@ -1,5 +1,5 @@
 <form [formGroup]="form" class="grid grid-cols-12 gap-4">
-  <div class="col-span-6">
+  <div class="col-span-12 md:col-span-6">
     <app-form-field
       class="w-full"
       [inlineEditable]="inlineEditable()"
@@ -10,7 +10,7 @@
       <app-control-error [control]="form.controls.firstName" />
     </app-form-field>
   </div>
-  <div class="col-span-6">
+  <div class="col-span-12 md:col-span-6">
     <app-form-field
       class="w-full"
       [inlineEditable]="inlineEditable()"
@@ -22,7 +22,7 @@
     </app-form-field>
   </div>
 
-  <div class="col-span-6">
+  <div class="col-span-12 lg:col-span-6">
     <app-form-field
       class="w-full"
       [inlineEditable]="inlineEditable()"
@@ -38,7 +38,7 @@
       <app-control-error [control]="form.controls.identificationNumber" />
     </app-form-field>
   </div>
-  <div class="col-span-6">
+  <div class="col-span-12 lg:col-span-6">
     <app-form-field
       class="w-full"
       [inlineEditable]="inlineEditable()"

@@ -52,6 +52,7 @@ export class DialogService {
       data: {
         user,
       },
+      width: '30rem',
     });
   }
 
@@ -79,12 +80,14 @@ export class DialogService {
   public openChangePasswordDialog(): DynamicDialogRef<ChangePasswordDialog> | null {
     return this.open(ChangePasswordDialog, {
       header: this.translateService.instant('auth.changePassword.title'),
+      width: '30rem',
     });
   }
 
   public openChangeEmailDialog(): DynamicDialogRef<ChangeEmailDialog> | null {
     return this.open(ChangeEmailDialog, {
       header: this.translateService.instant('auth.changeEmail.title'),
+      width: '30rem',
     });
   }
 

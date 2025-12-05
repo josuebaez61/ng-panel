@@ -156,7 +156,7 @@ export class FormField implements AfterViewInit, OnDestroy {
   }
 
   public onSaveClick(): void {
-    if (!this.inlineEditable || !this.hasChanges()) return;
+    if (!this.inlineEditable) return;
     const control = this.control?.control;
     if (!control) return;
 
