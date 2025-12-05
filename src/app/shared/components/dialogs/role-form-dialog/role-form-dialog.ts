@@ -17,8 +17,12 @@ import { CreateRoleRequest, RoleFormDialogData, UpdateRoleRequest } from '@core/
 export class RoleFormDialog {
   private readonly roleService = inject(RoleService);
   public readonly form = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(100),
+    ]),
+    description: new FormControl('', []),
   });
 
   public dialogRef = inject(DynamicDialogRef<RoleFormDialog>);
