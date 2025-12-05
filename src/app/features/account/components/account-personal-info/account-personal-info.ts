@@ -4,14 +4,14 @@ import { AuthService, UserService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
 import { PersonForm } from '@shared/components/templates/person-form/person-form';
 import { UserAvatar } from '@shared/components/user/user-avatar/user-avatar';
-import { Card } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { FormGroup } from '@angular/forms';
+import { PanelModule } from 'primeng/panel';
 
 @Component({
   selector: 'app-account-personal-info',
   standalone: true,
-  imports: [Card, UserAvatar, PersonForm, TranslateModule, ButtonModule],
+  imports: [UserAvatar, PersonForm, TranslateModule, ButtonModule, PanelModule],
   templateUrl: './account-personal-info.html',
   styleUrl: './account-personal-info.scss',
 })

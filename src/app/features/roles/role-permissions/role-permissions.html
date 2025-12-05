@@ -4,31 +4,29 @@
   [description]="'roles.permissions.description'"
 />
 
-<form>
+<form class="flex flex-col gap-4">
   @for (resource of resources(); track $index) {
-  <div class="mb-6 p-4 border border-gray-200 rounded-lg">
-    <div class="flex items-center justify-between mb-3">
-      <h3 class="text-xl font-semibold">
-        {{ 'roles.permissions.resources.' + resource.resource | translate }}
-      </h3>
-
-      <!-- Checkbox para seleccionar todo el recurso -->
-      <div class="flex items-center">
-        <p-checkbox
-          [ngModel]="areAllResourcePermissionsSelected(resource)"
-          [indeterminate]="
-            isSomeResourcePermissionSelected(resource) &&
-            !areAllResourcePermissionsSelected(resource)
-          "
-          [ngModelOptions]="{ standalone: true }"
-          (onChange)="toggleResourcePermissions(resource, $event.checked)"
-          [binary]="true"
-          class="text-sm text-gray-600"
-        >
-        </p-checkbox>
-        <label class="ml-2">{{ 'common.selectAll' | translate }}</label>
+  <p-panel [header]="'roles.permissions.resources.' + resource.resource | translate">
+    <ng-template #icons>
+      <div class="flex items-center justify-between mb-3">
+        <!-- Checkbox para seleccionar todo el recurso -->
+        <div class="flex items-center">
+          <p-checkbox
+            [ngModel]="areAllResourcePermissionsSelected(resource)"
+            [indeterminate]="
+              isSomeResourcePermissionSelected(resource) &&
+              !areAllResourcePermissionsSelected(resource)
+            "
+            [ngModelOptions]="{ standalone: true }"
+            (onChange)="toggleResourcePermissions(resource, $event.checked)"
+            [binary]="true"
+            class="text-sm text-gray-600"
+          >
+          </p-checkbox>
+          <label class="ml-2">{{ 'common.selectAll' | translate }}</label>
+        </div>
       </div>
-    </div>
+    </ng-template>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 ml-4">
       @for (permission of resource.permissions; track permission.id) {
@@ -45,7 +43,7 @@
       </div>
       }
     </div>
-  </div>
+  </p-panel>
   }
 </form>
 

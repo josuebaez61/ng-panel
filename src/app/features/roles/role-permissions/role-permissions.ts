@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { PanelPageHeader } from '@shared/components/layout/panel-page-header/panel-page-header';
 import { RoutePath } from '@core/constants';
 import { UnsavedChangesDialog } from '@shared/components/dialogs/unsaved-changes-dialog/unsaved-changes-dialog';
+import { PanelModule } from 'primeng/panel';
 
 @Component({
   selector: 'app-role-permissions',
@@ -20,6 +21,7 @@ import { UnsavedChangesDialog } from '@shared/components/dialogs/unsaved-changes
     ButtonModule,
     PanelPageHeader,
     UnsavedChangesDialog,
+    PanelModule,
   ],
   templateUrl: './role-permissions.html',
   styleUrl: './role-permissions.scss',

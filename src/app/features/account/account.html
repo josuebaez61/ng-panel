@@ -5,18 +5,15 @@
     </div>
     <div class="col-span-6 flex flex-col gap-4">
       <app-account-info [user]="user()" />
-      <p-card>
-        <ng-template #title>
-          <div class="flex justify-between items-center">
-            <h3 class="text-lg font-medium">{{ 'account.addresses' | translate }}</h3>
-            <p-button
-              (onClick)="openAddressFormDialog()"
-              icon="pi pi-plus"
-              text
-              rounded
-              [label]="'addresses.addAddress' | translate"
-            />
-          </div>
+      <p-panel [header]="'account.addresses' | translate">
+        <ng-template #icons>
+          <p-button
+            (onClick)="openAddressFormDialog()"
+            icon="pi pi-plus"
+            text
+            rounded
+            [label]="'addresses.addAddress' | translate"
+          />
         </ng-template>
         <app-addresses-list
           [addresses]="addresses()"
@@ -42,7 +39,7 @@
             />
           </div>
         </ng-template>
-      </p-card>
+      </p-panel>
     </div>
   </div>
 </div>

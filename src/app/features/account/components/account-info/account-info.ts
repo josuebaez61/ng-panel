@@ -11,12 +11,12 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { ButtonModule } from 'primeng/button';
 import { Card } from 'primeng/card';
+import { PanelModule } from 'primeng/panel';
 
 @Component({
   selector: 'app-account-info',
   standalone: true,
   imports: [
-    Card,
     ReactiveFormsModule,
     TranslateModule,
     FormField,
@@ -26,6 +26,7 @@ import { Card } from 'primeng/card';
     InputGroupModule,
     InputGroupAddonModule,
     ButtonModule,
+    PanelModule,
   ],
   templateUrl: './account-info.html',
   styleUrl: './account-info.scss',

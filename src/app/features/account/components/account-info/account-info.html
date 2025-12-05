@@ -1,4 +1,4 @@
-<p-card [header]="'account.accountInformation' | translate">
+<p-panel [header]="'account.accountInformation' | translate">
   <form [formGroup]="form" class="grid grid-cols-12 gap-4">
     <div class="col-span-12">
       <app-form-field class="w-full" [inlineEditable]="true" (onSave)="onSaveUsername()">
@@ -31,4 +31,4 @@
       </app-form-field>
     </div>
   </form>
-</p-card>
+</p-panel>

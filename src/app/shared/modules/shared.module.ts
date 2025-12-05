@@ -22,6 +22,7 @@ import { TableModule } from 'primeng/table';
 import { TextareaModule } from 'primeng/textarea';
 import { TooltipModule } from 'primeng/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
+import { PanelModule } from 'primeng/panel';
 @NgModule({
   imports: [CommonModule, Label, ControlError, FormField],
   exports: [
@@ -48,6 +49,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TooltipModule,
     ConfirmDialogModule,
     TextareaModule,
+    PanelModule,
   ],
 })
 export class SharedModule {}

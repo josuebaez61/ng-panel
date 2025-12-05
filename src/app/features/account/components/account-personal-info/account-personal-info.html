@@ -1,4 +1,4 @@
-<p-card [header]="'account.personalInformation' | translate">
+<p-panel [header]="'account.personalInformation' | translate">
   <div class="flex justify-center mb-6">
     <app-user-avatar [user]="user()" [size]="10" />
   </div>
@@ -8,4 +8,4 @@
     [inlineEditable]="true"
     (save)="onSave($event)"
   />
-</p-card>
+</p-panel>

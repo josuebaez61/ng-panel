@@ -1,6 +1,4 @@
 import { Component, inject, signal, ViewChild } from '@angular/core';
-import { Card } from 'primeng/card';
-import { UserAvatar } from '@shared/components/user/user-avatar/user-avatar';
 import { SharedModule } from '@shared/modules';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService, Confirm, DialogService, UserService } from '@core/services';
@@ -12,7 +10,7 @@ import { AccountPersonalInfo } from './components/account-personal-info/account-
 
 @Component({
   selector: 'app-account',
-  imports: [Card, SharedModule, TranslateModule, AddressesList, AccountInfo, AccountPersonalInfo],
+  imports: [SharedModule, TranslateModule, AddressesList, AccountInfo, AccountPersonalInfo],
   templateUrl: './account.html',
   styleUrl: './account.scss',
 })
