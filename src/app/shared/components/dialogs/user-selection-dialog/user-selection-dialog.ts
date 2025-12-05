@@ -7,10 +7,11 @@ import { ListboxFilterEvent } from 'primeng/listbox';
 import { ButtonModule } from 'primeng/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
+import { DialogActions } from '@shared/directives';
 
 @Component({
   selector: 'app-user-selection-dialog',
-  imports: [CommonModule, UserSelection, ButtonModule, TranslateModule, FormsModule],
+  imports: [CommonModule, UserSelection, ButtonModule, TranslateModule, FormsModule, DialogActions],
   templateUrl: './user-selection-dialog.html',
   styles: ``,
 })

@@ -48,7 +48,6 @@ export class Users {
   });
 
   public onLazyLoad(event: TableLazyLoadEvent): void {
-    console.log(event);
     this.paginatedUsers.handleTableLazyLoadEvent(event);
   }
 

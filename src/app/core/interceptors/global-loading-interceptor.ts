@@ -6,9 +6,6 @@ import { GlobalLoadingService } from '../services/global-loading-service';
 export const globalLoadingInterceptor: HttpInterceptorFn = (req, next) => {
   const globalLoadingService = inject(GlobalLoadingService);
 
-  console.log('globalLoadingInterceptor', req.url);
-  console.log(req.method);
-
   // Skip loading for retry requests (marked by auth interceptor)
   const skipLoading = req.headers.has('X-Skip-Loading');
 

@@ -1,40 +1,37 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ViewChild, inject, signal } from '@angular/core';
 import { CreateUserRequest, UserFormDialogData } from '@core/models';
 import { UserService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormField } from '@shared/components/ui/form-field/form-field';
-import { Label } from '@shared/components/ui/label/label';
-import { SharedModule } from '@shared/modules';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ControlError } from '@shared/components/ui/control-error/control-error';
+import { UserForm } from '@shared/components/templates/user-form/user-form';
+import { DialogActions } from '@shared/directives';
+import { ButtonModule } from 'primeng/button';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-user-form-dialog',
-  imports: [FormField, Label, SharedModule, TranslateModule, ReactiveFormsModule, ControlError],
+  imports: [UserForm, TranslateModule, ButtonModule, DialogActions],
   templateUrl: './user-form-dialog.html',
   styles: ``,
 })
-export class UserFormDialog {
+export class UserFormDialog implements AfterViewInit {
   private readonly userService = inject(UserService);
 
-  public submitting = signal(false);
+  public saving = signal(false);
+
+  @ViewChild(UserForm)
+  public userFormComponent?: UserForm;
 
   private readonly dialogRef = inject(DynamicDialogRef<UserFormDialog>);
   private readonly dialogConfig = inject(DynamicDialogConfig<UserFormDialogData>);
 
-  public form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(200)]),
-    username: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(100),
-    ]),
-  });
+  public get form(): FormGroup | undefined {
+    return this.userFormComponent?.form;
+  }
 
-  constructor() {
+  public ngAfterViewInit(): void {
     if (this.dialogConfig.data) {
-      this.form.patchValue(this.dialogConfig.data.user);
+      this.form?.patchValue(this.dialogConfig.data.user);
     }
   }
 
@@ -43,31 +40,31 @@ export class UserFormDialog {
   }
 
   public onSubmit(): void {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
+    if (this.form?.invalid) {
+      this.form?.markAllAsTouched();
       return;
     }
-    this.submitting.set(true);
+    this.saving.set(true);
     const editingUser = this.dialogConfig.data.user;
 
     if (editingUser) {
-      this.userService.updateUser(editingUser.id, this.form.value).subscribe({
+      this.userService.updateUser(editingUser.id, this.form?.value).subscribe({
         next: () => {
           this.dialogRef.close(true);
-          this.submitting.set(false);
+          this.saving.set(false);
         },
         error: () => {
-          this.submitting.set(false);
+          this.saving.set(false);
         },
       });
     } else {
-      this.userService.createUser(this.form.value as CreateUserRequest).subscribe({
+      this.userService.createUser(this.form?.value as CreateUserRequest).subscribe({
         next: () => {
           this.dialogRef.close(true);
-          this.submitting.set(false);
+          this.saving.set(false);
         },
         error: () => {
-          this.submitting.set(false);
+          this.saving.set(false);
         },
       });
     }

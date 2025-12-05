@@ -7,10 +7,11 @@ import { ControlError } from '@shared/components/ui/control-error/control-error'
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RoleService } from '@core/services';
 import { CreateRoleRequest, RoleFormDialogData, UpdateRoleRequest } from '@core/models';
+import { DialogActions } from '@shared/directives';
 
 @Component({
   selector: 'app-role-form-dialog',
-  imports: [FormField, Label, SharedModule, ReactiveFormsModule, ControlError],
+  imports: [FormField, Label, SharedModule, ReactiveFormsModule, ControlError, DialogActions],
   templateUrl: './role-form-dialog.html',
   styles: ``,
 })

@@ -3,10 +3,11 @@ import { SharedModule } from '@shared/modules';
 import { Subject } from 'rxjs';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AddressForm } from '@shared/components/templates/address-form/address-form';
+import { DialogActions } from '@shared/directives';
 
 @Component({
   selector: 'app-address-form-dialog',
-  imports: [SharedModule, AddressForm],
+  imports: [SharedModule, AddressForm, DialogActions],
   templateUrl: './address-form-dialog.html',
   styles: ``,
 })

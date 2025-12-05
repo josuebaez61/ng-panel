@@ -5,6 +5,7 @@ import { PersonForm } from '@shared/components/templates/person-form/person-form
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
+import { DialogActions } from '@shared/directives';
 
 export interface PersonFormDialogData {
   user?: User;
@@ -13,7 +14,7 @@ export interface PersonFormDialogData {
 
 @Component({
   selector: 'app-person-form-dialog',
-  imports: [PersonForm, TranslateModule, ButtonModule],
+  imports: [PersonForm, TranslateModule, ButtonModule, DialogActions],
   templateUrl: './person-form-dialog.html',
   styleUrl: './person-form-dialog.scss',
 })

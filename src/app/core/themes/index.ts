@@ -1,7 +1,8 @@
 import { definePreset } from '@primeuix/themes';
 import Material from '@primeuix/themes/material';
+import Aura from '@primeuix/themes/aura';
 
-export const Noir = definePreset(Material, {
+export const Noir = definePreset(Aura, {
   semantic: {
     primary: {
       50: '{zinc.50}',

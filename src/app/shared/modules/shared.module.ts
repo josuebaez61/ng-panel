@@ -23,8 +23,9 @@ import { TextareaModule } from 'primeng/textarea';
 import { TooltipModule } from 'primeng/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
 import { PanelModule } from 'primeng/panel';
+import { DialogActions } from '@shared/directives/dialog-actions';
 @NgModule({
-  imports: [CommonModule, Label, ControlError, FormField],
+  imports: [CommonModule, Label, ControlError, FormField, DialogActions],
   exports: [
     CommonModule,
     ButtonModule,
@@ -50,6 +51,7 @@ import { PanelModule } from 'primeng/panel';
     ConfirmDialogModule,
     TextareaModule,
     PanelModule,
+    DialogActions,
   ],
 })
 export class SharedModule {}
