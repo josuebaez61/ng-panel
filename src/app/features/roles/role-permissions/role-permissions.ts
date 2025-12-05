@@ -9,7 +9,7 @@ import { forkJoin, tap } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
 import { PanelPageHeader } from '@shared/components/layout/panel-page-header/panel-page-header';
 import { RoutePath } from '@core/constants';
-import { UnsavedChangesDialog } from '@shared/dialogs/unsaved-changes-dialog/unsaved-changes-dialog';
+import { UnsavedChangesDialog } from '@shared/components/dialogs/unsaved-changes-dialog/unsaved-changes-dialog';
 
 @Component({
   selector: 'app-role-permissions',

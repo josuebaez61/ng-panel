@@ -8,7 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared/modules';
 import { BadgeModule } from 'primeng/badge';
 import { Chip } from 'primeng/chip';
-import { LocalizedDatePipe } from '../../../pipes/localized-date-pipe';
+import { LocalizedDatePipe } from '@shared/pipes';
 
 @Component({
   selector: 'app-roles-table',

@@ -9,13 +9,13 @@ import {
 } from '@core/models';
 import { Address, UserAddress } from '@core/models/address-model';
 import { TranslateService } from '@ngx-translate/core';
-import { AddressFormDialog } from '@shared/dialogs/address-form-dialog/address-form-dialog';
-import { ChangeEmailDialog } from '@shared/dialogs/change-email-dialog/change-email-dialog';
-import { ChangePasswordDialog } from '@shared/dialogs/change-password-dialog/change-password-dialog';
-import { PersonFormDialog } from '@shared/dialogs/person-form-dialog/person-form-dialog';
-import { RoleFormDialog } from '@shared/dialogs/role-form-dialog/role-form-dialog';
-import { UserFormDialog } from '@shared/dialogs/user-form-dialog/user-form-dialog';
-import { UserSelectionDialog } from '@shared/dialogs/user-selection-dialog/user-selection-dialog';
+import { AddressFormDialog } from '@shared/components/dialogs/address-form-dialog/address-form-dialog';
+import { ChangeEmailDialog } from '@shared/components/dialogs/change-email-dialog/change-email-dialog';
+import { ChangePasswordDialog } from '@shared/components/dialogs/change-password-dialog/change-password-dialog';
+import { PersonFormDialog } from '@shared/components/dialogs/person-form-dialog/person-form-dialog';
+import { RoleFormDialog } from '@shared/components/dialogs/role-form-dialog/role-form-dialog';
+import { UserFormDialog } from '@shared/components/dialogs/user-form-dialog/user-form-dialog';
+import { UserSelectionDialog } from '@shared/components/dialogs/user-selection-dialog/user-selection-dialog';
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
