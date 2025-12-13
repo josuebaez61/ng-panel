@@ -2,8 +2,14 @@ import { HttpInterceptorFn, HttpRequest, HttpErrorResponse } from '@angular/comm
 import { inject } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { ApiResponse } from '../models/api-response-models';
+import {
+  ApiResponseError,
+  ApiResponse,
+  ValidationError,
+  FailedApiResponse,
+} from '../models/api-response-models';
 import { Toast } from '@core/services/toast';
+import { isApiResponse, isFailedApiResponse } from '@shared/utils/type-validations';
 
 export const apiMessageInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next) => {
   const toast = inject(Toast);
@@ -100,12 +106,10 @@ function handleErrorResponse(error: HttpErrorResponse, url: string, toast: Toast
       }
   }
 
-  console.log('error.error', error.error);
   if (error.error) {
     // Check if it's our API error format
-    if (isApiError(error.error)) {
-      const apiError = error.error;
-      errorMessage = apiError.error?.message || errorMessage;
+    if (isFailedApiResponse(error.error)) {
+      errorMessage = error.error.error.message || errorMessage;
     } else if (typeof error.error === 'string') {
       errorMessage = error.error;
     } else if (error.error.message) {
@@ -113,84 +117,10 @@ function handleErrorResponse(error: HttpErrorResponse, url: string, toast: Toast
     }
   }
 
-  // Handle validation errors specifically
-  if (errorDetails && error.error?.errorCode === 'VALIDATION_ERROR') {
-    handleValidationErrors(error.error, errorDetails, toast);
-  } else {
-    toast.error(errorMessage, {
-      summary: 'Error',
-      life: error.status >= 500 ? 8000 : 6000, // Longer duration for server errors
-    });
-  }
-}
-
-/**
- * Handle validation errors from API
- */
-function handleValidationErrors(error: ApiResponse<any>, errors: any, toast: Toast): void {
-  const errorMessages: string[] = [];
-
-  if (Array.isArray(errors)) {
-    errorMessages.push(...errors);
-  } else if (typeof errors === 'object') {
-    Object.keys(errors).forEach((field) => {
-      const fieldErrors = errors[field];
-      if (Array.isArray(fieldErrors)) {
-        fieldErrors.forEach((error) => {
-          errorMessages.push(`${error}`);
-        });
-      } else if (typeof fieldErrors === 'string') {
-        errorMessages.push(`${fieldErrors}`);
-      }
-    });
-  }
-
-  if (errorMessages.length > 0) {
-    // Show first few errors, truncate if too many
-    const displayLimit = 1;
-    const displayErrors = errorMessages.slice(0, displayLimit);
-    const message = displayErrors.join('; ');
-
-    toast.error(message, {
-      summary: error.error?.message || 'An error occurred',
-      life: 8000,
-    });
-
-    // If there are more errors, show a summary
-    if (errorMessages.length > displayLimit) {
-      setTimeout(() => {
-        toast.info(
-          `And ${
-            errorMessages.length - displayLimit
-          } more validation errors. Please check all fields.`,
-          { life: 6000 }
-        );
-      }, 1000);
-    }
-  }
-}
-
-/**
- * Check if response has the expected API structure
- */
-function isApiResponse(response: any): boolean {
-  return (
-    response &&
-    typeof response === 'object' &&
-    typeof response.success === 'boolean' &&
-    typeof response.message === 'string'
-  );
-}
-
-function isApiError(error: any): boolean {
-  return (
-    error &&
-    typeof error === 'object' &&
-    typeof error.success === 'boolean' &&
-    'error' in error &&
-    typeof error.error === 'object' &&
-    typeof error.error.message === 'string'
-  );
+  toast.error(errorMessage, {
+    summary: 'Error',
+    life: error.status >= 500 ? 8000 : 6000, // Longer duration for server errors
+  });
 }
 
 /**

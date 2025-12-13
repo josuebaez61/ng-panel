@@ -52,7 +52,7 @@ export class AccountPersonalInfo implements OnInit {
     }
 
     this.saving.set(true);
-    this.userService.updateCurrentUserPerson({ [event.key]: event.value }).subscribe({
+    this.userService.updateCurrentUserPerson({ [event.key]: 1 }).subscribe({
       next: () => {
         this.saving.set(false);
         this.personForm?.markAsPristine();
