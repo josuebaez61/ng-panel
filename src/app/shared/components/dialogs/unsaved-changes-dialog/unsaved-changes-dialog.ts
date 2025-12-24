@@ -1,5 +1,4 @@
-import { Component, computed, inject, input, output } from '@angular/core';
-import { UnsavedChangesService } from '@core/services';
+import { Component, input, output } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared/modules';
 
@@ -11,7 +10,7 @@ import { SharedModule } from '@shared/modules';
       header="{{ title() | translate }}"
       [modal]="false"
       [style]="{ width: '25rem' }"
-      [visible]="unsavedChanges()"
+      [visible]="visible()"
       [closeOnEscape]="false"
       [focusOnShow]="false"
       position="bottom"
@@ -45,8 +44,7 @@ import { SharedModule } from '@shared/modules';
   styles: ``,
 })
 export class UnsavedChangesDialog {
-  public unsavedChangesService = inject(UnsavedChangesService);
-  public unsavedChanges = computed(() => this.unsavedChangesService.existsUnsavedChanges());
+  public visible = input<boolean>(false);
   public message = input<string>('unsavedChanges.description');
   public title = input<string>('unsavedChanges.title');
   public saveButtonText = input<string>('unsavedChanges.save');

@@ -47,4 +47,8 @@
   }
 </form>
 
-<app-unsaved-changes-dialog (save)="savePermissions()" (discard)="resetPermissions()" />
+<app-unsaved-changes-dialog
+  [visible]="unsavedChangesVisible()"
+  (save)="savePermissions()"
+  (discard)="resetPermissions()"
+/>

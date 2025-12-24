@@ -1,11 +1,14 @@
-import { inject } from '@angular/core';
+import { DOCUMENT, inject } from '@angular/core';
 import { CanDeactivateFn } from '@angular/router';
-import { UnsavedChangesService } from '@core/services/unsaved-changes-service';
 
 export const unsavedChangesGuard: CanDeactivateFn<unknown> = () => {
-  const unsavedChangesService = inject(UnsavedChangesService);
-  if (unsavedChangesService.existsUnsavedChanges()) {
-    unsavedChangesService.shakeDialog();
+  const document = inject(DOCUMENT);
+  const toast = document.querySelector('.unsaved-changes-dialog');
+  if (toast) {
+    toast.classList.add('animate__animated', 'animate__shakeX');
+    setTimeout(() => {
+      toast.classList.remove('animate__animated', 'animate__shakeX');
+    }, 1000);
   }
-  return !unsavedChangesService.existsUnsavedChanges();
+  return !toast;
 };

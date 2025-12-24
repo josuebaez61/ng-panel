@@ -11,5 +11,4 @@ export * from './role-service';
 export * from './storage-service';
 export * from './theme';
 export * from './toast';
-export * from './unsaved-changes-service';
 export * from './user-service';

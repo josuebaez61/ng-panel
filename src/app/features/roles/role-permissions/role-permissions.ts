@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { ResourcePermissions, Role } from '@core/models';
-import { PermissionsService, RoleService, UnsavedChangesService } from '@core/services';
+import { PermissionsService, RoleService } from '@core/services';
 import { CheckboxModule } from 'primeng/checkbox';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
@@ -31,7 +31,6 @@ export class RolePermissions implements OnInit {
   private readonly roleService = inject(RoleService);
   private readonly permissionsService = inject(PermissionsService);
   private readonly activatedRoute = inject(ActivatedRoute);
-  private readonly unsavedChangesService = inject(UnsavedChangesService);
 
   public resources = signal<ResourcePermissions[]>([]);
   public selectedPermissions = signal<string[]>([]);
@@ -39,6 +38,8 @@ export class RolePermissions implements OnInit {
   public roleId = this.activatedRoute.snapshot.params['id'];
   public loading = signal(false);
   public error = signal<unknown>(null);
+
+  public unsavedChangesVisible = signal(false);
 
   public backRoute = RoutePath.ROLES;
   public role = signal<Role | null>(null);
@@ -166,7 +167,7 @@ export class RolePermissions implements OnInit {
       .pipe(
         tap(() => {
           this.savedPermissions = [...selectedIds];
-          this.unsavedChangesService.resetUnsavedChanges();
+          this.unsavedChangesVisible.set(false);
         })
       )
       .subscribe();
@@ -180,7 +181,7 @@ export class RolePermissions implements OnInit {
     this.selectedPermissions.set([...this.savedPermissions]);
 
     // Reset unsaved changes state
-    this.unsavedChangesService.resetUnsavedChanges();
+    this.unsavedChangesVisible.set(false);
     return Promise.resolve(true);
   }
 
@@ -205,9 +206,9 @@ export class RolePermissions implements OnInit {
     const hasChanges = this.hasUnsavedChanges();
 
     if (hasChanges) {
-      this.unsavedChangesService.markAsUnsaved();
+      this.unsavedChangesVisible.set(true);
     } else {
-      this.unsavedChangesService.resetUnsavedChanges();
+      this.unsavedChangesVisible.set(false);
     }
   }
 }
