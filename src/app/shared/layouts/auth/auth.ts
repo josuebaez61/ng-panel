@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
-import { Theme } from '@core/services';
+import { ThemeService } from '@core/services';
 import { Card } from 'primeng/card';
 import { Topbar } from '../common/topbar/topbar';
 import { TranslateModule } from '@ngx-translate/core';
@@ -17,7 +17,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class Auth implements OnInit {
   public isDarkMode = false;
-  private themeService = inject(Theme);
+  private themeService = inject(ThemeService);
 
   public companyName = environment.companyName;
   public title = input<string | null>(null);

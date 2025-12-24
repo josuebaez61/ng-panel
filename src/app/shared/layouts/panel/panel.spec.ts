@@ -8,6 +8,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MessageService } from 'primeng/api';
 import { provideTranslateTestingConfig, provideLanguageOptions } from '@core/providers';
 import { provideCurrentLang } from '@core/providers/current_lang.provider';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
 describe('Panel', () => {
   let component: Panel;
@@ -25,9 +26,9 @@ describe('Panel', () => {
         provideTranslateTestingConfig(),
         provideLanguageOptions(),
         provideCurrentLang(),
+        provideNoopAnimations(),
       ],
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Panel);
     component = fixture.componentInstance;

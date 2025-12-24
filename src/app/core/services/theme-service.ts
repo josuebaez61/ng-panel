@@ -4,7 +4,7 @@ import { StorageService } from './storage-service';
 import { THEME_DARK_CSS_CLASS_NAME, THEME_LIGHT_CSS_CLASS_NAME } from '@core/constants';
 
 @Injectable({ providedIn: 'root' })
-export class Theme {
+export class ThemeService {
   private _currentTheme = signal<ThemeName>('light');
   private storageService = inject(StorageService);
 

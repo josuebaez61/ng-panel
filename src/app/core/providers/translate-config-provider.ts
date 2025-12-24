@@ -8,13 +8,11 @@ export const provideTranslateConfig = () =>
       prefix: './i18n/',
       suffix: '.json',
     }),
-    defaultLanguage: 'en-US',
-    useDefaultLang: true,
+    fallbackLang: 'en-US',
   });
 
 export const provideTranslateTestingConfig = () =>
   provideTranslateService({
     loader: provideTranslateLoader(TranslateTestingLoader),
-    defaultLanguage: 'en-US',
-    useDefaultLang: true,
+    fallbackLang: 'en-US',
   });

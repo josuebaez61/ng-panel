@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, output } f
 import { DrawerModule } from 'primeng/drawer';
 import { AvatarModule } from 'primeng/avatar';
 import { SharedModule } from '@shared/modules';
-import { AuthService, LocalizedMenu, Theme } from '@core/services';
+import { AuthService, LocalizedMenu, ThemeService } from '@core/services';
 import { RoutePath } from '@core/constants';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { MenuModule } from 'primeng/menu';
@@ -29,7 +29,7 @@ import { PermissionName, ResourceName } from '@core/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PanelDrawer {
-  private readonly theme = inject(Theme);
+  private readonly theme = inject(ThemeService);
   private readonly authService = inject(AuthService);
 
   public isDark = computed(() => this.theme.isDark());

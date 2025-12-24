@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { EN_LANGUAGE } from '@core/constants';
 import { LANGUAGE_OPTIONS_TOKEN } from '@core/providers';
-import { StorageService, Theme } from '@core/services';
+import { StorageService, ThemeService } from '@core/services';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
@@ -16,7 +16,7 @@ import { GlobalLoading } from '@shared/components/utilities/global-loading/globa
   styleUrl: './app.scss',
 })
 export class App {
-  private themeService = inject(Theme);
+  private themeService = inject(ThemeService);
   private translateService = inject(TranslateService);
   private storageService = inject(StorageService);
   private languageOptions = inject(LANGUAGE_OPTIONS_TOKEN);

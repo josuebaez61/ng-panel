@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Theme } from '@core/services';
+import { ThemeService } from '@core/services';
 import { Button } from 'primeng/button';
 
 @Component({
@@ -16,7 +16,7 @@ import { Button } from 'primeng/button';
   styles: ``,
 })
 export class ThemeButton {
-  public themeService = inject(Theme);
+  public themeService = inject(ThemeService);
 
   public onClick() {
     this.themeService.toggleTheme();

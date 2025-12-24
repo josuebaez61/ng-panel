@@ -9,6 +9,6 @@ export * from './permissions-service';
 export * from './responsive-service';
 export * from './role-service';
 export * from './storage-service';
-export * from './theme';
+export * from './theme-service';
 export * from './toast';
 export * from './user-service';
