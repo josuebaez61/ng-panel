@@ -25,7 +25,6 @@ import { RippleModule } from 'primeng/ripple';
 
 import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
-import { DialogService } from 'primeng/dynamicdialog';
 
 registerLocaleData(localeEs);
 registerLocaleData(localeEn);
@@ -78,6 +77,7 @@ export const appConfig: ApplicationConfig = {
 
     RippleModule,
     ConfirmationService,
-    DialogService,
+    // Note: DialogService from PrimeNG is not provided here to prevent direct injection.
+    // It's only available through our custom DialogService in @core/services/dialog-service.ts
   ],
 };

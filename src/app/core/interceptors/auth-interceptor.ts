@@ -22,15 +22,17 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next) 
   const authService = inject(AuthService);
   const storageService = inject(StorageService);
 
+  const requestUrl = req.url;
+
   // For refresh token endpoint, add X-Refresh-Token header but don't try to refresh again if it fails
-  if (isRefreshTokenEndpoint(req.url)) {
+  if (isRefreshTokenEndpoint(requestUrl)) {
     return from(addRefreshTokenHeader(req, storageService)).pipe(
       switchMap((authReq) => next(authReq))
     );
   }
 
   // Skip auth for login, register, and password reset endpoints
-  if (isAuthEndpoint(req.url)) {
+  if (isAuthEndpoint(requestUrl)) {
     return next(req);
   }
 
@@ -50,28 +52,30 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next) 
 
   return next(authReq).pipe(
     catchError((error) => {
-      if (
-        error instanceof HttpErrorResponse &&
-        error.status === 401 &&
-        !isRefreshTokenEndpoint(req.url) &&
-        !isAuthEndpoint(req.url)
-      ) {
+      // Check if error is 401 and not from auth/refresh endpoints
+      const is401Error = error instanceof HttpErrorResponse && error.status === 401;
+      const shouldRefresh =
+        is401Error && !isRefreshTokenEndpoint(requestUrl) && !isAuthEndpoint(requestUrl);
+
+      if (shouldRefresh) {
         if (!isRefreshing) {
           // Start refresh process
           isRefreshing = true;
           refreshTokenSubject.next(null);
 
           return authService.refreshAuthToken().pipe(
-            switchMap(() => {
+            switchMap((_response) => {
               const newToken = authService.token();
               if (newToken) {
                 refreshTokenSubject.next(newToken);
                 const retryRequest = cloneRequestWithToken(newToken);
                 return next(retryRequest);
               }
+              refreshTokenSubject.next(null);
               return throwError(() => new Error('Failed to get new token'));
             }),
             catchError((err) => {
+              refreshTokenSubject.next(null);
               authService.logout();
               return throwError(() => err);
             }),
@@ -87,6 +91,11 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next) 
             switchMap((token) => {
               const retryRequest = cloneRequestWithToken(token);
               return next(retryRequest);
+            }),
+            catchError((err) => {
+              // If waiting for refresh fails, logout
+              authService.logout();
+              return throwError(() => err);
             })
           );
         }

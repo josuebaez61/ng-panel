@@ -1,10 +1,5 @@
-import { inject, Injectable, Type } from '@angular/core';
-import {
-  Role,
-  UsersSelectionDialogData,
-  User,
-  Person,
-} from '@core/models';
+import { inject, Injectable, Type, Injector, ApplicationRef, DOCUMENT } from '@angular/core';
+import { Role, UsersSelectionDialogData, User, Person } from '@core/models';
 import { Address } from '@core/models/address-model';
 import { TranslateService } from '@ngx-translate/core';
 import { AddressFormDialog } from '@shared/components/dialogs/address-form-dialog/address-form-dialog';
@@ -20,11 +15,32 @@ import {
   DialogService as PrimeDialogService,
 } from 'primeng/dynamicdialog';
 
+/**
+ * Custom DialogService that encapsulates PrimeNG's DialogService.
+ * This prevents direct injection of PrimeNG's DialogService in other components,
+ * ensuring all dialogs are opened through this centralized service.
+ *
+ * Note: PrimeNG's DialogService is not provided globally in app.config.ts.
+ * It's only instantiated here to maintain encapsulation and centralized dialog management.
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class DialogService {
   private readonly translateService = inject(TranslateService);
+  private readonly injector = inject(Injector);
+  private readonly applicationRef = inject(ApplicationRef);
+  private readonly document = inject(DOCUMENT);
+
+  // Create a private instance of PrimeNG's DialogService
+  // This instance is only accessible within this service
+  // PrimeNG DialogService constructor: (applicationRef, injector, document)
+  private readonly _dialog = new PrimeDialogService(
+    this.applicationRef,
+    this.injector,
+    this.document
+  );
+
   private readonly defaultConfig: DynamicDialogConfig = {
     width: '40rem',
     height: 'auto',
@@ -33,7 +49,6 @@ export class DialogService {
     modal: true,
     closable: true,
   };
-  private readonly _dialog = inject(PrimeDialogService);
 
   private open<T>(component: Type<T>, config: DynamicDialogConfig): DynamicDialogRef<T> | null {
     return this._dialog.open(component, {
