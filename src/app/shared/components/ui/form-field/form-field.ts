@@ -114,6 +114,12 @@ export class FormField implements AfterViewInit, OnDestroy {
   });
 
   ngAfterViewInit(): void {
+    if (!this.control) {
+      console.error(
+        'FormField Error: No NgControl detected. Make sure your input/control is wrapped with ngModel, formControlName, or formControl directive.',
+        this
+      );
+    }
     this.updateControlState();
     if (this.inlineEditable) {
       this.initializeInlineEditing();
