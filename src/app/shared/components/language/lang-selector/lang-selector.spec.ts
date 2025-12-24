@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LangSelector } from './lang-selector';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { provideLanguageOptions, provideTranslateTestingConfig } from '@core/providers';
+import { provideCurrentLang } from '@core/providers/current_lang.provider';
 
 describe('LangSelector', () => {
   let component: LangSelector;
@@ -8,9 +11,14 @@ describe('LangSelector', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LangSelector]
-    })
-    .compileComponents();
+      imports: [LangSelector],
+      providers: [
+        provideZonelessChangeDetection(),
+        provideLanguageOptions(),
+        provideTranslateTestingConfig(),
+        provideCurrentLang(),
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LangSelector);
     component = fixture.componentInstance;

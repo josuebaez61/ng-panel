@@ -119,7 +119,6 @@ export class RolePermissions implements OnInit {
    * Selects or deselects all permissions of a specific resource
    */
   public toggleResourcePermissions(resourcePermissions: ResourcePermissions, selectAll: any) {
-    console.log(selectAll);
     const currentSelection = [...this.selectedPermissions()];
     const resourcePermissionIds = resourcePermissions.permissions.map((p) => p.id);
 
@@ -161,7 +160,6 @@ export class RolePermissions implements OnInit {
    */
   public savePermissions() {
     const selectedIds = [...this.selectedPermissions()];
-    console.log('Saving permissions:', selectedIds);
     this.roleService
       .updateRolePermissions(this.roleId, selectedIds)
       .pipe(

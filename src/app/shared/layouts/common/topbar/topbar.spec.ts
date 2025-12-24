@@ -1,6 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Topbar } from './topbar';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { provideTranslateTestingConfig, provideLanguageOptions } from '@core/providers';
+import { provideCurrentLang } from '@core/providers/current_lang.provider';
 
 describe('Topbar', () => {
   let component: Topbar;
@@ -8,7 +15,17 @@ describe('Topbar', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Topbar]
+      imports: [Topbar],
+      providers: [
+        provideZonelessChangeDetection(),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        provideRouter([]),
+        MessageService,
+        provideTranslateTestingConfig(),
+        provideLanguageOptions(),
+        provideCurrentLang(),
+      ],
     })
     .compileComponents();
 

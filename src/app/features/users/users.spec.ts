@@ -1,6 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Users } from './users';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
+import { ConfirmationService } from 'primeng/api';
+import { provideTranslateTestingConfig } from '@core/providers';
 
 describe('Users', () => {
   let component: Users;
@@ -8,10 +16,18 @@ describe('Users', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Users]
-    })
-    .compileComponents();
-
+      imports: [Users],
+      providers: [
+        provideZonelessChangeDetection(),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        provideRouter([]),
+        MessageService,
+        DialogService,
+        ConfirmationService,
+        provideTranslateTestingConfig(),
+      ],
+    }).compileComponents();
     fixture = TestBed.createComponent(Users);
     component = fixture.componentInstance;
     fixture.detectChanges();

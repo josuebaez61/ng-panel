@@ -1,6 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Panel } from './panel';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { MessageService } from 'primeng/api';
+import { provideTranslateTestingConfig, provideLanguageOptions } from '@core/providers';
+import { provideCurrentLang } from '@core/providers/current_lang.provider';
 
 describe('Panel', () => {
   let component: Panel;
@@ -8,7 +15,17 @@ describe('Panel', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Panel]
+      imports: [Panel],
+      providers: [
+        provideZonelessChangeDetection(),
+        provideRouter([]),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        MessageService,
+        provideTranslateTestingConfig(),
+        provideLanguageOptions(),
+        provideCurrentLang(),
+      ],
     })
     .compileComponents();
 

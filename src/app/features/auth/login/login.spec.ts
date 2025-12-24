@@ -1,6 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Login } from './login';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
+import { provideTranslateTestingConfig, provideLanguageOptions } from '@core/providers';
+import { provideCurrentLang } from '@core/providers/current_lang.provider';
 
 describe('Login', () => {
   let component: Login;
@@ -8,7 +15,17 @@ describe('Login', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Login]
+      imports: [Login],
+      providers: [
+        provideZonelessChangeDetection(),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        provideRouter([]),
+        MessageService,
+        provideTranslateTestingConfig(),
+        provideLanguageOptions(),
+        provideCurrentLang(),
+      ],
     })
     .compileComponents();
 

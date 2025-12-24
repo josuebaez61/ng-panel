@@ -17,10 +17,12 @@ import { SharedModule } from '@shared/modules';
       optionValue="value"
     >
       <ng-template #selectedItem let-selectedOption>
-        <div class="flex items-center gap-2" *ngIf="selectedOption">
+        @if (selectedOption) {
+        <div class="flex items-center gap-2">
           <img [src]="selectedOption.src" [alt]="selectedOption.label" style="width: 18px" />
           <div>{{ selectedOption.value }}</div>
         </div>
+        }
       </ng-template>
       <ng-template let-lang #item>
         <div class="flex items-center gap-2">

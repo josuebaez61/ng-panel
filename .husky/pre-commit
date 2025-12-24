@@ -6,3 +6,14 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "✅ Linting passed!"
+
+echo "🧪 Running tests..."
+
+npm test -- --watch=false --browsers=ChromeHeadless
+
+if [ $? -ne 0 ]; then
+  echo "❌ Tests failed! Please fix the failing tests before committing."
+  exit 1
+fi
+
+echo "✅ Tests passed!"

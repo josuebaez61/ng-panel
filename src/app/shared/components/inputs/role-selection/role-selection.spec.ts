@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RoleSelection } from './role-selection';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { provideTranslateTestingConfig } from '@core/providers';
 
 describe('RoleSelection', () => {
   let component: RoleSelection;
@@ -8,7 +10,8 @@ describe('RoleSelection', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RoleSelection]
+      imports: [RoleSelection],
+      providers: [provideZonelessChangeDetection(), provideTranslateTestingConfig()],
     })
     .compileComponents();
 
