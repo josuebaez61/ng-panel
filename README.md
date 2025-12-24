@@ -54,6 +54,24 @@ ng e2e
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
+## Git Hooks
+
+This project uses [Husky](https://typicode.github.io/husky/) to manage git hooks.
+
+### Pre-commit Hook
+
+Before each commit, the pre-commit hook automatically runs `ng lint` to ensure code quality. If linting fails, the commit will be blocked.
+
+**To bypass the hook (not recommended):**
+```bash
+git commit --no-verify
+```
+
+**To manually run lint:**
+```bash
+npm run lint
+```
+
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
