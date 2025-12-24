@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, pipe, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import {
   ListUser,
   CreateUserRequest,

@@ -1,17 +1,17 @@
 <p-panel [header]="'account.accountInformation' | translate">
-  <form [formGroup]="form" class="grid grid-cols-12 gap-4">
+  <form class="grid grid-cols-12 gap-4">
     <div class="col-span-12">
-      <app-form-field class="w-full" [inlineEditable]="true" (onSave)="onSaveUsername()">
+      <app-form-field class="w-full" [inlineEditable]="true" (save)="onSaveUsername()">
         <app-label>{{ 'account.username' | translate }}</app-label>
-        <input pInputText class="w-full" formControlName="username" />
-        <app-control-error [control]="form.get('username')" />
+        <input name="username" pInputText class="w-full" [formControl]="usernameControl" />
+        <app-control-error [control]="usernameControl" />
       </app-form-field>
     </div>
     <div class="col-span-12">
       <app-form-field class="w-full">
         <app-label>{{ 'account.email' | translate }}</app-label>
         <p-input-group>
-          <input readonly pInputText class="w-full" [value]="user()?.email" />
+          <input readonly pInputText class="w-full" [formControl]="emailControl" />
           <p-inputgroup-addon>
             <p-button text (click)="openChangeEmailDialog()" icon="pi pi-pencil" />
           </p-inputgroup-addon>
@@ -23,7 +23,13 @@
       <app-form-field class="w-full">
         <app-label>{{ 'account.password' | translate }}</app-label>
         <p-input-group>
-          <input readonly pInputText type="password" value="********************" class="w-full" />
+          <input
+            [formControl]="passwordControl"
+            readonly
+            pInputText
+            type="password"
+            class="w-full"
+          />
           <p-inputgroup-addon>
             <p-button text (click)="openChangePasswordDialog()" icon="pi pi-pencil" />
           </p-inputgroup-addon>

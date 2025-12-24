@@ -1,6 +1,6 @@
-import { Component, computed, inject, input, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, inject, input, signal, ViewChild } from '@angular/core';
 import { AuthUser } from '@core/models';
-import { AuthService, UserService } from '@core/services';
+import { UserService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
 import { PersonForm } from '@shared/components/templates/person-form/person-form';
 import { UserAvatar } from '@shared/components/user/user-avatar/user-avatar';
@@ -15,7 +15,7 @@ import { PanelModule } from 'primeng/panel';
   templateUrl: './account-personal-info.html',
   styleUrl: './account-personal-info.scss',
 })
-export class AccountPersonalInfo implements OnInit {
+export class AccountPersonalInfo {
   // Input signal for the current user
   public user = input.required<AuthUser | null>();
 
@@ -36,9 +36,6 @@ export class AccountPersonalInfo implements OnInit {
     return this.saving() || !!this.personForm?.pristine;
   }
 
-  ngOnInit(): void {
-    // Component initialization if needed
-  }
 
   public onSave(event: { key: string; value: unknown }): void {
     if (!this.personForm || this.personForm.invalid) {

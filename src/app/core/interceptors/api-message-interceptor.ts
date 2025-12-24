@@ -2,12 +2,7 @@ import { HttpInterceptorFn, HttpRequest, HttpErrorResponse } from '@angular/comm
 import { inject } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import {
-  ApiResponseError,
-  ApiResponse,
-  ValidationError,
-  FailedApiResponse,
-} from '../models/api-response-models';
+import { ApiResponse } from '../models/api-response-models';
 import { Toast } from '@core/services/toast';
 import { isApiResponse, isFailedApiResponse } from '@shared/utils/type-validations';
 
@@ -38,7 +33,7 @@ export const apiMessageInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, 
 /**
  * Handle successful API responses
  */
-function handleSuccessResponse(response: any, url: string, toast: Toast): void {
+function handleSuccessResponse(response: any, _url: string, toast: Toast): void {
   // Check if response has the expected API structure
   if (isApiResponse(response)) {
     const apiResponse = response as ApiResponse<any>;
@@ -60,7 +55,6 @@ function handleErrorResponse(error: HttpErrorResponse, url: string, toast: Toast
   }
 
   let errorMessage = 'An error occurred';
-  let errorDetails: any = null;
 
   errorMessage = error.message;
 

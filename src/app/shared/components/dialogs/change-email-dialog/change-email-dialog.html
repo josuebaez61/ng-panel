@@ -34,26 +34,29 @@
     <button
       pButton
       type="button"
-      [label]="'auth.changeEmail.resendCodeButton' | translate"
       (click)="onRequest()"
       icon="pi pi-refresh"
       [text]="true"
       severity="info"
-    ></button>
+    >
+      {{ 'auth.changeEmail.resendCodeButton' | translate }}
+    </button>
     }
     <button
       pButton
       type="button"
       severity="secondary"
-      [label]="'common.cancel' | translate"
       (click)="onCancel()"
-    ></button>
+    >
+      {{ 'common.cancel' | translate }}
+    </button>
     <button
       pButton
       [loading]="isLoading()"
       type="button"
-      [label]="'common.confirm' | translate"
       (click)="onSubmit()"
-    ></button>
+    >
+      {{ 'common.confirm' | translate }}
+    </button>
   </div>
 </div>

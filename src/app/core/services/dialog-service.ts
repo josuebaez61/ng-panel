@@ -1,13 +1,11 @@
 import { inject, Injectable, Type } from '@angular/core';
 import {
-  RoleFormDialogData,
   Role,
   UsersSelectionDialogData,
   User,
-  UserOption,
   Person,
 } from '@core/models';
-import { Address, UserAddress } from '@core/models/address-model';
+import { Address } from '@core/models/address-model';
 import { TranslateService } from '@ngx-translate/core';
 import { AddressFormDialog } from '@shared/components/dialogs/address-form-dialog/address-form-dialog';
 import { ChangeEmailDialog } from '@shared/components/dialogs/change-email-dialog/change-email-dialog';
@@ -46,7 +44,7 @@ export class DialogService {
 
   public openUserFormDialog(user?: User): DynamicDialogRef<UserFormDialog> | null {
     return this.open(UserFormDialog, {
-      header: !!user
+      header: user
         ? this.translateService.instant('users.form.editUser')
         : this.translateService.instant('users.form.addUser'),
       data: {
@@ -58,7 +56,7 @@ export class DialogService {
 
   public openRoleFormDialog(role?: Role): DynamicDialogRef<RoleFormDialog> | null {
     return this.open(RoleFormDialog, {
-      header: !!role
+      header: role
         ? this.translateService.instant('roles.form.editRole')
         : this.translateService.instant('roles.form.addRole'),
       data: {
@@ -96,7 +94,7 @@ export class DialogService {
     person?: Person
   ): DynamicDialogRef<PersonFormDialog> | null {
     return this.open(PersonFormDialog, {
-      header: !!person
+      header: person
         ? this.translateService.instant('people.form.editPerson')
         : this.translateService.instant('people.form.addPerson'),
       data: {
@@ -109,7 +107,7 @@ export class DialogService {
 
   public openAddressFormDialog(address?: Address): DynamicDialogRef<AddressFormDialog> | null {
     return this.open(AddressFormDialog, {
-      header: !!address
+      header: address
         ? this.translateService.instant('addresses.form.editAddress')
         : this.translateService.instant('addresses.form.addAddress'),
       data: {

@@ -13,9 +13,9 @@ import { map } from 'rxjs';
   imports: [Menu, AsyncPipe, ButtonDirective, ButtonIcon],
   template: `
     <div #container class="relative">
-      <button pButton text rounded (click)="menu.toggle($event)">
+      <button pButton text rounded (click)="menu.toggle($event)" (keyup.enter)="menu.toggle($event)" tabindex="0">
         @if (selectedLang$ | async; as lang) {
-        <img pButtonIcon [src]="lang.icon" />
+        <img pButtonIcon [src]="lang.icon" [alt]="lang.label" />
         }
       </button>
       <p-menu
@@ -26,8 +26,8 @@ import { map } from 'rxjs';
         [appendTo]="container"
       >
         <ng-template #item let-lang>
-          <div (click)="onChange(lang)" class="flex items-center gap-2 cursor-pointer py-2 px-4">
-            <img [src]="lang.icon" />
+          <div (click)="onChange(lang)" (keyup.enter)="onChange(lang)" tabindex="0" role="button" class="flex items-center gap-2 cursor-pointer py-2 px-4">
+            <img [src]="lang.icon" [alt]="lang.label" />
             <div>{{ lang.label }}</div>
           </div>
         </ng-template>

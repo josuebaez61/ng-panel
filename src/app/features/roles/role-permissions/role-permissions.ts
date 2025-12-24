@@ -4,7 +4,7 @@ import { PermissionsService, RoleService, UnsavedChangesService } from '@core/se
 import { CheckboxModule } from 'primeng/checkbox';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { forkJoin, tap } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
 import { PanelPageHeader } from '@shared/components/layout/panel-page-header/panel-page-header';

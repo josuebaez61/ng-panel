@@ -316,4 +316,16 @@ export class CustomValidators {
     CustomValidators.requiredNumberChar,
     CustomValidators.requiredSpecialChar,
   ])!;
+
+  public static email = Validators.compose([
+    Validators.required,
+    Validators.email,
+    Validators.maxLength(200),
+  ])!;
+
+  public static username = Validators.compose([
+    Validators.required,
+    Validators.minLength(3),
+    Validators.maxLength(100),
+  ])!;
 }

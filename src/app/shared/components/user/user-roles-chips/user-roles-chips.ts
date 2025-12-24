@@ -3,11 +3,10 @@ import { Role, User } from '@core/models';
 import { ChipModule } from 'primeng/chip';
 import { Popover, PopoverModule } from 'primeng/popover';
 import { RoleSelection } from '../../inputs/role-selection/role-selection';
-import { AuthService, Confirm, RoleService, UserService } from '@core/services';
+import { AuthService, RoleService } from '@core/services';
 import { FormsModule } from '@angular/forms';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
-import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 
 @Component({

@@ -1,13 +1,4 @@
-import {
-  Component,
-  output,
-  signal,
-  inject,
-  OnInit,
-  OnDestroy,
-  computed,
-  effect,
-} from '@angular/core';
+import { Component, signal, inject, OnInit, OnDestroy, computed, effect } from '@angular/core';
 import { Topbar } from '../common/topbar/topbar';
 import { RouterModule } from '@angular/router';
 import { DrawerModule } from 'primeng/drawer';
@@ -43,7 +34,7 @@ export class Panel implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     // Set initial drawer state based on screen size first
     this.updateDrawerState();
 
@@ -60,7 +51,7 @@ export class Panel implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }

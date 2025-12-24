@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { UserAvatar } from '../user-avatar/user-avatar';
 import { MenuModule } from 'primeng/menu';
 import { AuthService, LocalizedMenu } from '@core/services';
@@ -10,7 +10,7 @@ import { RoutePath } from '@core/constants';
   imports: [NgClass, AsyncPipe, UserAvatar, MenuModule, RippleModule],
   template: `
     <div #container class="relative">
-      <div (click)="menu.toggle($event)" class="flex items-center" [ngClass]="class()" pRipple>
+      <div (click)="menu.toggle($event)" (keyup.enter)="menu.toggle($event)" tabindex="0" role="button" class="flex items-center" [ngClass]="class()" pRipple>
         <app-user-avatar [size]="3" [user]="user()" />
       </div>
       <p-menu

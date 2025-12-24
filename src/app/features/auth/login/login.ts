@@ -53,7 +53,7 @@ export class Login implements OnInit {
 
   public readonly forgotPasswordRoutePath = RoutePath.FORGOT_PASSWORD;
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.loginForm = this.fb.group({
       usernameOrEmail: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -61,7 +61,7 @@ export class Login implements OnInit {
     });
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
@@ -79,7 +79,7 @@ export class Login implements OnInit {
     });
   }
 
-  loginWithGoogle() {
+  public loginWithGoogle(): void {
     this.messageService.add({
       severity: 'info',
       summary: this.translate.instant('auth.login.google'),
@@ -87,7 +87,7 @@ export class Login implements OnInit {
     });
   }
 
-  loginWithMicrosoft() {
+  public loginWithMicrosoft(): void {
     this.messageService.add({
       severity: 'info',
       summary: this.translate.instant('auth.login.microsoft'),

@@ -22,8 +22,6 @@ export class AddressFormDialog implements OnDestroy {
   @ViewChild(AddressForm, { static: false })
   public addressFormComponent!: AddressForm;
 
-  constructor() {}
-
   public ngOnDestroy(): void {
     this.destroyed$.next();
     this.destroyed$.complete();

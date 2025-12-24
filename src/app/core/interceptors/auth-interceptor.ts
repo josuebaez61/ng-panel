@@ -1,7 +1,6 @@
 import { HttpErrorResponse, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
 import {
-  Observable,
   from,
   switchMap,
   catchError,

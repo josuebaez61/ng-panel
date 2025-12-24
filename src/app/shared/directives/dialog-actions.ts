@@ -1,12 +1,12 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, OnInit, inject } from '@angular/core';
 
 @Directive({
   selector: '[appDialogActions]',
 })
-export class DialogActions {
-  constructor(private readonly el: ElementRef) {}
+export class DialogActions implements OnInit {
+  private readonly el = inject(ElementRef);
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.el.nativeElement.classList.add('app-dialog-actions');
     this.el.nativeElement.classList.add('mt-6');
     this.el.nativeElement.classList.add('flex');

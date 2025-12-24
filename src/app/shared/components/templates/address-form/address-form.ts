@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, OnDestroy, signal } from '@angular/core';
+import { Component, inject, input, OnDestroy, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared/modules';
 import { SelectModule } from 'primeng/select';
@@ -83,7 +83,7 @@ export class AddressForm implements OnDestroy {
     this.subscribeToStateIdChanges();
     this.loadData();
   }
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.destroyed$.next();
     this.destroyed$.complete();
   }
@@ -93,7 +93,7 @@ export class AddressForm implements OnDestroy {
       .pipe(
         takeUntil(this.destroyed$),
         filter((value) => value !== null),
-        tap((value) => {
+        tap((_value) => {
           this.stateIdControl.setValue('');
           this.localityControl.setValue('');
         })
@@ -106,7 +106,7 @@ export class AddressForm implements OnDestroy {
       .pipe(
         takeUntil(this.destroyed$),
         filter((value) => value !== null),
-        tap((value) => {
+        tap((_value) => {
           this.localityControl.setValue('');
         })
       )

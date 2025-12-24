@@ -1,6 +1,6 @@
 <p-listbox
   (ngModelChange)="onSelectionChange($event)"
-  (scrolled)="onScrollDown.emit()"
+  (scrolled)="scrollDown.emit()"
   [checkbox]="multiple()"
   [disabled]="disabled"
   [emptyFilterMessage]="'users.userSelection.noUsersFound' | translate"

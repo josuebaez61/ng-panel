@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { Role, CreateRoleRequest, UpdateRoleRequest } from '../models/role-models';
 import { API_CONFIG } from '../config/api.config';
 import { ApiResponse } from '../models/api-response-models';
-import { Permission, User, UserOption } from '@core/models';
+import { Permission, UserOption } from '@core/models';
 
 @Injectable({
   providedIn: 'root',

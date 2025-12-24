@@ -42,22 +42,22 @@ export class FormField implements AfterViewInit, OnDestroy {
   public label?: Label;
 
   @Input()
-  public fixedHeight: boolean = true;
+  public fixedHeight = true;
 
   @Input()
-  public minHeight: string = 'auto';
+  public minHeight = 'auto';
 
   @Input()
-  public hideRequiredMarker: boolean = false;
+  public hideRequiredMarker = false;
 
   @Input()
-  public inlineEditable: boolean = false;
+  public inlineEditable = false;
 
   @Output()
-  public onSave = new EventEmitter<any>();
+  public save = new EventEmitter<any>();
 
   @Output()
-  public onCancel = new EventEmitter<void>();
+  public canceled = new EventEmitter<void>();
 
   public class = input<string>();
 
@@ -113,7 +113,7 @@ export class FormField implements AfterViewInit, OnDestroy {
     return state.invalid && (state.touched || state.dirty);
   });
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     if (!this.control) {
       console.error(
         'FormField Error: No NgControl detected. Make sure your input/control is wrapped with ngModel, formControlName, or formControl directive.',
@@ -172,7 +172,7 @@ export class FormField implements AfterViewInit, OnDestroy {
     }
 
     // Emit the save event with the current value
-    this.onSave.emit(control.value);
+    this.save.emit(control.value);
     this.finishEditing();
   }
 
@@ -187,7 +187,7 @@ export class FormField implements AfterViewInit, OnDestroy {
     control.markAsUntouched();
 
     // Emit cancel event
-    this.onCancel.emit();
+    this.canceled.emit();
     this.finishEditing();
   }
 
@@ -200,7 +200,7 @@ export class FormField implements AfterViewInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     if (this.controlStatusSubscription) {
       this.controlStatusSubscription.unsubscribe();
     }

@@ -1,6 +1,6 @@
 import { DOCUMENT, Injectable, inject, signal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Injectable({
   providedIn: 'root',

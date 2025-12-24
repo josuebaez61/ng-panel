@@ -3,7 +3,7 @@
     <app-form-field
       class="w-full"
       [inlineEditable]="inlineEditable()"
-      (onSave)="onSave('firstName', $event)"
+      (save)="onSave('firstName', $event)"
     >
       <app-label>{{ 'people.form.firstName' | translate }}</app-label>
       <input pInputText type="text" class="w-full" [formControl]="form.controls.firstName" />
@@ -14,7 +14,7 @@
     <app-form-field
       class="w-full"
       [inlineEditable]="inlineEditable()"
-      (onSave)="onSave('lastName', $event)"
+      (save)="onSave('lastName', $event)"
     >
       <app-label>{{ 'people.form.lastName' | translate }}</app-label>
       <input pInputText type="text" class="w-full" [formControl]="form.controls.lastName" />
@@ -26,7 +26,7 @@
     <app-form-field
       class="w-full"
       [inlineEditable]="inlineEditable()"
-      (onSave)="onSave('identificationNumber', $event)"
+      (save)="onSave('identificationNumber', $event)"
     >
       <app-label>{{ 'people.form.identificationNumber' | translate }}</app-label>
       <input
@@ -42,7 +42,7 @@
     <app-form-field
       class="w-full"
       [inlineEditable]="inlineEditable()"
-      (onSave)="onSave('identificationType', $event)"
+      (save)="onSave('identificationType', $event)"
     >
       <app-label>{{ 'people.form.identificationType' | translate }}</app-label>
       <p-select
@@ -65,7 +65,7 @@
     <app-form-field
       class="w-full"
       [inlineEditable]="inlineEditable()"
-      (onSave)="onSave('phone', $event)"
+      (save)="onSave('phone', $event)"
     >
       <app-label>{{ 'people.form.phone' | translate }}</app-label>
       <app-phone-input [formControl]="form.controls.phone" class="w-full" />

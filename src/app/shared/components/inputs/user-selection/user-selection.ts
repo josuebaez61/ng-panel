@@ -4,7 +4,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/f
 import { User, UserOption } from '@core/models';
 import { TranslateModule } from '@ngx-translate/core';
 import { ListboxFilterEvent, ListboxModule } from 'primeng/listbox';
-import { ScrollerLazyLoadEvent } from 'primeng/scroller';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 
 @Component({
@@ -25,7 +24,7 @@ export class UserSelection implements ControlValueAccessor {
   public optionValue = input<string>();
   public class = input<string>('');
 
-  public onScrollDown = output<void>();
+  public scrollDown = output<void>();
 
   public filter = output<ListboxFilterEvent>();
 
@@ -34,8 +33,12 @@ export class UserSelection implements ControlValueAccessor {
   private _disabled = signal<boolean>(false);
 
   // ControlValueAccessor implementation
-  private onChange = (value: any) => {};
-  private onTouched = () => {};
+  private onChange = (_value: any): void => {
+    // Value change handler - implemented by Angular forms
+  };
+  private onTouched = (): void => {
+    // Touch handler - implemented by Angular forms
+  };
 
   // Getters for template
   public get value() {
@@ -47,19 +50,19 @@ export class UserSelection implements ControlValueAccessor {
   }
 
   // ControlValueAccessor methods
-  writeValue(value: any): void {
+  public writeValue(value: any): void {
     this._value.set(value);
   }
 
-  registerOnChange(fn: (value: any) => void): void {
+  public registerOnChange(fn: (value: any) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => void): void {
+  public registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
-  setDisabledState(isDisabled: boolean): void {
+  public setDisabledState(isDisabled: boolean): void {
     this._disabled.set(isDisabled);
   }
 

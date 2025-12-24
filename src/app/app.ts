@@ -1,6 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { EN_LANGUAGE, ES_LANGUAGE } from '@core/constants';
+import { EN_LANGUAGE } from '@core/constants';
 import { LANGUAGE_OPTIONS_TOKEN } from '@core/providers';
 import { StorageService, Theme } from '@core/services';
 import { TranslateService } from '@ngx-translate/core';

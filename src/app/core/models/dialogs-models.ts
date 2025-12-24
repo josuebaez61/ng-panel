@@ -1,7 +1,5 @@
-import { Observable } from 'rxjs';
 import { Role } from './role-models';
 import { User, UserOption } from '.';
-import { Signal } from '@angular/core';
 
 export interface UserFormDialogData {
   user?: User;

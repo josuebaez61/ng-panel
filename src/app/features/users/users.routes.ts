@@ -1,5 +1,3 @@
-import { RouteName } from '@core/constants/routes';
-
 export const routes = [
   {
     path: '', // empty path for the users route

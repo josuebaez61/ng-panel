@@ -1,4 +1,4 @@
-import { Component, TemplateRef, computed, inject, input, output, signal } from '@angular/core';
+import { Component, TemplateRef, computed, inject, input, output } from '@angular/core';
 import { ListUser, PermissionName } from '@core/models';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared/modules';

@@ -1,5 +1,5 @@
-import { Component, inject, input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, effect, inject, input } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { AuthUser } from '@core/models';
 import { DialogService, UserService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,8 +10,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { ButtonModule } from 'primeng/button';
-import { Card } from 'primeng/card';
 import { PanelModule } from 'primeng/panel';
+import { CustomValidators } from '@shared/utils';
 
 @Component({
   selector: 'app-account-info',
@@ -31,47 +31,45 @@ import { PanelModule } from 'primeng/panel';
   templateUrl: './account-info.html',
   styleUrl: './account-info.scss',
 })
-export class AccountInfo implements OnInit {
+export class AccountInfo {
   private readonly userService = inject(UserService);
   private readonly dialogService = inject(DialogService);
 
   // Input signal for the current user
   public user = input.required<AuthUser | null>();
 
-  // Public form group that parent components can access
-  public form = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.maxLength(100)]),
-  });
+  public usernameControl = new FormControl('', [CustomValidators.username]);
 
-  ngOnInit(): void {
-    this.patchForm();
-  }
+  public emailControl = new FormControl('', [CustomValidators.email]);
 
-  public patchForm(): void {
-    this.form.patchValue({
-      username: this.user()?.username || '',
+  public passwordControl = new FormControl('************');
+
+  constructor() {
+    effect(() => {
+      this.usernameControl.setValue(this.user()?.username || '');
+      this.emailControl.setValue(this.user()?.email || '');
     });
   }
 
   public onSaveUsername(): void {
-    this.userService
-      .updateCurrentUserData(this.form.getRawValue() as unknown as AuthUser)
-      .subscribe({
-        next: () => {
-          this.form.markAsPristine();
-        },
-      });
+    if (this.usernameControl.invalid) {
+      this.usernameControl.markAsTouched();
+    } else {
+      this.userService
+        .updateCurrentUserData({ username: this.usernameControl.value } as unknown as AuthUser)
+        .subscribe({
+          next: () => {
+            this.usernameControl.markAsPristine();
+          },
+        });
+    }
   }
 
   public openChangePasswordDialog(): void {
-    this.dialogService.openChangePasswordDialog()?.onClose?.subscribe((result) => {
-      console.log(result);
-    });
+    this.dialogService.openChangePasswordDialog();
   }
 
   public openChangeEmailDialog(): void {
-    this.dialogService.openChangeEmailDialog()?.onClose?.subscribe((result) => {
-      console.log(result);
-    });
+    this.dialogService.openChangeEmailDialog();
   }
 }

@@ -60,8 +60,8 @@ interface PhoneCodeOption {
 export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
   private readonly cdr = inject(ChangeDetectorRef);
 
-  @ViewChild('phoneInput', { static: false }) phoneInputRef?: ElementRef<HTMLInputElement>;
-  @ViewChild('container', { static: false }) containerRef?: ElementRef<HTMLElement>;
+  @ViewChild('phoneInput', { static: false }) public phoneInputRef?: ElementRef<HTMLInputElement>;
+  @ViewChild('container', { static: false }) public containerRef?: ElementRef<HTMLElement>;
 
   // Internal state
   private _value = signal<string>('');
@@ -74,8 +74,12 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
   public appendTo = input<string | HTMLElement | undefined>(undefined);
 
   // ControlValueAccessor implementation
-  private onChange = (value: string) => {};
-  private onTouched = () => {};
+  private onChange = (_value: string): void => {
+    // Value change handler - implemented by Angular forms
+  };
+  private onTouched = (): void => {
+    // Touch handler - implemented by Angular forms
+  };
 
   // Computed values
   public get value(): string {
@@ -115,7 +119,7 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
     return numberPart.replace(/\D/g, '');
   });
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.loadPhoneCodes();
   }
 
@@ -156,7 +160,7 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
   }
 
   // ControlValueAccessor methods
-  writeValue(value: string): void {
+  public writeValue(value: string): void {
     if (!value) {
       this._value.set('');
       this._phoneNumber.set('');
@@ -167,15 +171,15 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
     this.parsePhoneValue(value);
   }
 
-  registerOnChange(fn: (value: string) => void): void {
+  public registerOnChange(fn: (value: string) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => void): void {
+  public registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
-  setDisabledState(isDisabled: boolean): void {
+  public setDisabledState(isDisabled: boolean): void {
     this._disabled.set(isDisabled);
   }
 
@@ -258,7 +262,7 @@ export class PhoneInput implements ControlValueAccessor, OnInit, AfterViewInit {
     this.cdr.detectChanges();
   }
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     // Ensure initial value is set if component is initialized with a value
     const currentValue = this._value();
     if (currentValue) {

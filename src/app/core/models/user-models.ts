@@ -34,14 +34,14 @@ export enum IdentificationType {
   OTHER = 'other',
 }
 
-export type UserOption = {
+export interface UserOption {
   id: string;
   username: string;
   person: {
     firstName: string;
     lastName: string;
   };
-};
+}
 
 export interface CreateUserRequest {
   firstName: string | null;

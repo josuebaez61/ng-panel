@@ -56,7 +56,7 @@ export class PersonForm implements OnInit {
     this.save.emit({ key, value: event });
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     // Load identification types only if service is provided
     const service = this.userService;
     if (service) {

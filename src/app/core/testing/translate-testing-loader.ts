@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class TranslateTestingLoader implements TranslateLoader {
-  getTranslation(lang: string): Observable<any> {
+  public getTranslation(_lang: string): Observable<any> {
     return of({});
   }
 }

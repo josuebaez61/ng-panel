@@ -1,6 +1,6 @@
 import { Component, TemplateRef, input, output } from '@angular/core';
 import { DEFAULT_TABLE_PAGE_SIZE, DEFAULT_TABLE_PAGE_SIZE_OPTIONS } from '@core/constants';
-import { Role, RoleWithUsersCount } from '@core/models';
+import { RoleWithUsersCount } from '@core/models';
 import { TableLazyLoadEvent, TableModule } from 'primeng/table';
 import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';

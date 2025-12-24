@@ -18,9 +18,7 @@ export interface ValidationError {
   /**
    * Constraints that failed validation with error messages.
    */
-  constraints?: {
-    [type: string]: string;
-  };
+  constraints?: Record<string, string>;
   /**
    * Contains all nested validation errors of the property.
    */

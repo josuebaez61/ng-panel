@@ -3,7 +3,6 @@ import { Component, computed, inject } from '@angular/core';
 import { UserOption, UsersSelectionDialogData } from '@core/models';
 import { UserSelection } from '@shared/components/inputs/user-selection/user-selection';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ListboxFilterEvent } from 'primeng/listbox';
 import { ButtonModule } from 'primeng/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';

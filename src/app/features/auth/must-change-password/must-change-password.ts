@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Label } from '@shared/components/ui/label/label';
 import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { TranslateModule } from '@ngx-translate/core';
@@ -28,7 +28,7 @@ import { Hint } from '@shared/components/ui/hint/hint';
   templateUrl: './must-change-password.html',
   styleUrl: './must-change-password.scss',
 })
-export class MustChangePassword implements OnInit {
+export class MustChangePassword {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   public loading = signal(false);
@@ -42,8 +42,6 @@ export class MustChangePassword implements OnInit {
       validators: [CustomValidators.passwordMatch('newPassword', 'confirmPassword')],
     }
   );
-
-  public ngOnInit(): void {}
 
   public onSubmit() {
     if (this.mustChangePasswordForm.invalid) {

@@ -1,4 +1,4 @@
-import { Component, ContentChild, TemplateRef, input } from '@angular/core';
+import { Component, TemplateRef, input } from '@angular/core';
 import { UserAddress } from '@core/models/address-model';
 import { SharedModule } from '@shared/modules';
 import { DataViewModule } from 'primeng/dataview';

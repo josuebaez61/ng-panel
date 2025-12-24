@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { CURRENT_LANG_TOKEN } from '@core/providers/current_lang.provider';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';
-import { Observable, map, switchMap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class LocalizedMenu {
 
   public getMenu(menu: MenuItem[]): Observable<MenuItem[]> {
     return this.currentLang$.pipe(
-      map((lang) => {
+      map((_lang) => {
         return menu.map((item) => ({
           ...item,
           label: item.label ? this.translateService.instant(item.label) : undefined,

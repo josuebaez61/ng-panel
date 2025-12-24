@@ -53,7 +53,7 @@ export class ResponsiveService {
     // Observe all breakpoints and update state accordingly
     this.breakpointObserver
       .observe([mobileQuery, tabletQuery, desktopQuery])
-      .subscribe((result) => {
+      .subscribe((_result) => {
         const width = window.innerWidth;
 
         // Determine screen size based on width
@@ -126,11 +126,9 @@ export class ResponsiveService {
    * Initialize resize listener to detect breakpoint changes
    */
   private initializeResizeListener(): void {
-    let previousWidth = window.innerWidth;
     let previousBreakpoint = this.getCurrentBreakpoint();
 
     window.addEventListener('resize', () => {
-      const currentWidth = window.innerWidth;
       const currentBreakpoint = this.getCurrentBreakpoint();
 
       // Check if breakpoint has changed
@@ -143,7 +141,6 @@ export class ResponsiveService {
         }, 100);
       }
 
-      previousWidth = currentWidth;
       previousBreakpoint = currentBreakpoint;
     });
   }

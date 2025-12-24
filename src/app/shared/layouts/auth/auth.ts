@@ -16,7 +16,7 @@ import { environment } from '../../../../environments/environment';
   styleUrl: './auth.scss',
 })
 export class Auth implements OnInit {
-  isDarkMode = false;
+  public isDarkMode = false;
   private themeService = inject(Theme);
 
   public companyName = environment.companyName;
@@ -24,10 +24,11 @@ export class Auth implements OnInit {
   public backRoute = input<string | null>(null);
   public showSidenavToggleButton = input<boolean>(false);
 
-  ngOnInit() {}
+  public ngOnInit(): void {
+    this.applyTheme();
+  }
 
-  toggleTheme() {
-    console.log('toggleTheme');
+  public toggleTheme(): void {
     this.isDarkMode = !this.isDarkMode;
     this.themeService.toggleTheme();
   }

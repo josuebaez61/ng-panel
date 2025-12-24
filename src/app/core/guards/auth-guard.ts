@@ -6,7 +6,7 @@ import { map, catchError, of } from 'rxjs';
 import { RoutePath } from '../constants/routes';
 
 // Helper function to handle user data validation
-const handleUserValidation = (authService: AuthService, router: Router, user: any) => {
+const handleUserValidation = (_authService: AuthService, router: Router, user: any) => {
   // Check if user must change password
   if (user?.mustChangePassword) {
     router.navigate([RoutePath.MUST_CHANGE_PASSWORD]);

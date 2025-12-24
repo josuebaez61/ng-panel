@@ -22,14 +22,14 @@ export class Confirm {
     },
   };
 
-  open(options: Confirmation = {}): void {
+  public open(options: Confirmation = {}): void {
     this.confirmationService.confirm({
       ...this.defaultOptions,
       ...options,
     });
   }
 
-  openPopup(event: Event, options: Confirmation = {}) {
+  public openPopup(event: Event, options: Confirmation = {}) {
     this.confirmationService.confirm({
       target: event.currentTarget as EventTarget,
       ...this.defaultOptions,
