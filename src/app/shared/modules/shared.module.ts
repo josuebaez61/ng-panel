@@ -4,7 +4,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
-import { FormField } from '@shared/components/ui/form-field/form-field';
+import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputGroupModule } from 'primeng/inputgroup';

@@ -4,7 +4,7 @@ import { Person } from '@core/models';
 import { UserService } from '@core/services';
 import { PhoneInput } from '@shared/components/inputs/phone-input/phone-input';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormField } from '@shared/components/ui/form-field/form-field';
+import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
 import { Label } from '@shared/components/ui/label/label';
 import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { InputTextModule } from 'primeng/inputtext';

@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormField } from '@shared/components/ui/form-field/form-field';
+import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
 import { Label } from '@shared/components/ui/label/label';
 import { SharedModule } from '@shared/modules';
 import { Password } from 'primeng/password';

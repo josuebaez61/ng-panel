@@ -6,7 +6,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { RoutePath } from '@core/constants';
-import { FormField } from '@shared/components/ui/form-field/form-field';
+import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
 import { Auth } from '@shared/layouts/auth/auth';
 import { AuthService } from '@core/services';
 import { PasswordResetRequest } from '@core/models';

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormField } from '@shared/components/ui/form-field/form-field';
+import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
 import { Label } from '@shared/components/ui/label/label';
 import { SharedModule } from '@shared/modules';
 import { ControlError } from '@shared/components/ui/control-error/control-error';

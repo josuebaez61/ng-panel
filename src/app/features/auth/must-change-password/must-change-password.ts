@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SharedModule } from '@shared/modules';
 import { CustomValidators } from '@shared/utils/custom-validators';
-import { FormField } from '@shared/components/ui/form-field/form-field';
+import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
 import { RoutePath } from '@core/constants';
 import { Auth } from '@shared/layouts/auth/auth';
 import { AuthService } from '@core/services';

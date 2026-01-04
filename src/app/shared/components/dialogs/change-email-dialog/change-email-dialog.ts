@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { EmailChangeRequest, EmailVerificationRequest } from '@core/models';
 import { AuthService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormField } from '@shared/components/ui/form-field/form-field';
+import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
 import { Label } from '@shared/components/ui/label/label';
 import { SharedModule } from '@shared/modules';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';

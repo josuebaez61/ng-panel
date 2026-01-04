@@ -1,5 +1,5 @@
 import { Component, effect, input } from '@angular/core';
-import { FormField } from '@shared/components/ui/form-field/form-field';
+import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
 import { Label } from '@shared/components/ui/label/label';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared/modules';

@@ -13,7 +13,7 @@ import { SharedModule } from '@shared/modules';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { RoutePath } from '@core/constants';
-import { FormField } from '@shared/components/ui/form-field/form-field';
+import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
 import { Hint } from '@shared/components/ui/hint/hint';
 import { Auth } from '@shared/layouts/auth/auth';
 import { AuthService } from '@core/services';

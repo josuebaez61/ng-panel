@@ -3,7 +3,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { AuthUser } from '@core/models';
 import { DialogService, UserService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormField } from '@shared/components/ui/form-field/form-field';
+import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
 import { Label } from '@shared/components/ui/label/label';
 import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { InputTextModule } from 'primeng/inputtext';

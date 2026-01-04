@@ -14,7 +14,7 @@ import { Label } from '@shared/components/ui/label/label';
 import { SharedModule } from '@shared/modules';
 import { RouterLink } from '@angular/router';
 import { RoutePath } from '@core/constants';
-import { FormField } from '@shared/components/ui/form-field/form-field';
+import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
 import { Auth } from '@shared/layouts/auth/auth';
 import { AuthService } from '@core/services';
 @Component({

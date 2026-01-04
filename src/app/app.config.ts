@@ -50,6 +50,16 @@ export const appConfig: ApplicationConfig = {
           },
         },
       },
+      pt: {
+        floatLabel: {
+          host: {
+            variant: 'on',
+          },
+          root: {
+            variant: 'on',
+          },
+        },
+      },
     }),
 
     // HTTP Client
