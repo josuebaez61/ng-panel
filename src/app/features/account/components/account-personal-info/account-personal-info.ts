@@ -36,7 +36,6 @@ export class AccountPersonalInfo {
     return this.saving() || !!this.personForm?.pristine;
   }
 
-
   public onSave(event: { key: string; value: unknown }): void {
     if (!this.personForm || this.personForm.invalid) {
       this.personForm?.markAllAsTouched();
@@ -49,7 +48,7 @@ export class AccountPersonalInfo {
     }
 
     this.saving.set(true);
-    this.userService.updateCurrentUserPerson({ [event.key]: 1 }).subscribe({
+    this.userService.updateCurrentUserPerson({ [event.key]: event.value as string }).subscribe({
       next: () => {
         this.saving.set(false);
         this.personForm?.markAsPristine();
