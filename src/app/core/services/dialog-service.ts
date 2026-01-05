@@ -123,8 +123,8 @@ export class DialogService {
   public openAddressFormDialog(address?: Address): DynamicDialogRef<AddressFormDialog> | null {
     return this.open(AddressFormDialog, {
       header: address
-        ? this.translateService.instant('addresses.form.editAddress')
-        : this.translateService.instant('addresses.form.addAddress'),
+        ? this.translateService.instant('addresses.editAddress')
+        : this.translateService.instant('addresses.addAddress'),
       data: {
         address,
       },

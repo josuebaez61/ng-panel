@@ -11,6 +11,7 @@
   (onLazyLoad)="lazyLoad.emit($event)"
   [rowsPerPageOptions]="pageSizeOptions()"
   [rows]="pageSize()"
+  size="small"
 >
   <ng-template #emptymessage>
     <tr>
@@ -42,7 +43,7 @@
         {{ 'users.table.emailColumn' | translate }}
         <p-sortIcon field="email" />
       </th>
-      <th [style.min-width]="'280px'">{{ 'users.table.rolesColumn' | translate }}</th>
+      <th>{{ 'users.table.rolesColumn' | translate }}</th>
       <th pSortableColumn="isActive">
         {{ 'users.table.statusColumn' | translate }}
         <p-sortIcon field="isActive" />
