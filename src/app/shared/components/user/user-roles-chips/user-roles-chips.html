@@ -1,35 +1,9 @@
 <div class="flex flex-wrap gap-2">
-  @for (role of _roles(); track role.id) {
-  <p-chip
-    [label]="role.name"
-    [removable]="canAssignRoles()"
-    (onRemove)="loading() ? null : onRoleRemove($event, role)"
-  />
-  } @if (canAssignRoles()) {
-  <p-chip
-    icon="pi pi-plus"
-    [removable]="false"
-    (click)="loading() ? null : toggleRoleSelection($event)"
-  />
-  }
-</div>
-
-<!-- Role Selection Popover -->
-<p-popover #op>
-  <div class="flex justify-end">
-    <p-button size="small" icon="pi pi-times" text rounded (onClick)="op.hide()" />
-  </div>
-  @if (loading()) {
-  <div class="flex flex-col gap-2">
-    <p-skeleton height="50px" width="200px" />
-    <p-skeleton height="40px" width="200px" />
-  </div>
+  @for (role of roles(); track role.id) { @if (canAssignRoles()) {
+  <a [routerLink]="[roleUsersPath(role.id)]">
+    <p-chip [label]="role.name" />
+  </a>
   } @else {
-  <app-role-selection
-    ngModel
-    class="border-none"
-    [roles]="assignableRoles()"
-    (ngModelChange)="onRoleSelectionChange($event)"
-  />
-  }
-</p-popover>
+  <p-chip [label]="role.name" />
+  } }
+</div>

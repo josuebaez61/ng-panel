@@ -1,12 +1,13 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { PermissionName, RoleWithUsersCount } from '@core/models';
-import { AuthService, DialogService, RoleService } from '@core/services';
+import { AuthService, Confirm, DialogService, RoleService } from '@core/services';
 import { PanelPageHeader } from '@shared/components/layout/panel-page-header/panel-page-header';
 import { RolesTable } from '@shared/components/lists/table/roles-table/roles-table';
 import { forkJoin } from 'rxjs';
 import { SharedModule } from '@shared/modules';
 import { RoutePath } from '@core/constants';
 import { RouterLink } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-roles',
@@ -18,6 +19,8 @@ export class Roles implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly roleService = inject(RoleService);
   private readonly dialogService = inject(DialogService);
+  private readonly translateService = inject(TranslateService);
+  private readonly confirm = inject(Confirm);
   public roles = signal<RoleWithUsersCount[]>([]);
   public loading = signal<boolean>(false);
   public roleUsersPath = RoutePath.ROLES_USERS;
@@ -37,6 +40,10 @@ export class Roles implements OnInit {
 
   public canAssignRoles = computed(
     () => !!this.authService.currentUser()?.hasPermission(PermissionName.ASSIGN_ROLE)
+  );
+
+  public canDeleteRoles = computed(
+    () => !!this.authService.currentUser()?.hasPermission(PermissionName.DELETE_ROLE)
   );
 
   public ngOnInit(): void {
@@ -65,6 +72,17 @@ export class Roles implements OnInit {
       if (res) {
         this.loadData();
       }
+    });
+  }
+
+  public deleteRole(role: RoleWithUsersCount) {
+    this.confirm.open({
+      message: this.translateService.instant('roles.form.deleteRoleConfirmation', {
+        roleName: role.name,
+      }),
+      accept: () => {
+        this.roleService.deleteRole(role.id).subscribe(() => this.loadData());
+      },
     });
   }
 }

@@ -76,11 +76,7 @@
           <p>{{ 'roles.userRoles.noRolesAssigned' | translate }}</p>
         </div>
         } @else {
-        <app-user-roles-chips
-          [user]="user"
-          [roles]="user.roles"
-          [canAssignRoles]="canAssignRoles()"
-        />
+        <app-user-roles-chips [roles]="user.roles" />
         }
       </td>
       <td>

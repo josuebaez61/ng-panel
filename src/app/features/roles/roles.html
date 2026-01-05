@@ -35,5 +35,14 @@
       rounded
       text
     />
+    <p-button
+      (onClick)="deleteRole(role)"
+      [disabled]="!canDeleteRoles()"
+      icon="pi pi-trash"
+      rounded
+      text
+    />
   </div>
 </ng-template>
+
+<p-confirmDialog />

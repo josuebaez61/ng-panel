@@ -268,7 +268,8 @@
     },
     "form": {
       "editRole": "Edit Role",
-      "addRole": "Add Role"
+      "addRole": "Add Role",
+      "deleteRoleConfirmation": "Are you sure you want to delete the role <b>{{roleName}}</b>?"
     },
     "userRoles": {
       "title": "Role Users",

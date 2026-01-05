@@ -73,11 +73,6 @@ export class Users {
     this.dialogService
       .openPersonFormDialog(user, person)
       ?.onClose.pipe(
-        tap(() => {
-          if (this.isCurrentUser(user)) {
-            this.authService.hydrateUserData();
-          }
-        }),
         switchMap((data) =>
           data ? this.userService.updatePersonByUserId(user.id, data as Person) : of(null)
         )

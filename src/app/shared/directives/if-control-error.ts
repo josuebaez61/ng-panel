@@ -26,7 +26,6 @@ export class IfControlErrorDirective implements OnDestroy {
     if (control) {
       // Subscribe to control events to detect touch events
       this.eventsSubscription = control.events.subscribe(() => {
-        console.log('control.events', control.events);
         this.updateView();
       });
 

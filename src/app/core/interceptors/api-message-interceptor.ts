@@ -90,49 +90,7 @@ function handleErrorResponse(
     return;
   }
 
-  let errorMessage = getErrorMessage(error);
-
-  // Handle specific HTTP status codes
-  switch (error.status) {
-    case 0:
-      errorMessage = 'Network error. Please check your internet connection.';
-      break;
-    case 400:
-      if (!errorMessage.includes('Bad Request')) {
-        errorMessage = `Bad Request: ${errorMessage}`;
-      }
-      break;
-    case 403:
-      errorMessage = "Access denied. You don't have permission to perform this action.";
-      break;
-    case 404:
-      errorMessage = 'The requested resource was not found.';
-      break;
-    case 409:
-      errorMessage = 'Conflict: The resource already exists or conflicts with existing data.';
-      break;
-    case 422:
-      errorMessage = 'Validation Error: Please check your input data.';
-      break;
-    case 429:
-      errorMessage = 'Too many requests. Please try again later.';
-      break;
-    case 500:
-      errorMessage = 'Internal server error. Please try again later.';
-      break;
-    case 502:
-      errorMessage = 'Bad gateway. The server is temporarily unavailable.';
-      break;
-    case 503:
-      errorMessage = 'Service unavailable. Please try again later.';
-      break;
-    default:
-      if (error.status >= 500) {
-        errorMessage = 'Server error. Please try again later.';
-      } else if (error.status >= 400) {
-        errorMessage = `Request error: ${errorMessage}`;
-      }
-  }
+  const errorMessage = getErrorMessage(error);
 
   toast.error(errorMessage, {
     summary: 'Error',
@@ -142,22 +100,72 @@ function handleErrorResponse(
 
 /**
  * Extract error message from HttpErrorResponse
+ * Returns specific error message from API/server if available, otherwise returns default message based on status code
  */
 function getErrorMessage(error: HttpErrorResponse): string {
-  let errorMessage = error.message || 'An error occurred';
+  let specificMessage: string | null = null;
 
+  // Try to extract specific message from error.error
   if (error.error) {
     // Check if it's our API error format
     if (isFailedApiResponse(error.error)) {
-      errorMessage = error.error.error.message || errorMessage;
-    } else if (typeof error.error === 'string') {
-      errorMessage = error.error;
-    } else if (error.error.message) {
-      errorMessage = error.error.message;
+      const apiMessage = error.error.error?.message;
+      if (apiMessage && typeof apiMessage === 'string' && apiMessage.trim().length > 0) {
+        specificMessage = apiMessage.trim();
+      }
+    } else if (typeof error.error === 'string' && error.error.trim().length > 0) {
+      specificMessage = error.error.trim();
+    } else if (
+      error.error.message &&
+      typeof error.error.message === 'string' &&
+      error.error.message.trim().length > 0
+    ) {
+      specificMessage = error.error.message.trim();
     }
   }
 
-  return errorMessage;
+  // If we have a specific message and it's not just the HTTP status text, use it
+  if (specificMessage && specificMessage !== error.statusText) {
+    return specificMessage;
+  }
+
+  // Otherwise, return default message based on status code
+  return getDefaultErrorMessage(error.status);
+}
+
+/**
+ * Get default error message based on HTTP status code
+ */
+function getDefaultErrorMessage(status: number | null): string {
+  switch (status) {
+    case 0:
+      return 'Network error. Please check your internet connection.';
+    case 400:
+      return 'Bad Request: Please check your input data.';
+    case 403:
+      return "Access denied. You don't have permission to perform this action.";
+    case 404:
+      return 'The requested resource was not found.';
+    case 409:
+      return 'Conflict: The resource already exists or conflicts with existing data.';
+    case 422:
+      return 'Validation Error: Please check your input data.';
+    case 429:
+      return 'Too many requests. Please try again later.';
+    case 500:
+      return 'Internal server error. Please try again later.';
+    case 502:
+      return 'Bad gateway. The server is temporarily unavailable.';
+    case 503:
+      return 'Service unavailable. Please try again later.';
+    default:
+      if (status && status >= 500) {
+        return 'Server error. Please try again later.';
+      } else if (status && status >= 400) {
+        return 'Request error: An error occurred while processing your request.';
+      }
+      return 'An error occurred';
+  }
 }
 
 /**

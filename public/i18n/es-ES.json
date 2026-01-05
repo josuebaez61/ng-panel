@@ -264,7 +264,8 @@
     },
     "form": {
       "editRole": "Editar Rol",
-      "addRole": "Agregar Rol"
+      "addRole": "Agregar Rol",
+      "deleteRoleConfirmation": "¿Estás seguro de querer eliminar el rol <b>{{roleName}}</b>?"
     },
     "userRoles": {
       "title": "Usuarios de Rol",
