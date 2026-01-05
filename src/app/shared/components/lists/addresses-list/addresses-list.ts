@@ -1,5 +1,5 @@
 import { Component, TemplateRef, input } from '@angular/core';
-import { UserAddress } from '@core/models/address-model';
+import { Address } from '@core/models/address-model';
 import { SharedModule } from '@shared/modules';
 import { DataViewModule } from 'primeng/dataview';
 import { SkeletonModule } from 'primeng/skeleton';
@@ -12,6 +12,6 @@ import { TagModule } from 'primeng/tag';
 })
 export class AddressesList {
   public actionsTemplate = input<TemplateRef<any>>();
-  public addresses = input<UserAddress[]>();
+  public addresses = input<Address[]>();
   public loading = input<boolean>(false);
 }

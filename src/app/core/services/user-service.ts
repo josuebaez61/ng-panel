@@ -19,6 +19,7 @@ import {
   PaginationRequest,
   AuthUser,
   AuthUserDto,
+  Address,
 } from '@core/models';
 import { AuthService } from './auth-service';
 
@@ -216,9 +217,9 @@ export class UserService {
   /**
    * Get current user addresses
    */
-  public getCurrentUserAddresses(): Observable<UserAddress[]> {
+  public getCurrentUserAddresses(): Observable<Address[]> {
     return this.http
-      .get<ApiResponse<UserAddress[]>>(
+      .get<ApiResponse<Address[]>>(
         `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.GET_CURRENT_USER_ADDRESSES}`
       )
       .pipe(map((response) => response.data || []));

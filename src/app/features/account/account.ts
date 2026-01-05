@@ -3,7 +3,7 @@ import { SharedModule } from '@shared/modules';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService, Confirm, DialogService, UserService } from '@core/services';
 import { AddressesList } from '@shared/components/lists/addresses-list/addresses-list';
-import { UserAddress } from '@core/models/address-model';
+import { Address } from '@core/models/address-model';
 import { mergeMap, of, tap } from 'rxjs';
 import { AccountInfo } from './components/account-info/account-info';
 import { AccountPersonalInfo } from './components/account-personal-info/account-personal-info';
@@ -18,10 +18,10 @@ export class Account {
   public readonly userService = inject(UserService);
   private readonly confirm = inject(Confirm);
   private readonly translateService = inject(TranslateService);
-  public authService = inject(AuthService);
+  private readonly authService = inject(AuthService);
   public dialogService = inject(DialogService);
   public user = this.authService.currentUser;
-  public addresses = signal<UserAddress[]>([]);
+  public addresses = signal<Address[]>([]);
   public loadingAddresses = signal<boolean>(false);
 
   @ViewChild(AccountInfo)
@@ -44,15 +44,15 @@ export class Account {
     });
   }
 
-  public openAddressFormDialog(userAddress?: UserAddress) {
+  public openAddressFormDialog(address?: Address) {
     this.dialogService
-      .openAddressFormDialog(userAddress?.address)
+      .openAddressFormDialog(address)
       ?.onClose?.pipe(
         mergeMap((result) =>
           result
-            ? userAddress
+            ? address
               ? this.userService
-                  .updateCurrentUserAddress(userAddress.id, result)
+                  .updateCurrentUserAddress(address.id, result)
                   .pipe(tap(() => this.loadUserAddresses()))
               : this.userService
                   .createCurrentUserAddress(result)
@@ -63,12 +63,12 @@ export class Account {
       .subscribe();
   }
 
-  public deleteAddress(userAddress: UserAddress) {
+  public deleteAddress(address: Address) {
     this.confirm.open({
       header: this.translateService.instant('addresses.deleteAddress'),
       message: this.translateService.instant('addresses.deleteAddressMessage'),
       accept: () => {
-        this.userService.deleteCurrentUserAddress(userAddress.id).subscribe({
+        this.userService.deleteCurrentUserAddress(address.id).subscribe({
           next: () => {
             this.loadUserAddresses();
           },
