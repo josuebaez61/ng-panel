@@ -8,9 +8,6 @@ import {
   AutoCompleteSelectEvent,
 } from 'primeng/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
-import { Label } from '@shared/components/ui/label/label';
-import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
 import { ButtonModule } from 'primeng/button';
@@ -26,20 +23,21 @@ import {
 import { Subject, filter, takeUntil, tap } from 'rxjs';
 import { SelectChangeEvent } from 'primeng/select';
 import { Address } from '@core/models/address-model';
+import { FormFieldContainer } from '@shared/components/ui/form-field-container/form-field-container';
+import { FormFieldError } from '@shared/components/ui/form-field-error/form-field-error';
 
 @Component({
   selector: 'app-address-form',
   imports: [
     SharedModule,
-    FormField,
-    Label,
-    ControlError,
     InputTextModule,
     TextareaModule,
     ButtonModule,
     SelectModule,
     AutoCompleteModule,
     TranslateModule,
+    FormFieldContainer,
+    FormFieldError,
     ReactiveFormsModule,
   ],
   templateUrl: './address-form.html',

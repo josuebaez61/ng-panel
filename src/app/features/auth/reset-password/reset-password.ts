@@ -1,6 +1,4 @@
 import { ChangeDetectionStrategy, Component, inject, signal, ViewChild } from '@angular/core';
-import { Label } from '@shared/components/ui/label/label';
-import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { TranslateModule } from '@ngx-translate/core';
 import {
   FormBuilder,
@@ -13,26 +11,26 @@ import { SharedModule } from '@shared/modules';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { RoutePath } from '@core/constants';
-import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
-import { Hint } from '@shared/components/ui/hint/hint';
 import { Auth } from '@shared/layouts/auth/auth';
 import { AuthService } from '@core/services';
 import { Router } from '@angular/router';
 import { NewPasswordForm } from '@shared/components/templates/new-password-form/new-password-form';
+import { FormFieldContainer } from '@shared/components/ui/form-field-container/form-field-container';
+import { FormFieldError } from '@shared/components/ui/form-field-error/form-field-error';
+import { FormFieldHint } from '@shared/components/ui/form-field-hint/form-field-hint';
 
 @Component({
   selector: 'app-reset-password',
   imports: [
     SharedModule,
-    Label,
-    ControlError,
     TranslateModule,
     ReactiveFormsModule,
     ToastModule,
-    FormField,
-    Hint,
     Auth,
     NewPasswordForm,
+    FormFieldContainer,
+    FormFieldError,
+    FormFieldHint,
   ],
   templateUrl: './reset-password.html',
   styleUrl: './reset-password.scss',

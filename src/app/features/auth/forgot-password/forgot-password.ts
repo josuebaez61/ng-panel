@@ -1,26 +1,24 @@
 import { Component, inject } from '@angular/core';
-import { Label } from '@shared/components/ui/label/label';
-import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { SharedModule } from '@shared/modules';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { RoutePath } from '@core/constants';
-import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
 import { Auth } from '@shared/layouts/auth/auth';
 import { AuthService } from '@core/services';
 import { PasswordResetRequest } from '@core/models';
+import { FormFieldContainer } from '@shared/components/ui/form-field-container/form-field-container';
+import { FormFieldError } from '@shared/components/ui/form-field-error/form-field-error';
 
 @Component({
   selector: 'app-forgot-password',
   imports: [
-    Label,
-    ControlError,
     SharedModule,
     ReactiveFormsModule,
     TranslateModule,
-    FormField,
     Auth,
+    FormFieldContainer,
+    FormFieldError,
   ],
   templateUrl: './forgot-password.html',
   styleUrl: './forgot-password.scss',

@@ -152,6 +152,7 @@
   },
   "common": {
     "edit": "Editar",
+    "selectPlaceholder": "Selecciona una opción",
     "noData": "No hay datos",
     "submit": "Enviar",
     "search": "Buscar",
@@ -304,7 +305,7 @@
       "firstName": "Nombre",
       "lastName": "Apellido",
       "identificationNumber": "Número de Identificación",
-      "identificationType": "Tipo de Identificación",
+      "identificationType": "Tipo",
       "phone": "Teléfono"
     }
   },

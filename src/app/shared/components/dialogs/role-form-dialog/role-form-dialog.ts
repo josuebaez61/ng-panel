@@ -1,17 +1,22 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
-import { Label } from '@shared/components/ui/label/label';
 import { SharedModule } from '@shared/modules';
-import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RoleService } from '@core/services';
 import { CreateRoleRequest, RoleFormDialogData, UpdateRoleRequest } from '@core/models';
 import { DialogActions } from '@shared/directives';
-
+import { FormFieldContainer } from '@shared/components/ui/form-field-container/form-field-container';
+import { FormFieldError } from '@shared/components/ui/form-field-error/form-field-error';
 @Component({
   selector: 'app-role-form-dialog',
-  imports: [FormField, Label, SharedModule, ReactiveFormsModule, ControlError, DialogActions],
+  imports: [
+    FormFieldContainer,
+    FormFieldError,
+    SharedModule,
+    ReactiveFormsModule,
+    DialogActions,
+    ReactiveFormsModule,
+  ],
   templateUrl: './role-form-dialog.html',
   styles: ``,
 })

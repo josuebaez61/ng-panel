@@ -1,7 +1,7 @@
-<div class="grid grid-cols-12 gap-4">
+<div class="grid grid-cols-12 gap-form-grid">
   <div class="col-span-12">
-    <app-form-field class="w-full">
-      <app-label>{{ 'addresses.form.name' | translate }}</app-label>
+    <app-form-field-container class="w-full">
+      <label for="name">{{ 'addresses.form.name' | translate }}</label>
       <input
         pInputText
         type="text"
@@ -9,12 +9,12 @@
         [formControl]="nameControl"
         [placeholder]="'addresses.form.namePlaceholder' | translate"
       />
-      <app-control-error [control]="nameControl" />
-    </app-form-field>
+      <app-form-field-error [control]="nameControl" />
+    </app-form-field-container>
   </div>
   <div class="col-span-4">
-    <app-form-field class="w-full">
-      <app-label>{{ 'addresses.form.country' | translate }}</app-label>
+    <app-form-field-container class="w-full">
+      <label for="country">{{ 'addresses.form.country' | translate }}</label>
       <p-select
         class="w-full"
         appendTo="body"
@@ -25,6 +25,7 @@
         [filter]="true"
         filterBy="name"
         (onChange)="onCountrySelect($event)"
+        [placeholder]="'common.selectPlaceholder' | translate"
       >
         <ng-template let-option #selectedItem>
           <div class="flex items-center gap-1.5">
@@ -47,12 +48,12 @@
           </div>
         </ng-template>
       </p-select>
-      <app-control-error [control]="countryIdControl" />
-    </app-form-field>
+      <app-form-field-error [control]="countryIdControl" />
+    </app-form-field-container>
   </div>
   <div class="col-span-4">
-    <app-form-field class="w-full">
-      <app-label>{{ 'addresses.form.state' | translate }}</app-label>
+    <app-form-field-container class="w-full">
+      <label for="state">{{ 'addresses.form.state' | translate }}</label>
       <p-select
         class="w-full"
         [disabled]="!countryIdControl.value"
@@ -64,6 +65,7 @@
         [filter]="true"
         filterBy="name"
         (onChange)="onStateSelect($event)"
+        [placeholder]="'common.selectPlaceholder' | translate"
       >
         <ng-template let-option #item>
           <div class="flex items-center gap-1.5">
@@ -71,13 +73,13 @@
           </div>
         </ng-template>
       </p-select>
-      <app-control-error [control]="stateIdControl" />
-    </app-form-field>
+      <app-form-field-error [control]="stateIdControl" />
+    </app-form-field-container>
   </div>
 
   <div class="col-span-4">
-    <app-form-field class="w-full">
-      <app-label>{{ 'addresses.form.locality' | translate }}</app-label>
+    <app-form-field-container class="w-full">
+      <label for="locality">{{ 'addresses.form.locality' | translate }}</label>
       <p-autocomplete
         class="w-full"
         appendTo="body"
@@ -90,6 +92,7 @@
         (onSelect)="onLocalitySelect($event)"
         [optionLabel]="'name'"
         [optionValue]="'name'"
+        [placeholder]="'common.selectPlaceholder' | translate"
       >
         <ng-template let-option #item>
           <div class="flex items-center gap-1.5">
@@ -97,26 +100,26 @@
           </div>
         </ng-template>
       </p-autocomplete>
-      <app-control-error [control]="localityControl" />
-    </app-form-field>
+      <app-form-field-error [control]="localityControl" />
+    </app-form-field-container>
   </div>
   <div class="col-span-12 md:col-span-8">
-    <app-form-field class="w-full">
-      <app-label>{{ 'addresses.form.address' | translate }}</app-label>
+    <app-form-field-container class="w-full">
+      <label for="address">{{ 'addresses.form.address' | translate }}</label>
       <input pInputText type="text" class="w-full" [formControl]="addressControl" />
-      <app-control-error [control]="addressControl" />
-    </app-form-field>
+      <app-form-field-error [control]="addressControl" />
+    </app-form-field-container>
   </div>
   <div class="col-span-12 md:col-span-4">
-    <app-form-field class="w-full">
-      <app-label>{{ 'addresses.form.zip' | translate }}</app-label>
+    <app-form-field-container class="w-full">
+      <label for="zip">{{ 'addresses.form.zip' | translate }}</label>
       <input pInputText type="text" class="w-full" [formControl]="postalCodeControl" />
-      <app-control-error [control]="postalCodeControl" />
-    </app-form-field>
+      <app-form-field-error [control]="postalCodeControl" />
+    </app-form-field-container>
   </div>
   <div class="col-span-12">
-    <app-form-field class="w-full">
-      <app-label>{{ 'addresses.form.directions' | translate }}</app-label>
+    <app-form-field-container class="w-full">
+      <label for="directions">{{ 'addresses.form.directions' | translate }}</label>
       <textarea
         pTextarea
         type="text"
@@ -124,7 +127,7 @@
         [formControl]="directionsControl"
         [placeholder]="'addresses.form.directionsPlaceholder' | translate"
       ></textarea>
-      <app-control-error [control]="directionsControl" />
-    </app-form-field>
+      <app-form-field-error [control]="directionsControl" />
+    </app-form-field-container>
   </div>
 </div>

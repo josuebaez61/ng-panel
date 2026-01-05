@@ -4,12 +4,11 @@ import { Person } from '@core/models';
 import { UserService } from '@core/services';
 import { PhoneInput } from '@shared/components/inputs/phone-input/phone-input';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
-import { Label } from '@shared/components/ui/label/label';
-import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { CommonModule } from '@angular/common';
+import { FormFieldContainer } from '@shared/components/ui/form-field-container/form-field-container';
+import { FormFieldError } from '@shared/components/ui/form-field-error/form-field-error';
 
 @Component({
   selector: 'app-person-form',
@@ -19,11 +18,10 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     TranslateModule,
     PhoneInput,
-    FormField,
-    Label,
-    ControlError,
     InputTextModule,
     SelectModule,
+    FormFieldContainer,
+    FormFieldError,
   ],
   templateUrl: './person-form.html',
   styles: ``,
@@ -52,9 +50,9 @@ export class PersonForm implements OnInit {
 
   public save = output<{ key: string; value: unknown }>();
 
-  public onSave(key: string, event: unknown): void {
-    this.save.emit({ key, value: event });
-  }
+  // public onSave(key: string, event: unknown): void {
+  //   this.save.emit({ key, value: event });
+  // }
 
   public ngOnInit(): void {
     // Load identification types only if service is provided

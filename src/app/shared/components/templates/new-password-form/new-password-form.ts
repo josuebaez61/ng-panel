@@ -1,10 +1,7 @@
 import { Component, effect, input } from '@angular/core';
-import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
-import { Label } from '@shared/components/ui/label/label';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared/modules';
 import { Password } from 'primeng/password';
-import { ControlError } from '@shared/components/ui/control-error/control-error';
 import {
   FormControl,
   FormGroup,
@@ -14,19 +11,22 @@ import {
 } from '@angular/forms';
 import { NewPasswordRequirements } from '@shared/components/password/new-password-requirements/new-password-requirements';
 import { CustomValidators } from '@shared/utils/custom-validators';
+import { FormFieldContainer } from '@shared/components/ui/form-field-container/form-field-container';
+import { FormFieldError } from '@shared/components/ui/form-field-error/form-field-error';
+import { FormFieldHint } from '@shared/components/ui/form-field-hint/form-field-hint';
 
 @Component({
   selector: 'app-new-password-form',
   imports: [
-    FormField,
-    Label,
     TranslateModule,
     SharedModule,
     Password,
     NewPasswordRequirements,
-    ControlError,
     FormsModule,
     ReactiveFormsModule,
+    FormFieldContainer,
+    FormFieldError,
+    FormFieldHint,
   ],
   templateUrl: './new-password-form.html',
   styles: ``,
@@ -50,6 +50,9 @@ export class NewPasswordForm {
   );
 
   public requireCurrentPassword = input<boolean>(false);
+  public currentPasswordHint = input<string | null>(null);
+  public newPasswordHint = input<string | null>(null);
+  public confirmPasswordHint = input<string | null>(null);
 
   constructor() {
     effect(() => {

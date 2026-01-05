@@ -8,10 +8,8 @@
   </div>
   <div class="col-span-12">
     <app-form-field-container>
-      <p-floatlabel variant="on">
-        <label for="value1">{{ 'users.form.email' | translate }}</label>
-        <input pInputText type="text" class="w-full" [formControl]="form.controls.email" />
-      </p-floatlabel>
+      <label for="value1">{{ 'users.form.email' | translate }}</label>
+      <input pInputText type="text" class="w-full" [formControl]="form.controls.email" />
       <app-form-field-error [control]="form.controls.email" />
     </app-form-field-container>
   </div>

@@ -156,6 +156,7 @@
   },
   "common": {
     "edit": "Edit",
+    "selectPlaceholder": "Select an option",
     "noData": "No data",
     "submit": "Submit",
     "search": "Search",
@@ -308,7 +309,7 @@
       "firstName": "First Name",
       "lastName": "Last Name",
       "identificationNumber": "Identification Number",
-      "identificationType": "Identification Type",
+      "identificationType": "Type",
       "phone": "Phone"
     }
   },

@@ -1,40 +1,50 @@
 <p-panel [header]="'account.accountInformation' | translate">
-  <form class="grid grid-cols-12 gap-4">
+  <div class="grid grid-cols-12 gap-form-grid">
     <div class="col-span-12">
-      <app-form-field class="w-full" [inlineEditable]="true" (save)="onSaveUsername()">
-        <app-label>{{ 'account.username' | translate }}</app-label>
-        <input name="username" pInputText class="w-full" [formControl]="usernameControl" />
-        <app-control-error [control]="usernameControl" />
-      </app-form-field>
+      <div class="flex flex-col gap-1">
+        <span class="text-sm font-medium text-gray-600 dark:text-gray-400">
+          {{ 'account.username' | translate }}
+        </span>
+        <p class="text-base text-gray-900 dark:text-gray-100">
+          {{ user()?.username || '—' }}
+        </p>
+      </div>
     </div>
     <div class="col-span-12">
-      <app-form-field class="w-full">
-        <app-label>{{ 'account.email' | translate }}</app-label>
-        <p-input-group>
-          <input readonly pInputText class="w-full" [formControl]="emailControl" />
-          <p-inputgroup-addon>
-            <p-button text (click)="openChangeEmailDialog()" icon="pi pi-pencil" />
-          </p-inputgroup-addon>
-        </p-input-group>
-      </app-form-field>
-    </div>
-
-    <div class="col-span-12">
-      <app-form-field class="w-full">
-        <app-label>{{ 'account.password' | translate }}</app-label>
-        <p-input-group>
-          <input
-            [formControl]="passwordControl"
-            readonly
-            pInputText
-            type="password"
-            class="w-full"
+      <div class="flex flex-col gap-1">
+        <span class="text-sm font-medium text-gray-600 dark:text-gray-400">
+          {{ 'account.email' | translate }}
+        </span>
+        <div class="flex items-center gap-2">
+          <p class="text-base text-gray-900 dark:text-gray-100 flex-1">
+            {{ user()?.email || '—' }}
+          </p>
+          <p-button
+            text
+            (onClick)="openChangeEmailDialog()"
+            icon="pi pi-pencil"
+            [pTooltip]="'common.edit' | translate"
+            size="small"
           />
-          <p-inputgroup-addon>
-            <p-button text (click)="openChangePasswordDialog()" icon="pi pi-pencil" />
-          </p-inputgroup-addon>
-        </p-input-group>
-      </app-form-field>
+        </div>
+      </div>
     </div>
-  </form>
+    <div class="col-span-12">
+      <div class="flex flex-col gap-1">
+        <span class="text-sm font-medium text-gray-600 dark:text-gray-400">
+          {{ 'account.password' | translate }}
+        </span>
+        <div class="flex items-center gap-2">
+          <p class="text-base text-gray-900 dark:text-gray-100 flex-1">••••••••••••</p>
+          <p-button
+            text
+            (onClick)="openChangePasswordDialog()"
+            icon="pi pi-pencil"
+            [pTooltip]="'common.edit' | translate"
+            size="small"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 </p-panel>

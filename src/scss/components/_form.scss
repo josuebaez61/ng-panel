@@ -6,3 +6,8 @@
 .p-component.ng-invalid.ng-touched::placeholder {
   color: var(--p-inputtext-invalid-border-color);
 }
+
+// Custom gap for form grids
+.gap-form-grid {
+  gap: 0.5rem; // 16px - equivalente a gap-4 de Tailwind pero con nombre semántico
+}

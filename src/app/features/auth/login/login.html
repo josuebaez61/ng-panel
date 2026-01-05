@@ -1,10 +1,10 @@
 <app-auth [title]="'auth.login.title' | translate">
   <form [formGroup]="loginForm" class="flex flex-col gap-4" (ngSubmit)="onSubmit()">
     <!-- Email Field -->
-    <app-form-field>
-      <app-label for="usernameOrEmail">
+    <app-form-field-container>
+      <label for="usernameOrEmail">
         {{ 'auth.login.usernameOrEmail.label' | translate }}
-      </app-label>
+      </label>
       <input
         id="usernameOrEmail"
         type="text"
@@ -15,14 +15,14 @@
         autocomplete="off"
         s
       />
-      <app-control-error [control]="loginForm.get('usernameOrEmail')"></app-control-error>
-    </app-form-field>
+      <app-form-field-error [control]="loginForm.get('usernameOrEmail')!"></app-form-field-error>
+    </app-form-field-container>
 
     <!-- Password Field -->
-    <app-form-field>
-      <app-label for="password">
+    <app-form-field-container>
+      <label for="password">
         {{ 'auth.login.password.label' | translate }}
-      </app-label>
+      </label>
       <p-inputgroup>
         <input
           id="password"
@@ -40,8 +40,8 @@
           />
         </p-inputgroup-addon>
       </p-inputgroup>
-      <app-control-error [control]="loginForm.get('password')"></app-control-error>
-    </app-form-field>
+      <app-form-field-error [control]="loginForm.get('password')!"></app-form-field-error>
+    </app-form-field-container>
 
     <!-- Remember Me & Forgot Password -->
     <div class="flex items-center justify-end">

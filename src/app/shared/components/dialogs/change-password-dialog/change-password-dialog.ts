@@ -1,7 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
-import { Label } from '@shared/components/ui/label/label';
 import { SharedModule } from '@shared/modules';
 import { Password } from 'primeng/password';
 import { NewPasswordRequirements } from '@shared/components/password/new-password-requirements/new-password-requirements';
@@ -13,22 +11,22 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CustomValidators } from '@shared/utils';
-import { ControlError } from '@shared/components/ui/control-error/control-error';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AuthService } from '@core/services';
 import { ChangePasswordRequest } from '@core/models';
+import { FormFieldContainer } from '@shared/components/ui/form-field-container/form-field-container';
+import { FormFieldError } from '@shared/components/ui/form-field-error/form-field-error';
 
 @Component({
   selector: 'app-change-password-dialog',
   imports: [
-    FormField,
-    Label,
     TranslateModule,
     SharedModule,
     Password,
     NewPasswordRequirements,
-    ControlError,
     FormsModule,
+    FormFieldContainer,
+    FormFieldError,
     ReactiveFormsModule,
   ],
   templateUrl: './change-password-dialog.html',

@@ -11,7 +11,6 @@ import {
   EmailChangeRequest,
   EmailVerificationRequest,
   CurrentUserResponse,
-  // AuthUserDto,
   AuthUser,
 } from '../models/auth-models';
 import { API_CONFIG } from '../config/api.config';

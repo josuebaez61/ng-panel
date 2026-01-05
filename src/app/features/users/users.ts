@@ -13,7 +13,7 @@ import { TableLazyLoadEvent } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { SharedModule } from '@shared/modules';
 import { TranslateService } from '@ngx-translate/core';
-import { tap } from 'rxjs';
+import { switchMap, tap, of } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -77,12 +77,18 @@ export class Users {
           if (this.isCurrentUser(user)) {
             this.authService.hydrateUserData();
           }
-        })
+        }),
+        switchMap((data) =>
+          data ? this.userService.updatePersonByUserId(user.id, data as Person) : of(null)
+        )
       )
       .subscribe({
         next: (result) => {
           if (result) {
             this.paginatedUsers.refresh();
+            if (user.id === this.currentUser()?.id) {
+              this.authService.hydrateUserData();
+            }
           }
         },
       });

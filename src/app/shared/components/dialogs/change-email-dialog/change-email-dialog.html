@@ -2,31 +2,31 @@
   @if (step() === 'request') {
 
   <form [formGroup]="requestForm">
-    <app-form-field class="w-full">
-      <app-label>{{ 'auth.changeEmail.newEmail' | translate }}</app-label>
+    <app-form-field-container class="w-full">
+      <label for="newEmail">{{ 'auth.changeEmail.newEmail' | translate }}</label>
       <input class="w-full" pInputText formControlName="newEmail" />
-      <app-hint>
+      <app-form-field-hint>
         {{ 'auth.changeEmail.requestHelperText' | translate }}
-      </app-hint>
-      <app-control-error [control]="requestForm.controls.newEmail" />
-    </app-form-field>
+      </app-form-field-hint>
+      <app-form-field-error [control]="requestForm.controls.newEmail" />
+    </app-form-field-container>
   </form>
   } @else {
 
   <form [formGroup]="verifyForm">
-    <app-form-field class="w-full">
-      <app-label>{{ 'auth.changeEmail.code' | translate }}</app-label>
+    <app-form-field-container class="w-full">
+      <label for="verificationCode">{{ 'auth.changeEmail.code' | translate }}</label>
       <p-inputmask
         mask="9999-9999"
         [fluid]="true"
         formControlName="verificationCode"
         placeholder="1234-5678"
       />
-      <app-hint>
+      <app-form-field-hint>
         {{ 'auth.changeEmail.verifyHelperText' | translate }}
-      </app-hint>
-      <app-control-error [control]="verifyForm.controls.verificationCode" />
-    </app-form-field>
+      </app-form-field-hint>
+      <app-form-field-error [control]="verifyForm.controls.verificationCode" />
+    </app-form-field-container>
   </form>
   }
   <div appDialogActions>
@@ -42,20 +42,10 @@
       {{ 'auth.changeEmail.resendCodeButton' | translate }}
     </button>
     }
-    <button
-      pButton
-      type="button"
-      severity="secondary"
-      (click)="onCancel()"
-    >
+    <button pButton type="button" severity="secondary" (click)="onCancel()">
       {{ 'common.cancel' | translate }}
     </button>
-    <button
-      pButton
-      [loading]="isLoading()"
-      type="button"
-      (click)="onSubmit()"
-    >
+    <button pButton [loading]="isLoading()" type="button" (click)="onSubmit()">
       {{ 'common.confirm' | translate }}
     </button>
   </div>

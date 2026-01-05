@@ -1,13 +1,24 @@
 .form-field-container {
-  &.fixed-height {
-    height: 5rem;
-
-    // .message-container {
-    //   height: 1.5rem;
-    //   display: flex;
-    //   align-items: flex-start;
-    //   margin-left: 0.5rem;
-    //   transition: all 0.2s ease-in-out;
-    // }
+  margin-bottom: 0.2rem;
+  height: 5.6rem;
+  .form-field-label-container {
+    height: 0.8rem;
+    pointer-events: none;
+    line-height: 1;
+    margin-left: 0.58rem;
+    margin-bottom: 0.2rem;
+    font-size: 0.8rem;
+    font-weight: var(--p-floatlabel-active-font-weight);
+    &.error {
+      color: var(--p-inputtext-invalid-border-color);
+    }
+  }
+  .form-field-message-container {
+    position: absolute;
+    bottom: 0;
+    left: 0.58rem;
+    ::ng-deep.p-message-sm .p-message-text {
+      font-size: 0.75rem;
+    }
   }
 }

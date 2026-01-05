@@ -1,14 +1,14 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid-cols-2 gap-4">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid grid-cols-2 gap-form-grid">
   <div class="col-span-2">
-    <app-form-field>
-      <app-label for="name">Name</app-label>
+    <app-form-field-container>
+      <label for="name">Name</label>
       <input class="w-full" pInputText type="text" id="name" pInputText formControlName="name" />
-      <app-control-error [control]="form.controls.name" />
-    </app-form-field>
+      <app-form-field-error [control]="form.controls.name" />
+    </app-form-field-container>
   </div>
   <div class="col-span-2">
-    <app-form-field>
-      <app-label for="description">Description</app-label>
+    <app-form-field-container>
+      <label for="description">Description</label>
       <input
         class="w-full"
         pInputText
@@ -17,8 +17,8 @@
         pInputText
         formControlName="description"
       />
-      <app-control-error [control]="form.controls.description" />
-    </app-form-field>
+      <app-form-field-error [control]="form.controls.description" />
+    </app-form-field-container>
   </div>
   <div class="col-span-2" appDialogActions>
     <p-button (onClick)="dialogRef.close()" severity="secondary" type="button" label="Cancel" />

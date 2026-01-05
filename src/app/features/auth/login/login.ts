@@ -9,14 +9,13 @@ import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { ControlError } from '@shared/components/ui/control-error/control-error';
-import { Label } from '@shared/components/ui/label/label';
 import { SharedModule } from '@shared/modules';
 import { RouterLink } from '@angular/router';
 import { RoutePath } from '@core/constants';
-import { FormField } from '@shared/components/ui/form-field-deprecated/form-field';
 import { Auth } from '@shared/layouts/auth/auth';
 import { AuthService } from '@core/services';
+import { FormFieldContainer } from '@shared/components/ui/form-field-container/form-field-container';
+import { FormFieldError } from '@shared/components/ui/form-field-error/form-field-error';
 @Component({
   selector: 'app-login',
   imports: [
@@ -30,11 +29,10 @@ import { AuthService } from '@core/services';
     ButtonModule,
     CheckboxModule,
     ToastModule,
-    ControlError,
     RouterLink,
-    Label,
-    FormField,
     Auth,
+    FormFieldContainer,
+    FormFieldError,
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss',

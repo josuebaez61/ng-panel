@@ -207,7 +207,10 @@ export class UserService {
         `${this.baseUrl}${API_CONFIG.ENDPOINTS.USERS.UPDATE_CURRENT_USER_PERSON}`,
         personData
       )
-      .pipe(map((response) => response.data!));
+      .pipe(
+        map((response) => response.data!),
+        tap(() => this.authService.hydrateUserData())
+      );
   }
 
   /**

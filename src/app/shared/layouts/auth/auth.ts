@@ -1,9 +1,8 @@
-import { Component, OnInit, inject, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
-import { ThemeService } from '@core/services';
 import { Card } from 'primeng/card';
 import { Topbar } from '../common/topbar/topbar';
 import { TranslateModule } from '@ngx-translate/core';
@@ -15,29 +14,9 @@ import { environment } from '../../../../environments/environment';
   templateUrl: './auth.html',
   styleUrl: './auth.scss',
 })
-export class Auth implements OnInit {
-  public isDarkMode = false;
-  private themeService = inject(ThemeService);
-
+export class Auth {
   public companyName = environment.companyName;
   public title = input<string | null>(null);
   public backRoute = input<string | null>(null);
   public showSidenavToggleButton = input<boolean>(false);
-
-  public ngOnInit(): void {
-    this.applyTheme();
-  }
-
-  public toggleTheme(): void {
-    this.isDarkMode = !this.isDarkMode;
-    this.themeService.toggleTheme();
-  }
-
-  private applyTheme() {
-    if (this.isDarkMode) {
-      this.themeService.applyTheme('dark');
-    } else {
-      this.themeService.applyTheme('light');
-    }
-  }
 }

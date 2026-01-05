@@ -1,55 +1,40 @@
-<form [formGroup]="form" class="grid grid-cols-12 gap-4">
+<form [formGroup]="form" class="grid grid-cols-12 gap-form-grid">
   <div class="col-span-12 md:col-span-6">
-    <app-form-field
-      class="w-full"
-      [inlineEditable]="inlineEditable()"
-      (save)="onSave('firstName', $event)"
-    >
-      <app-label>{{ 'people.form.firstName' | translate }}</app-label>
+    <app-form-field-container class="w-full">
+      <label for="value1">{{ 'people.form.firstName' | translate }}</label>
       <input pInputText type="text" class="w-full" [formControl]="form.controls.firstName" />
-      <app-control-error [control]="form.controls.firstName" />
-    </app-form-field>
+      <app-form-field-error [control]="form.controls.firstName" />
+    </app-form-field-container>
   </div>
   <div class="col-span-12 md:col-span-6">
-    <app-form-field
-      class="w-full"
-      [inlineEditable]="inlineEditable()"
-      (save)="onSave('lastName', $event)"
-    >
-      <app-label>{{ 'people.form.lastName' | translate }}</app-label>
+    <app-form-field-container class="w-full">
+      <label for="value1">{{ 'people.form.lastName' | translate }}</label>
       <input pInputText type="text" class="w-full" [formControl]="form.controls.lastName" />
-      <app-control-error [control]="form.controls.lastName" />
-    </app-form-field>
+      <app-form-field-error [control]="form.controls.lastName" />
+    </app-form-field-container>
   </div>
 
-  <div class="col-span-12 lg:col-span-5">
-    <app-form-field
-      class="w-full"
-      [inlineEditable]="inlineEditable()"
-      (save)="onSave('identificationNumber', $event)"
-    >
-      <app-label>{{ 'people.form.identificationNumber' | translate }}</app-label>
+  <div class="col-span-12 lg:col-span-8">
+    <app-form-field-container>
+      <label for="value1">{{ 'people.form.identificationNumber' | translate }}</label>
       <input
         pInputText
         type="text"
         class="w-full"
         [formControl]="form.controls.identificationNumber"
       />
-      <app-control-error [control]="form.controls.identificationNumber" />
-    </app-form-field>
+      <app-form-field-error [control]="form.controls.identificationNumber" />
+    </app-form-field-container>
   </div>
-  <div class="col-span-12 lg:col-span-7">
-    <app-form-field
-      class="w-full"
-      [inlineEditable]="inlineEditable()"
-      (save)="onSave('identificationType', $event)"
-    >
-      <app-label>{{ 'people.form.identificationType' | translate }}</app-label>
+  <div class="col-span-12 lg:col-span-4">
+    <app-form-field-container class="w-full">
+      <label for="identificationType">{{ 'people.form.identificationType' | translate }}</label>
       <p-select
         class="w-full"
         [options]="identificationTypes()"
         [formControl]="form.controls.identificationType"
         appendTo="body"
+        [placeholder]="'common.selectPlaceholder' | translate"
       >
         <ng-template #selectedItem let-option>
           <div>{{ 'identificationTypes.' + option | translate }}</div>
@@ -58,18 +43,14 @@
           <div>{{ 'identificationTypes.' + option | translate }}</div>
         </ng-template>
       </p-select>
-      <app-control-error [control]="form.controls.identificationType" />
-    </app-form-field>
+      <app-form-field-error [control]="form.controls.identificationType" />
+    </app-form-field-container>
   </div>
   <div class="col-span-12">
-    <app-form-field
-      class="w-full"
-      [inlineEditable]="inlineEditable()"
-      (save)="onSave('phone', $event)"
-    >
-      <app-label>{{ 'people.form.phone' | translate }}</app-label>
+    <app-form-field-container class="w-full">
+      <label for="value1">{{ 'people.form.phone' | translate }}</label>
       <app-phone-input [formControl]="form.controls.phone" class="w-full" />
-      <app-control-error [control]="form.controls.phone" />
-    </app-form-field>
+      <app-form-field-error [control]="form.controls.phone" />
+    </app-form-field-container>
   </div>
 </form>

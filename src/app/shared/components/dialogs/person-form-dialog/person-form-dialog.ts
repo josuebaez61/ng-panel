@@ -46,14 +46,7 @@ export class PersonFormDialog {
       this.saving.set(false);
       return;
     }
-    this.userService.updatePersonByUserId(editingUser.id, form?.value as Person).subscribe({
-      next: () => {
-        this.dialogRef.close(true);
-        this.saving.set(false);
-      },
-      error: () => {
-        this.saving.set(false);
-      },
-    });
+
+    this.dialogRef.close(form?.value);
   }
 }
