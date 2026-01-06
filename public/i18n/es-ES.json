@@ -172,7 +172,7 @@
     },
     "selectAll": "Seleccionar Todo"
   },
-  "menu": {
+  "navigation": {
     "dashboard": "Dashboard",
     "home": "Inicio",
     "users": "Usuarios",

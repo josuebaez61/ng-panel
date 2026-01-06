@@ -53,27 +53,27 @@ export class PanelDrawer {
 
   public menuItems$ = this.localizedMenu.getMenu([
     {
-      label: 'menu.dashboard',
+      label: 'navigation.dashboard',
       items: [
         {
-          label: 'menu.home',
+          label: 'navigation.home',
           icon: 'pi pi-home',
           routerLink: RoutePath.HOME,
         },
         {
-          label: 'menu.users',
+          label: 'navigation.users',
           icon: 'pi pi-users',
           visible: this.authService.currentUser()?.hasPermission(PermissionName.READ_USER),
           routerLink: RoutePath.USERS,
         },
         {
-          label: 'menu.roles',
+          label: 'navigation.roles',
           icon: 'pi pi-circle',
           visible: this.authService.currentUser()?.hasPermission(PermissionName.READ_ROLE),
           routerLink: RoutePath.ROLES,
         },
         {
-          label: 'menu.apiKeys',
+          label: 'navigation.apiKeys',
           icon: 'pi pi-key',
           visible: this.authService.currentUser()?.hasPermission(PermissionName.READ_API_KEY),
           routerLink: RoutePath.API_KEYS,
