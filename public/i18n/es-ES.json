@@ -172,6 +172,13 @@
     },
     "selectAll": "Seleccionar Todo"
   },
+  "menu": {
+    "dashboard": "Dashboard",
+    "home": "Inicio",
+    "users": "Usuarios",
+    "roles": "Roles",
+    "apiKeys": "API Keys"
+  },
   "validation": {
     "required": "Este campo es requerido",
     "email": "Ingresa un correo electrónico válido",
@@ -283,17 +290,17 @@
         "system": "Sistema"
       },
       "names": {
-        "create_role": "Crear Rol",
-        "read_role": "Leer Rol",
-        "update_role": "Actualizar Rol",
-        "delete_role": "Eliminar Rol",
-        "assign_role": "Asignar Rol",
-        "assign_permission": "Asignar Permiso",
-        "read_permission": "Leer Permiso",
-        "create_user": "Crear Usuario",
-        "read_user": "Leer Usuario",
-        "update_user": "Actualizar Usuario",
-        "delete_user": "Eliminar Usuario",
+        "createRole": "Crear Rol",
+        "readRole": "Leer Rol",
+        "updateRole": "Actualizar Rol",
+        "deleteRole": "Eliminar Rol",
+        "assignRole": "Asignar Rol",
+        "assignPermission": "Asignar Permiso",
+        "readPermission": "Leer Permiso",
+        "createUser": "Crear Usuario",
+        "readUser": "Leer Usuario",
+        "updateUser": "Actualizar Usuario",
+        "deleteUser": "Eliminar Usuario",
         "admin": "Administrador",
         "superAdmin": "Super Administrador"
       }
@@ -360,5 +367,66 @@
     "driver_license": "Licencia de Conducir",
     "voter_id": "Cédula de Votante",
     "other": "Otro"
+  },
+  "apiKeys": {
+    "title": "API Keys",
+    "addButton": "Agregar API Key",
+    "table": {
+      "nameColumn": "Nombre",
+      "descriptionColumn": "Descripción",
+      "keyColumn": "Clave",
+      "statusColumn": "Estado",
+      "createdAtColumn": "Creado el",
+      "updatedAtColumn": "Actualizado el"
+    },
+    "status": {
+      "active": "Activo",
+      "inactive": "Inactivo"
+    },
+    "form": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "addApiKey": "Agregar API Key",
+      "editApiKey": "Editar API Key",
+      "deleteApiKeyConfirmation": "¿Estás seguro de querer eliminar la API Key <b>{{apiKeyName}}</b>?"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "activate": "Activar",
+      "deactivate": "Desactivar",
+      "permissions": "Permisos"
+    },
+    "permissions": {
+      "title": "Permisos de API Key",
+      "description": "Gestiona los permisos del API Key",
+      "resources": {
+        "user": "Usuarios",
+        "role": "Roles",
+        "permission": "Permisos",
+        "system": "Sistema",
+        "apiKey": "API Keys",
+        "api_key": "API Keys"
+      },
+      "names": {
+        "createRole": "Crear Rol",
+        "readRole": "Leer Rol",
+        "updateRole": "Actualizar Rol",
+        "deleteRole": "Eliminar Rol",
+        "assignRole": "Asignar Rol",
+        "assignPermission": "Asignar Permiso",
+        "readPermission": "Leer Permiso",
+        "createUser": "Crear Usuario",
+        "readUser": "Leer Usuario",
+        "updateUser": "Actualizar Usuario",
+        "deleteUser": "Eliminar Usuario",
+        "createApiKey": "Crear API Key",
+        "readApiKey": "Leer API Key",
+        "updateApiKey": "Actualizar API Key",
+        "deleteApiKey": "Eliminar API Key",
+        "admin": "Administrador",
+        "superAdmin": "Super Administrador"
+      }
+    }
   }
 }

@@ -41,6 +41,12 @@ export const routes: Routes = [
         title: 'Roles - Admin Panel',
       },
       {
+        path: RouteName.API_KEYS,
+        canActivate: [hasAnyPermissionGuard([PermissionName.READ_API_KEY])],
+        loadChildren: () => import('./features/api-keys/api-keys.routes').then((m) => m.routes),
+        title: 'API Keys - Admin Panel',
+      },
+      {
         path: RouteName.ACCOUNT,
         canDeactivate: [unsavedChangesGuard],
         loadComponent: () => import('./features/account/account').then((m) => m.Account),
@@ -52,7 +58,8 @@ export const routes: Routes = [
   // 404 - Page not found
   {
     path: '**',
-    loadComponent: () => import('./shared/components/utilities/not-found/not-found').then((m) => m.NotFound),
+    loadComponent: () =>
+      import('./shared/components/utilities/not-found/not-found').then((m) => m.NotFound),
     title: 'Page Not Found - Admin Panel',
   },
 ];

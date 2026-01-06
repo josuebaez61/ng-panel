@@ -24,6 +24,8 @@ export const RouteName = {
   ROLES: 'roles',
   ROLES_PERMISSIONS: (id: string) => `permissions/${id}`,
   ROLES_USERS: (id: string) => `users/${id}`,
+  API_KEYS: 'api-keys',
+  API_KEYS_PERMISSIONS: (id: string) => `permissions/${id}`,
   // Error routes
   NOT_FOUND: 'not-found',
   ACCOUNT: 'account',
@@ -59,6 +61,9 @@ export const RoutePath = {
     `/${RouteName.PANEL}/${RouteName.ROLES}/${RouteName.ROLES_PERMISSIONS(id)}`,
   ROLES_USERS: (id: string) =>
     `/${RouteName.PANEL}/${RouteName.ROLES}/${RouteName.ROLES_USERS(id)}`,
+  API_KEYS: `/${RouteName.PANEL}/${RouteName.API_KEYS}`,
+  API_KEYS_PERMISSIONS: (id: string) =>
+    `/${RouteName.PANEL}/${RouteName.API_KEYS}/${RouteName.API_KEYS_PERMISSIONS(id)}`,
 
   // Error routes
   NOT_FOUND: `/${RouteName.NOT_FOUND}`,

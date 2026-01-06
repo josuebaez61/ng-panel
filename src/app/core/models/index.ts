@@ -1,4 +1,5 @@
 export * from './address-model';
+export * from './api-key-models';
 export * from './api-response-models';
 export * from './auth-models';
 export * from './dialogs-models';

@@ -1,0 +1,80 @@
+<p-table
+  #table
+  dataKey="id"
+  [loading]="loading()"
+  [globalFilterFields]="['name', 'description']"
+  [value]="apiKeys()"
+  [paginator]="paginator()"
+  [rows]="10"
+  [totalRecords]="totalCount()"
+  [lazy]="lazy()"
+  (onLazyLoad)="lazyLoad.emit($event)"
+  [rowsPerPageOptions]="pageSizeOptions()"
+  [rows]="pageSize()"
+>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="9999">{{ 'common.table.noData' | translate }}</td>
+    </tr>
+  </ng-template>
+  <ng-template #caption>
+    <div class="flex">
+      <p-iconfield iconPosition="left" class="ml-auto">
+        <p-inputicon>
+          <i class="pi pi-search"></i>
+        </p-inputicon>
+        <input
+          pInputText
+          type="text"
+          (input)="table.filterGlobal($event.target.value, 'contains')"
+          [placeholder]="'common.search' | translate"
+        />
+      </p-iconfield>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th>{{ 'apiKeys.table.nameColumn' | translate }}</th>
+      <th>{{ 'apiKeys.table.descriptionColumn' | translate }}</th>
+      <th>{{ 'apiKeys.table.keyColumn' | translate }}</th>
+      <th>{{ 'apiKeys.table.statusColumn' | translate }}</th>
+      <th>{{ 'apiKeys.table.createdAtColumn' | translate }}</th>
+      <th>{{ 'apiKeys.table.updatedAtColumn' | translate }}</th>
+      @if (actionsColumnTemplate()) {
+      <th>{{ 'common.table.actionsColumn' | translate }}</th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-apiKey>
+    <tr>
+      <td>{{ apiKey.name }}</td>
+      <td>{{ apiKey.description || '—' }}</td>
+      <td>
+        @if (apiKey.key) {
+        <code class="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">{{ apiKey.key }}</code>
+        } @else {
+        <span class="text-gray-400">••••••••</span>
+        }
+      </td>
+      <td>
+        <p-badge
+          [value]="
+            apiKey.isActive
+              ? ('apiKeys.status.active' | translate)
+              : ('apiKeys.status.inactive' | translate)
+          "
+          [severity]="apiKey.isActive ? 'success' : 'danger'"
+        />
+      </td>
+      <td>{{ apiKey.createdAt | localizedDate : 'short' }}</td>
+      <td>{{ apiKey.updatedAt | localizedDate : 'short' }}</td>
+      @if (actionsColumnTemplate()) {
+      <td>
+        <ng-container
+          *ngTemplateOutlet="actionsColumnTemplate(); context: { $implicit: apiKey }"
+        ></ng-container>
+      </td>
+      }
+    </tr>
+  </ng-template>
+</p-table>

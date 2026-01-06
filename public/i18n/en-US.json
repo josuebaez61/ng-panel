@@ -176,6 +176,13 @@
     },
     "selectAll": "Select All"
   },
+  "menu": {
+    "dashboard": "Dashboard",
+    "home": "Home",
+    "users": "Users",
+    "roles": "Roles",
+    "apiKeys": "API Keys"
+  },
   "validation": {
     "required": "This field is required",
     "email": "Please enter a valid email address",
@@ -287,17 +294,17 @@
         "system": "System"
       },
       "names": {
-        "create_role": "Create Role",
-        "read_role": "Read Role",
-        "update_role": "Update Role",
-        "delete_role": "Delete Role",
-        "assign_role": "Assign Role",
-        "assign_permission": "Assign Permission",
-        "read_permission": "Read Permission",
-        "create_user": "Create User",
-        "read_user": "Read User",
-        "update_user": "Update User",
-        "delete_user": "Delete User",
+        "createRole": "Create Role",
+        "readRole": "Read Role",
+        "updateRole": "Update Role",
+        "deleteRole": "Delete Role",
+        "assignRole": "Assign Role",
+        "assignPermission": "Assign Permission",
+        "readPermission": "Read Permission",
+        "createUser": "Create User",
+        "readUser": "Read User",
+        "updateUser": "Update User",
+        "deleteUser": "Delete User",
         "admin": "Administrator",
         "superAdmin": "Super Administrator"
       }
@@ -364,5 +371,66 @@
     "driver_license": "Driver License",
     "voter_id": "Voter ID",
     "other": "Other"
+  },
+  "apiKeys": {
+    "title": "API Keys",
+    "addButton": "Add API Key",
+    "table": {
+      "nameColumn": "Name",
+      "descriptionColumn": "Description",
+      "keyColumn": "Key",
+      "statusColumn": "Status",
+      "createdAtColumn": "Created At",
+      "updatedAtColumn": "Updated At"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "form": {
+      "name": "Name",
+      "description": "Description",
+      "addApiKey": "Add API Key",
+      "editApiKey": "Edit API Key",
+      "deleteApiKeyConfirmation": "Are you sure you want to delete the API Key <b>{{apiKeyName}}</b>?"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "permissions": "Permissions"
+    },
+    "permissions": {
+      "title": "API Key Permissions",
+      "description": "Manage API Key permissions",
+      "resources": {
+        "user": "Users",
+        "role": "Roles",
+        "permission": "Permissions",
+        "system": "System",
+        "apiKey": "API Keys",
+        "api_key": "API Keys"
+      },
+      "names": {
+        "createRole": "Create Role",
+        "readRole": "Read Role",
+        "updateRole": "Update Role",
+        "deleteRole": "Delete Role",
+        "assignRole": "Assign Role",
+        "assignPermission": "Assign Permission",
+        "readPermission": "Read Permission",
+        "createUser": "Create User",
+        "readUser": "Read User",
+        "updateUser": "Update User",
+        "deleteUser": "Delete User",
+        "createApiKey": "Create API Key",
+        "readApiKey": "Read API Key",
+        "updateApiKey": "Update API Key",
+        "deleteApiKey": "Delete API Key",
+        "admin": "Administrator",
+        "superAdmin": "Super Administrator"
+      }
+    }
   }
 }

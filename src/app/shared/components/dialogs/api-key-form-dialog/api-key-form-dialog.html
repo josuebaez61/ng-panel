@@ -1,0 +1,32 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid grid-cols-2 gap-form-grid">
+  <div class="col-span-2">
+    <app-form-field-container>
+      <label for="name">{{ 'apiKeys.form.name' | translate }}</label>
+      <input class="w-full" pInputText type="text" id="name" formControlName="name" />
+      <app-form-field-error [control]="form.controls.name" />
+    </app-form-field-container>
+  </div>
+  <div class="col-span-2">
+    <app-form-field-container>
+      <label for="description">{{ 'apiKeys.form.description' | translate }}</label>
+      <textarea
+        class="w-full"
+        pInputTextarea
+        id="description"
+        formControlName="description"
+        [rows]="3"
+      ></textarea>
+      <app-form-field-error [control]="form.controls.description" />
+    </app-form-field-container>
+  </div>
+  <div class="col-span-2" appDialogActions>
+    <p-button
+      (onClick)="dialogRef.close()"
+      severity="secondary"
+      type="button"
+      [label]="'common.cancel' | translate"
+    />
+    <p-button icon="pi pi-save" type="submit" [label]="'common.save' | translate" />
+  </div>
+</form>
+

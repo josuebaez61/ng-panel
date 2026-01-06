@@ -12,6 +12,11 @@
   [rowsPerPageOptions]="pageSizeOptions()"
   [rows]="pageSize()"
 >
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="9999">{{ 'common.table.noData' | translate }}</td>
+    </tr>
+  </ng-template>
   <ng-template #caption>
     <div class="flex">
       <p-iconfield iconPosition="left" class="ml-auto">

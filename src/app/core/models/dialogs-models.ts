@@ -1,3 +1,4 @@
+import { ApiKey } from './api-key-models';
 import { Role } from './role-models';
 import { User, UserOption } from '.';
 
@@ -7,6 +8,10 @@ export interface UserFormDialogData {
 
 export interface RoleFormDialogData {
   role?: Role;
+}
+
+export interface ApiKeyFormDialogData {
+  apiKey?: ApiKey;
 }
 
 export interface ConfirmDialogData {

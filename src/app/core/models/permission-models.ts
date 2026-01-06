@@ -1,23 +1,32 @@
 export enum PermissionName {
-  CREATE_ROLE = 'create_role',
-  READ_ROLE = 'read_role',
-  UPDATE_ROLE = 'update_role',
-  DELETE_ROLE = 'delete_role',
-  ASSIGN_ROLE = 'assign_role',
-  ASSIGN_PERMISSION = 'assign_permission',
+  // Role permissions
+  CREATE_ROLE = 'createRole',
+  READ_ROLE = 'readRole',
+  UPDATE_ROLE = 'updateRole',
+  DELETE_ROLE = 'deleteRole',
+  ASSIGN_ROLE = 'assignRole',
+  ASSIGN_PERMISSION = 'assignPermission',
 
   // Permission permissions
-  READ_PERMISSION = 'read_permission',
+  READ_PERMISSION = 'readPermission',
 
   // User permissions
-  CREATE_USER = 'create_user',
-  READ_USER = 'read_user',
-  UPDATE_USER = 'update_user',
-  DELETE_USER = 'delete_user',
+  CREATE_USER = 'createUser',
+  READ_USER = 'readUser',
+  UPDATE_USER = 'updateUser',
+  DELETE_USER = 'deleteUser',
 
-  // Special permissions
-  Admin = 'admin',
-  SuperAdmin = 'superAdmin',
+  // User Address permissions
+  CREATE_USER_ADDRESS = 'createUserAddress',
+  READ_USER_ADDRESS = 'readUserAddress',
+  UPDATE_USER_ADDRESS = 'updateUserAddress',
+  DELETE_USER_ADDRESS = 'deleteUserAddress',
+
+  // API Key permissions
+  CREATE_API_KEY = 'createApiKey',
+  READ_API_KEY = 'readApiKey',
+  UPDATE_API_KEY = 'updateApiKey',
+  DELETE_API_KEY = 'deleteApiKey',
 }
 
 export interface Permission {
@@ -38,4 +47,5 @@ export enum ResourceName {
   ROLE = 'role',
   PERMISSION = 'permission',
   USER = 'user',
+  API_KEY = 'apiKey',
 }

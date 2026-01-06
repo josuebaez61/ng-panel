@@ -21,7 +21,7 @@ export interface PageHeaderConfig {
 export class PanelPageHeader {
   // Input properties
   public title = input<string>('');
-  public description = input<string>('');
+  public description = input<string | undefined>('');
   public backRoute = input<string>('');
   public showAddButton = input<boolean>(false);
   public addButtonLabel = input<string>('common.add');

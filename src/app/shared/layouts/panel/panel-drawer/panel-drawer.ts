@@ -9,7 +9,7 @@ import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
 import { UserAvatar } from '@shared/components/user/user-avatar/user-avatar';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { PermissionName, ResourceName } from '@core/models';
+import { PermissionName } from '@core/models';
 
 @Component({
   selector: 'app-panel-drawer',
@@ -53,28 +53,30 @@ export class PanelDrawer {
 
   public menuItems$ = this.localizedMenu.getMenu([
     {
-      label: 'Dashboard',
+      label: 'menu.dashboard',
       items: [
         {
-          label: 'Home',
+          label: 'menu.home',
           icon: 'pi pi-home',
           routerLink: RoutePath.HOME,
         },
         {
-          label: 'Users',
+          label: 'menu.users',
           icon: 'pi pi-users',
-          visible:
-            this.authService.currentUser()?.hasResource(ResourceName.USER) &&
-            this.authService.currentUser()?.hasPermission(PermissionName.READ_USER),
+          visible: this.authService.currentUser()?.hasPermission(PermissionName.READ_USER),
           routerLink: RoutePath.USERS,
         },
         {
-          label: 'Roles',
+          label: 'menu.roles',
           icon: 'pi pi-circle',
-          visible:
-            this.authService.currentUser()?.hasResource(ResourceName.ROLE) &&
-            this.authService.currentUser()?.hasPermission(PermissionName.READ_ROLE),
+          visible: this.authService.currentUser()?.hasPermission(PermissionName.READ_ROLE),
           routerLink: RoutePath.ROLES,
+        },
+        {
+          label: 'menu.apiKeys',
+          icon: 'pi pi-key',
+          visible: this.authService.currentUser()?.hasPermission(PermissionName.READ_API_KEY),
+          routerLink: RoutePath.API_KEYS,
         },
       ],
     },

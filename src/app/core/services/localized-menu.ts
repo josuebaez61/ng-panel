@@ -14,11 +14,16 @@ export class LocalizedMenu {
   public getMenu(menu: MenuItem[]): Observable<MenuItem[]> {
     return this.currentLang$.pipe(
       map((_lang) => {
-        return menu.map((item) => ({
-          ...item,
-          label: item.label ? this.translateService.instant(item.label) : undefined,
-        }));
+        return this.translateLabels(menu);
       })
     );
+  }
+
+  private translateLabels(item: MenuItem[]): MenuItem[] {
+    return item.map((item) => ({
+      ...item,
+      label: item.label ? this.translateService.instant(item.label) : undefined,
+      items: item.items ? this.translateLabels(item.items) : undefined,
+    }));
   }
 }

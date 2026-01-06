@@ -70,5 +70,14 @@ export const API_CONFIG = {
       STATES: (countryId: string): string => `/geography/countries/${countryId}/states`,
       COUNTIES: (stateId: string): string => `/geography/states/${stateId}/counties`,
     },
+    API_KEYS: {
+      ALL: '/api-keys',
+      CREATE: '/api-keys',
+      GET_BY_ID: (id: string): string => `/api-keys/${id}`,
+      UPDATE: (id: string): string => `/api-keys/${id}`,
+      DELETE: (id: string): string => `/api-keys/${id}`,
+      TOGGLE: (id: string): string => `/api-keys/${id}/toggle`,
+      PERMISSIONS_GROUPED_BY_RESOURCE: '/api-keys/permissions/grouped-by-resource',
+    },
   },
 } as const;

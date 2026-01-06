@@ -1,8 +1,9 @@
 import { inject, Injectable, Type, Injector, ApplicationRef, DOCUMENT } from '@angular/core';
-import { Role, UsersSelectionDialogData, User, Person } from '@core/models';
+import { ApiKey, Role, UsersSelectionDialogData, User, Person } from '@core/models';
 import { Address } from '@core/models/address-model';
 import { TranslateService } from '@ngx-translate/core';
 import { AddressFormDialog } from '@shared/components/dialogs/address-form-dialog/address-form-dialog';
+import { ApiKeyFormDialog } from '@shared/components/dialogs/api-key-form-dialog/api-key-form-dialog';
 import { ChangeEmailDialog } from '@shared/components/dialogs/change-email-dialog/change-email-dialog';
 import { ChangePasswordDialog } from '@shared/components/dialogs/change-password-dialog/change-password-dialog';
 import { PersonFormDialog } from '@shared/components/dialogs/person-form-dialog/person-form-dialog';
@@ -127,6 +128,17 @@ export class DialogService {
         : this.translateService.instant('addresses.addAddress'),
       data: {
         address,
+      },
+    });
+  }
+
+  public openApiKeyFormDialog(apiKey?: ApiKey): DynamicDialogRef<ApiKeyFormDialog> | null {
+    return this.open(ApiKeyFormDialog, {
+      header: apiKey
+        ? this.translateService.instant('apiKeys.form.editApiKey')
+        : this.translateService.instant('apiKeys.form.addApiKey'),
+      data: {
+        apiKey,
       },
     });
   }

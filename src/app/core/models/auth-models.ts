@@ -1,4 +1,3 @@
-import { PermissionName } from './permission-models';
 import { Person } from './user-models';
 
 export interface AuthUserDto {
@@ -97,11 +96,7 @@ export class AuthUser {
   }
 
   public hasPermission(permission: string): boolean {
-    return (
-      this.permissions.has(permission) ||
-      this.permissions.has(PermissionName.Admin) ||
-      this.permissions.has(PermissionName.SuperAdmin)
-    );
+    return this.permissions.has(permission);
   }
 
   public hasAllPermissions(permissions: string[]): boolean {
