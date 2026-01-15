@@ -13,55 +13,40 @@
   (lazyLoad)="onLazyLoad($event)"
   [canAssignRoles]="canAssignRoles()"
   [actionsColumnTemplate]="actionsColumnTemplate"
+  [filtersRowTemplate]="filtersRowTemplate"
 />
 
 <ng-template #actionsColumnTemplate let-user>
-  <div class="flex items-center gap-2">
+  <div class="relative">
     <p-button
-      (onClick)="openUserForm(user)"
-      icon="pi pi-pencil"
+      icon="pi pi-ellipsis-v"
       text
       rounded
-      [pTooltip]="'users.form.editUser' | translate"
-      [disabled]="!canUpdateUsers()"
+      (onClick)="menu.toggle($event)"
+      [pTooltip]="'common.table.actionsColumn' | translate"
     />
-    <p-button
-      (onClick)="openPersonForm(user, user.person)"
-      icon="pi pi-user-edit"
-      text
-      rounded
-      [pTooltip]="'people.form.editPerson' | translate"
-      [disabled]="!canUpdateUsers()"
-    />
-    <p-button
-      (onClick)="regenerateTemporaryPassword(user)"
-      icon="pi pi-key"
-      text
-      rounded
-      [pTooltip]="'users.form.regenerateTemporaryPassword' | translate"
-      [disabled]="!canUpdateUsers()"
-    />
-    @if (user.isActive) {
-    <p-button
-      (onClick)="deactivateUser(user)"
-      icon="pi pi-ban"
-      text
-      rounded
-      [disabled]="!canUpdateUsers() || isCurrentUser(user)"
-      severity="danger"
-      [pTooltip]="'users.form.deactivateUser' | translate"
-    />
-    } @else {
-    <p-button
-      (onClick)="activateUser(user)"
-      icon="pi pi-check"
-      text
-      rounded
-      [disabled]="!canUpdateUsers()"
-      [pTooltip]="'users.form.activateUser' | translate"
-    />
-    }
+    <p-menu #menu [model]="getMenuItems(user)" [popup]="true" [appendTo]="'body'" />
   </div>
+</ng-template>
+
+<ng-template #filtersRowTemplate>
+  <th></th>
+  <th></th>
+  <th>
+    <p-select
+      class="w-full"
+      [options]="roles()"
+      optionLabel="name"
+      optionValue="id"
+      appendTo="body"
+      (onChange)="onRoleChange($event)"
+      [showClear]="true"
+      [placeholder]="'users.filters.role' | translate"
+    />
+  </th>
+  <th></th>
+  <th></th>
+  <th></th>
 </ng-template>
 
 <p-confirmDialog />

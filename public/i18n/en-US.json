@@ -255,6 +255,9 @@
   "users": {
     "title": "Users",
     "addButton": "Add User",
+    "filters": {
+      "role": "Filter by Role"
+    },
     "table": {
       "userColumn": "User",
       "emailColumn": "Email Address",

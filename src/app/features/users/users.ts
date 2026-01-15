@@ -1,23 +1,26 @@
-import { Component, computed, inject } from '@angular/core';
-import { ListUser, PermissionName, Person, User } from '@core/models';
+import { Component, computed, inject, signal } from '@angular/core';
+import { ListUser, PermissionName, Person, Role, User } from '@core/models';
 import {
   AuthService,
   Confirm,
   DialogService,
   PaginatedResourceLoader,
+  RoleService,
   UserService,
 } from '@core/services';
 import { PanelPageHeader } from '@shared/components/layout/panel-page-header/panel-page-header';
 import { UsersTable } from '@shared/components/lists/table/users-table/users-table';
 import { TableLazyLoadEvent } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { MenuModule } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
 import { SharedModule } from '@shared/modules';
 import { TranslateService } from '@ngx-translate/core';
 import { switchMap, tap, of } from 'rxjs';
 
 @Component({
   selector: 'app-users',
-  imports: [PanelPageHeader, UsersTable, ButtonModule, SharedModule],
+  imports: [PanelPageHeader, UsersTable, ButtonModule, MenuModule, SharedModule],
   templateUrl: './users.html',
   styleUrl: './users.scss',
 })
@@ -27,6 +30,9 @@ export class Users {
   private readonly authService = inject(AuthService);
   private readonly dialogService = inject(DialogService);
   private readonly confirm = inject(Confirm);
+  private readonly roleService = inject(RoleService);
+
+  public roles = signal<Role[]>([]);
 
   public currentUser = this.authService.currentUser;
 
@@ -45,6 +51,22 @@ export class Users {
   public paginatedUsers = new PaginatedResourceLoader<ListUser>({
     fetchData: (request) => this.userService.paginatedUsers(request),
   });
+
+  public onRoleChange(event: any): void {
+    if (event.value) {
+      this.paginatedUsers.applyFilter('roleId', event.value);
+    } else {
+      this.paginatedUsers.clearFilters();
+    }
+  }
+
+  public ngOnInit(): void {
+    this.roleService.getAllRoles().subscribe({
+      next: (roles) => {
+        this.roles.set(roles);
+      },
+    });
+  }
 
   public onLazyLoad(event: TableLazyLoadEvent): void {
     this.paginatedUsers.handleTableLazyLoadEvent(event);
@@ -132,5 +154,49 @@ export class Users {
         this.userService.regenerateTemporaryPassword(user.id).subscribe();
       },
     });
+  }
+
+  public getMenuItems(user: User): MenuItem[] {
+    const canUpdate = this.canUpdateUsers();
+    const isCurrent = this.isCurrentUser(user);
+
+    const items: MenuItem[] = [
+      {
+        label: this.translateService.instant('users.form.editUser'),
+        icon: 'pi pi-pencil',
+        command: () => this.openUserForm(user),
+        disabled: !canUpdate,
+      },
+      {
+        label: this.translateService.instant('people.form.editPerson'),
+        icon: 'pi pi-user-edit',
+        command: () => this.openPersonForm(user, user.person),
+        disabled: !canUpdate,
+      },
+      {
+        label: this.translateService.instant('users.form.regenerateTemporaryPassword'),
+        icon: 'pi pi-key',
+        command: () => this.regenerateTemporaryPassword(user),
+        disabled: !canUpdate,
+      },
+    ];
+
+    if (user.isActive) {
+      items.push({
+        label: this.translateService.instant('users.form.deactivateUser'),
+        icon: 'pi pi-ban',
+        command: () => this.deactivateUser(user),
+        disabled: !canUpdate || isCurrent,
+      });
+    } else {
+      items.push({
+        label: this.translateService.instant('users.form.activateUser'),
+        icon: 'pi pi-check',
+        command: () => this.activateUser(user),
+        disabled: !canUpdate,
+      });
+    }
+
+    return items;
   }
 }

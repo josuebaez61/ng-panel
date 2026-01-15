@@ -56,6 +56,11 @@
       <th>{{ 'common.table.actionsColumn' | translate }}</th>
       }
     </tr>
+    @if (filtersRowTemplate()) {
+    <tr>
+      <ng-container *ngTemplateOutlet="filtersRowTemplate()"></ng-container>
+    </tr>
+    }
   </ng-template>
   <ng-template #body let-user>
     <tr>

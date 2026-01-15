@@ -251,6 +251,9 @@
   "users": {
     "title": "Usuarios",
     "addButton": "Agregar Usuario",
+    "filters": {
+      "role": "Filtrar por Rol"
+    },
     "table": {
       "userColumn": "Usuario",
       "emailColumn": "Correo Electrónico",

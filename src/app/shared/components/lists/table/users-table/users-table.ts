@@ -32,6 +32,7 @@ export class UsersTable {
   public lazyLoad = output<TableLazyLoadEvent>();
   public canAssignRoles = input<boolean>(false);
   public actionsColumnTemplate = input<TemplateRef<any>>();
+  public filtersRowTemplate = input<TemplateRef<any>>();
   public pageSize = input<number>(DEFAULT_TABLE_PAGE_SIZE);
   public pageSizeOptions = input<number[]>(DEFAULT_TABLE_PAGE_SIZE_OPTIONS);
 
