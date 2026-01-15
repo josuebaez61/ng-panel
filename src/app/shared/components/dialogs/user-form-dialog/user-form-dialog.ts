@@ -1,5 +1,10 @@
 import { AfterViewInit, Component, ViewChild, inject, signal } from '@angular/core';
-import { CreateUserRequest, UserFormDialogData } from '@core/models';
+import {
+  CreateUserRequest,
+  UpdatePersonRequest,
+  UpdateUserRequest,
+  UserFormDialogData,
+} from '@core/models';
 import { UserService } from '@core/services';
 import { TranslateModule } from '@ngx-translate/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -7,10 +12,11 @@ import { UserForm } from '@shared/components/templates/user-form/user-form';
 import { DialogActions } from '@shared/directives';
 import { ButtonModule } from 'primeng/button';
 import { FormGroup } from '@angular/forms';
+import { PersonForm } from '@shared/components/templates/person-form/person-form';
 
 @Component({
   selector: 'app-user-form-dialog',
-  imports: [UserForm, TranslateModule, ButtonModule, DialogActions],
+  imports: [UserForm, TranslateModule, ButtonModule, DialogActions, PersonForm],
   templateUrl: './user-form-dialog.html',
   styles: ``,
 })
@@ -22,16 +28,23 @@ export class UserFormDialog implements AfterViewInit {
   @ViewChild(UserForm)
   public userFormComponent?: UserForm;
 
-  private readonly dialogRef = inject(DynamicDialogRef<UserFormDialog>);
-  private readonly dialogConfig = inject(DynamicDialogConfig<UserFormDialogData>);
+  @ViewChild(PersonForm)
+  public personFormComponent?: PersonForm;
 
-  public get form(): FormGroup | undefined {
+  public get personForm(): FormGroup | undefined {
+    return this.personFormComponent?.form;
+  }
+  public get userForm(): FormGroup | undefined {
     return this.userFormComponent?.form;
   }
 
+  private readonly dialogRef = inject(DynamicDialogRef<UserFormDialog>);
+  private readonly dialogConfig = inject(DynamicDialogConfig<UserFormDialogData>);
+
   public ngAfterViewInit(): void {
     if (this.dialogConfig.data) {
-      this.form?.patchValue(this.dialogConfig.data.user);
+      this.userFormComponent?.form?.patchValue(this.dialogConfig.data.user);
+      this.personFormComponent?.form?.patchValue(this.dialogConfig.data.user?.person);
     }
   }
 
@@ -40,15 +53,23 @@ export class UserFormDialog implements AfterViewInit {
   }
 
   public onSubmit(): void {
-    if (this.form?.invalid) {
-      this.form?.markAllAsTouched();
+    if (this.userForm?.invalid || this.personForm?.invalid) {
+      this.userForm?.markAllAsTouched();
+      this.personForm?.markAllAsTouched();
       return;
     }
     this.saving.set(true);
     const editingUser = this.dialogConfig.data.user;
 
+    const payload = {
+      ...(this.userForm?.value as UpdateUserRequest),
+      person: {
+        ...(this.personForm?.value as UpdatePersonRequest),
+      },
+    };
+
     if (editingUser) {
-      this.userService.updateUser(editingUser.id, this.form?.value).subscribe({
+      this.userService.updateUser(editingUser.id, payload as UpdateUserRequest).subscribe({
         next: () => {
           this.dialogRef.close(true);
           this.saving.set(false);
@@ -58,7 +79,7 @@ export class UserFormDialog implements AfterViewInit {
         },
       });
     } else {
-      this.userService.createUser(this.form?.value as CreateUserRequest).subscribe({
+      this.userService.createUser(payload as CreateUserRequest).subscribe({
         next: () => {
           this.dialogRef.close(true);
           this.saving.set(false);

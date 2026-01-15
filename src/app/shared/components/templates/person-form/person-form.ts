@@ -39,8 +39,8 @@ export class PersonForm implements OnInit {
 
   // Public form group that parent components can access
   public form = new FormGroup({
-    firstName: new FormControl('', [Validators.maxLength(255)]),
-    lastName: new FormControl('', [Validators.maxLength(255)]),
+    firstName: new FormControl('', [Validators.required, Validators.maxLength(255)]),
+    lastName: new FormControl('', [Validators.required, Validators.maxLength(255)]),
     identificationNumber: new FormControl<string | null>(null, [Validators.maxLength(50)]),
     identificationType: new FormControl<string | null>(null, []),
     phone: new FormControl('', [Validators.maxLength(20)]),

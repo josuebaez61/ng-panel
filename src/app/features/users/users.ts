@@ -168,12 +168,6 @@ export class Users {
         disabled: !canUpdate,
       },
       {
-        label: this.translateService.instant('people.form.editPerson'),
-        icon: 'pi pi-user-edit',
-        command: () => this.openPersonForm(user, user.person),
-        disabled: !canUpdate,
-      },
-      {
         label: this.translateService.instant('users.form.regenerateTemporaryPassword'),
         icon: 'pi pi-key',
         command: () => this.regenerateTemporaryPassword(user),
