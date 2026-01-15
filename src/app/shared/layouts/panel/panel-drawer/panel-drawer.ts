@@ -2,14 +2,17 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, output } f
 import { DrawerModule } from 'primeng/drawer';
 import { AvatarModule } from 'primeng/avatar';
 import { SharedModule } from '@shared/modules';
-import { AuthService, LocalizedMenu, ThemeService } from '@core/services';
+import { AuthService, ThemeService } from '@core/services';
 import { RoutePath } from '@core/constants';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
 import { UserAvatar } from '@shared/components/user/user-avatar/user-avatar';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { PermissionName } from '@core/models';
+import {
+  PANEL_NAVIGATION_MENU_TOKEN,
+  providePanelNavigationMenu,
+} from '@core/providers/panel-navigation-menu.provider';
 
 @Component({
   selector: 'app-panel-drawer',
@@ -24,6 +27,7 @@ import { PermissionName } from '@core/models';
     RouterLink,
     RouterLinkActive,
   ],
+  providers: [providePanelNavigationMenu()],
   templateUrl: './panel-drawer.html',
   styleUrl: './panel-drawer.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,7 +42,7 @@ export class PanelDrawer {
   public userName = computed(() => this.user()?.username);
   public drawerVisible = input<boolean>(true);
   public drawerVisibleChange = output<boolean>();
-  public drawerWidth = input<string>('300px');
+  public drawerWidth = input<string>('200px');
   public modal = input<boolean>(false);
 
   public accountRoute = RoutePath.ACCOUNT;
@@ -49,55 +53,5 @@ export class PanelDrawer {
     this.drawerVisibleChange.emit(false);
   };
 
-  private readonly localizedMenu = inject(LocalizedMenu);
-
-  public menuItems$ = this.localizedMenu.getMenu([
-    {
-      label: 'navigation.dashboard',
-      items: [
-        {
-          label: 'navigation.home',
-          icon: 'pi pi-home',
-          routerLink: RoutePath.HOME,
-        },
-        {
-          label: 'navigation.company',
-          icon: 'pi pi-building',
-          visible: this.authService
-            .currentUser()
-            ?.hasAnyPermission([PermissionName.READ_COMPANY, PermissionName.UPDATE_COMPANY]),
-          routerLink: RoutePath.COMPANY,
-        },
-        {
-          label: 'navigation.users',
-          icon: 'pi pi-users',
-          visible: this.authService.currentUser()?.hasPermission(PermissionName.READ_USER),
-          routerLink: RoutePath.USERS,
-        },
-        {
-          label: 'navigation.roles',
-          icon: 'pi pi-circle',
-          visible: this.authService.currentUser()?.hasPermission(PermissionName.READ_ROLE),
-          routerLink: RoutePath.ROLES,
-        },
-        {
-          label: 'navigation.apiKeys',
-          icon: 'pi pi-key',
-          visible: this.authService.currentUser()?.hasPermission(PermissionName.READ_API_KEY),
-          routerLink: RoutePath.API_KEYS,
-        },
-        {
-          label: 'navigation.settings',
-          icon: 'pi pi-cog',
-          visible: this.authService
-            .currentUser()
-            ?.hasAnyPermission([
-              PermissionName.READ_COMPANY_SETTINGS,
-              PermissionName.UPDATE_COMPANY_SETTINGS,
-            ]),
-          routerLink: RoutePath.SETTINGS,
-        },
-      ],
-    },
-  ]);
+  public menuItems$ = inject(PANEL_NAVIGATION_MENU_TOKEN);
 }
