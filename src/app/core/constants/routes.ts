@@ -26,9 +26,11 @@ export const RouteName = {
   ROLES_USERS: (id: string) => `users/${id}`,
   API_KEYS: 'api-keys',
   API_KEYS_PERMISSIONS: (id: string) => `permissions/${id}`,
+  COMPANY: 'company',
   // Error routes
   NOT_FOUND: 'not-found',
   ACCOUNT: 'account',
+  SETTINGS: 'settings',
 };
 
 /**
@@ -64,7 +66,8 @@ export const RoutePath = {
   API_KEYS: `/${RouteName.PANEL}/${RouteName.API_KEYS}`,
   API_KEYS_PERMISSIONS: (id: string) =>
     `/${RouteName.PANEL}/${RouteName.API_KEYS}/${RouteName.API_KEYS_PERMISSIONS(id)}`,
-
+  COMPANY: `/${RouteName.PANEL}/${RouteName.COMPANY}`,
+  SETTINGS: `/${RouteName.PANEL}/${RouteName.SETTINGS}`,
   // Error routes
   NOT_FOUND: `/${RouteName.NOT_FOUND}`,
   ACCOUNT: `/${RouteName.PANEL}/${RouteName.ACCOUNT}`,

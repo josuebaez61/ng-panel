@@ -147,7 +147,7 @@
         "light": "Modo Claro",
         "dark": "Modo Oscuro"
       },
-      "footer": "© 2024 {{companyName}}. Todos los derechos reservados."
+      "footer": "© 2024 {{appName}}. Todos los derechos reservados."
     }
   },
   "common": {
@@ -177,7 +177,27 @@
     "home": "Inicio",
     "users": "Usuarios",
     "roles": "Roles",
-    "apiKeys": "API Keys"
+    "apiKeys": "API Keys",
+    "company": "Empresa",
+    "settings": "Configuración"
+  },
+  "company": {
+    "title": "Información de la Empresa",
+    "form": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "logoUrl": "URL del Logo",
+      "websiteUrl": "URL del Sitio Web",
+      "email": "Correo Electrónico",
+      "phoneNumber": "Número de Teléfono"
+    }
+  },
+  "settings": {
+    "title": "Configuración",
+    "form": {
+      "mainCurrency": "Moneda Principal",
+      "themeColor": "Color del Tema"
+    }
   },
   "validation": {
     "required": "Este campo es requerido",

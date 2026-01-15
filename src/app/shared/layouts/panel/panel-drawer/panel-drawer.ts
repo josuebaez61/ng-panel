@@ -61,6 +61,14 @@ export class PanelDrawer {
           routerLink: RoutePath.HOME,
         },
         {
+          label: 'navigation.company',
+          icon: 'pi pi-building',
+          visible: this.authService
+            .currentUser()
+            ?.hasAnyPermission([PermissionName.READ_COMPANY, PermissionName.UPDATE_COMPANY]),
+          routerLink: RoutePath.COMPANY,
+        },
+        {
           label: 'navigation.users',
           icon: 'pi pi-users',
           visible: this.authService.currentUser()?.hasPermission(PermissionName.READ_USER),
@@ -77,6 +85,17 @@ export class PanelDrawer {
           icon: 'pi pi-key',
           visible: this.authService.currentUser()?.hasPermission(PermissionName.READ_API_KEY),
           routerLink: RoutePath.API_KEYS,
+        },
+        {
+          label: 'navigation.settings',
+          icon: 'pi pi-cog',
+          visible: this.authService
+            .currentUser()
+            ?.hasAnyPermission([
+              PermissionName.READ_COMPANY_SETTINGS,
+              PermissionName.UPDATE_COMPANY_SETTINGS,
+            ]),
+          routerLink: RoutePath.SETTINGS,
         },
       ],
     },

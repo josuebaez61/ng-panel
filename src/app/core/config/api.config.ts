@@ -3,6 +3,16 @@ import { environment } from '../../../environments/environment';
 export const API_CONFIG = {
   BASE_URL: environment.apiUrl,
   ENDPOINTS: {
+    CURRENCIES: {
+      ALL: '/currencies',
+      GET_BY_ID: (id: string): string => `/currencies/${id}`,
+    },
+    COMPANIES: {
+      GET_BY_ID: (id: string): string => `/companies/${id}`,
+      UPDATE: (id: string): string => `/companies/${id}`,
+      GET_SETTINGS: (id: string): string => `/companies/${id}/settings`,
+      UPDATE_SETTINGS: (id: string): string => `/companies/${id}/settings`,
+    },
     AUTH: {
       LOGIN: '/auth/login',
       REGISTER: '/auth/register',

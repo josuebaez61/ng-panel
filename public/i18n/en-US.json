@@ -151,7 +151,7 @@
         "light": "Light Mode",
         "dark": "Dark Mode"
       },
-      "footer": "© 2024 {{companyName}}. All rights reserved."
+      "footer": "© 2024 {{appName}}. All rights reserved."
     }
   },
   "common": {
@@ -181,7 +181,27 @@
     "home": "Home",
     "users": "Users",
     "roles": "Roles",
-    "apiKeys": "API Keys"
+    "apiKeys": "API Keys",
+    "company": "Company",
+    "settings": "Settings"
+  },
+  "company": {
+    "title": "Company Information",
+    "form": {
+      "name": "Name",
+      "description": "Description",
+      "logoUrl": "Logo URL",
+      "websiteUrl": "Website URL",
+      "email": "Email",
+      "phoneNumber": "Phone Number"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "form": {
+      "mainCurrency": "Main Currency",
+      "themeColor": "Theme Color"
+    }
   },
   "validation": {
     "required": "This field is required",

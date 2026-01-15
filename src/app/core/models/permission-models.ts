@@ -27,6 +27,17 @@ export enum PermissionName {
   READ_API_KEY = 'readApiKey',
   UPDATE_API_KEY = 'updateApiKey',
   DELETE_API_KEY = 'deleteApiKey',
+
+  // Company permissions
+  CREATE_COMPANY = 'createCompany',
+  READ_COMPANY = 'readCompany',
+  UPDATE_COMPANY = 'updateCompany',
+  DELETE_COMPANY = 'deleteCompany',
+
+  // Company Settings permissions
+  CREATE_COMPANY_SETTINGS = 'createCompanySettings',
+  READ_COMPANY_SETTINGS = 'readCompanySettings',
+  UPDATE_COMPANY_SETTINGS = 'updateCompanySettings',
 }
 
 export interface Permission {
@@ -48,4 +59,5 @@ export enum ResourceName {
   PERMISSION = 'permission',
   USER = 'user',
   API_KEY = 'apiKey',
+  COMPANY_SETTINGS = 'companySettings',
 }

@@ -15,7 +15,7 @@ import { environment } from '../../../../environments/environment';
   styleUrl: './auth.scss',
 })
 export class Auth {
-  public companyName = environment.companyName;
+  public appName = environment.appName;
   public title = input<string | null>(null);
   public backRoute = input<string | null>(null);
   public showSidenavToggleButton = input<boolean>(false);

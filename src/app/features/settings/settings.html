@@ -1,0 +1,76 @@
+<app-panel-page-header [title]="'settings.title' | translate" />
+
+<div class="grid grid-cols-12">
+  <div class="col-span-12 md:col-span-8">
+    <p-panel>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid grid-cols-12 gap-form-grid">
+        <div class="col-span-12">
+          <app-form-field-container>
+            <label for="mainCurrencyId">{{ 'settings.form.mainCurrency' | translate }}</label>
+            <p-select
+              class="w-full"
+              appendTo="body"
+              [options]="currencies()"
+              [formControl]="form.controls.mainCurrencyId"
+              optionLabel="name"
+              optionValue="id"
+              [filter]="true"
+              filterBy="name,code"
+              [disabled]="loading()"
+              [placeholder]="'common.selectPlaceholder' | translate"
+            >
+              <ng-template let-currency #selectedItem>
+                <div class="flex items-center gap-2">
+                  @if (currency.symbol) {
+                  <span class="font-medium">{{ currency.symbol }}</span>
+                  }
+                  <span>{{ currency.name }} ({{ currency.code }})</span>
+                </div>
+              </ng-template>
+              <ng-template let-currency #item>
+                <div class="flex items-center gap-2">
+                  @if (currency.symbol) {
+                  <span class="font-medium">{{ currency.symbol }}</span>
+                  }
+                  <span>{{ currency.name }} ({{ currency.code }})</span>
+                </div>
+              </ng-template>
+            </p-select>
+            <app-form-field-error [control]="form.controls.mainCurrencyId" />
+          </app-form-field-container>
+        </div>
+
+        <div class="col-span-12">
+          <app-form-field-container>
+            <label for="themeColor">{{ 'settings.form.themeColor' | translate }}</label>
+            <p-colorPicker
+              [formControl]="form.controls.themeColor"
+              format="hex"
+              [disabled]="loading()"
+              [inline]="false"
+              [appendTo]="'body'"
+            />
+            <app-form-field-error [control]="form.controls.themeColor" />
+          </app-form-field-container>
+        </div>
+
+        <div class="col-span-12 flex justify-end gap-2">
+          <p-button
+            type="button"
+            severity="secondary"
+            [label]="'common.reset' | translate"
+            (onClick)="onReset()"
+            [disabled]="loading() || saving()"
+          />
+          <p-button
+            type="submit"
+            icon="pi pi-save"
+            [label]="'common.save' | translate"
+            [loading]="saving()"
+            [disabled]="loading() || form.invalid"
+          />
+        </div>
+      </form>
+    </p-panel>
+  </div>
+</div>
