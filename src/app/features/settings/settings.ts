@@ -9,9 +9,9 @@ import { FormFieldError } from '@shared/components/ui/form-field-error/form-fiel
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
-import { ColorPickerModule } from 'primeng/colorpicker';
 import { forkJoin } from 'rxjs';
 import { PanelPageHeader } from '@shared/components/layout/panel-page-header/panel-page-header';
+import { InputColor } from '@shared/components/inputs/input-color/input-color';
 
 @Component({
   selector: 'app-settings',
@@ -24,8 +24,8 @@ import { PanelPageHeader } from '@shared/components/layout/panel-page-header/pan
     PanelModule,
     ButtonModule,
     SelectModule,
-    ColorPickerModule,
     PanelPageHeader,
+    InputColor,
   ],
   templateUrl: './settings.html',
   styleUrl: './settings.scss',

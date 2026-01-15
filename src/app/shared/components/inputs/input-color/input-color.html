@@ -1,0 +1,19 @@
+<p-input-group>
+  <p-inputGroupAddon>
+    <input
+      type="color"
+      [value]="value"
+      (input)="onColorInputChange($event)"
+      [disabled]="disabled"
+    />
+  </p-inputGroupAddon>
+  <input
+    class="flex-1"
+    pInputText
+    type="text"
+    [value]="hexValueWithoutHash"
+    (input)="onTextInputChange($event)"
+    [disabled]="disabled"
+    placeholder="#000000"
+  />
+</p-input-group>
