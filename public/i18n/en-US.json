@@ -317,19 +317,21 @@
         "system": "System"
       },
       "names": {
-        "createRole": "Create Role",
         "readRole": "Read Role",
-        "updateRole": "Update Role",
-        "deleteRole": "Delete Role",
+        "writeRole": "Write Role",
         "assignRole": "Assign Role",
         "assignPermission": "Assign Permission",
         "readPermission": "Read Permission",
-        "createUser": "Create User",
         "readUser": "Read User",
-        "updateUser": "Update User",
-        "deleteUser": "Delete User",
-        "admin": "Administrator",
-        "superAdmin": "Super Administrator"
+        "writeUser": "Write User",
+        "readUserAddress": "Read User Address",
+        "writeUserAddress": "Write User Address",
+        "readApiKey": "Read API Key",
+        "writeApiKey": "Write API Key",
+        "readCompany": "Read Company",
+        "writeCompany": "Write Company",
+        "readCompanySettings": "Read Company Settings",
+        "writeCompanySettings": "Write Company Settings"
       }
     }
   },
@@ -436,23 +438,21 @@
         "api_key": "API Keys"
       },
       "names": {
-        "createRole": "Create Role",
         "readRole": "Read Role",
-        "updateRole": "Update Role",
-        "deleteRole": "Delete Role",
+        "writeRole": "Write Role",
         "assignRole": "Assign Role",
         "assignPermission": "Assign Permission",
         "readPermission": "Read Permission",
-        "createUser": "Create User",
         "readUser": "Read User",
-        "updateUser": "Update User",
-        "deleteUser": "Delete User",
-        "createApiKey": "Create API Key",
+        "writeUser": "Write User",
+        "readUserAddress": "Read User Address",
+        "writeUserAddress": "Write User Address",
         "readApiKey": "Read API Key",
-        "updateApiKey": "Update API Key",
-        "deleteApiKey": "Delete API Key",
-        "admin": "Administrator",
-        "superAdmin": "Super Administrator"
+        "writeApiKey": "Write API Key",
+        "readCompany": "Read Company",
+        "writeCompany": "Write Company",
+        "readCompanySettings": "Read Company Settings",
+        "writeCompanySettings": "Write Company Settings"
       }
     }
   }

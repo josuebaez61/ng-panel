@@ -1,9 +1,7 @@
 export enum PermissionName {
   // Role permissions
-  CREATE_ROLE = 'createRole',
   READ_ROLE = 'readRole',
-  UPDATE_ROLE = 'updateRole',
-  DELETE_ROLE = 'deleteRole',
+  WRITE_ROLE = 'writeRole',
   ASSIGN_ROLE = 'assignRole',
   ASSIGN_PERMISSION = 'assignPermission',
 
@@ -11,33 +9,24 @@ export enum PermissionName {
   READ_PERMISSION = 'readPermission',
 
   // User permissions
-  CREATE_USER = 'createUser',
   READ_USER = 'readUser',
-  UPDATE_USER = 'updateUser',
-  DELETE_USER = 'deleteUser',
+  WRITE_USER = 'writeUser',
 
   // User Address permissions
-  CREATE_USER_ADDRESS = 'createUserAddress',
   READ_USER_ADDRESS = 'readUserAddress',
-  UPDATE_USER_ADDRESS = 'updateUserAddress',
-  DELETE_USER_ADDRESS = 'deleteUserAddress',
+  WRITE_USER_ADDRESS = 'writeUserAddress',
 
   // API Key permissions
-  CREATE_API_KEY = 'createApiKey',
   READ_API_KEY = 'readApiKey',
-  UPDATE_API_KEY = 'updateApiKey',
-  DELETE_API_KEY = 'deleteApiKey',
+  WRITE_API_KEY = 'writeApiKey',
 
   // Company permissions
-  CREATE_COMPANY = 'createCompany',
   READ_COMPANY = 'readCompany',
-  UPDATE_COMPANY = 'updateCompany',
-  DELETE_COMPANY = 'deleteCompany',
+  WRITE_COMPANY = 'writeCompany',
 
   // Company Settings permissions
-  CREATE_COMPANY_SETTINGS = 'createCompanySettings',
   READ_COMPANY_SETTINGS = 'readCompanySettings',
-  UPDATE_COMPANY_SETTINGS = 'updateCompanySettings',
+  WRITE_COMPANY_SETTINGS = 'writeCompanySettings',
 }
 
 export interface Permission {

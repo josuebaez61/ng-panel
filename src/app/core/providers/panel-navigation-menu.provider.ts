@@ -27,25 +27,31 @@ export const providePanelNavigationMenu = (): Provider => {
               icon: 'pi pi-building',
               visible: authService
                 .currentUser()
-                ?.hasAnyPermission([PermissionName.READ_COMPANY, PermissionName.UPDATE_COMPANY]),
+                ?.hasAnyPermission([PermissionName.READ_COMPANY, PermissionName.WRITE_COMPANY]),
               routerLink: RoutePath.COMPANY,
             },
             {
               label: 'navigation.users',
               icon: 'pi pi-users',
-              visible: authService.currentUser()?.hasPermission(PermissionName.READ_USER),
+              visible: authService
+                .currentUser()
+                ?.hasAnyPermission([PermissionName.READ_USER, PermissionName.WRITE_USER]),
               routerLink: RoutePath.USERS,
             },
             {
               label: 'navigation.roles',
               icon: 'pi pi-circle',
-              visible: authService.currentUser()?.hasPermission(PermissionName.READ_ROLE),
+              visible: authService
+                .currentUser()
+                ?.hasAnyPermission([PermissionName.READ_ROLE, PermissionName.WRITE_ROLE]),
               routerLink: RoutePath.ROLES,
             },
             {
               label: 'navigation.apiKeys',
               icon: 'pi pi-key',
-              visible: authService.currentUser()?.hasPermission(PermissionName.READ_API_KEY),
+              visible: authService
+                .currentUser()
+                ?.hasAnyPermission([PermissionName.READ_API_KEY, PermissionName.WRITE_API_KEY]),
               routerLink: RoutePath.API_KEYS,
             },
             {
@@ -55,7 +61,7 @@ export const providePanelNavigationMenu = (): Provider => {
                 .currentUser()
                 ?.hasAnyPermission([
                   PermissionName.READ_COMPANY_SETTINGS,
-                  PermissionName.UPDATE_COMPANY_SETTINGS,
+                  PermissionName.WRITE_COMPANY_SETTINGS,
                 ]),
               routerLink: RoutePath.SETTINGS,
             },

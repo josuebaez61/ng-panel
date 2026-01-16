@@ -313,19 +313,21 @@
         "system": "Sistema"
       },
       "names": {
-        "createRole": "Crear Rol",
         "readRole": "Leer Rol",
-        "updateRole": "Actualizar Rol",
-        "deleteRole": "Eliminar Rol",
+        "writeRole": "Escribir Rol",
         "assignRole": "Asignar Rol",
         "assignPermission": "Asignar Permiso",
         "readPermission": "Leer Permiso",
-        "createUser": "Crear Usuario",
         "readUser": "Leer Usuario",
-        "updateUser": "Actualizar Usuario",
-        "deleteUser": "Eliminar Usuario",
-        "admin": "Administrador",
-        "superAdmin": "Super Administrador"
+        "writeUser": "Escribir Usuario",
+        "readUserAddress": "Leer Dirección de Usuario",
+        "writeUserAddress": "Escribir Dirección de Usuario",
+        "readApiKey": "Leer API Key",
+        "writeApiKey": "Escribir API Key",
+        "readCompany": "Leer Empresa",
+        "writeCompany": "Escribir Empresa",
+        "readCompanySettings": "Leer Configuración de Empresa",
+        "writeCompanySettings": "Escribir Configuración de Empresa"
       }
     }
   },
@@ -432,23 +434,21 @@
         "api_key": "API Keys"
       },
       "names": {
-        "createRole": "Crear Rol",
         "readRole": "Leer Rol",
-        "updateRole": "Actualizar Rol",
-        "deleteRole": "Eliminar Rol",
+        "writeRole": "Escribir Rol",
         "assignRole": "Asignar Rol",
         "assignPermission": "Asignar Permiso",
         "readPermission": "Leer Permiso",
-        "createUser": "Crear Usuario",
         "readUser": "Leer Usuario",
-        "updateUser": "Actualizar Usuario",
-        "deleteUser": "Eliminar Usuario",
-        "createApiKey": "Crear API Key",
+        "writeUser": "Escribir Usuario",
+        "readUserAddress": "Leer Dirección de Usuario",
+        "writeUserAddress": "Escribir Dirección de Usuario",
         "readApiKey": "Leer API Key",
-        "updateApiKey": "Actualizar API Key",
-        "deleteApiKey": "Eliminar API Key",
-        "admin": "Administrador",
-        "superAdmin": "Super Administrador"
+        "writeApiKey": "Escribir API Key",
+        "readCompany": "Leer Empresa",
+        "writeCompany": "Escribir Empresa",
+        "readCompanySettings": "Leer Configuración de Empresa",
+        "writeCompanySettings": "Escribir Configuración de Empresa"
       }
     }
   }

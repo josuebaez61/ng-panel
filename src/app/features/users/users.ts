@@ -41,11 +41,11 @@ export class Users {
   );
 
   public canCreateUsers = computed(
-    () => !!this.currentUser()?.hasPermission(PermissionName.CREATE_USER)
+    () => !!this.currentUser()?.hasPermission(PermissionName.WRITE_USER)
   );
 
   public canUpdateUsers = computed(
-    () => !!this.currentUser()?.hasPermission(PermissionName.UPDATE_USER)
+    () => !!this.currentUser()?.hasPermission(PermissionName.WRITE_USER)
   );
 
   public paginatedUsers = new PaginatedResourceLoader<ListUser>({

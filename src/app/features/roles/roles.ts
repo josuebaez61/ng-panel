@@ -26,12 +26,8 @@ export class Roles implements OnInit {
   public roleUsersPath = RoutePath.ROLES_USERS;
   public rolePermissionsPath = RoutePath.ROLES_PERMISSIONS;
 
-  public canCreateRoles = computed(
-    () => !!this.authService.currentUser()?.hasPermission(PermissionName.CREATE_ROLE)
-  );
-
-  public canUpdateRoles = computed(
-    () => !!this.authService.currentUser()?.hasPermission(PermissionName.UPDATE_ROLE)
+  public canWriteRoles = computed(
+    () => !!this.authService.currentUser()?.hasPermission(PermissionName.WRITE_ROLE)
   );
 
   public canAssignPermissions = computed(
@@ -40,10 +36,6 @@ export class Roles implements OnInit {
 
   public canAssignRoles = computed(
     () => !!this.authService.currentUser()?.hasPermission(PermissionName.ASSIGN_ROLE)
-  );
-
-  public canDeleteRoles = computed(
-    () => !!this.authService.currentUser()?.hasPermission(PermissionName.DELETE_ROLE)
   );
 
   public ngOnInit(): void {
