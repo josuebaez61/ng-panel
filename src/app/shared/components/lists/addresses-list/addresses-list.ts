@@ -1,5 +1,5 @@
 import { Component, TemplateRef, input } from '@angular/core';
-import { Address } from '@core/models/address-model';
+import { Address } from '@core/models/address-models';
 import { SharedModule } from '@shared/modules';
 import { DataViewModule } from 'primeng/dataview';
 import { SkeletonModule } from 'primeng/skeleton';

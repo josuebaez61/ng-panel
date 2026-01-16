@@ -3,7 +3,7 @@ import { SharedModule } from '@shared/modules';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService, Confirm, DialogService, UserService } from '@core/services';
 import { AddressesList } from '@shared/components/lists/addresses-list/addresses-list';
-import { Address } from '@core/models/address-model';
+import { Address } from '@core/models/address-models';
 import { mergeMap, of, tap } from 'rxjs';
 import { AccountInfo } from './components/account-info/account-info';
 import { AccountPersonalInfo } from './components/account-personal-info/account-personal-info';

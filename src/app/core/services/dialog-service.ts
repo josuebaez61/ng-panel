@@ -1,6 +1,6 @@
 import { inject, Injectable, Type, Injector, ApplicationRef, DOCUMENT } from '@angular/core';
 import { ApiKey, Role, UsersSelectionDialogData, User, Person } from '@core/models';
-import { Address } from '@core/models/address-model';
+import { Address } from '@core/models/address-models';
 import { TranslateService } from '@ngx-translate/core';
 import { AddressFormDialog } from '@shared/components/dialogs/address-form-dialog/address-form-dialog';
 import { ApiKeyFormDialog } from '@shared/components/dialogs/api-key-form-dialog/api-key-form-dialog';

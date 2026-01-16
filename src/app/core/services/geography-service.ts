@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { API_CONFIG } from '../config/api.config';
 import { ApiResponse } from '../models/api-response-models';
-import { PhoneCodeDto } from '../models/geography-models';
 import {
   CountryOption,
   CountyOption,
   LocalityOption,
   StateOption,
-} from '@core/models/geography-model';
+  PhoneCodeDto,
+} from '@core/models/geography-models';
 
 @Injectable({
   providedIn: 'root',

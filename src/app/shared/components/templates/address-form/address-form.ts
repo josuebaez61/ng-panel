@@ -19,10 +19,10 @@ import {
   CountyOption,
   LocalityOption,
   StateOption,
-} from '@core/models/geography-model';
+} from '@core/models/geography-models';
 import { Subject, filter, takeUntil, tap } from 'rxjs';
 import { SelectChangeEvent } from 'primeng/select';
-import { Address } from '@core/models/address-model';
+import { Address } from '@core/models/address-models';
 import { FormFieldContainer } from '@shared/components/ui/form-field-container/form-field-container';
 import { FormFieldError } from '@shared/components/ui/form-field-error/form-field-error';
 
