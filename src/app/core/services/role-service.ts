@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { Role, CreateRoleRequest, UpdateRoleRequest } from '../models/role-models';
 import { API_CONFIG } from '../config/api.config';
 import { ApiResponse } from '../models/api-response-models';
-import { Permission, UserOption } from '@core/models';
+import { Option, Permission, UserOption } from '@core/models';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +20,16 @@ export class RoleService {
   public getAllRoles(): Observable<Role[]> {
     return this.http
       .get<ApiResponse<Role[]>>(`${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.ALL}`)
+      .pipe(map((response) => response.data || []));
+  }
+
+  /**
+   * Get role options for dropdowns/selects
+   * Returns simplified role data with id and label
+   */
+  public getRoleOptions(): Observable<Option[]> {
+    return this.http
+      .get<ApiResponse<Option[]>>(`${this.baseUrl}${API_CONFIG.ENDPOINTS.ROLES.OPTIONS}`)
       .pipe(map((response) => response.data || []));
   }
 

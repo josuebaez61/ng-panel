@@ -8,6 +8,7 @@ export * from './dialogs-models';
 export * from './geography-model';
 export * from './geography-models';
 export * from './language-models';
+export * from './option-models';
 export * from './pagination-models';
 export * from './permission-models';
 export * from './role-models';

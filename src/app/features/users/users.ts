@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { ListUser, PermissionName, Person, Role, User } from '@core/models';
+import { ListUser, Option, PermissionName, Person, User } from '@core/models';
 import {
   AuthService,
   Confirm,
@@ -32,7 +32,7 @@ export class Users {
   private readonly confirm = inject(Confirm);
   private readonly roleService = inject(RoleService);
 
-  public roles = signal<Role[]>([]);
+  public roleOptions = signal<Option[]>([]);
 
   public currentUser = this.authService.currentUser;
 
@@ -61,9 +61,9 @@ export class Users {
   }
 
   public ngOnInit(): void {
-    this.roleService.getAllRoles().subscribe({
-      next: (roles) => {
-        this.roles.set(roles);
+    this.roleService.getRoleOptions().subscribe({
+      next: (options) => {
+        this.roleOptions.set(options);
       },
     });
   }

@@ -69,6 +69,7 @@ export const API_CONFIG = {
       DELETE: (id: string): string => `/roles/${id}`,
       GET_BY_ID: (id: string): string => `/roles/${id}`,
       USER_COUNT: '/roles/stats/user-count',
+      OPTIONS: '/roles/options',
       UNASSIGNED_ROLES_BY_USER_ID: (userId: string): string => `/roles/users/${userId}/unassigned`,
       UNASSIGNED_USERS: (roleId: string): string => `/roles/${roleId}/users/unassigned`,
     },

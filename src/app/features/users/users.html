@@ -35,8 +35,8 @@
   <th>
     <p-select
       class="w-full"
-      [options]="roles()"
-      optionLabel="name"
+      [options]="roleOptions()"
+      optionLabel="label"
       optionValue="id"
       appendTo="body"
       (onChange)="onRoleChange($event)"
